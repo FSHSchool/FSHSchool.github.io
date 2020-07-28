@@ -1,57 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>FSH School</title>
-    <link>http://fshschool.org/</link>
+    <title>FSH School – FSH School</title>
+    <link>/</link>
     <description>Recent content on FSH School</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
     
-	<atom:link href="http://fshschool.org/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title>Installation</title>
-      <link>http://fshschool.org/sushi/installation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://fshschool.org/sushi/installation/</guid>
-      <description>Step 1: Install Node.js SUSHI requires Node.js. To install Node.js, go to https://nodejs.org/ and select the &amp;ldquo;LTS&amp;rdquo; download. If the download is not appropriate for your operating system, click the &amp;ldquo;Other Downloads&amp;rdquo; link to get a full list of downloads. Once the installer is downloaded, run it using the default options.
-Ensure that Node.js is correctly installed by opening a command window and typing the following two commands. Each command should return a version number.</description>
-    </item>
-    
-    <item>
-      <title>Project Structure</title>
-      <link>http://fshschool.org/sushi/project/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://fshschool.org/sushi/project/</guid>
-      <description>Simple FSH Projects The simplest FSH project (sometimes referred to as a &amp;ldquo;FSH tank&amp;rdquo;) contains only a configuration file and FSH files containing FHIR Shorthand definitions. For example, a simple FSH tank might look like this:
-simple-project ├── config.yaml ├── file1.fsh ├── file2.fsh └── file3.fsh The config.yaml file provides project configuration data to SUSHI. It is described further in the Configuration documentation.
-Each FSH file can contain multiple FSH definitions of varying types.</description>
-    </item>
     
-    <item>
-      <title>Running SUSHI</title>
-      <link>http://fshschool.org/sushi/running/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://fshschool.org/sushi/running/</guid>
-      <description>This documentation assumes you have a SUSHI-compliant project structure and configuration as discussed in the previous sections.
- Running SUSHI SUSHI is executed from the command line. The general form of the SUSHI execution command is as follows:
- sushi {specification-directory} {options} where options include the following (in any order):
--o, --out &amp;lt;out&amp;gt; the path to the output directory (default: ./build) -s, --snapshot generate snapshot in StructureDefinition output (default: false) -d, --debug output extra debugging information (default: false) -v, --version output SUSHI version and implemented FSH specification version -h, --help output usage information  If you run SUSHI from your FSH project directory, and accept the defaults, the command can be shortened to sushi .</description>
-    </item>
-    
-    <item>
-      <title>Community</title>
-      <link>http://fshschool.org/sushi/community/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://fshschool.org/sushi/community/</guid>
-      <description>FHIR Shorthand and SUSHI are relatively young but already enjoy great communities! If you run into any issues developing IGs with FSH and SUSHI, you can reach out to the community in the following ways:
- Participate, ask, or answer questions on the Zulip #shorthand stream. File a SUSHI bug report or feature request on the SUSHI issue tracker. File a FSH comment or suggestion on the FHIR Jira.  SUSHI is open source code.</description>
-    </item>
     
   </channel>
 </rss>

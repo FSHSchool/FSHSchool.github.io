@@ -107,7 +107,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1ae9b225109bf2c3fa9dcdb807f207aede67dcc775d2ad04e9b399656381b7e35e0b5d1cc97efc2ad6fbd7cfa321e5896fd98e9b6b519fc60006f1ad3addc777.json"
+  data-offline-search-index-json-src="/offline-search-index.9883ab697ebdfd2292453cf3144173b1034e5b0a7223c8ea5429e0175f1ea64cb3bb70e74bfdbb78b3e5a65554f7bf95ee8c13b867ebb4ef8bd1ab8182a2adac.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -138,7 +138,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1ae9b225109bf2c3fa9dcdb807f207aede67dcc775d2ad04e9b399656381b7e35e0b5d1cc97efc2ad6fbd7cfa321e5896fd98e9b6b519fc60006f1ad3addc777.json"
+  data-offline-search-index-json-src="/offline-search-index.9883ab697ebdfd2292453cf3144173b1034e5b0a7223c8ea5429e0175f1ea64cb3bb70e74bfdbb78b3e5a65554f7bf95ee8c13b867ebb4ef8bd1ab8182a2adac.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -417,7 +417,7 @@
   <ul>
     <li><a href="#running-sushi">Running SUSHI</a>
       <ul>
-        <li></li>
+        <li><a href="#error-messages">Error Messages</a></li>
       </ul>
     </li>
     <li><a href="#sushi-outputs">SUSHI Outputs</a>
@@ -489,6 +489,7 @@ This documentation assumes you have a SUSHI-compliant project structure and conf
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-o, --out &lt;out&gt;   the path to the output directory (default: ./build)
 -s, --snapshot    generate snapshot in StructureDefinition output (default: false)
 -d, --debug       output extra debugging information (default: false)
+-i, --init        initialize a SUSHI project
 -v, --version     output SUSHI version and implemented FSH specification version
 -h, --help        output usage information
 </code></pre></div>
@@ -517,7 +518,7 @@ By default, SUSHI only generates the <a href="https://www.hl7.org/fhir/R4/profil
 ╠═════════════════════════════════════════════════════════════════╣
 ║ O-fish-ally error free!                0 Errors      0 Warnings ║
 ╚═════════════════════════════════════════════════════════════════╝
-</code></pre></div><h4 id="error-messages">Error Messages</h4>
+</code></pre></div><h3 id="error-messages">Error Messages</h3>
 <p>In the process of developing your IG using FSH, you may encounter SUSHI error messages (written to the command console). Most error messages point to a specific line or lines in a <code>.fsh</code> file. If possible, SUSHI will continue, despite errors, to produce FHIR artifacts, but those artifacts may omit problematic rules. SUSHI should always exit gracefully. If SUSHI crashes, please report the issue using the <a href="https://github.com/FHIR/sushi/issues">SUSHI issue tracker</a>.</p>
 <p>Here are some general tips for debugging:</p>
 <ul>
@@ -638,7 +639,7 @@ If you have never run the IG Publisher, you may need to install Jekyll first. Se
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified July 28, 2020: <a  href="https://github.com/FSHSchool/site/commit/af50e9cb3172df67580f2b7d1d88541b12b66e45">Moving to docsy (#1) (af50e9c)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified July 30, 2020: <a  href="https://github.com/FSHSchool/site/commit/31e17ca068ea5a16e95d127dce34604956d0c77a">Update docs for --init and BYO-XML (#9) (31e17ca)</a>
 </div>
 </div>
 

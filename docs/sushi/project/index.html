@@ -107,7 +107,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1ae9b225109bf2c3fa9dcdb807f207aede67dcc775d2ad04e9b399656381b7e35e0b5d1cc97efc2ad6fbd7cfa321e5896fd98e9b6b519fc60006f1ad3addc777.json"
+  data-offline-search-index-json-src="/offline-search-index.9883ab697ebdfd2292453cf3144173b1034e5b0a7223c8ea5429e0175f1ea64cb3bb70e74bfdbb78b3e5a65554f7bf95ee8c13b867ebb4ef8bd1ab8182a2adac.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -138,7 +138,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1ae9b225109bf2c3fa9dcdb807f207aede67dcc775d2ad04e9b399656381b7e35e0b5d1cc97efc2ad6fbd7cfa321e5896fd98e9b6b519fc60006f1ad3addc777.json"
+  data-offline-search-index-json-src="/offline-search-index.9883ab697ebdfd2292453cf3144173b1034e5b0a7223c8ea5429e0175f1ea64cb3bb70e74bfdbb78b3e5a65554f7bf95ee8c13b867ebb4ef8bd1ab8182a2adac.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -420,7 +420,11 @@
         <li><a href="#using-a-fsh-subdirectory-with-the-hl7-ig-publisher-and-auto-builder">Using a fsh Subdirectory with the HL7 IG Publisher and Auto-Builder</a></li>
       </ul>
     </li>
-    <li><a href="#ig-projects">IG Projects</a></li>
+    <li><a href="#ig-projects">IG Projects</a>
+      <ul>
+        <li><a href="#initializing-a-sushi-project">Initializing a SUSHI Project</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -544,7 +548,7 @@ Using a <strong>fsh</strong> subdirectory is not required, but since many author
 <li><strong>{artifact-file-name}-notes.xml|md</strong>: If present, the contents of the file will be placed on the relevant page <em>after</em> the artifact&rsquo;s definition.</li>
 </ul>
 </li>
-<li><strong>ig-data/input/{supported-resource-input-directory}/*</strong> (not shown above): JSON files in <a href="https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html#root.input">supported resource directories</a> (e.g., <strong>profiles</strong>, <strong>extensions</strong>, <strong>examples</strong>, etc.) will be be copied to the corresponding locations in the IG input and processed as additional (non-FSH) IG resources. This feature is not expected to be commonly used.</li>
+<li><strong>ig-data/input/{supported-resource-input-directory}/*</strong> (not shown above): JSON or XML files in <a href="https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html#root.input">supported resource directories</a> (e.g., <strong>profiles</strong>, <strong>extensions</strong>, <strong>examples</strong>, etc.) will be be copied to the corresponding locations in the IG input and processed as additional (non-FSH) IG resources. This feature is not expected to be commonly used.</li>
 <li><strong>ig-data/package-list.json</strong>: This optional file, described <a href="https://confluence.hl7.org/display/FHIR/FHIR+IG+PackageList+doco">here</a>, should contain the version history of your IG. If present and no <code>history</code> property is specified in <strong>config.yaml</strong>, it will be used instead of a generated <strong>package-list.json</strong>.</li>
 </ul>
 
@@ -554,6 +558,32 @@ Using a <strong>fsh</strong> subdirectory is not required, but since many author
 Examples of <strong>package.json</strong>, <strong>ig.ini</strong>, <strong>package-list.json</strong>, <strong>ignoreWarnings.txt</strong> and <strong>menu.xml</strong> files can be found in the <a href="https://github.com/FHIR/sample-ig">sample IG project</a> provided for this purpose. In addition, more general guidance can be found in <a href="https://build.fhir.org/ig/FHIR/ig-guidance/">Guidance for HL7 IG Creation</a>. For a real-world example of a populated <strong>ig-data</strong> directory, see the <a href="https://github.com/standardhealth/fsh-mcode">mCODE Implementation Guide</a>.
 </div>
 
+<h3 id="initializing-a-sushi-project">Initializing a SUSHI Project</h3>
+<p>Setting up this project structure manually can be complex, so to simplify that process, SUSHI provides an <code>--init</code> option. Running <code>sushi --init</code> will cause SUSHI to create a new SUSHI project with a default configuration and project structure. This provides a simple way to get started with FHIR Shorthand and SUSHI.</p>
+<p>When <code>sushi --init</code> is run, SUSHI will request high-level project information from the user:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Name (Default: ExampleIG): NewIG
+Id (Default: fhir.example): my.id
+Canonical (Default: http://example.org): http://myid.org
+Status (Default: draft): active
+Version (Default: 0.1.0): 2.0.0
+Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
+</code></pre></div><p>These values are used to generate a simple config.yaml file and a corresponding IG-Publisher-compatible project structure:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">NewIG
+├── .gitignore
+├── _genonce.bat     
+├── _genonce.sh           
+├── _updatePublisher.bat  
+├── _updatePublisher.sh 
+├── _gencontinuous.bat 
+├── _gencontinuous.sh  
+└── fsh
+    ├── config.yaml   
+    ├── ig-data
+    │   └── input
+    │       └── pagecontent
+    │           └── index.md  
+    └── patient.fsh    
+</code></pre></div><p>In addition to the contents of the <code>fsh</code> folder, <code>--init</code> adds several <code>.bat</code> and <code>.sh</code> scripts which allow you to <a href="/docs/sushi/running/#downloading-the-ig-publisher">run the IG Publisher</a>, and a default <code>.gitignore</code> file for a FSH project. From this point on, the author can modify the configuration and definitions as necessary.</p>
 
         <div class="section-index">
     
@@ -587,7 +617,7 @@ Examples of <strong>package.json</strong>, <strong>ig.ini</strong>, <strong>pack
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified July 28, 2020: <a  href="https://github.com/FSHSchool/site/commit/af50e9cb3172df67580f2b7d1d88541b12b66e45">Moving to docsy (#1) (af50e9c)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified July 30, 2020: <a  href="https://github.com/FSHSchool/site/commit/31e17ca068ea5a16e95d127dce34604956d0c77a">Update docs for --init and BYO-XML (#9) (31e17ca)</a>
 </div>
 </div>
 

@@ -107,7 +107,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1ae9b225109bf2c3fa9dcdb807f207aede67dcc775d2ad04e9b399656381b7e35e0b5d1cc97efc2ad6fbd7cfa321e5896fd98e9b6b519fc60006f1ad3addc777.json"
+  data-offline-search-index-json-src="/offline-search-index.9883ab697ebdfd2292453cf3144173b1034e5b0a7223c8ea5429e0175f1ea64cb3bb70e74bfdbb78b3e5a65554f7bf95ee8c13b867ebb4ef8bd1ab8182a2adac.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -138,7 +138,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1ae9b225109bf2c3fa9dcdb807f207aede67dcc775d2ad04e9b399656381b7e35e0b5d1cc97efc2ad6fbd7cfa321e5896fd98e9b6b519fc60006f1ad3addc777.json"
+  data-offline-search-index-json-src="/offline-search-index.9883ab697ebdfd2292453cf3144173b1034e5b0a7223c8ea5429e0175f1ea64cb3bb70e74bfdbb78b3e5a65554f7bf95ee8c13b867ebb4ef8bd1ab8182a2adac.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -517,6 +517,13 @@
 </li>
 <li>The <code>template</code> value consists of a template id and version separated by <code>#</code>. This value will be reflected in the generated <strong>ig.ini</strong> file for your project. For the most up-to-date list of templates, see the <a href="https://build.fhir.org/ig/FHIR/ig-guidance/#technical-details">Guidance for FHIR IG Creation</a>.</li>
 </ul>
+
+
+<div class="alert alert-success" role="alert">
+<h4 class="alert-heading">Tip</h4>
+SUSHI can generate a simple configuration file for you with the <code>--init</code> <a href="/docs/sushi/project/#initializing-a-sushi-project">option</a>
+</div>
+
 <h4 id="fsh-only">FSH-Only</h4>
 <p>If an author wants SUSHI only to build the FHIR definition files, and <em>not</em> to do any additional Implementation Guide (IG) processing, then the author should add a <code>FSHOnly</code> flag to the configuration and set its value to <code>true</code>:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">FSHOnly</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -705,7 +712,7 @@
 <tr>
 <td align="left">resources</td>
 <td align="left">definition.resource</td>
-<td align="left">SUSHI can auto-generate a list of resources based on FSH definitions and provided JSON resources, but this property can be used to add additional entries or override generated entries. SUSHI uses the {resource type}/{resource name} format as the YAML key (corresponding to IG.definition.resource.reference). Authors can specify the value &ldquo;omit&rdquo; to omit a FSH-generated resource from the resource list. <code>groupingId</code> can be used, but top-level groups syntax may be a better option.</td>
+<td align="left">SUSHI can auto-generate a list of resources based on FSH definitions and provided JSON or XML resources, but this property can be used to add additional entries or override generated entries. SUSHI uses the {resource type}/{resource name} format as the YAML key (corresponding to IG.definition.resource.reference). Authors can specify the value &ldquo;omit&rdquo; to omit a FSH-generated resource from the resource list. <code>groupingId</code> can be used, but top-level groups syntax may be a better option.</td>
 </tr>
 <tr>
 <td align="left">pages</td>
@@ -847,7 +854,7 @@
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The resources property corresponds to IG.definition.resource.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># SUSHI can auto-generate all of the resource entries based on</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># the FSH definitions and/or information in any user-provided</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># JSON resource files. If the generated entries are not</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># JSON or XML resource files. If the generated entries are not</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># sufficient or complete, however, the author can add entries</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># here. If the reference matches a generated entry, it will</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># replace the generated entry. If it doesn&#39;t match any generated</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1021,7 +1028,7 @@
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified July 28, 2020: <a  href="https://github.com/FSHSchool/site/commit/af50e9cb3172df67580f2b7d1d88541b12b66e45">Moving to docsy (#1) (af50e9c)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified July 30, 2020: <a  href="https://github.com/FSHSchool/site/commit/31e17ca068ea5a16e95d127dce34604956d0c77a">Update docs for --init and BYO-XML (#9) (31e17ca)</a>
 </div>
 </div>
 

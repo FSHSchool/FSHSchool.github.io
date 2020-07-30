@@ -139,7 +139,7 @@ Using a &lt;strong&gt;fsh&lt;/strong&gt; subdirectory is not required, but since
 &lt;li&gt;&lt;strong&gt;{artifact-file-name}-notes.xml|md&lt;/strong&gt;: If present, the contents of the file will be placed on the relevant page &lt;em&gt;after&lt;/em&gt; the artifact&amp;rsquo;s definition.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ig-data/input/{supported-resource-input-directory}/*&lt;/strong&gt; (not shown above): JSON files in &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html#root.input&#34;&gt;supported resource directories&lt;/a&gt; (e.g., &lt;strong&gt;profiles&lt;/strong&gt;, &lt;strong&gt;extensions&lt;/strong&gt;, &lt;strong&gt;examples&lt;/strong&gt;, etc.) will be be copied to the corresponding locations in the IG input and processed as additional (non-FSH) IG resources. This feature is not expected to be commonly used.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ig-data/input/{supported-resource-input-directory}/*&lt;/strong&gt; (not shown above): JSON or XML files in &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html#root.input&#34;&gt;supported resource directories&lt;/a&gt; (e.g., &lt;strong&gt;profiles&lt;/strong&gt;, &lt;strong&gt;extensions&lt;/strong&gt;, &lt;strong&gt;examples&lt;/strong&gt;, etc.) will be be copied to the corresponding locations in the IG input and processed as additional (non-FSH) IG resources. This feature is not expected to be commonly used.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;ig-data/package-list.json&lt;/strong&gt;: This optional file, described &lt;a href=&#34;https://confluence.hl7.org/display/FHIR/FHIR+IG+PackageList+doco&#34;&gt;here&lt;/a&gt;, should contain the version history of your IG. If present and no &lt;code&gt;history&lt;/code&gt; property is specified in &lt;strong&gt;config.yaml&lt;/strong&gt;, it will be used instead of a generated &lt;strong&gt;package-list.json&lt;/strong&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -149,6 +149,32 @@ Using a &lt;strong&gt;fsh&lt;/strong&gt; subdirectory is not required, but since
 Examples of &lt;strong&gt;package.json&lt;/strong&gt;, &lt;strong&gt;ig.ini&lt;/strong&gt;, &lt;strong&gt;package-list.json&lt;/strong&gt;, &lt;strong&gt;ignoreWarnings.txt&lt;/strong&gt; and &lt;strong&gt;menu.xml&lt;/strong&gt; files can be found in the &lt;a href=&#34;https://github.com/FHIR/sample-ig&#34;&gt;sample IG project&lt;/a&gt; provided for this purpose. In addition, more general guidance can be found in &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/&#34;&gt;Guidance for HL7 IG Creation&lt;/a&gt;. For a real-world example of a populated &lt;strong&gt;ig-data&lt;/strong&gt; directory, see the &lt;a href=&#34;https://github.com/standardhealth/fsh-mcode&#34;&gt;mCODE Implementation Guide&lt;/a&gt;.
 &lt;/div&gt;
 
+&lt;h3 id=&#34;initializing-a-sushi-project&#34;&gt;Initializing a SUSHI Project&lt;/h3&gt;
+&lt;p&gt;Setting up this project structure manually can be complex, so to simplify that process, SUSHI provides an &lt;code&gt;--init&lt;/code&gt; option. Running &lt;code&gt;sushi --init&lt;/code&gt; will cause SUSHI to create a new SUSHI project with a default configuration and project structure. This provides a simple way to get started with FHIR Shorthand and SUSHI.&lt;/p&gt;
+&lt;p&gt;When &lt;code&gt;sushi --init&lt;/code&gt; is run, SUSHI will request high-level project information from the user:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;Name (Default: ExampleIG): NewIG
+Id (Default: fhir.example): my.id
+Canonical (Default: http://example.org): http://myid.org
+Status (Default: draft): active
+Version (Default: 0.1.0): 2.0.0
+Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;These values are used to generate a simple config.yaml file and a corresponding IG-Publisher-compatible project structure:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;NewIG
+├── .gitignore
+├── _genonce.bat     
+├── _genonce.sh           
+├── _updatePublisher.bat  
+├── _updatePublisher.sh 
+├── _gencontinuous.bat 
+├── _gencontinuous.sh  
+└── fsh
+    ├── config.yaml   
+    ├── ig-data
+    │   └── input
+    │       └── pagecontent
+    │           └── index.md  
+    └── patient.fsh    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In addition to the contents of the &lt;code&gt;fsh&lt;/code&gt; folder, &lt;code&gt;--init&lt;/code&gt; adds several &lt;code&gt;.bat&lt;/code&gt; and &lt;code&gt;.sh&lt;/code&gt; scripts which allow you to &lt;a href=&#34;/docs/sushi/running/#downloading-the-ig-publisher&#34;&gt;run the IG Publisher&lt;/a&gt;, and a default &lt;code&gt;.gitignore&lt;/code&gt; file for a FSH project. From this point on, the author can modify the configuration and definitions as necessary.&lt;/p&gt;
 
       </description>
     </item>
@@ -207,6 +233,13 @@ Examples of &lt;strong&gt;package.json&lt;/strong&gt;, &lt;strong&gt;ig.ini&lt;/
 &lt;/li&gt;
 &lt;li&gt;The &lt;code&gt;template&lt;/code&gt; value consists of a template id and version separated by &lt;code&gt;#&lt;/code&gt;. This value will be reflected in the generated &lt;strong&gt;ig.ini&lt;/strong&gt; file for your project. For the most up-to-date list of templates, see the &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/#technical-details&#34;&gt;Guidance for FHIR IG Creation&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
+
+
+&lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Tip&lt;/h4&gt;
+SUSHI can generate a simple configuration file for you with the &lt;code&gt;--init&lt;/code&gt; &lt;a href=&#34;/docs/sushi/project/#initializing-a-sushi-project&#34;&gt;option&lt;/a&gt;
+&lt;/div&gt;
+
 &lt;h4 id=&#34;fsh-only&#34;&gt;FSH-Only&lt;/h4&gt;
 &lt;p&gt;If an author wants SUSHI only to build the FHIR definition files, and &lt;em&gt;not&lt;/em&gt; to do any additional Implementation Guide (IG) processing, then the author should add a &lt;code&gt;FSHOnly&lt;/code&gt; flag to the configuration and set its value to &lt;code&gt;true&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;FSHOnly&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -395,7 +428,7 @@ Examples of &lt;strong&gt;package.json&lt;/strong&gt;, &lt;strong&gt;ig.ini&lt;/
 &lt;tr&gt;
 &lt;td align=&#34;left&#34;&gt;resources&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;definition.resource&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SUSHI can auto-generate a list of resources based on FSH definitions and provided JSON resources, but this property can be used to add additional entries or override generated entries. SUSHI uses the {resource type}/{resource name} format as the YAML key (corresponding to IG.definition.resource.reference). Authors can specify the value &amp;ldquo;omit&amp;rdquo; to omit a FSH-generated resource from the resource list. &lt;code&gt;groupingId&lt;/code&gt; can be used, but top-level groups syntax may be a better option.&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SUSHI can auto-generate a list of resources based on FSH definitions and provided JSON or XML resources, but this property can be used to add additional entries or override generated entries. SUSHI uses the {resource type}/{resource name} format as the YAML key (corresponding to IG.definition.resource.reference). Authors can specify the value &amp;ldquo;omit&amp;rdquo; to omit a FSH-generated resource from the resource list. &lt;code&gt;groupingId&lt;/code&gt; can be used, but top-level groups syntax may be a better option.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align=&#34;left&#34;&gt;pages&lt;/td&gt;
@@ -537,7 +570,7 @@ Examples of &lt;strong&gt;package.json&lt;/strong&gt;, &lt;strong&gt;ig.ini&lt;/
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# The resources property corresponds to IG.definition.resource.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# SUSHI can auto-generate all of the resource entries based on&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# the FSH definitions and/or information in any user-provided&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# JSON resource files. If the generated entries are not&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# JSON or XML resource files. If the generated entries are not&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# sufficient or complete, however, the author can add entries&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# here. If the reference matches a generated entry, it will&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# replace the generated entry. If it doesn&amp;#39;t match any generated&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -705,6 +738,7 @@ This documentation assumes you have a SUSHI-compliant project structure and conf
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;-o, --out &amp;lt;out&amp;gt;   the path to the output directory (default: ./build)
 -s, --snapshot    generate snapshot in StructureDefinition output (default: false)
 -d, --debug       output extra debugging information (default: false)
+-i, --init        initialize a SUSHI project
 -v, --version     output SUSHI version and implemented FSH specification version
 -h, --help        output usage information
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -733,7 +767,7 @@ By default, SUSHI only generates the &lt;a href=&#34;https://www.hl7.org/fhir/R4
 ╠═════════════════════════════════════════════════════════════════╣
 ║ O-fish-ally error free!                0 Errors      0 Warnings ║
 ╚═════════════════════════════════════════════════════════════════╝
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;error-messages&#34;&gt;Error Messages&lt;/h4&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;error-messages&#34;&gt;Error Messages&lt;/h3&gt;
 &lt;p&gt;In the process of developing your IG using FSH, you may encounter SUSHI error messages (written to the command console). Most error messages point to a specific line or lines in a &lt;code&gt;.fsh&lt;/code&gt; file. If possible, SUSHI will continue, despite errors, to produce FHIR artifacts, but those artifacts may omit problematic rules. SUSHI should always exit gracefully. If SUSHI crashes, please report the issue using the &lt;a href=&#34;https://github.com/FHIR/sushi/issues&#34;&gt;SUSHI issue tracker&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Here are some general tips for debugging:&lt;/p&gt;
 &lt;ul&gt;

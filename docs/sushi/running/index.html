@@ -525,11 +525,11 @@ By default, SUSHI only generates the <a href="https://www.hl7.org/fhir/R4/profil
 <li><strong>Parsing (syntax) errors should be fixed first.</strong> A single syntax error can ballooon into many other errors, so you should always eliminate syntax errors first. Syntax error messages may include <code>extraneous input {x} expecting {y}</code>, <code>mismatched input {x} expecting {y}</code> and <code>no viable alternative at {x}</code>. These messages indicate that the line in question is not a valid FSH statement.</li>
 <li><strong>The order of keywords matters.</strong> The declarations must start with the type of item you are creating (e.g., Profile, Instance, ValueSet).</li>
 <li><strong>The order of rules usually doesn&rsquo;t matter, but there are exceptions.</strong> Slices and extensions must be created before they are constrained.</li>
-<li><strong>Rules must contain valid paths.</strong> The <code>No element found at path</code> error means that although the overall grammar of the rule may be correct, SUSHI could not find the FHIR element you are referring to in the rule. Make sure there are no spelling errors, the element names in the path are correct, and you are using the <a href="%5Breference.html#fsh-paths%5D(https://build.fhir.org/ig/HL7/fhir-shorthand/reference.html#fsh-paths)">path grammar</a> correctly.</li>
+<li><strong>Rules must contain valid paths.</strong> The <code>No element found at path</code> error means that although the overall grammar of the rule may be correct, SUSHI could not find the FHIR element you are referring to in the rule. Make sure there are no spelling errors, the element names in the path are correct, and you are using the <a href="https://build.fhir.org/ig/HL7/fhir-shorthand/reference.html#fsh-paths">path grammar</a> correctly.</li>
 <li><strong>The community can help.</strong> If you are getting an error you can&rsquo;t resolve, you can ask for help on the <a href="https://chat.fhir.org/#narrow/stream/215610-shorthand">#shorthand chat channel</a>.</li>
 </ul>
 <h2 id="sushi-outputs">SUSHI Outputs</h2>
-<p>Based on the inputs in FSH files, <strong>config.yaml</strong>, and the <strong>ig-data</strong> directory, SUSHI populates the output directory. For example, the customized-ig project from the <a href="/sushi/project/">Project Structure</a> section would result in output like the following:</p>
+<p>Based on the inputs in FSH files, <strong>config.yaml</strong>, and the <strong>ig-data</strong> directory, SUSHI populates the output directory. For example, the customized-ig project from the <a href="/docs/sushi/project/">Project Structure</a> section would result in output like the following:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">customized-ig
 ├── fsh
 │   └── (fsh files)
@@ -639,7 +639,7 @@ If you have never run the IG Publisher, you may need to install Jekyll first. Se
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified July 30, 2020: <a  href="https://github.com/FSHSchool/site/commit/31e17ca068ea5a16e95d127dce34604956d0c77a">Update docs for --init and BYO-XML (#9) (31e17ca)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified August 11, 2020: <a  href="https://github.com/FSHSchool/site/commit/b07f7e06a75073354f54add45331c1b937387d6a">Fixing several broken internal links (#11) (b07f7e0)</a>
 </div>
 </div>
 

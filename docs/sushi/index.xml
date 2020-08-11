@@ -72,7 +72,7 @@ For the most up-to-date information and latest releases of SUSHI, check the &lt;
 ├── file1.fsh
 ├── file2.fsh
 └── file3.fsh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;strong&gt;config.yaml&lt;/strong&gt; file provides project configuration data to SUSHI. It is described further in the &lt;a href=&#34;/sushi/configuration/&#34;&gt;Configuration&lt;/a&gt; documentation.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;strong&gt;config.yaml&lt;/strong&gt; file provides project configuration data to SUSHI. It is described further in the &lt;a href=&#34;/docs/sushi/configuration/&#34;&gt;Configuration&lt;/a&gt; documentation.&lt;/p&gt;
 &lt;p&gt;Each FSH file can contain multiple FSH definitions of varying types. FSH file names are not significant, but must end with the &lt;strong&gt;.fsh&lt;/strong&gt; extension. In addition, FSH files can be organized into subdirectories. This provides authors the flexibility to organize their FSH definitions in whatever way makes sense to then.&lt;/p&gt;
 
 
@@ -125,7 +125,7 @@ Using a &lt;strong&gt;fsh&lt;/strong&gt; subdirectory is not required, but since
         └── package-list.json
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can populate your project (under &lt;strong&gt;fsh&lt;/strong&gt; above) as follows:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;config.yaml&lt;/strong&gt;: This required file provides project configuration data to SUSHI. It is described further in the &lt;a href=&#34;/sushi/configuration/&#34;&gt;Configuration&lt;/a&gt; documentation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;config.yaml&lt;/strong&gt;: This required file provides project configuration data to SUSHI. It is described further in the &lt;a href=&#34;/docs/sushi/configuration/&#34;&gt;Configuration&lt;/a&gt; documentation.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;*.fsh&lt;/strong&gt;: FSH files contain the FHIR Shorthand definitions for all the resources and examples in your IG.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;ig-data/ig.ini&lt;/strong&gt;: If present and no &lt;code&gt;template&lt;/code&gt; property is specified in &lt;strong&gt;config.yaml&lt;/strong&gt;, the user-provided file will be used instead of a generated one.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;ig-data/input/ignoreWarnings.txt&lt;/strong&gt;: If present, this file can be used to suppress specific QA warnings and information messages during the FHIR IG publication process.&lt;/li&gt;
@@ -774,11 +774,11 @@ By default, SUSHI only generates the &lt;a href=&#34;https://www.hl7.org/fhir/R4
 &lt;li&gt;&lt;strong&gt;Parsing (syntax) errors should be fixed first.&lt;/strong&gt; A single syntax error can ballooon into many other errors, so you should always eliminate syntax errors first. Syntax error messages may include &lt;code&gt;extraneous input {x} expecting {y}&lt;/code&gt;, &lt;code&gt;mismatched input {x} expecting {y}&lt;/code&gt; and &lt;code&gt;no viable alternative at {x}&lt;/code&gt;. These messages indicate that the line in question is not a valid FSH statement.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;The order of keywords matters.&lt;/strong&gt; The declarations must start with the type of item you are creating (e.g., Profile, Instance, ValueSet).&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;The order of rules usually doesn&amp;rsquo;t matter, but there are exceptions.&lt;/strong&gt; Slices and extensions must be created before they are constrained.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Rules must contain valid paths.&lt;/strong&gt; The &lt;code&gt;No element found at path&lt;/code&gt; error means that although the overall grammar of the rule may be correct, SUSHI could not find the FHIR element you are referring to in the rule. Make sure there are no spelling errors, the element names in the path are correct, and you are using the &lt;a href=&#34;%5Breference.html#fsh-paths%5D(https://build.fhir.org/ig/HL7/fhir-shorthand/reference.html#fsh-paths)&#34;&gt;path grammar&lt;/a&gt; correctly.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rules must contain valid paths.&lt;/strong&gt; The &lt;code&gt;No element found at path&lt;/code&gt; error means that although the overall grammar of the rule may be correct, SUSHI could not find the FHIR element you are referring to in the rule. Make sure there are no spelling errors, the element names in the path are correct, and you are using the &lt;a href=&#34;https://build.fhir.org/ig/HL7/fhir-shorthand/reference.html#fsh-paths&#34;&gt;path grammar&lt;/a&gt; correctly.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;The community can help.&lt;/strong&gt; If you are getting an error you can&amp;rsquo;t resolve, you can ask for help on the &lt;a href=&#34;https://chat.fhir.org/#narrow/stream/215610-shorthand&#34;&gt;#shorthand chat channel&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;sushi-outputs&#34;&gt;SUSHI Outputs&lt;/h2&gt;
-&lt;p&gt;Based on the inputs in FSH files, &lt;strong&gt;config.yaml&lt;/strong&gt;, and the &lt;strong&gt;ig-data&lt;/strong&gt; directory, SUSHI populates the output directory. For example, the customized-ig project from the &lt;a href=&#34;/sushi/project/&#34;&gt;Project Structure&lt;/a&gt; section would result in output like the following:&lt;/p&gt;
+&lt;p&gt;Based on the inputs in FSH files, &lt;strong&gt;config.yaml&lt;/strong&gt;, and the &lt;strong&gt;ig-data&lt;/strong&gt; directory, SUSHI populates the output directory. For example, the customized-ig project from the &lt;a href=&#34;/docs/sushi/project/&#34;&gt;Project Structure&lt;/a&gt; section would result in output like the following:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;customized-ig
 ├── fsh
 │   └── (fsh files)

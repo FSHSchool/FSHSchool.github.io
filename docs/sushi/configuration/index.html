@@ -107,7 +107,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.9883ab697ebdfd2292453cf3144173b1034e5b0a7223c8ea5429e0175f1ea64cb3bb70e74bfdbb78b3e5a65554f7bf95ee8c13b867ebb4ef8bd1ab8182a2adac.json"
+  data-offline-search-index-json-src="/offline-search-index.7bce0f90a578f523707f04a268fbdb74cd770e41a13addcbf63d7d0d8afb0dc322000cab9313ac522dcad0539a7890a312651382a5c634606b9cd90f531655ad.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -138,7 +138,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.9883ab697ebdfd2292453cf3144173b1034e5b0a7223c8ea5429e0175f1ea64cb3bb70e74bfdbb78b3e5a65554f7bf95ee8c13b867ebb4ef8bd1ab8182a2adac.json"
+  data-offline-search-index-json-src="/offline-search-index.7bce0f90a578f523707f04a268fbdb74cd770e41a13addcbf63d7d0d8afb0dc322000cab9313ac522dcad0539a7890a312651382a5c634606b9cd90f531655ad.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -481,7 +481,7 @@
 <li>Arrays/sequences are created using <code>-</code></li>
 </ul>
 <h2 id="minimum-configuration">Minimum Configuration</h2>
-<p>At a minimum, the <strong>config.yaml</strong> file must provide a few high-level metadata values for the FSH project:</p>
+<p>At a minimum, the <strong>config.yaml</strong> file must provide a few high-level metadata values for the FSH project, if the author wishes for SUSHI to do additional Implementation Guide (IG) processing:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">id</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>fhir.us.example<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">canonical</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/us/example<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>ExampleIG<span style="color:#f8f8f8;text-decoration:underline">
@@ -503,7 +503,7 @@
 </ul>
 </li>
 <li>Since SUSHI currently supports only FHIR R4, the <code>fhirVersion</code> should always be <code>4.0.1</code>.</li>
-<li>Valid values for the <code>releaseLable</code> include:
+<li>Valid values for the <code>releaseLabel</code> include:
 <ul>
 <li><code>ci-build</code>: the continuous integration build release (not stable)</li>
 <li><code>draft</code>: draft version</li>
@@ -525,9 +525,23 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 </div>
 
 <h4 id="fsh-only">FSH-Only</h4>
-<p>If an author wants SUSHI only to build the FHIR definition files, and <em>not</em> to do any additional Implementation Guide (IG) processing, then the author should add a <code>FSHOnly</code> flag to the configuration and set its value to <code>true</code>:</p>
+<p>If an author wants SUSHI only to build the FHIR definition files, and <em>not</em> to do any additional IG processing, and if the project contains an <strong>ImplementationGuide</strong> resource, then the author does not need to provide a <strong>config.yaml</strong> at all. If there is no <strong>config.yaml</strong>, SUSHI will automatically attempt to extract the following information from an <strong>ImplementationGuide</strong> resource:</p>
+<ul>
+<li><code>canonical</code></li>
+<li><code>fhirVersion</code></li>
+<li><code>version</code></li>
+<li><code>dependencies</code></li>
+</ul>
+<p>SUSHI will then run in FSH-Only mode to produce FHIR definition files only.</p>
+<p>When attempting to extract information from an <strong>ImplementationGuide</strong> resource, SUSHI assumes the project structure required by the <a href="https://build.fhir.org/ig/FHIR/ig-guidance/">template-based IG Publisher</a>. The following approach is used to find the <strong>ImplementationGuide</strong> resource:</p>
+<ul>
+<li>Look for <code>&lt;root&gt;/ig.ini</code>, where <code>&lt;root&gt;</code> is the folder containing the <strong>fsh</strong> subdirectory. If the <strong>ig.ini</strong> file exists, it will have an <code>ig</code> property which gives the path to the <strong>ImplementationGuide</strong> resource, so SUSHI will use this path to find the resource.</li>
+<li>If there is no <strong>ig.ini</strong> in the root folder, SUSHI will search the <code>&lt;root&gt;/input</code> folder for an <strong>ImplementationGuide</strong> resource, and if exactly one resource is found, SUSHI will extract the above properties from it.</li>
+</ul>
+<p>If an author does not have an <strong>ImplementationGuide</strong> resource, but still wants SUSHI to build FHIR definition files only, the author should add a <code>FSHOnly</code> flag to the <strong>config.yaml</strong> and set its value to <code>true</code>:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">FSHOnly</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><h2 id="recommended-configuration">Recommended Configuration</h2>
+</span></code></pre></div><p>However, the author will also at least need to provide a <code>canonical</code> and <code>fhirVersion</code> in the configuration for FSH-Only processing to succeed.</p>
+<h2 id="recommended-configuration">Recommended Configuration</h2>
 <p>In addition to the minimum configuration requirements shown above, most IG authors will also want to provide a <code>title</code>, <code>description</code>, <code>license</code>, <code>publisher</code>, and <code>dependencies</code>:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">id</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>fhir.us.example<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">canonical</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/us/example<span style="color:#f8f8f8;text-decoration:underline">
@@ -1028,7 +1042,7 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified July 30, 2020: <a  href="https://github.com/FSHSchool/site/commit/31e17ca068ea5a16e95d127dce34604956d0c77a">Update docs for --init and BYO-XML (#9) (31e17ca)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified September 3, 2020: <a  href="https://github.com/FSHSchool/site/commit/a8c2561ce9719f68fcf6779f2e2ed3e9dfacb618">Add documentation for no config.yaml mode (#12) (a8c2561)</a>
 </div>
 </div>
 

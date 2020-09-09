@@ -1,0 +1,118 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FSH School – GoFSH</title>
+    <link>/docs/gofsh/</link>
+    <description>Recent content in GoFSH on FSH School</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/gofsh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Installation</title>
+      <link>/docs/gofsh/installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/gofsh/installation/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;step-1-install-nodejs&#34;&gt;Step 1: Install Node.js&lt;/h2&gt;
+&lt;p&gt;GoFSH requires Node.js. To install Node.js, go to &lt;a href=&#34;https://nodejs.org/&#34;&gt;https://nodejs.org/&lt;/a&gt; and select the &amp;ldquo;LTS&amp;rdquo; download. If the download is not appropriate for your operating system, click the &amp;ldquo;Other Downloads&amp;rdquo; link to get a full list of downloads. Once the installer is downloaded, run it using the default options.&lt;/p&gt;
+&lt;p&gt;Ensure that Node.js is correctly installed by opening a command window and typing the following two commands. Each command should return a version number.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; node --version
+&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; npm --version
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-2-install-gofsh&#34;&gt;Step 2: Install GoFSH&lt;/h2&gt;
+&lt;p&gt;To install GoFSH, open up a command prompt and type the following command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; npm install -g gofsh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Check the installation via the command below:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; gofsh --help
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the command outputs instructions on using the GoFSH command line interface (CLI), you&amp;rsquo;re ready to run GoFSH.&lt;/p&gt;
+&lt;p&gt;Use &lt;code&gt;gofsh -v&lt;/code&gt; to display the installed version of GoFSH and the version of the FSH specification it supports. GoFSH follows the &lt;a href=&#34;https://semver.org&#34;&gt;semantic versioning&lt;/a&gt; convention (MAJOR.MINOR.PATCH):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;MAJOR&lt;/strong&gt;: A major release has significant new functionality and, potentially, grammar changes or other non-backward-compatible changes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MINOR&lt;/strong&gt;: Contains new or modified features, while maintaining backwards compatibility within the major version.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PATCH&lt;/strong&gt;: Contains minor updates and bug fixes, while maintaining backwards compatibility within the major version.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Warning&lt;/h4&gt;
+Releases prior to 1.0.0 are considered pre-releases, and may introduce breaking changes in minor version increments.
+&lt;/div&gt;
+
+&lt;h2 id=&#34;updating-or-reverting-gofsh&#34;&gt;Updating or Reverting GoFSH&lt;/h2&gt;
+&lt;p&gt;To update GoFSH to the latest version, re-run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; npm install -g gofsh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To revert to a previous version of GoFSH, run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; npm install -g gofsh@&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;version&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where the &lt;code&gt;{version}&lt;/code&gt; is replaced by the desired MAJOR.MINOR.PATCH version (e.g., &lt;code&gt;npm install -g gofsh@0.1.0&lt;/code&gt;).&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Running GoFSH</title>
+      <link>/docs/gofsh/running/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/gofsh/running/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;running-gofsh&#34;&gt;Running GoFSH&lt;/h2&gt;
+&lt;p&gt;GoFSH is executed from the command line. The general form of the GoFSH execution command is as follows:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; gofsh &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;input-directory&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;options&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where options include the following (in any order):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;-o, --out &amp;lt;out&amp;gt;                   the path to the output directory (default: ./fsh)
+-l, --log-level &amp;lt;level&amp;gt;           specify the level of log messages: error, warn, info (default), debug
+-d, --dependency &amp;lt;dependency...&amp;gt;  specify dependencies to be loaded using format dependencyId@version (FHIR R4 included by default)
+-v, --version                     print goFSH version
+-h, --help                        output usage information
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;While GoFSH is running, it will print status messages as it processes your project files.&lt;/p&gt;
+&lt;h2 id=&#34;gofsh-inputs&#34;&gt;GoFSH Inputs&lt;/h2&gt;
+&lt;p&gt;GoFSH takes FHIR StructureDefinitions and other FHIR conformance definitions (e.g., ValueSets, CodeSystems) as input. GoFSH requires that these files be JSON. Every JSON file contained in the input directory, or its subdirectories, will be processed by GoFSH into FSH.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Warning&lt;/h4&gt;
+GoFSH is still under development, and can not generate FSH for all FHIR artifacts. Please see the section below on &lt;a href=&#34;#limitations-on-inputs&#34;&gt;limitations&lt;/a&gt; for more details.
+&lt;/div&gt;
+
+&lt;p&gt;GoFSH does not require any configuration, but if the input FHIR artifacts depend on FHIR artifacts not contained in FHIR R4, these dependencies should be specified with the &lt;code&gt;-d&lt;/code&gt; flag. For example, the &lt;a href=&#34;http://hl7.org/fhir/us/mcode/StructureDefinition-mcode-cancer-patient.html&#34;&gt;mcode-cancer-patient&lt;/a&gt; profile in the &lt;a href=&#34;http://hl7.org/fhir/us/mcode/&#34;&gt;mCODE Implementation Guide&lt;/a&gt; is derived from the &lt;a href=&#34;http://hl7.org/fhir/us/core/STU3.1/StructureDefinition-us-core-patient.html&#34;&gt;us-core-patient&lt;/a&gt; profile in the &lt;a href=&#34;http://hl7.org/fhir/us/core/&#34;&gt;US Core Implementation Guide&lt;/a&gt;. If you wanted to use GoFSH to convert the mcode-cancer-patient profile to FSH, you should specify US Core as a dependency:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; gofsh ./mcode-definitions -d hl7.fhir.us.core@3.1.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Info&lt;/h4&gt;
+GoFSH can still generate FSH when dependencies are omitted, but the resulting FSH will be incomplete.
+&lt;/div&gt;
+
+&lt;h3 id=&#34;limitations-on-inputs&#34;&gt;Limitations on Inputs&lt;/h3&gt;
+&lt;p&gt;Note that GoFSH is not complete, and cannot be applied to all FHIR artifacts. The capabilities and limitations of GoFSH are given below.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GoFSH outputs valid FSH for most profiles and extensions.
+&lt;ul&gt;
+&lt;li&gt;Generated profile and extension definitions should be technically correct, but may not use the most efficient FSH representation or follow FSH authoring best practices.&lt;/li&gt;
+&lt;li&gt;Generated profile and extension definitions do not use the Mapping or Invariant features of FSH; &amp;ldquo;caret&amp;rdquo; rules are used instead. Future versions of GoFSH will address this.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;GoFSH does not output the content of Code System definitions; it declares them using keywords, but does not generate any of their rules.&lt;/li&gt;
+&lt;li&gt;GoFSH does not output ValueSet definitions.&lt;/li&gt;
+&lt;li&gt;GoFSH does not output Instance definitions (this includes examples, as well as any definitions that must be created in FSH using the Instance keyword).&lt;/li&gt;
+&lt;li&gt;GoFSH does not process or consider the ImplementationGuide JSON when generating FSH.&lt;/li&gt;
+&lt;li&gt;GoFSH does not support generating FSH from FHIR XML definitions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;gofsh-outputs&#34;&gt;GoFSH Outputs&lt;/h2&gt;
+&lt;p&gt;GoFSH populates an output directory, called &lt;strong&gt;fsh/&lt;/strong&gt; by default, with a &lt;strong&gt;resources.fsh&lt;/strong&gt; file, which contains FSH definitions for all of the input FHIR StructureDefinitions. These definitions are ready to use with SUSHI, all you have to do is add a &lt;a href=&#34;/docs/sushi/configuration&#34;&gt;configuration file&lt;/a&gt;.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

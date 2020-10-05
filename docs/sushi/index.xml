@@ -25,13 +25,13 @@
         &lt;h2 id=&#34;step-1-install-nodejs&#34;&gt;Step 1: Install Node.js&lt;/h2&gt;
 &lt;p&gt;SUSHI requires Node.js. To install Node.js, go to &lt;a href=&#34;https://nodejs.org/&#34;&gt;https://nodejs.org/&lt;/a&gt; and select the &amp;ldquo;LTS&amp;rdquo; download. If the download is not appropriate for your operating system, click the &amp;ldquo;Other Downloads&amp;rdquo; link to get a full list of downloads. Once the installer is downloaded, run it using the default options.&lt;/p&gt;
 &lt;p&gt;Ensure that Node.js is correctly installed by opening a command window and typing the following two commands. Each command should return a version number.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; node --version
-&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; npm --version
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; node --version
+&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; npm --version
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-2-install-sushi&#34;&gt;Step 2: Install SUSHI&lt;/h2&gt;
 &lt;p&gt;To install SUSHI, open up a command prompt and type the following command:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; npm install -g fsh-sushi
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; npm install -g fsh-sushi
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Check the installation via the command below:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; sushi -h
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi -h
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the command outputs instructions on using the SUSHI command line interface (CLI), you&amp;rsquo;re ready to run SUSHI.&lt;/p&gt;
 &lt;p&gt;Use &lt;code&gt;sushi -v&lt;/code&gt; to display the installed version of SUSHI and the version of the FSH specification it supports. SUSHI follows the &lt;a href=&#34;https://semver.org&#34;&gt;semantic versioning&lt;/a&gt; convention (MAJOR.MINOR.PATCH):&lt;/p&gt;
 &lt;ul&gt;
@@ -48,9 +48,9 @@ For the most up-to-date information and latest releases of SUSHI, check the &lt;
 
 &lt;h2 id=&#34;updating-or-reverting-sushi&#34;&gt;Updating or Reverting SUSHI&lt;/h2&gt;
 &lt;p&gt;To update SUSHI to the latest version, re-run:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; npm install -g fsh-sushi
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; npm install -g fsh-sushi
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To revert to a previous version of SUSHI, run:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; npm install -g fsh-sushi@&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;version&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; npm install -g fsh-sushi@&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;version&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where the &lt;code&gt;{version}&lt;/code&gt; is replaced by the desired MAJOR.MINOR.PATCH version (e.g., &lt;code&gt;npm install -g fsh-sushi@0.14.0&lt;/code&gt;).&lt;/p&gt;
 
       </description>
@@ -747,7 +747,7 @@ This documentation assumes you have a SUSHI-compliant project structure and conf
 
 &lt;h2 id=&#34;running-sushi&#34;&gt;Running SUSHI&lt;/h2&gt;
 &lt;p&gt;SUSHI is executed from the command line. The general form of the SUSHI execution command is as follows:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; sushi &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;specification-directory&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;options&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;specification-directory&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;options&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where options include the following (in any order):&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;-o, --out &amp;lt;out&amp;gt;   the path to the output directory (default: ./build)
 -s, --snapshot    generate snapshot in StructureDefinition output (default: false)
@@ -847,8 +847,8 @@ The following steps require the &lt;strong&gt;_updatePublisher.bat|sh&lt;/strong
 &lt;/div&gt;
 
 &lt;p&gt;After running SUSHI, change directories to the output directory (if necessary). At the command prompt, enter:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-windows fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; _updatePublisher
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-apple fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; ./_updatePublisher.sh
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-windows fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; _updatePublisher
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-apple fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; ./_updatePublisher.sh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will download the latest version of the HL7 FHIR IG Publisher tool into the &lt;strong&gt;/build/input-cache&lt;/strong&gt; directory. &lt;em&gt;This step can be skipped if you already have the latest version of the IG Publisher tool in &lt;strong&gt;input-cache&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
 
 
@@ -866,8 +866,8 @@ If you have never run the IG Publisher, you may need to install Jekyll first. Se
 &lt;/div&gt;
 
 &lt;p&gt;After the IG Publisher has been successfully downloaded, execute the following command to run it:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-windows fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; _genonce
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-apple fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#39;fas fa-terminal fa-fw&#39;&gt;&lt;/i&gt; ./_genonce.sh
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-windows fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; _genonce
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-apple fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; ./_genonce.sh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will run the HL7 IG Publisher, which may take several minutes to complete. After the publisher is finished, open the file &lt;strong&gt;/output/index.html&lt;/strong&gt; in a browser to see the resulting IG.&lt;/p&gt;
 
       </description>

@@ -596,7 +596,7 @@ This documentation assumes you have a SUSHI-compliant project structure and conf
 
 <h2 id="running-sushi">Running SUSHI</h2>
 <p>SUSHI is executed from the command line. The general form of the SUSHI execution command is as follows:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fas fa-terminal fa-fw'></i> sushi <span style="color:#ce5c00;font-weight:bold">{</span>specification-directory<span style="color:#ce5c00;font-weight:bold">}</span> <span style="color:#ce5c00;font-weight:bold">{</span>options<span style="color:#ce5c00;font-weight:bold">}</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi <span style="color:#ce5c00;font-weight:bold">{</span>specification-directory<span style="color:#ce5c00;font-weight:bold">}</span> <span style="color:#ce5c00;font-weight:bold">{</span>options<span style="color:#ce5c00;font-weight:bold">}</span>
 </code></pre></div><p>where options include the following (in any order):</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-o, --out &lt;out&gt;   the path to the output directory (default: ./build)
 -s, --snapshot    generate snapshot in StructureDefinition output (default: false)
@@ -696,8 +696,8 @@ The following steps require the <strong>_updatePublisher.bat|sh</strong> and <st
 </div>
 
 <p>After running SUSHI, change directories to the output directory (if necessary). At the command prompt, enter:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-windows fa-fw'></i> <i class='fas fa-terminal fa-fw'></i> _updatePublisher
-</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-apple fa-fw'></i> <i class='fas fa-terminal fa-fw'></i> ./_updatePublisher.sh
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-windows fa-fw'></i> <i class="fas fa-dollar-sign"></i> _updatePublisher
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-apple fa-fw'></i> <i class="fas fa-dollar-sign"></i> ./_updatePublisher.sh
 </code></pre></div><p>This will download the latest version of the HL7 FHIR IG Publisher tool into the <strong>/build/input-cache</strong> directory. <em>This step can be skipped if you already have the latest version of the IG Publisher tool in <strong>input-cache</strong>.</em></p>
 
 
@@ -715,8 +715,8 @@ If you have never run the IG Publisher, you may need to install Jekyll first. Se
 </div>
 
 <p>After the IG Publisher has been successfully downloaded, execute the following command to run it:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-windows fa-fw'></i> <i class='fas fa-terminal fa-fw'></i> _genonce
-</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-apple fa-fw'></i> <i class='fas fa-terminal fa-fw'></i> ./_genonce.sh
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-windows fa-fw'></i> <i class="fas fa-dollar-sign"></i> _genonce
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-apple fa-fw'></i> <i class="fas fa-dollar-sign"></i> ./_genonce.sh
 </code></pre></div><p>This will run the HL7 IG Publisher, which may take several minutes to complete. After the publisher is finished, open the file <strong>/output/index.html</strong> in a browser to see the resulting IG.</p>
 
         <div class="section-index">

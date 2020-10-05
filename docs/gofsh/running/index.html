@@ -585,7 +585,7 @@
 	
 	<h2 id="running-gofsh">Running GoFSH</h2>
 <p>GoFSH is executed from the command line. The general form of the GoFSH execution command is as follows:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fas fa-terminal fa-fw'></i> gofsh <span style="color:#ce5c00;font-weight:bold">{</span>input-directory<span style="color:#ce5c00;font-weight:bold">}</span> <span style="color:#ce5c00;font-weight:bold">{</span>options<span style="color:#ce5c00;font-weight:bold">}</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> gofsh <span style="color:#ce5c00;font-weight:bold">{</span>input-directory<span style="color:#ce5c00;font-weight:bold">}</span> <span style="color:#ce5c00;font-weight:bold">{</span>options<span style="color:#ce5c00;font-weight:bold">}</span>
 </code></pre></div><p>where options include the following (in any order):</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-o, --out &lt;out&gt;                   the path to the output directory (default: ./fsh)
 -l, --log-level &lt;level&gt;           specify the level of log messages: error, warn, info (default), debug
@@ -603,7 +603,7 @@ GoFSH is still under development, and can not generate FSH for all FHIR artifact
 </div>
 
 <p>GoFSH does not require any configuration, but if the input FHIR artifacts depend on FHIR artifacts not contained in FHIR R4, these dependencies should be specified with the <code>-d</code> flag. For example, the <a href="http://hl7.org/fhir/us/mcode/StructureDefinition-mcode-cancer-patient.html">mcode-cancer-patient</a> profile in the <a href="http://hl7.org/fhir/us/mcode/">mCODE Implementation Guide</a> is derived from the <a href="http://hl7.org/fhir/us/core/STU3.1/StructureDefinition-us-core-patient.html">us-core-patient</a> profile in the <a href="http://hl7.org/fhir/us/core/">US Core Implementation Guide</a>. If you wanted to use GoFSH to convert the mcode-cancer-patient profile to FSH, you should specify US Core as a dependency:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fas fa-terminal fa-fw'></i> gofsh ./mcode-definitions -d hl7.fhir.us.core@3.1.0
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> gofsh ./mcode-definitions -d hl7.fhir.us.core@3.1.0
 </code></pre></div>
 
 <div class="alert alert-info" role="alert">

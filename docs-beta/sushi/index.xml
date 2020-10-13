@@ -765,15 +765,10 @@ By default, SUSHI only generates the &lt;a href=&#34;https://www.hl7.org/fhir/R4
 &lt;li&gt;&lt;strong&gt;input/pagecontent/*&lt;/strong&gt;: Specified by the author, numeric prefixes are used by SUSHI in generating the &lt;strong&gt;ImplementationGuide-myIG.json&lt;/strong&gt; file.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;package-list.json&lt;/strong&gt;: Specified by the author and unchanged by SUSHI.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;downloading-the-ig-publisher-scripts&#34;&gt;Downloading the IG Publisher Scripts&lt;/h3&gt;
+&lt;p&gt;To run the IG Publisher, we recommend downloading the &lt;strong&gt;_updatePublisher.bat|sh&lt;/strong&gt; and &lt;strong&gt;_genonce.bat|sh&lt;/strong&gt; scripts provided by the sample-ig project. To get these scripts, &lt;a href=&#34;https://github.com/FHIR/sample-ig/archive/master.zip&#34;&gt;download the sample-ig project&lt;/a&gt;, unzip it, and copy &lt;em&gt;all&lt;/em&gt; of the &lt;strong&gt;.bat&lt;/strong&gt; and &lt;strong&gt;.sh&lt;/strong&gt; files to the directory above the &lt;strong&gt;fsh-generated&lt;/strong&gt; directory (&lt;strong&gt;customized-ig&lt;/strong&gt; in the example above).&lt;/p&gt;
 &lt;h3 id=&#34;downloading-the-ig-publisher&#34;&gt;Downloading the IG Publisher&lt;/h3&gt;
-
-
-&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
-&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
-The following steps require the &lt;strong&gt;_updatePublisher.bat|sh&lt;/strong&gt; and &lt;strong&gt;_genonce.bat|sh&lt;/strong&gt; scripts in the output directory that SUSHI writes to. If these scripts are not present there, you will need to download them from the sample-ig project. The easiest way to do this is to &lt;a href=&#34;https://github.com/FHIR/sample-ig/archive/master.zip&#34;&gt;download the sample-ig project&lt;/a&gt;, unzip it, and copy &lt;em&gt;all&lt;/em&gt; of the &lt;strong&gt;.bat&lt;/strong&gt; and &lt;strong&gt;.sh&lt;/strong&gt; files to the directory that SUSHI writes to.
-&lt;/div&gt;
-
-&lt;p&gt;After running SUSHI, change directories to the output directory (if necessary). At the command prompt, enter:&lt;/p&gt;
+&lt;p&gt;After copying these, change directories in the command prompt to the directory above the &lt;strong&gt;fsh-generated&lt;/strong&gt; directory. At the command prompt, enter:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-windows fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; _updatePublisher
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-apple fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; ./_updatePublisher.sh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will download the latest version of the HL7 FHIR IG Publisher tool into the &lt;strong&gt;/input-cache&lt;/strong&gt; directory. &lt;em&gt;This step can be skipped if you already have the latest version of the IG Publisher tool in &lt;strong&gt;input-cache&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;

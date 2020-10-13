@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.e00b9943fb29012e32560e9ec336c7cc77cea05a6a3a0902057b4c6abfa663822f3d4ca77e00944ff5c8f22ba24c38fb9a9b1a7d176e6e92462e533396fad5a9.json"
+  data-offline-search-index-json-src="/offline-search-index.f751263a019d26c6b5bae33d6040c24368745ca93459071d58f53467fca7f4431a99cafbc98b4e455db0b20d87c2d291ff9d66555c3da4d161b65f0b806c5018.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.e00b9943fb29012e32560e9ec336c7cc77cea05a6a3a0902057b4c6abfa663822f3d4ca77e00944ff5c8f22ba24c38fb9a9b1a7d176e6e92462e533396fad5a9.json"
+  data-offline-search-index-json-src="/offline-search-index.f751263a019d26c6b5bae33d6040c24368745ca93459071d58f53467fca7f4431a99cafbc98b4e455db0b20d87c2d291ff9d66555c3da4d161b65f0b806c5018.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -557,6 +557,7 @@
     </li>
     <li><a href="#sushi-outputs">SUSHI Outputs</a>
       <ul>
+        <li><a href="#downloading-the-ig-publisher-scripts">Downloading the IG Publisher Scripts</a></li>
         <li><a href="#downloading-the-ig-publisher">Downloading the IG Publisher</a></li>
         <li><a href="#running-the-ig-publisher">Running the IG Publisher</a></li>
       </ul>
@@ -701,15 +702,10 @@ By default, SUSHI only generates the <a href="https://www.hl7.org/fhir/R4/profil
 <li><strong>input/pagecontent/*</strong>: Specified by the author, numeric prefixes are used by SUSHI in generating the <strong>ImplementationGuide-myIG.json</strong> file.</li>
 <li><strong>package-list.json</strong>: Specified by the author and unchanged by SUSHI.</li>
 </ul>
+<h3 id="downloading-the-ig-publisher-scripts">Downloading the IG Publisher Scripts</h3>
+<p>To run the IG Publisher, we recommend downloading the <strong>_updatePublisher.bat|sh</strong> and <strong>_genonce.bat|sh</strong> scripts provided by the sample-ig project. To get these scripts, <a href="https://github.com/FHIR/sample-ig/archive/master.zip">download the sample-ig project</a>, unzip it, and copy <em>all</em> of the <strong>.bat</strong> and <strong>.sh</strong> files to the directory above the <strong>fsh-generated</strong> directory (<strong>customized-ig</strong> in the example above).</p>
 <h3 id="downloading-the-ig-publisher">Downloading the IG Publisher</h3>
-
-
-<div class="alert alert-primary" role="alert">
-<h4 class="alert-heading">Note</h4>
-The following steps require the <strong>_updatePublisher.bat|sh</strong> and <strong>_genonce.bat|sh</strong> scripts in the output directory that SUSHI writes to. If these scripts are not present there, you will need to download them from the sample-ig project. The easiest way to do this is to <a href="https://github.com/FHIR/sample-ig/archive/master.zip">download the sample-ig project</a>, unzip it, and copy <em>all</em> of the <strong>.bat</strong> and <strong>.sh</strong> files to the directory that SUSHI writes to.
-</div>
-
-<p>After running SUSHI, change directories to the output directory (if necessary). At the command prompt, enter:</p>
+<p>After copying these, change directories in the command prompt to the directory above the <strong>fsh-generated</strong> directory. At the command prompt, enter:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-windows fa-fw'></i> <i class="fas fa-dollar-sign"></i> _updatePublisher
 </code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-apple fa-fw'></i> <i class="fas fa-dollar-sign"></i> ./_updatePublisher.sh
 </code></pre></div><p>This will download the latest version of the HL7 FHIR IG Publisher tool into the <strong>/input-cache</strong> directory. <em>This step can be skipped if you already have the latest version of the IG Publisher tool in <strong>input-cache</strong>.</em></p>
@@ -775,7 +771,7 @@ If you have never run the IG Publisher, you may need to install Jekyll first. Se
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified October 2, 2020: <a  href="https://github.com/FSHSchool/site/commit/b6a83d1e8fd75eda0693407a6da413f94c49a2de">New IG publisher integration (#18) (b6a83d1)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified October 13, 2020: <a  href="https://github.com/FSHSchool/site/commit/175022853394561121d8267a7cac294957f01ae2">Add section detailing how to get IG pub scripts (#22) (1750228)</a>
 </div>
 </div>
 

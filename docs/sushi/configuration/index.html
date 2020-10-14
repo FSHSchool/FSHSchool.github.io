@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1e2b8032a5d49fa1dcdf3a3550e4e7009dcd3e6d07092ad9b9eac75d390177b027afd72e59834ea8be512d187c35ef53c8f05e4769f2c3a90f76ecc94eebe604.json"
+  data-offline-search-index-json-src="/offline-search-index.0fd6c052ee823aaec6df3f45db1e3f4eb458a0ba2bf177733a4aafeae7e71111ae2dd132fb5df24444976279737f6202f1aebd947a8228c1add8cdf157428e26.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1e2b8032a5d49fa1dcdf3a3550e4e7009dcd3e6d07092ad9b9eac75d390177b027afd72e59834ea8be512d187c35ef53c8f05e4769f2c3a90f76ecc94eebe604.json"
+  data-offline-search-index-json-src="/offline-search-index.0fd6c052ee823aaec6df3f45db1e3f4eb458a0ba2bf177733a4aafeae7e71111ae2dd132fb5df24444976279737f6202f1aebd947a8228c1add8cdf157428e26.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -682,11 +682,12 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 <li><code>current</code>: indicates that the dependency should be loaded from the last successful auto-build.</li>
 </ul>
 </li>
-<li>The <code>dependencies</code> property also supports an advanced syntax that allows you to directly specify the dependency URI if necessary. For example:
+<li>The <code>dependencies</code> property also supports an advanced syntax that allows you to directly specify the dependency id and/or URI if necessary. For example:
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">dependencies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">hl7.fhir.us.mcode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">uri</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/us/mcode<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1.0.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">hl7.fhir.us.core</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">id</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>uscore<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">uri</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/us/core/ImplementationGuide/hl7.fhir.us.core<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div></li>
 </ul>
 <h2 id="full-configuration">Full Configuration</h2>
@@ -823,7 +824,7 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 <tr>
 <td align="left">dependencies</td>
 <td align="left">dependsOn</td>
-<td align="left">A <code>key: value</code> pair, where key is the package id and value is the version (or <code>dev</code>/<code>current</code>). For advanced use cases, the value can be an object with keys for <code>uri</code> and <code>version</code>.</td>
+<td align="left">A <code>key: value</code> pair, where key is the package id and value is the version (or <code>dev</code>/<code>current</code>). For advanced use cases, the value can be an object with keys for <code>id</code>, <code>uri</code> and <code>version</code>.</td>
 </tr>
 <tr>
 <td align="left">global</td>
@@ -965,7 +966,8 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">dependencies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">hl7.fhir.us.core</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">hl7.fhir.us.mcode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">uri</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/us/mcode<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">id</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>mcode<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">uri</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/us/mcode/ImplementationGuide/hl7.fhir.us.mcode<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1.0.0</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The global property corresponds to the IG.global property, but it</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1162,7 +1164,7 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified September 3, 2020: <a  href="https://github.com/FSHSchool/site/commit/a8c2561ce9719f68fcf6779f2e2ed3e9dfacb618">Add documentation for no config.yaml mode (#12) (a8c2561)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified October 14, 2020: <a  href="https://github.com/FSHSchool/site/commit/22988ded820946b69491542df10b5d66e07f360a">Fix dependencies documentation (#24) (22988de)</a>
 </div>
 </div>
 

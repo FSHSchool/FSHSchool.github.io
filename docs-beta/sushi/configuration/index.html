@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0fd6c052ee823aaec6df3f45db1e3f4eb458a0ba2bf177733a4aafeae7e71111ae2dd132fb5df24444976279737f6202f1aebd947a8228c1add8cdf157428e26.json"
+  data-offline-search-index-json-src="/offline-search-index.d980cd805209daf8d0c7efc2f2349f7e6d64c20cc5beec962bb7be37d4391a7aa75a86de0bba0a3529789a7954b3b86c630c36c03c1bdb93d911a5941f991fc5.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0fd6c052ee823aaec6df3f45db1e3f4eb458a0ba2bf177733a4aafeae7e71111ae2dd132fb5df24444976279737f6202f1aebd947a8228c1add8cdf157428e26.json"
+  data-offline-search-index-json-src="/offline-search-index.d980cd805209daf8d0c7efc2f2349f7e6d64c20cc5beec962bb7be37d4391a7aa75a86de0bba0a3529789a7954b3b86c630c36c03c1bdb93d911a5941f991fc5.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -853,7 +853,7 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 <tr>
 <td align="left">groups</td>
 <td align="left">definition.grouping</td>
-<td align="left">A <code>key: value</code> pair, where key is the name of the group and value is the description of the group</td>
+<td align="left">A <code>key: value</code> pair, where key is the group id and value is the description of the group. For advanced use cases, the value can be an object with keys for <code>name</code>, <code>description</code>, and <code>resources</code>.</td>
 </tr>
 <tr>
 <td align="left">resources</td>
@@ -1009,11 +1009,13 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># resource entries with the corresponding groupIds.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">groups</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">GroupA</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Group<span style="color:#f8f8f8;text-decoration:underline"> </span>A<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">description</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>The<span style="color:#f8f8f8;text-decoration:underline"> </span>Alpha<span style="color:#f8f8f8;text-decoration:underline"> </span>Group<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span>- StructureDefinition/animal-patient<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span>- StructureDefinition/arm-procedure<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">GroupB</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Group<span style="color:#f8f8f8;text-decoration:underline"> </span>B<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">description</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>The<span style="color:#f8f8f8;text-decoration:underline"> </span>Beta<span style="color:#f8f8f8;text-decoration:underline"> </span>Group<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span>- StructureDefinition/bark-control<span style="color:#f8f8f8;text-decoration:underline">
@@ -1127,7 +1129,7 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified October 14, 2020: <a  href="https://github.com/FSHSchool/site/commit/22988ded820946b69491542df10b5d66e07f360a">Fix dependencies documentation (#24) (22988de)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified November 4, 2020: <a  href="https://github.com/FSHSchool/site/commit/33859421cf730cca61b58266953fb92dd270c48a">Update SUSHI beta doc to reflect change to config group property (#26) (3385942)</a>
 </div>
 </div>
 

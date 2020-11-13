@@ -80,7 +80,7 @@
 				
 				
 				
-				<a class="nav-link" href="/docs-beta/" ><span>Docs [SUSHI 1.0 Beta]</span></a>
+				<a class="nav-link" href="/docs-legacy/" ><span>Docs [Legacy]</span></a>
 			</li>
 			
 			<li class="nav-item mr-4 mb-2 mb-lg-0">
@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d980cd805209daf8d0c7efc2f2349f7e6d64c20cc5beec962bb7be37d4391a7aa75a86de0bba0a3529789a7954b3b86c630c36c03c1bdb93d911a5941f991fc5.json"
+  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d980cd805209daf8d0c7efc2f2349f7e6d64c20cc5beec962bb7be37d4391a7aa75a86de0bba0a3529789a7954b3b86c630c36c03c1bdb93d911a5941f991fc5.json"
+  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -309,6 +309,29 @@
   </li>
   <ul>
     <li class="collapse " id="docssushirunning">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/sushi/migration/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Migrating from Older Versions</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docssushimigration">
       
       
       
@@ -603,12 +626,12 @@
 <li><strong>FishExample</strong></li>
 <li><strong>FishExampleComplete</strong></li>
 </ul>
-<p>Change the working directory to FishExample. There are two FSH files:</p>
+<p>Change the working directory to FishExample. There is a <strong>sushi-config.yaml</strong> file, and two FSH files within the <strong>/input/fsh</strong> subdirectory:</p>
 <ul>
 <li><strong>FishPatient.fsh</strong></li>
 <li><strong>Veterinarian.fsh</strong></li>
 </ul>
-<p>In addition, there is a <strong>config.yaml</strong> file and a subdirectory, <strong>/ig-data</strong>, containing some inputs for building the IG.</p>
+<p>In addition, there are several files for building the IG.</p>
 <h3 id="step-4-run-sushi">Step 4: Run SUSHI</h3>
 <p>Now that you have SUSHI installed and a minimal FSH tank, open up a command window, and navigate to the <strong>FishExample</strong> directory. Run SUSHI on those FSH files by executing:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi .
@@ -619,8 +642,8 @@
 The dot (.) represents &ldquo;this directory,&rdquo; the location of the FSH files. You can also specify the location explicitly by replacing the dot with a directory path.
 </div>
 
-<p>Running SUSHI will create a <strong>FishExample/build/input/resources</strong> directory, and populate it with the files needed to create the IG using the HL7 FHIR IG Publisher tool.</p>
-<p>While running SUSHI, there will be a series of informational message. When SUSHI completes, you should see a summary output similar this:</p>
+<p>Running SUSHI will create a <strong>FishExample/fsh-generated</strong> directory, and populate it with the files needed to create the IG using the HL7 FHIR IG Publisher tool.</p>
+<p>While running SUSHI, there will be a series of informational messages. When SUSHI completes, you should see a summary output similar this:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">╔════════════════════════ SUSHI RESULTS ══════════════════════════╗
 ║ ╭──────────┬────────────┬───────────┬─────────────┬───────────╮ ║
 ║ │ Profiles │ Extensions │ ValueSets │ CodeSystems │ Instances │ ║
@@ -628,21 +651,20 @@ The dot (.) represents &ldquo;this directory,&rdquo; the location of the FSH fil
 ║ │    2     │     0      │     0     │      0      │     0     │ ║
 ║ ╰──────────┴────────────┴───────────┴─────────────┴───────────╯ ║
 ║                                                                 ║
-║ See SUSHI-GENERATED-FILES.md for details on generated IG files. ║
 ╠═════════════════════════════════════════════════════════════════╣
 ║ Nice! You&#39;re totally krilling it!      0 Errors      0 Warnings ║
 ╚═════════════════════════════════════════════════════════════════╝
-</code></pre></div><p>The files generated by SUSHI are located in the <strong>FishExample/build</strong> directory. Check that the <strong>build/input/profiles</strong> subdirectory contains two generated StructureDefinitions.</p>
+</code></pre></div><p>The files generated by SUSHI are located in the <strong>FishExample/fsh-generated</strong> directory. Check that the <strong>FishExample/fsh-generated/resources</strong> subdirectory contains two generated StructureDefinitions and a generated ImplementationGuide.</p>
 <h3 id="step-5-generate-the-sample-ig">Step 5: Generate the Sample IG</h3>
-<p>Now change working directory of the command window to the <strong>build</strong> directory. At the command prompt, enter:</p>
+<p>At the command prompt, enter:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-windows fa-fw'></i> <i class="fas fa-dollar-sign"></i> _updatePublisher
 <i class='fab fa-apple fa-fw'></i> <i class="fas fa-dollar-sign"></i> ./_updatePublisher.sh
-</code></pre></div><p>This will download the latest version of the HL7 FHIR IG Publisher tool into <strong>./build/input-cache</strong>. <em>This step can be skipped if you already have run the command recently, and have the latest version of the IG Publisher tool.</em></p>
+</code></pre></div><p>This will download the latest version of the HL7 FHIR IG Publisher tool into <strong>./input-cache</strong>. <em>This step can be skipped if you already have run the command recently, and have the latest version of the IG Publisher tool.</em></p>
 
 
 <div class="alert alert-success" role="alert">
 <h4 class="alert-heading">Tip</h4>
-If you are blocked by a firewall, or if for any reason <code>_updatePublisher</code> fails to execute, download the current IG Publisher jar file <a href="https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar">here</a>. When the file has downloaded, move it into the directory <strong>/FishExample/build/input-cache</strong> (creating the directory if necessary).
+If you are blocked by a firewall, or if for any reason <code>_updatePublisher</code> fails to execute, download the current IG Publisher jar file <a href="https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar">here</a>. When the file has downloaded, move it into the directory <strong>/FishExample/input-cache</strong> (creating the directory if necessary).
 </div>
 
 
@@ -656,7 +678,7 @@ Before proceeding to the next command: If you have never run the IG Publisher, y
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-windows fa-fw'></i> <i class="fas fa-dollar-sign"></i> _genonce
 <i class='fab fa-apple fa-fw'></i> <i class="fas fa-dollar-sign"></i> ./_genonce.sh
 </code></pre></div><p>This will run the HL7 FHIR IG generator, which may take several minutes to complete.</p>
-<p>After the publisher is finished, open the file <strong>/FishExample/build/output/index.html</strong> to see the resulting IG.</p>
+<p>After the publisher is finished, open the file <strong>/FishExample/output/index.html</strong> to see the resulting IG.</p>
 <p>If you click on the Artifacts Summary item in the menu, you will see that the IG contains two profiles, FishPatient and Veterinarian. If you look at each of them, you will notice that they have minimal differentials. The only way in which they differ from their base resource is that they require at least one name.</p>
 <h3 id="step-6-setting-cardinalities-in-a-profile">Step 6: Setting Cardinalities in a Profile</h3>
 <p>It is not widely known, but FHIR is designed to be used for veterinary medicine as well as human. For a non-human patient, we need to record the species. The Patients in this Tutorial are going to be various species of fish 🐟.</p>
@@ -701,7 +723,7 @@ Description: &#34;Codes describing various species of fish, taken from SNOMED-CT
 The rule in the value set definition above selects all codes from SNOMED-CT that are children of the concept &ldquo;Fish (organism)&rdquo;.
 </div>
 
-<p>Run SUSHI again. The count of ValueSets should now be 1. Try generating the IG by changing directories to <strong>build</strong> and running <code>_genonce</code> again. Open the file <strong>/FishExample/build/output/index.html</strong> to see the resulting IG.</p>
+<p>Run SUSHI again. The count of ValueSets should now be 1. Try generating the IG by running <code>_genonce</code> again. Open the file <strong>/FishExample/output/index.html</strong> to see the resulting IG.</p>
 <ul>
 <li>Do you see where the FishPatient profile is in the IG?</li>
 <li>Does the differential reflect your changes?</li>
@@ -786,12 +808,14 @@ Using aliases has no effect on the IG; it simply makes the FSH code a bit neater
         
             
         
+            
+        
     
 </div>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified September 9, 2020: <a  href="https://github.com/FSHSchool/site/commit/4b1444d86187277c203f3b216e02e575945ce801">Document goFSH (#15) (4b1444d)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified November 13, 2020: <a  href="https://github.com/FSHSchool/site/commit/f5a6fcd13c112d2d56f539673ad8216152bafeff">Update documentation for 1.0.0 (#27) (f5a6fcd)</a>
 </div>
 </div>
 

@@ -80,7 +80,7 @@
 				
 				
 				
-				<a class="nav-link" href="/docs-beta/" ><span>Docs [SUSHI 1.0 Beta]</span></a>
+				<a class="nav-link" href="/docs-legacy/" ><span>Docs [Legacy]</span></a>
 			</li>
 			
 			<li class="nav-item mr-4 mb-2 mb-lg-0">
@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d980cd805209daf8d0c7efc2f2349f7e6d64c20cc5beec962bb7be37d4391a7aa75a86de0bba0a3529789a7954b3b86c630c36c03c1bdb93d911a5941f991fc5.json"
+  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d980cd805209daf8d0c7efc2f2349f7e6d64c20cc5beec962bb7be37d4391a7aa75a86de0bba0a3529789a7954b3b86c630c36c03c1bdb93d911a5941f991fc5.json"
+  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -309,6 +309,29 @@
   </li>
   <ul>
     <li class="collapse " id="docssushirunning">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/sushi/migration/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Migrating from Older Versions</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docssushimigration">
       
       
       
@@ -529,7 +552,7 @@
   <ul>
     <li><a href="#step-1-install-nodejs">Step 1: Install Node.js</a></li>
     <li><a href="#step-2-install-sushi">Step 2: Install SUSHI</a></li>
-    <li><a href="#updating-or-reverting-sushi">Updating or Reverting SUSHI</a></li>
+    <li><a href="#reverting-sushi">Reverting SUSHI</a></li>
   </ul>
 </nav>
 
@@ -603,12 +626,10 @@
 For the most up-to-date information and latest releases of SUSHI, check the <a href="https://github.com/FHIR/sushi/releases">release history and release notes</a>.
 </div>
 
-<h2 id="updating-or-reverting-sushi">Updating or Reverting SUSHI</h2>
-<p>To update SUSHI to the latest version, re-run:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> npm install -g fsh-sushi
-</code></pre></div><p>To revert to a previous version of SUSHI, run:</p>
+<h2 id="reverting-sushi">Reverting SUSHI</h2>
+<p>To revert to a previous version of SUSHI, run:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> npm install -g fsh-sushi@<span style="color:#ce5c00;font-weight:bold">{</span>version<span style="color:#ce5c00;font-weight:bold">}</span>
-</code></pre></div><p>where the <code>{version}</code> is replaced by the desired MAJOR.MINOR.PATCH version (e.g., <code>npm install -g fsh-sushi@0.14.0</code>).</p>
+</code></pre></div><p>where the <code>{version}</code> is replaced by the desired MAJOR.MINOR.PATCH version (e.g., <code>npm install -g fsh-sushi@0.16.0</code>).</p>
 
         <div class="section-index">
     
@@ -645,12 +666,14 @@ For the most up-to-date information and latest releases of SUSHI, check the <a h
         
             
         
+            
+        
     
 </div>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified July 28, 2020: <a  href="https://github.com/FSHSchool/site/commit/af50e9cb3172df67580f2b7d1d88541b12b66e45">Moving to docsy (#1) (af50e9c)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified November 13, 2020: <a  href="https://github.com/FSHSchool/site/commit/f5a6fcd13c112d2d56f539673ad8216152bafeff">Update documentation for 1.0.0 (#27) (f5a6fcd)</a>
 </div>
 </div>
 

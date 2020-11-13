@@ -80,7 +80,7 @@
 				
 				
 				
-				<a class="nav-link" href="/docs-beta/" ><span>Docs [SUSHI 1.0 Beta]</span></a>
+				<a class="nav-link" href="/docs-legacy/" ><span>Docs [Legacy]</span></a>
 			</li>
 			
 			<li class="nav-item mr-4 mb-2 mb-lg-0">
@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d980cd805209daf8d0c7efc2f2349f7e6d64c20cc5beec962bb7be37d4391a7aa75a86de0bba0a3529789a7954b3b86c630c36c03c1bdb93d911a5941f991fc5.json"
+  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d980cd805209daf8d0c7efc2f2349f7e6d64c20cc5beec962bb7be37d4391a7aa75a86de0bba0a3529789a7954b3b86c630c36c03c1bdb93d911a5941f991fc5.json"
+  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -309,6 +309,29 @@
   </li>
   <ul>
     <li class="collapse " id="docssushirunning">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/sushi/migration/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Migrating from Older Versions</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docssushimigration">
       
       
       
@@ -584,8 +607,7 @@
 	<h1>Configuration</h1>
         
 	
-	<p>The HL7 FHIR IG Publisher relies on several configuration files, including <strong>ig.ini</strong>, <strong>package-list.json</strong>, <strong>menu.xml</strong>, and an instance of the ImplementationGuide resource. Splitting information among multiple files and managing different formats makes IG configuration difficult to manage.</p>
-<p>SUSHI offers the same functionality in a single <strong>config.yaml</strong> file, allowing all configuration to be in a consistent format with no duplication of information. This file is written using <a href="https://yaml.org/">YAML</a>. Authors unfamiliar with <a href="https://learnxinyminutes.com/docs/yaml/">YAML</a> should note that:</p>
+	<p>SUSHI is configured by a single <strong>sushi-config.yaml</strong> file. This file is written using <a href="https://yaml.org/">YAML</a>. Authors unfamiliar with <a href="https://learnxinyminutes.com/docs/yaml/">YAML</a> should note that:</p>
 <ul>
 <li>White space (new lines and indentation) is significant</li>
 <li>Information is presented in <code>key: value</code> pairs</li>
@@ -593,7 +615,7 @@
 <li>Arrays/sequences are created using <code>-</code></li>
 </ul>
 <h2 id="minimum-configuration">Minimum Configuration</h2>
-<p>At a minimum, the <strong>config.yaml</strong> file must provide a few high-level metadata values for the FSH project, if the author wishes for SUSHI to do additional Implementation Guide (IG) processing:</p>
+<p>At a minimum, the <strong>sushi-config.yaml</strong> file must provide a few high-level metadata values for the FSH project, if the author wishes for SUSHI to do additional Implementation Guide (IG) processing:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">id</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>fhir.us.example<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">canonical</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/us/example<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>ExampleIG<span style="color:#f8f8f8;text-decoration:underline">
@@ -602,7 +624,6 @@
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">fhirVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">4.0.1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">copyrightYear</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">2020</span>+<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">releaseLabel</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>ci-build<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">template</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>hl7.fhir.template<span style="color:#8f5902;font-style:italic">#0.0.5</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><p><a href="/docs/sushi/configuration/minimum-config.yaml"><i class='fas fa-download fa-fw'></i> Download Minimum Configuration Example</a></p>
 <ul>
 <li>For an official HL7 project, the <code>id</code> and <code>canonical</code> will typically be assigned by the <a href="mailto:fhir-director@hl7.org">FHIR Product Director</a>.</li>
@@ -627,7 +648,6 @@
 <li><code>normative+trial-use</code>: official release with mixture of trial use and normative content</li>
 </ul>
 </li>
-<li>The <code>template</code> value consists of a template id and version separated by <code>#</code>. This value will be reflected in the generated <strong>ig.ini</strong> file for your project. For the most up-to-date list of templates, see the <a href="https://build.fhir.org/ig/FHIR/ig-guidance/#technical-details">Guidance for FHIR IG Creation</a>.</li>
 </ul>
 
 
@@ -637,7 +657,7 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 </div>
 
 <h4 id="fsh-only">FSH-Only</h4>
-<p>If an author wants SUSHI only to build the FHIR definition files, and <em>not</em> to do any additional IG processing, and if the project contains an <strong>ImplementationGuide</strong> resource, then the author does not need to provide a <strong>config.yaml</strong> at all. If there is no <strong>config.yaml</strong>, SUSHI will automatically attempt to extract the following information from an <strong>ImplementationGuide</strong> resource:</p>
+<p>If an author wants SUSHI only to build the FHIR definition files, and <em>not</em> to do any additional IG processing, and if the project contains an <strong>ImplementationGuide</strong> resource, then the author does not need to provide a <strong>sushi-config.yaml</strong> at all. If there is no <strong>sushi-config.yaml</strong>, SUSHI will automatically attempt to extract the following information from an <strong>ImplementationGuide</strong> resource:</p>
 <ul>
 <li><code>canonical</code></li>
 <li><code>fhirVersion</code></li>
@@ -650,7 +670,7 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 <li>Look for <code>&lt;root&gt;/ig.ini</code>, where <code>&lt;root&gt;</code> is the folder containing the <strong>fsh</strong> subdirectory. If the <strong>ig.ini</strong> file exists, it will have an <code>ig</code> property which gives the path to the <strong>ImplementationGuide</strong> resource, so SUSHI will use this path to find the resource.</li>
 <li>If there is no <strong>ig.ini</strong> in the root folder, SUSHI will search the <code>&lt;root&gt;/input</code> folder for an <strong>ImplementationGuide</strong> resource, and if exactly one resource is found, SUSHI will extract the above properties from it.</li>
 </ul>
-<p>If an author does not have an <strong>ImplementationGuide</strong> resource, but still wants SUSHI to build FHIR definition files only, the author should add a <code>FSHOnly</code> flag to the <strong>config.yaml</strong> and set its value to <code>true</code>:</p>
+<p>If an author does not have an <strong>ImplementationGuide</strong> resource, but still wants SUSHI to build FHIR definition files only, the author should add a <code>FSHOnly</code> flag to the <strong>sushi-config.yaml</strong> and set its value to <code>true</code>:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">FSHOnly</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><p>However, the author will also at least need to provide a <code>canonical</code> and <code>fhirVersion</code> in the configuration for FSH-Only processing to succeed.</p>
 <h2 id="recommended-configuration">Recommended Configuration</h2>
@@ -672,8 +692,7 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 </span></span><span style="display:block;width:100%;background-color:#dfdfdf"><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">email</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>usrsc@lists.HL7.org<span style="color:#f8f8f8;text-decoration:underline">
 </span></span><span style="display:block;width:100%;background-color:#dfdfdf"><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">dependencies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span><span style="display:block;width:100%;background-color:#dfdfdf"><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">hl7.fhir.us.core</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">template</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>hl7.fhir.template<span style="color:#8f5902;font-style:italic">#0.0.5</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p><a href="/docs/sushi/configuration/recommended-config.yaml"><i class='fas fa-download fa-fw'></i> Download Recommended Configuration Example</a></p>
+</span></span></code></pre></div><p><a href="/docs/sushi/configuration/recommended-config.yaml"><i class='fas fa-download fa-fw'></i> Download Recommended Configuration Example</a></p>
 <ul>
 <li>The <code>license</code> value should come from the <a href="http://hl7.org/fhir/R4/valueset-spdx-license.html">SPDX Licence Value Set</a>, although most FHIR IGs use the <code>CC0-1.0</code> (Creative Commons Zero v1.0 Universal) license.</li>
 <li>The <code>dependencies</code> value is a YAML object for which the keys are each dependency&rsquo;s package id and the values are the dependency versions. In addition to standard version identifiers, the following two special versions are supported:
@@ -691,7 +710,7 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 </span></code></pre></div></li>
 </ul>
 <h2 id="full-configuration">Full Configuration</h2>
-<p>The table below lists all configuration properties that can be used in SUSHI&rsquo;s <strong>config.yaml</strong> file. Most SUSHI configuration properties come directly from the <a href="https://www.hl7.org/fhir/R4/implementationguide.html#resource">Implementation Guide resource</a> and will be translated into the generated ImplementationGuide resource for your project. Differences between the <strong>config.yaml</strong> properties and ImplementationGuide properties are noted below.</p>
+<p>The table below lists all configuration properties that can be used in SUSHI&rsquo;s <strong>sushi-config.yaml</strong> file. Most SUSHI configuration properties come directly from the <a href="https://www.hl7.org/fhir/R4/implementationguide.html#resource">Implementation Guide resource</a> and will be translated into the generated ImplementationGuide resource for your project. Differences between the <strong>sushi-config.yaml</strong> properties and ImplementationGuide properties are noted below.</p>
 <table>
 <thead>
 <tr>
@@ -834,7 +853,7 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 <tr>
 <td align="left">groups</td>
 <td align="left">definition.grouping</td>
-<td align="left">A <code>key: value</code> pair, where key is the name of the group and value is the description of the group</td>
+<td align="left">A <code>key: value</code> pair, where key is the group id and value is the description of the group. For advanced use cases, the value can be an object with keys for <code>name</code>, <code>description</code>, and <code>resources</code>.</td>
 </tr>
 <tr>
 <td align="left">resources</td>
@@ -872,24 +891,9 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 <td align="left">The canonical URL to be used throughout the IG</td>
 </tr>
 <tr>
-<td align="left">template</td>
-<td align="left">N/A</td>
-<td align="left">Template used in <code>ig.ini</code> file. <br><br> Authors can provide their own <code>ig.ini</code> file by removing this property and placing an <code>igi.ini</code> file in the <code>ig-data</code> directory.</td>
-</tr>
-<tr>
 <td align="left">menu</td>
 <td align="left">N/A</td>
-<td align="left">Used to generate the input/index.md file. The key is the menu item name and the value is the URL. Menus can contain sub-menus, but the IG Publisher currently only supports sub-menus one level deep. <br><br> Authors can provide their own <code>menu.xml</code> by removing this property and placing a <code>menu.xml</code> file in <code>ig-data/input/includes</code></td>
-</tr>
-<tr>
-<td align="left">history</td>
-<td align="left">N/A</td>
-<td align="left">Used to create a <code>package-list.json</code>. SUSHI will use the existing top-level properties in its config to populate the top-level package-list.json properties: package-id, canonical, title, and introduction. Authors who wish to provide different values can supply them as properties under history. All other properties under history are assumed to be versions. <br><br> Additionally, the current version is special. If the author provides only a single string value, it is assumed to be the URL path to the current build. The following default values will then be used: <code>desc: Continuous Integration Build</code> (latest in version control), <code>status: ci-build</code>, and <code>current: true</code>. <br><br> Authors can provide their own <code>package-list.json</code> by removing this property and placing a <code>package-list.json</code> file in <code>ig-data</code>.</td>
-</tr>
-<tr>
-<td align="left">indexPageContent</td>
-<td align="left">N/A</td>
-<td align="left">This property is provided for backwards compatibility reasons, and its use is discouraged. It was used to specify the content of <code>index.md</code>, however, authors should provide their own index file by not using this property and placing an <code>index.md</code> or <code>index.html</code> file in <code>input/pages</code> or <code>input/pagecontent</code>.</td>
+<td align="left">Used to generate the <code>fsh-generated/includes/menu.xml</code> file. The key is the menu item name and the value is the URL. Menus can contain sub-menus, but the IG Publisher currently only supports sub-menus one level deep. <br><br> Authors can provide their own <code>menu.xml</code> by removing this property and placing a <code>menu.xml</code> file in <code>/input/includes</code></td>
 </tr>
 <tr>
 <td align="left">FSHOnly</td>
@@ -899,7 +903,7 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 </tbody>
 </table>
 <h2 id="exhaustive-example">Exhaustive Example</h2>
-<p>The following provides an exhaustive example <strong>config.yaml</strong> covering many of the properties discussed above.</p>
+<p>The following provides an exhaustive example <strong>sushi-config.yaml</strong> covering many of the properties discussed above.</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># This IG YML file is inspired by the ImplementationGuide resource</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># and also draws from package.json, package-list.json, and ig.ini.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># That said, it is structured for ease-of-use, so it is not strictly</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -922,11 +926,6 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># it can be a single item OR and array here (but so far SUSHI only</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># supports 4.0.1 anyway).</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">fhirVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">4.0.1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The template property will be used to generate an ig.ini file.</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># To provide a custom ig.ini file, do not include this property and</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># include an `ig.ini` file in ig-data.</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">template</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>hl7.fhir.template<span style="color:#8f5902;font-style:italic">#0.0.5</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The following two lines correspond to items that used to be in</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># ig.ini but were moved to IG.definition.parameter. For</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1010,11 +1009,13 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># resource entries with the corresponding groupIds.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">groups</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">GroupA</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Group<span style="color:#f8f8f8;text-decoration:underline"> </span>A<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">description</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>The<span style="color:#f8f8f8;text-decoration:underline"> </span>Alpha<span style="color:#f8f8f8;text-decoration:underline"> </span>Group<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span>- StructureDefinition/animal-patient<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span>- StructureDefinition/arm-procedure<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">GroupB</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Group<span style="color:#f8f8f8;text-decoration:underline"> </span>B<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">description</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>The<span style="color:#f8f8f8;text-decoration:underline"> </span>Beta<span style="color:#f8f8f8;text-decoration:underline"> </span>Group<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span>- StructureDefinition/bark-control<span style="color:#f8f8f8;text-decoration:underline">
@@ -1079,44 +1080,6 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">excludettl</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">validation</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span>allow-any-extensions<span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span>no-broken-links<span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The history property corresponds to package-list.json. SUSHI will</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># use the existing top-level properties in its config to populate the</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># top-level package-list.json properties: packageId, canonical, title,</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># and introduction. Authors that wish to provide different values can</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># supply them as properties under history. All other properties under</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># history are assumed to be versions. To provide a custom package-list.json</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># file, remove this property and include a package-list.json file in ig-data.</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">history</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># The current version is special. If the author provides only a</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># single value, it is assumed to be the URL path to the current</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># build. The following default values will then be used:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic">#   desc: Continuous Integration Build (latest in version control)</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic">#   status: ci-build</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic">#   current: true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">current</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//build.fhir.org/ig/HL7/example-ig/<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># All other versions need each of their values fully specified.</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># See: https://confluence.hl7.org/pages/viewpage.action?pageId=66928420#FHIRIGPackageListdoco-PublicationObject</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">1.0.0</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">fhirversion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">4.0.1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">date</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">2020-03-06</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">desc</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>STU<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Release<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">path</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>https<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/us/example/STU1/<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">status</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>trial-use<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">sequence</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>STU<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">current</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">0.9.1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">fhirversion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">4.0.0</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">date</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">2019-06-10</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">desc</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Initial<span style="color:#f8f8f8;text-decoration:underline"> </span>STU<span style="color:#f8f8f8;text-decoration:underline"> </span>ballot<span style="color:#f8f8f8;text-decoration:underline"> </span>(Sep<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">2019</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Ballot)<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">path</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>https<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/us/example/2019Sep/<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">status</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>ballot<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">sequence</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>STU<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The indexPageContent property is used to generate a basic index.md file. To provide a</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># custom index file, do not include this property and include an index.md or index.xml file</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># in input/pages/ or input/pagecontent folders.</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">indexPageContent</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#39;Example Index Page Content&#39;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The FSHOnly flag indicates if only FSH resources should be exported.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># If set to true, no IG related content will be generated.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The default value for this property is false.</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1159,12 +1122,14 @@ SUSHI can generate a simple configuration file for you with the <code>--init</co
         
             
         
+            
+        
     
 </div>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified October 14, 2020: <a  href="https://github.com/FSHSchool/site/commit/22988ded820946b69491542df10b5d66e07f360a">Fix dependencies documentation (#24) (22988de)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified November 13, 2020: <a  href="https://github.com/FSHSchool/site/commit/f5a6fcd13c112d2d56f539673ad8216152bafeff">Update documentation for 1.0.0 (#27) (f5a6fcd)</a>
 </div>
 </div>
 

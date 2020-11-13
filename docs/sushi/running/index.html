@@ -80,7 +80,7 @@
 				
 				
 				
-				<a class="nav-link" href="/docs-beta/" ><span>Docs [SUSHI 1.0 Beta]</span></a>
+				<a class="nav-link" href="/docs-legacy/" ><span>Docs [Legacy]</span></a>
 			</li>
 			
 			<li class="nav-item mr-4 mb-2 mb-lg-0">
@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d980cd805209daf8d0c7efc2f2349f7e6d64c20cc5beec962bb7be37d4391a7aa75a86de0bba0a3529789a7954b3b86c630c36c03c1bdb93d911a5941f991fc5.json"
+  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d980cd805209daf8d0c7efc2f2349f7e6d64c20cc5beec962bb7be37d4391a7aa75a86de0bba0a3529789a7954b3b86c630c36c03c1bdb93d911a5941f991fc5.json"
+  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -309,6 +309,29 @@
   </li>
   <ul>
     <li class="collapse show" id="docssushirunning">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/sushi/migration/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Migrating from Older Versions</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docssushimigration">
       
       
       
@@ -534,6 +557,7 @@
     </li>
     <li><a href="#sushi-outputs">SUSHI Outputs</a>
       <ul>
+        <li><a href="#downloading-the-ig-publisher-scripts">Downloading the IG Publisher Scripts</a></li>
         <li><a href="#downloading-the-ig-publisher">Downloading the IG Publisher</a></li>
         <li><a href="#running-the-ig-publisher">Running the IG Publisher</a></li>
       </ul>
@@ -598,17 +622,17 @@ This documentation assumes you have a SUSHI-compliant project structure and conf
 <p>SUSHI is executed from the command line. The general form of the SUSHI execution command is as follows:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi <span style="color:#ce5c00;font-weight:bold">{</span>specification-directory<span style="color:#ce5c00;font-weight:bold">}</span> <span style="color:#ce5c00;font-weight:bold">{</span>options<span style="color:#ce5c00;font-weight:bold">}</span>
 </code></pre></div><p>where options include the following (in any order):</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-o, --out &lt;out&gt;   the path to the output directory (default: ./build)
--s, --snapshot    generate snapshot in StructureDefinition output (default: false)
--d, --debug       output extra debugging information (default: false)
--i, --init        initialize a SUSHI project
--v, --version     output SUSHI version and implemented FSH specification version
--h, --help        output usage information
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-o, --out &lt;out&gt;  the path to the output folder
+-d, --debug      output extra debugging information
+-s, --snapshot   generate snapshot in Structure Definition output (default: false)
+-i, --init       initialize a SUSHI project
+-v, --version    print SUSHI version
+-h, --help       output usage information
 </code></pre></div>
 
 <div class="alert alert-success" role="alert">
 <h4 class="alert-heading">Tip</h4>
-If you run SUSHI from your FSH project directory, and accept the defaults, the command can be shortened to <code>sushi .</code>. <em>NOTE: If your FSH project has a <strong>fsh</strong> subdirectory, SUSHI will default to <strong>fsh</strong> as the input location and <strong>fsh</strong>&rsquo;s parent directory as the output location. This behavior is to support the IG Publisher integration.</em>
+If you run SUSHI from your FSH project directory, and accept the defaults, the command can be shortened to <code>sushi .</code>
 </div>
 
 
@@ -626,7 +650,6 @@ By default, SUSHI only generates the <a href="https://www.hl7.org/fhir/R4/profil
 ║ │    1     │     1      │     1     │      1      │     1     │ ║
 ║ ╰──────────┴────────────┴───────────┴─────────────┴───────────╯ ║
 ║                                                                 ║
-║ See SUSHI-GENERATED-FILES.md for details on generated IG files. ║
 ╠═════════════════════════════════════════════════════════════════╣
 ║ O-fish-ally error free!                0 Errors      0 Warnings ║
 ╚═════════════════════════════════════════════════════════════════╝
@@ -641,18 +664,21 @@ By default, SUSHI only generates the <a href="https://www.hl7.org/fhir/R4/profil
 <li><strong>The community can help.</strong> If you are getting an error you can&rsquo;t resolve, you can ask for help on the <a href="https://chat.fhir.org/#narrow/stream/215610-shorthand">#shorthand chat channel</a>.</li>
 </ul>
 <h2 id="sushi-outputs">SUSHI Outputs</h2>
-<p>Based on the inputs in FSH files, <strong>config.yaml</strong>, and the <strong>ig-data</strong> directory, SUSHI populates the output directory. For example, the customized-ig project from the <a href="/docs/sushi/project/">Project Structure</a> section would result in output like the following:</p>
+<p>Based on the inputs in FSH files, <strong>sushi-config.yaml</strong>, and the IG project directory, SUSHI populates the <strong>fsh-generated</strong> directory. For example, running SUSHI on the customized-ig project from the <a href="/docs/sushi/project/">Project Structure</a> section would add a <strong>fsh-generated</strong> folder as shown below:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">customized-ig
-├── fsh
-│   └── (fsh files)
+├── fsh-generated
+|   └── resources
+|       ├── CodeSystem-myCodeSystem.json
+|       ├── Patient-myPatient-example.json
+|       ├── StructureDefinition-myExtension.json
+|       ├── StructureDefinition-myProfile.json
+|       ├── ValueSet-myValueSet.json
+|       └── ImplementationGuide-myIG.json
 ├── ig.ini
 ├── input
-│   ├── ImplementationGuide-myIG.json
+|   ├── fsh
+│   |   └── (fsh files)
 │   ├── ignoreWarnings.txt
-│   ├── examples
-│   │   └── Patient-myPatient-example.json
-│   ├── extensions
-│   │   └── StructureDefinition-myExtension.json
 │   ├── images
 │   │   ├── myDocument.pdf
 │   │   ├── myGraphic.png
@@ -661,44 +687,28 @@ By default, SUSHI only generates the <a href="https://www.hl7.org/fhir/R4/profil
 │   │   └── menu.xml
 │   ├── pagecontent
 │   │   ├── index.md
-│   │   ├── mySecondPage.md
-│   │   ├── myThirdPage.md
-│   │   └── myFourthPage.md
-│   ├── profiles
-│   │   └── StructureDefinition-myProfile.json
-│   └── vocabulary
-│       ├── ValueSet-myValueSet.json
-│       └── CodeSystem-myCodeSystem.json
-└── package-list.json
-</code></pre></div>
-
-<div class="alert alert-info" role="alert">
-<h4 class="alert-heading">Info</h4>
-SUSHI generates <em>output</em> into a directory called <strong>input</strong>, because it is generating <em>input</em> files for the IG Publisher.  The IG Publisher requires this directory to be named <strong>input</strong>.
-</div>
-
-<p>Note the following files and directories from the output:</p>
+│   │   ├── 2_mySecondPage.md
+│   │   ├── 3_myThirdPage.md
+│   │   └── 4_myFourthPage.md
+├── package-list.json
+└── sushi-config.json
+</code></pre></div><p>SUSHI creates only the <strong>fsh-generated</strong> folder, but some of the files shown above are either processed by SUSHI to create the <strong>ImplementationGuide.json</strong> file, or <em>can</em> be generated by SUSHI if the author wishes. See the breakdown of files and directories below:</p>
 <ul>
-<li><strong>ig.ini</strong>: Copied from the <strong>fsh/ig-data</strong> directory, but can alternately be specified via the <code>template</code> property in <strong>fsh/config.yaml</strong>.</li>
-<li><strong>input/ignoreWarnings.txt</strong>: Copied from the <strong>fsh/ig-data/input</strong> directory, but will be generated as a blank file if it isn&rsquo;t found.</li>
-<li><strong>input/examples*</strong>, <strong>input/extensions*</strong>, <strong>input/profiles*</strong>, <strong>input/vocabulary*</strong>: Generated from the definitions in the <strong>fsh/*.fsh</strong> files.</li>
-<li><strong>input/images/*</strong>: Copied from the <strong>fsh/ig-data/input/images</strong> directory.</li>
-<li><strong>input/includes/menu.xml</strong>: Copied from the <strong>fsh/ig-data/input/includes</strong> directory, but can alternately be specified via the <code>menu</code> property in <strong>fsh/config.yaml</strong>.</li>
-<li><strong>input/pagecontent/*</strong>: Copied from the <strong>fsh/ig-data/input/pagecontent</strong> directory. Filenames with numeric prefixes will have the prefixes removed.</li>
-<li><strong>package-list.json</strong>: Copied from the <strong>fsh/ig-data</strong> directory, but can alternately be specified via the <code>history</code> property in <strong>fsh/config.yaml</strong>.</li>
+<li><strong>fsh-generated*</strong>: Generated from the definitions in the <strong>input/fsh/*.fsh</strong> files.</li>
+<li><strong>ig.ini</strong>: Specified by the author and unchanged by SUSHI.</li>
+<li><strong>input/ignoreWarnings.txt</strong>: Specified by the author and unchanged by SUSHI.</li>
+<li><strong>input/images/*</strong>: Specified by the author and unchanged by SUSHI.</li>
+<li><strong>input/includes/menu.xml</strong>: Specified by the author and unchanged by SUSHI, but can alternately be specified via the <code>menu</code> property in <strong>sushi-config.yaml</strong>. If the <code>menu</code> configuration property is used, the output is generated to <strong>fsh-generated/includes/menu.xml</strong>.</li>
+<li><strong>input/pagecontent/*</strong>: Specified by the author, numeric prefixes are used by SUSHI in generating the <strong>ImplementationGuide-myIG.json</strong> file.</li>
+<li><strong>package-list.json</strong>: Specified by the author and unchanged by SUSHI.</li>
 </ul>
+<h3 id="downloading-the-ig-publisher-scripts">Downloading the IG Publisher Scripts</h3>
+<p>To run the IG Publisher, we recommend downloading the <strong>_updatePublisher.bat|sh</strong> and <strong>_genonce.bat|sh</strong> scripts provided by the sample-ig project. To get these scripts, <a href="https://github.com/FHIR/sample-ig/archive/master.zip">download the sample-ig project</a>, unzip it, and copy <em>all</em> of the <strong>.bat</strong> and <strong>.sh</strong> files to the directory above the <strong>fsh-generated</strong> directory (<strong>customized-ig</strong> in the example above).</p>
 <h3 id="downloading-the-ig-publisher">Downloading the IG Publisher</h3>
-
-
-<div class="alert alert-primary" role="alert">
-<h4 class="alert-heading">Note</h4>
-The following steps require the <strong>_updatePublisher.bat|sh</strong> and <strong>_genonce.bat|sh</strong> scripts in the output directory that SUSHI writes to. If these scripts are not present there, you will need to download them from the sample-ig project. The easiest way to do this is to <a href="https://github.com/FHIR/sample-ig/archive/master.zip">download the sample-ig project</a>, unzip it, and copy <em>all</em> of the <strong>.bat</strong> and <strong>.sh</strong> files to the directory that SUSHI writes to.
-</div>
-
-<p>After running SUSHI, change directories to the output directory (if necessary). At the command prompt, enter:</p>
+<p>After copying these, change directories in the command prompt to the directory above the <strong>fsh-generated</strong> directory. At the command prompt, enter:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-windows fa-fw'></i> <i class="fas fa-dollar-sign"></i> _updatePublisher
 </code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-apple fa-fw'></i> <i class="fas fa-dollar-sign"></i> ./_updatePublisher.sh
-</code></pre></div><p>This will download the latest version of the HL7 FHIR IG Publisher tool into the <strong>/build/input-cache</strong> directory. <em>This step can be skipped if you already have the latest version of the IG Publisher tool in <strong>input-cache</strong>.</em></p>
+</code></pre></div><p>This will download the latest version of the HL7 FHIR IG Publisher tool into the <strong>/input-cache</strong> directory. <em>This step can be skipped if you already have the latest version of the IG Publisher tool in <strong>input-cache</strong>.</em></p>
 
 
 <div class="alert alert-success" role="alert">
@@ -754,12 +764,14 @@ If you have never run the IG Publisher, you may need to install Jekyll first. Se
         
             
         
+            
+        
     
 </div>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified August 11, 2020: <a  href="https://github.com/FSHSchool/site/commit/b07f7e06a75073354f54add45331c1b937387d6a">Fixing several broken internal links (#11) (b07f7e0)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified November 13, 2020: <a  href="https://github.com/FSHSchool/site/commit/f5a6fcd13c112d2d56f539673ad8216152bafeff">Update documentation for 1.0.0 (#27) (f5a6fcd)</a>
 </div>
 </div>
 

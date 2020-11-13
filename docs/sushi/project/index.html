@@ -80,7 +80,7 @@
 				
 				
 				
-				<a class="nav-link" href="/docs-beta/" ><span>Docs [SUSHI 1.0 Beta]</span></a>
+				<a class="nav-link" href="/docs-legacy/" ><span>Docs [Legacy]</span></a>
 			</li>
 			
 			<li class="nav-item mr-4 mb-2 mb-lg-0">
@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d980cd805209daf8d0c7efc2f2349f7e6d64c20cc5beec962bb7be37d4391a7aa75a86de0bba0a3529789a7954b3b86c630c36c03c1bdb93d911a5941f991fc5.json"
+  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d980cd805209daf8d0c7efc2f2349f7e6d64c20cc5beec962bb7be37d4391a7aa75a86de0bba0a3529789a7954b3b86c630c36c03c1bdb93d911a5941f991fc5.json"
+  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -309,6 +309,29 @@
   </li>
   <ul>
     <li class="collapse " id="docssushirunning">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/sushi/migration/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Migrating from Older Versions</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docssushimigration">
       
       
       
@@ -529,7 +552,7 @@
   <ul>
     <li><a href="#simple-fsh-projects">Simple FSH Projects</a>
       <ul>
-        <li><a href="#using-a-fsh-subdirectory-with-the-hl7-ig-publisher-and-auto-builder">Using a fsh Subdirectory with the HL7 IG Publisher and Auto-Builder</a></li>
+        <li><a href="#using-the-hl7-ig-publisher-and-auto-builder">Using the HL7 IG Publisher and Auto-Builder</a></li>
       </ul>
     </li>
     <li><a href="#ig-projects">IG Projects</a>
@@ -587,87 +610,81 @@
         
 	
 	<h2 id="simple-fsh-projects">Simple FSH Projects</h2>
-<p>The simplest FSH project (sometimes referred to as a &ldquo;FSH tank&rdquo;) contains only a configuration file and FSH files containing FHIR Shorthand definitions. For example, a simple FSH tank might look like this:</p>
+<p>The simplest FSH project (sometimes referred to as a &ldquo;FSH tank&rdquo;) contains only a configuration file and an <strong>input/fsh</strong> subdirectory of FSH files containing FHIR Shorthand definitions. For example, a simple FSH tank might look like this:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">simple-project
-├── config.yaml
-├── file1.fsh
-├── file2.fsh
-└── file3.fsh
-</code></pre></div><p>The <strong>config.yaml</strong> file provides project configuration data to SUSHI. It is described further in the <a href="/docs/sushi/configuration/">Configuration</a> documentation.</p>
+├── input
+|    └── fsh
+|        ├── file1.fsh
+|        ├── file2.fsh
+|        └── file3.fsh
+└── sushi-config.yaml
+</code></pre></div><p>The <strong>sushi-config.yaml</strong> file provides project configuration data to SUSHI. It is described further in the <a href="/docs/sushi/configuration/">Configuration</a> documentation.</p>
 <p>Each FSH file can contain multiple FSH definitions of varying types. FSH file names are not significant, but must end with the <strong>.fsh</strong> extension. In addition, FSH files can be organized into subdirectories. This provides authors the flexibility to organize their FSH definitions in whatever way makes sense to then.</p>
-
-
-<div class="alert alert-success" role="alert">
-<h4 class="alert-heading">Tip</h4>
-A simple FSH project like the one shown above can be used with a minimal <strong>config.yaml</strong> file to create a bare-bones IG . It can also be used to generate only the FHIR resources by specifying the <code>FSHOnly</code> flag in <strong>config.yaml</strong>. Most authors who want to develop an IG using SUSHI, however, will also use an <strong>ig-data</strong> directory. Continue reading for more details.
-</div>
-
-<h3 id="using-a-fsh-subdirectory-with-the-hl7-ig-publisher-and-auto-builder">Using a fsh Subdirectory with the HL7 IG Publisher and Auto-Builder</h3>
-<p>If a project is intended to be built by the HL7 IG Publisher <a href="https://github.com/FHIR/auto-ig-builder/blob/master/README.md">Auto-Builder</a>, the FSH tank should be located in a <strong>fsh</strong> subdirectory:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">simple-ig
-└── fsh
-    ├── config.yaml
-    ├── file1.fsh
-    ├── file2.fsh
-    └── file3.fsh
-</code></pre></div><p>When the IG Publisher detects a <strong>fsh</strong> subdirectory, it will automatically run SUSHI on that directory and output the SUSHI results to the <em>parent</em> of the <strong>fsh</strong> subdirectory (e.g., the <strong>simple-ig</strong> directory in the example above). It will then continue with the normal IG Publisher process.</p>
+<h3 id="using-the-hl7-ig-publisher-and-auto-builder">Using the HL7 IG Publisher and Auto-Builder</h3>
+<p>This project structure integrates with the HL7 IG Publisher <a href="https://github.com/FHIR/auto-ig-builder/blob/master/README.md">Auto-Builder</a>. When the IG Publisher detects an <strong>input/fsh</strong> subdirectory, it will automatically run SUSHI on that directory and output the SUSHI results to a <strong>fsh-generated</strong> directory (e.g., <strong>simple-project/fsh-generated</strong> in the example above). It will then continue with the normal IG Publisher process.</p>
 <p>This approach allows a GitHub repository to be configured such that whenever changes to FSH files are pushed to GitHub, the <a href="https://github.com/FHIR/auto-ig-builder/blob/master/README.md">Auto-Builder</a> will pick them up, run the SUSHI/IG Publisher process, and publish the resulting IG to <a href="http://build.fhir.org">http://build.fhir.org</a>.</p>
+<h2 id="ig-projects">IG Projects</h2>
 
 
-<div class="alert alert-primary" role="alert">
-<h4 class="alert-heading">Note</h4>
-Using a <strong>fsh</strong> subdirectory is not required, but since many authors prefer this option, the remaining documentation assumes a <strong>fsh</strong> subdirectory in its file structures.
+<div class="alert alert-warning" role="alert">
+<h4 class="alert-heading">Warning</h4>
+As of the SUSHI 1.0 release, the <strong>ig.ini</strong> MUST use a template based on <code>fhir.base.template#current</code>. See the detailed description of <strong>ig.ini</strong> below for a more in depth list of allowed templates.
 </div>
 
-<h2 id="ig-projects">IG Projects</h2>
-<p>SUSHI provides support for many of the files and directories required by the <a href="https://build.fhir.org/ig/FHIR/ig-guidance/">template-based IG Publisher</a> for building Implementation Guides. Many IG customizations can be configured using additional properties in the <strong>config.yaml</strong> file.</p>
-<p>Additionally, authors can create and populate the <strong>ig-data</strong> directory with custom content for <strong>package-list.json</strong>, <strong>ig.ini</strong>, <strong>menu.xml</strong>, <strong>index.md</strong> (or <strong>index.xml</strong>), pages, images, and other IG Publisher inputs.  For example, a FSH project for a customized IG might look like this:</p>
+<p>SUSHI provides support for several of the files and directories required by the <a href="https://build.fhir.org/ig/FHIR/ig-guidance/">template-based IG Publisher</a> for building Implementation Guides. Some IG customizations can be configured using additional properties in the <strong>sushi-config.yaml</strong> file. A FSH project integrated into the template-based IG Publisher may look like this:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">customized-ig
-└── fsh
-    ├── config.yaml
-    ├── file1.fsh
-    ├── file2.fsh
-    ├── file3.fsh
-    └── ig-data
-        ├── ig.ini
-        ├── input
-        │   ├── ignoreWarnings.txt
-        │   ├── images
-        │   │   ├── myDocument.pdf
-        │   │   ├── myGraphic.png
-        │   │   └── mySpreadsheet.xlsx
-        │   ├── includes
-        │   │   └── menu.xml
-        │   └── pagecontent
-        │       ├── 1_mySecondPage.md
-        │       ├── 2_myThirdPage.md
-        │       ├── 3_myFourthPage.md
-        │       └── index.md
-        └── package-list.json
-</code></pre></div><p>You can populate your project (under <strong>fsh</strong> above) as follows:</p>
+├── ig.ini
+├── input
+|   ├── fsh
+|   |   ├── file1.fsh
+|   |   ├── file2.fsh
+|   |   └── file3.fsh
+│   ├── ignoreWarnings.txt
+│   ├── images
+│   │   ├── myDocument.pdf
+│   │   ├── myGraphic.png
+│   │   └── mySpreadsheet.xlsx
+│   ├── includes
+│   │   └── menu.xml
+│   └── pagecontent
+│       ├── 1_mySecondPage.md
+│       ├── 2_myThirdPage.md
+│       ├── 3_myFourthPage.md
+│       └── index.md
+├── package-list.json
+└── sushi-config.yaml
+</code></pre></div><p>You can populate your project as follows:</p>
 <ul>
-<li><strong>config.yaml</strong>: This required file provides project configuration data to SUSHI. It is described further in the <a href="/docs/sushi/configuration/">Configuration</a> documentation.</li>
-<li><strong>*.fsh</strong>: FSH files contain the FHIR Shorthand definitions for all the resources and examples in your IG.</li>
-<li><strong>ig-data/ig.ini</strong>: If present and no <code>template</code> property is specified in <strong>config.yaml</strong>, the user-provided file will be used instead of a generated one.</li>
-<li><strong>ig-data/input/ignoreWarnings.txt</strong>: If present, this file can be used to suppress specific QA warnings and information messages during the FHIR IG publication process.</li>
-<li><strong>ig-data/input/images/*</strong>: Put anything that is not a page in the IG, such as images, spreadsheets or zip files, in the <strong>ig-data/input/images</strong> subdirectory. These files will be copied into the build and can be referenced by user-provided pages or menus.</li>
-<li><strong>ig-data/input/includes/menu.xml</strong>: If present and no <code>menu</code> property is specified in <strong>config.yaml</strong>, this file will be used for the IG&rsquo;s main menu layout.</li>
-<li><strong>ig-data/input/pagecontent/*</strong>: Put either markup (.xml) or markdown (.md) files with the narrative content of your IG in the <strong>ig-data/input/pagecontent/</strong> subdirectory. These files are the sources for the html pages that accompany the automatically-generated pages of your IG. The header and footer of these pages are automatically generated, so your content should not include these elements. Any number of pages can be added. In addition to stand-alone pages, you can provide additional text for generated artifact pages. The naming of these files is significant:
+<li><strong>sushi-config.yaml</strong>: This file provides project configuration data to SUSHI. It is described further in the <a href="/docs/sushi/configuration/">Configuration</a> documentation.</li>
+<li><strong>input/fsh/*.fsh</strong>: FSH files contain the FHIR Shorthand definitions for all the resources and examples in your IG.</li>
+<li><strong>ig.ini</strong>: Configuration file required for the FHIR IG Publication process. NOTE: As of the SUSHI 1.0 release, this file MUST use a template based on <code>fhir.base.template#current</code>. Specific template versions (i.e., other than <code>#current</code>) are expected to work in the future.  For now, any of the following should work:
 <ul>
-<li><strong>index.xml|md</strong>: This file provides the content for the IG&rsquo;s main page, unless the <code>indexPageContent</code> property is specified in <strong>config.yaml</strong>, in which case this file should not exist. Providing an index file is strongly recommended over inlining the content in <strong>config.yaml</strong>.</li>
-<li><strong>N_pagename.xml|md</strong>: If present, these files will be generated as individual pages in the IG. The leading integer (N) determines the order of the pages in the table of contents. These numbers are stripped and do not appear in the actual page URLs.</li>
+<li><code>template = fhir.base.template#current</code></li>
+<li><code>template = hl7.base.template#current</code></li>
+<li><code>template = hl7.fhir.template#current</code></li>
+<li><code>template = hl7.davinci.template#current</code></li>
+<li><code>template = hl7.cda.template#current</code></li>
+</ul>
+</li>
+<li><strong>input/ignoreWarnings.txt</strong>: This file is used to suppress specific QA warnings and information messages during the FHIR IG publication process.</li>
+<li><strong>input/images/*</strong>: Put anything that is not a page in the IG, such as images, spreadsheets or zip files, in the <strong>input/images</strong> subdirectory. These files can be referenced by user-provided pages or menus.</li>
+<li><strong>input/includes/menu.xml</strong>: If present, this file will be used for the IG&rsquo;s main menu layout. Note that the presence of this file will block usage of the <code>menu</code> property in <strong>sushi-config.yaml</strong>.</li>
+<li><strong>input/pagecontent/*</strong>: Put either markup (.xml) or markdown (.md) files with the narrative content of your IG in the <strong>input/pagecontent/</strong> subdirectory. These files are the sources for the html pages that accompany the automatically-generated pages of your IG. The header and footer of these pages are automatically generated, so your content should not include these elements. Any number of pages can be added. In addition to stand-alone pages, you can provide additional text for generated artifact pages. The naming of these files is significant:
+<ul>
+<li><strong>index.xml|md</strong>: This file provides the content for the IG&rsquo;s main page.</li>
+<li><strong>N_pagename.xml|md</strong>: If present, these files will be generated as individual pages in the IG. The leading integer (N) determines the order of the pages in the table of contents. Adding a leading integer is optional, and in the absence of a leading integer, SUSHI will sort the pages alphabetically. The order of the pages can also be explitly specified with the <code>pages</code> property in <strong>sushi-config.yaml</strong>.</li>
 <li><strong>{artifact-file-name}-intro.xml|md</strong>: If present, the contents of the file will be placed on the relevant page <em>before</em> the artifact&rsquo;s definition.</li>
 <li><strong>{artifact-file-name}-notes.xml|md</strong>: If present, the contents of the file will be placed on the relevant page <em>after</em> the artifact&rsquo;s definition.</li>
 </ul>
 </li>
-<li><strong>ig-data/input/{supported-resource-input-directory}/*</strong> (not shown above): JSON or XML files in <a href="https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html#root.input">supported resource directories</a> (e.g., <strong>profiles</strong>, <strong>extensions</strong>, <strong>examples</strong>, etc.) will be be copied to the corresponding locations in the IG input and processed as additional (non-FSH) IG resources. This feature is not expected to be commonly used.</li>
-<li><strong>ig-data/package-list.json</strong>: This optional file, described <a href="https://confluence.hl7.org/display/FHIR/FHIR+IG+PackageList+doco">here</a>, should contain the version history of your IG. If present and no <code>history</code> property is specified in <strong>config.yaml</strong>, it will be used instead of a generated <strong>package-list.json</strong>.</li>
+<li><strong>input/{supported-resource-input-directory}/*</strong> (not shown above): JSON or XML files in <a href="https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html#root.input">supported resource directories</a> (e.g., <strong>profiles</strong>, <strong>extensions</strong>, <strong>examples</strong>, etc.) can be referenced by FHIR artifacts defined in FSH, and will be added to the generated <strong>ImplementationGuide.json</strong> file.</li>
+<li><strong>package-list.json</strong>: This optional file, described <a href="https://confluence.hl7.org/display/FHIR/FHIR+IG+PackageList+doco">here</a>, should contain the version history of your IG.</li>
 </ul>
 
 
 <div class="alert alert-success" role="alert">
 <h4 class="alert-heading">Tip</h4>
-Examples of <strong>package.json</strong>, <strong>ig.ini</strong>, <strong>package-list.json</strong>, <strong>ignoreWarnings.txt</strong> and <strong>menu.xml</strong> files can be found in the <a href="https://github.com/FHIR/sample-ig">sample IG project</a> provided for this purpose. In addition, more general guidance can be found in <a href="https://build.fhir.org/ig/FHIR/ig-guidance/">Guidance for HL7 IG Creation</a>. For a real-world example of a populated <strong>ig-data</strong> directory, see the <a href="https://github.com/standardhealth/fsh-mcode">mCODE Implementation Guide</a>.
+Examples of <strong>package.json</strong>, <strong>ig.ini</strong>, <strong>package-list.json</strong>, <strong>ignoreWarnings.txt</strong> and <strong>menu.xml</strong> files can be found in the <a href="https://github.com/FHIR/sample-ig">sample IG project</a> provided for this purpose. In addition, more general guidance can be found in <a href="https://build.fhir.org/ig/FHIR/ig-guidance/">Guidance for HL7 IG Creation</a>.
 </div>
 
 <h3 id="initializing-a-sushi-project">Initializing a SUSHI Project</h3>
@@ -679,23 +696,22 @@ Canonical (Default: http://example.org): http://myid.org
 Status (Default: draft): active
 Version (Default: 0.1.0): 2.0.0
 Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
-</code></pre></div><p>These values are used to generate a simple config.yaml file and a corresponding IG-Publisher-compatible project structure:</p>
+</code></pre></div><p>These values are used to generate a simple <strong>sushi-config.yaml</strong> file and a corresponding IG-Publisher-compatible project structure:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">NewIG
 ├── .gitignore
-├── _genonce.bat     
-├── _genonce.sh           
-├── _updatePublisher.bat  
-├── _updatePublisher.sh 
-├── _gencontinuous.bat 
-├── _gencontinuous.sh  
-└── fsh
-    ├── config.yaml   
-    ├── ig-data
-    │   └── input
-    │       └── pagecontent
-    │           └── index.md  
-    └── patient.fsh    
-</code></pre></div><p>In addition to the contents of the <code>fsh</code> folder, <code>--init</code> adds several <code>.bat</code> and <code>.sh</code> scripts which allow you to <a href="/docs/sushi/running/#downloading-the-ig-publisher">run the IG Publisher</a>, and a default <code>.gitignore</code> file for a FSH project. From this point on, the author can modify the configuration and definitions as necessary.</p>
+├── _genonce.bat
+├── _genonce.sh
+├── _updatePublisher.bat
+├── _updatePublisher.sh
+├── ig.ini
+├── input
+|   ├── ignoreWarnings.txt
+|   ├── fsh
+|   |   └── patient.fsh
+|   └── pagecontent
+|       └── index.md
+└── sushi-config.yaml
+</code></pre></div><p>In addition to the contents of the <code>input/fsh</code> folder, <code>--init</code> adds several <code>.bat</code> and <code>.sh</code> scripts which allow you to <a href="/docs/sushi/running/#downloading-the-ig-publisher">run the IG Publisher</a>, a default <code>.gitignore</code> file for a FSH project, and two files (<code>ig.ini</code> and <code>ignoreWarnings.txt</code>) required by the template-based IG Publisher. From this point on, the author can modify the configuration and definitions as necessary.</p>
 
         <div class="section-index">
     
@@ -732,12 +748,14 @@ Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
         
             
         
+            
+        
     
 </div>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified August 11, 2020: <a  href="https://github.com/FSHSchool/site/commit/b07f7e06a75073354f54add45331c1b937387d6a">Fixing several broken internal links (#11) (b07f7e0)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified November 13, 2020: <a  href="https://github.com/FSHSchool/site/commit/f5a6fcd13c112d2d56f539673ad8216152bafeff">Update documentation for 1.0.0 (#27) (f5a6fcd)</a>
 </div>
 </div>
 

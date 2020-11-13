@@ -46,12 +46,10 @@
 For the most up-to-date information and latest releases of SUSHI, check the &lt;a href=&#34;https://github.com/FHIR/sushi/releases&#34;&gt;release history and release notes&lt;/a&gt;.
 &lt;/div&gt;
 
-&lt;h2 id=&#34;updating-or-reverting-sushi&#34;&gt;Updating or Reverting SUSHI&lt;/h2&gt;
-&lt;p&gt;To update SUSHI to the latest version, re-run:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; npm install -g fsh-sushi
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To revert to a previous version of SUSHI, run:&lt;/p&gt;
+&lt;h2 id=&#34;reverting-sushi&#34;&gt;Reverting SUSHI&lt;/h2&gt;
+&lt;p&gt;To revert to a previous version of SUSHI, run:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; npm install -g fsh-sushi@&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;version&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where the &lt;code&gt;{version}&lt;/code&gt; is replaced by the desired MAJOR.MINOR.PATCH version (e.g., &lt;code&gt;npm install -g fsh-sushi@0.14.0&lt;/code&gt;).&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where the &lt;code&gt;{version}&lt;/code&gt; is replaced by the desired MAJOR.MINOR.PATCH version (e.g., &lt;code&gt;npm install -g fsh-sushi@0.16.0&lt;/code&gt;).&lt;/p&gt;
 
       </description>
     </item>
@@ -66,87 +64,81 @@ For the most up-to-date information and latest releases of SUSHI, check the &lt;
         
         
         &lt;h2 id=&#34;simple-fsh-projects&#34;&gt;Simple FSH Projects&lt;/h2&gt;
-&lt;p&gt;The simplest FSH project (sometimes referred to as a &amp;ldquo;FSH tank&amp;rdquo;) contains only a configuration file and FSH files containing FHIR Shorthand definitions. For example, a simple FSH tank might look like this:&lt;/p&gt;
+&lt;p&gt;The simplest FSH project (sometimes referred to as a &amp;ldquo;FSH tank&amp;rdquo;) contains only a configuration file and an &lt;strong&gt;input/fsh&lt;/strong&gt; subdirectory of FSH files containing FHIR Shorthand definitions. For example, a simple FSH tank might look like this:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;simple-project
-├── config.yaml
-├── file1.fsh
-├── file2.fsh
-└── file3.fsh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;strong&gt;config.yaml&lt;/strong&gt; file provides project configuration data to SUSHI. It is described further in the &lt;a href=&#34;/docs/sushi/configuration/&#34;&gt;Configuration&lt;/a&gt; documentation.&lt;/p&gt;
+├── input
+|    └── fsh
+|        ├── file1.fsh
+|        ├── file2.fsh
+|        └── file3.fsh
+└── sushi-config.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; file provides project configuration data to SUSHI. It is described further in the &lt;a href=&#34;/docs/sushi/configuration/&#34;&gt;Configuration&lt;/a&gt; documentation.&lt;/p&gt;
 &lt;p&gt;Each FSH file can contain multiple FSH definitions of varying types. FSH file names are not significant, but must end with the &lt;strong&gt;.fsh&lt;/strong&gt; extension. In addition, FSH files can be organized into subdirectories. This provides authors the flexibility to organize their FSH definitions in whatever way makes sense to then.&lt;/p&gt;
-
-
-&lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
-&lt;h4 class=&#34;alert-heading&#34;&gt;Tip&lt;/h4&gt;
-A simple FSH project like the one shown above can be used with a minimal &lt;strong&gt;config.yaml&lt;/strong&gt; file to create a bare-bones IG . It can also be used to generate only the FHIR resources by specifying the &lt;code&gt;FSHOnly&lt;/code&gt; flag in &lt;strong&gt;config.yaml&lt;/strong&gt;. Most authors who want to develop an IG using SUSHI, however, will also use an &lt;strong&gt;ig-data&lt;/strong&gt; directory. Continue reading for more details.
-&lt;/div&gt;
-
-&lt;h3 id=&#34;using-a-fsh-subdirectory-with-the-hl7-ig-publisher-and-auto-builder&#34;&gt;Using a fsh Subdirectory with the HL7 IG Publisher and Auto-Builder&lt;/h3&gt;
-&lt;p&gt;If a project is intended to be built by the HL7 IG Publisher &lt;a href=&#34;https://github.com/FHIR/auto-ig-builder/blob/master/README.md&#34;&gt;Auto-Builder&lt;/a&gt;, the FSH tank should be located in a &lt;strong&gt;fsh&lt;/strong&gt; subdirectory:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;simple-ig
-└── fsh
-    ├── config.yaml
-    ├── file1.fsh
-    ├── file2.fsh
-    └── file3.fsh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;When the IG Publisher detects a &lt;strong&gt;fsh&lt;/strong&gt; subdirectory, it will automatically run SUSHI on that directory and output the SUSHI results to the &lt;em&gt;parent&lt;/em&gt; of the &lt;strong&gt;fsh&lt;/strong&gt; subdirectory (e.g., the &lt;strong&gt;simple-ig&lt;/strong&gt; directory in the example above). It will then continue with the normal IG Publisher process.&lt;/p&gt;
+&lt;h3 id=&#34;using-the-hl7-ig-publisher-and-auto-builder&#34;&gt;Using the HL7 IG Publisher and Auto-Builder&lt;/h3&gt;
+&lt;p&gt;This project structure integrates with the HL7 IG Publisher &lt;a href=&#34;https://github.com/FHIR/auto-ig-builder/blob/master/README.md&#34;&gt;Auto-Builder&lt;/a&gt;. When the IG Publisher detects an &lt;strong&gt;input/fsh&lt;/strong&gt; subdirectory, it will automatically run SUSHI on that directory and output the SUSHI results to a &lt;strong&gt;fsh-generated&lt;/strong&gt; directory (e.g., &lt;strong&gt;simple-project/fsh-generated&lt;/strong&gt; in the example above). It will then continue with the normal IG Publisher process.&lt;/p&gt;
 &lt;p&gt;This approach allows a GitHub repository to be configured such that whenever changes to FSH files are pushed to GitHub, the &lt;a href=&#34;https://github.com/FHIR/auto-ig-builder/blob/master/README.md&#34;&gt;Auto-Builder&lt;/a&gt; will pick them up, run the SUSHI/IG Publisher process, and publish the resulting IG to &lt;a href=&#34;http://build.fhir.org&#34;&gt;http://build.fhir.org&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;ig-projects&#34;&gt;IG Projects&lt;/h2&gt;
 
 
-&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
-&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
-Using a &lt;strong&gt;fsh&lt;/strong&gt; subdirectory is not required, but since many authors prefer this option, the remaining documentation assumes a &lt;strong&gt;fsh&lt;/strong&gt; subdirectory in its file structures.
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Warning&lt;/h4&gt;
+As of the SUSHI 1.0 release, the &lt;strong&gt;ig.ini&lt;/strong&gt; MUST use a template based on &lt;code&gt;fhir.base.template#current&lt;/code&gt;. See the detailed description of &lt;strong&gt;ig.ini&lt;/strong&gt; below for a more in depth list of allowed templates.
 &lt;/div&gt;
 
-&lt;h2 id=&#34;ig-projects&#34;&gt;IG Projects&lt;/h2&gt;
-&lt;p&gt;SUSHI provides support for many of the files and directories required by the &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/&#34;&gt;template-based IG Publisher&lt;/a&gt; for building Implementation Guides. Many IG customizations can be configured using additional properties in the &lt;strong&gt;config.yaml&lt;/strong&gt; file.&lt;/p&gt;
-&lt;p&gt;Additionally, authors can create and populate the &lt;strong&gt;ig-data&lt;/strong&gt; directory with custom content for &lt;strong&gt;package-list.json&lt;/strong&gt;, &lt;strong&gt;ig.ini&lt;/strong&gt;, &lt;strong&gt;menu.xml&lt;/strong&gt;, &lt;strong&gt;index.md&lt;/strong&gt; (or &lt;strong&gt;index.xml&lt;/strong&gt;), pages, images, and other IG Publisher inputs.  For example, a FSH project for a customized IG might look like this:&lt;/p&gt;
+&lt;p&gt;SUSHI provides support for several of the files and directories required by the &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/&#34;&gt;template-based IG Publisher&lt;/a&gt; for building Implementation Guides. Some IG customizations can be configured using additional properties in the &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; file. A FSH project integrated into the template-based IG Publisher may look like this:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;customized-ig
-└── fsh
-    ├── config.yaml
-    ├── file1.fsh
-    ├── file2.fsh
-    ├── file3.fsh
-    └── ig-data
-        ├── ig.ini
-        ├── input
-        │   ├── ignoreWarnings.txt
-        │   ├── images
-        │   │   ├── myDocument.pdf
-        │   │   ├── myGraphic.png
-        │   │   └── mySpreadsheet.xlsx
-        │   ├── includes
-        │   │   └── menu.xml
-        │   └── pagecontent
-        │       ├── 1_mySecondPage.md
-        │       ├── 2_myThirdPage.md
-        │       ├── 3_myFourthPage.md
-        │       └── index.md
-        └── package-list.json
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can populate your project (under &lt;strong&gt;fsh&lt;/strong&gt; above) as follows:&lt;/p&gt;
+├── ig.ini
+├── input
+|   ├── fsh
+|   |   ├── file1.fsh
+|   |   ├── file2.fsh
+|   |   └── file3.fsh
+│   ├── ignoreWarnings.txt
+│   ├── images
+│   │   ├── myDocument.pdf
+│   │   ├── myGraphic.png
+│   │   └── mySpreadsheet.xlsx
+│   ├── includes
+│   │   └── menu.xml
+│   └── pagecontent
+│       ├── 1_mySecondPage.md
+│       ├── 2_myThirdPage.md
+│       ├── 3_myFourthPage.md
+│       └── index.md
+├── package-list.json
+└── sushi-config.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can populate your project as follows:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;config.yaml&lt;/strong&gt;: This required file provides project configuration data to SUSHI. It is described further in the &lt;a href=&#34;/docs/sushi/configuration/&#34;&gt;Configuration&lt;/a&gt; documentation.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;*.fsh&lt;/strong&gt;: FSH files contain the FHIR Shorthand definitions for all the resources and examples in your IG.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ig-data/ig.ini&lt;/strong&gt;: If present and no &lt;code&gt;template&lt;/code&gt; property is specified in &lt;strong&gt;config.yaml&lt;/strong&gt;, the user-provided file will be used instead of a generated one.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ig-data/input/ignoreWarnings.txt&lt;/strong&gt;: If present, this file can be used to suppress specific QA warnings and information messages during the FHIR IG publication process.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ig-data/input/images/*&lt;/strong&gt;: Put anything that is not a page in the IG, such as images, spreadsheets or zip files, in the &lt;strong&gt;ig-data/input/images&lt;/strong&gt; subdirectory. These files will be copied into the build and can be referenced by user-provided pages or menus.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ig-data/input/includes/menu.xml&lt;/strong&gt;: If present and no &lt;code&gt;menu&lt;/code&gt; property is specified in &lt;strong&gt;config.yaml&lt;/strong&gt;, this file will be used for the IG&amp;rsquo;s main menu layout.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ig-data/input/pagecontent/*&lt;/strong&gt;: Put either markup (.xml) or markdown (.md) files with the narrative content of your IG in the &lt;strong&gt;ig-data/input/pagecontent/&lt;/strong&gt; subdirectory. These files are the sources for the html pages that accompany the automatically-generated pages of your IG. The header and footer of these pages are automatically generated, so your content should not include these elements. Any number of pages can be added. In addition to stand-alone pages, you can provide additional text for generated artifact pages. The naming of these files is significant:
+&lt;li&gt;&lt;strong&gt;sushi-config.yaml&lt;/strong&gt;: This file provides project configuration data to SUSHI. It is described further in the &lt;a href=&#34;/docs/sushi/configuration/&#34;&gt;Configuration&lt;/a&gt; documentation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;input/fsh/*.fsh&lt;/strong&gt;: FSH files contain the FHIR Shorthand definitions for all the resources and examples in your IG.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ig.ini&lt;/strong&gt;: Configuration file required for the FHIR IG Publication process. NOTE: As of the SUSHI 1.0 release, this file MUST use a template based on &lt;code&gt;fhir.base.template#current&lt;/code&gt;. Specific template versions (i.e., other than &lt;code&gt;#current&lt;/code&gt;) are expected to work in the future.  For now, any of the following should work:
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;index.xml|md&lt;/strong&gt;: This file provides the content for the IG&amp;rsquo;s main page, unless the &lt;code&gt;indexPageContent&lt;/code&gt; property is specified in &lt;strong&gt;config.yaml&lt;/strong&gt;, in which case this file should not exist. Providing an index file is strongly recommended over inlining the content in &lt;strong&gt;config.yaml&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;N_pagename.xml|md&lt;/strong&gt;: If present, these files will be generated as individual pages in the IG. The leading integer (N) determines the order of the pages in the table of contents. These numbers are stripped and do not appear in the actual page URLs.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;template = fhir.base.template#current&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;template = hl7.base.template#current&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;template = hl7.fhir.template#current&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;template = hl7.davinci.template#current&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;template = hl7.cda.template#current&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;input/ignoreWarnings.txt&lt;/strong&gt;: This file is used to suppress specific QA warnings and information messages during the FHIR IG publication process.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;input/images/*&lt;/strong&gt;: Put anything that is not a page in the IG, such as images, spreadsheets or zip files, in the &lt;strong&gt;input/images&lt;/strong&gt; subdirectory. These files can be referenced by user-provided pages or menus.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;input/includes/menu.xml&lt;/strong&gt;: If present, this file will be used for the IG&amp;rsquo;s main menu layout. Note that the presence of this file will block usage of the &lt;code&gt;menu&lt;/code&gt; property in &lt;strong&gt;sushi-config.yaml&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;input/pagecontent/*&lt;/strong&gt;: Put either markup (.xml) or markdown (.md) files with the narrative content of your IG in the &lt;strong&gt;input/pagecontent/&lt;/strong&gt; subdirectory. These files are the sources for the html pages that accompany the automatically-generated pages of your IG. The header and footer of these pages are automatically generated, so your content should not include these elements. Any number of pages can be added. In addition to stand-alone pages, you can provide additional text for generated artifact pages. The naming of these files is significant:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;index.xml|md&lt;/strong&gt;: This file provides the content for the IG&amp;rsquo;s main page.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;N_pagename.xml|md&lt;/strong&gt;: If present, these files will be generated as individual pages in the IG. The leading integer (N) determines the order of the pages in the table of contents. Adding a leading integer is optional, and in the absence of a leading integer, SUSHI will sort the pages alphabetically. The order of the pages can also be explitly specified with the &lt;code&gt;pages&lt;/code&gt; property in &lt;strong&gt;sushi-config.yaml&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;{artifact-file-name}-intro.xml|md&lt;/strong&gt;: If present, the contents of the file will be placed on the relevant page &lt;em&gt;before&lt;/em&gt; the artifact&amp;rsquo;s definition.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;{artifact-file-name}-notes.xml|md&lt;/strong&gt;: If present, the contents of the file will be placed on the relevant page &lt;em&gt;after&lt;/em&gt; the artifact&amp;rsquo;s definition.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ig-data/input/{supported-resource-input-directory}/*&lt;/strong&gt; (not shown above): JSON or XML files in &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html#root.input&#34;&gt;supported resource directories&lt;/a&gt; (e.g., &lt;strong&gt;profiles&lt;/strong&gt;, &lt;strong&gt;extensions&lt;/strong&gt;, &lt;strong&gt;examples&lt;/strong&gt;, etc.) will be be copied to the corresponding locations in the IG input and processed as additional (non-FSH) IG resources. This feature is not expected to be commonly used.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ig-data/package-list.json&lt;/strong&gt;: This optional file, described &lt;a href=&#34;https://confluence.hl7.org/display/FHIR/FHIR+IG+PackageList+doco&#34;&gt;here&lt;/a&gt;, should contain the version history of your IG. If present and no &lt;code&gt;history&lt;/code&gt; property is specified in &lt;strong&gt;config.yaml&lt;/strong&gt;, it will be used instead of a generated &lt;strong&gt;package-list.json&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;input/{supported-resource-input-directory}/*&lt;/strong&gt; (not shown above): JSON or XML files in &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html#root.input&#34;&gt;supported resource directories&lt;/a&gt; (e.g., &lt;strong&gt;profiles&lt;/strong&gt;, &lt;strong&gt;extensions&lt;/strong&gt;, &lt;strong&gt;examples&lt;/strong&gt;, etc.) can be referenced by FHIR artifacts defined in FSH, and will be added to the generated &lt;strong&gt;ImplementationGuide.json&lt;/strong&gt; file.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;package-list.json&lt;/strong&gt;: This optional file, described &lt;a href=&#34;https://confluence.hl7.org/display/FHIR/FHIR+IG+PackageList+doco&#34;&gt;here&lt;/a&gt;, should contain the version history of your IG.&lt;/li&gt;
 &lt;/ul&gt;
 
 
 &lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
 &lt;h4 class=&#34;alert-heading&#34;&gt;Tip&lt;/h4&gt;
-Examples of &lt;strong&gt;package.json&lt;/strong&gt;, &lt;strong&gt;ig.ini&lt;/strong&gt;, &lt;strong&gt;package-list.json&lt;/strong&gt;, &lt;strong&gt;ignoreWarnings.txt&lt;/strong&gt; and &lt;strong&gt;menu.xml&lt;/strong&gt; files can be found in the &lt;a href=&#34;https://github.com/FHIR/sample-ig&#34;&gt;sample IG project&lt;/a&gt; provided for this purpose. In addition, more general guidance can be found in &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/&#34;&gt;Guidance for HL7 IG Creation&lt;/a&gt;. For a real-world example of a populated &lt;strong&gt;ig-data&lt;/strong&gt; directory, see the &lt;a href=&#34;https://github.com/standardhealth/fsh-mcode&#34;&gt;mCODE Implementation Guide&lt;/a&gt;.
+Examples of &lt;strong&gt;package.json&lt;/strong&gt;, &lt;strong&gt;ig.ini&lt;/strong&gt;, &lt;strong&gt;package-list.json&lt;/strong&gt;, &lt;strong&gt;ignoreWarnings.txt&lt;/strong&gt; and &lt;strong&gt;menu.xml&lt;/strong&gt; files can be found in the &lt;a href=&#34;https://github.com/FHIR/sample-ig&#34;&gt;sample IG project&lt;/a&gt; provided for this purpose. In addition, more general guidance can be found in &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/&#34;&gt;Guidance for HL7 IG Creation&lt;/a&gt;.
 &lt;/div&gt;
 
 &lt;h3 id=&#34;initializing-a-sushi-project&#34;&gt;Initializing a SUSHI Project&lt;/h3&gt;
@@ -158,23 +150,22 @@ Canonical (Default: http://example.org): http://myid.org
 Status (Default: draft): active
 Version (Default: 0.1.0): 2.0.0
 Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;These values are used to generate a simple config.yaml file and a corresponding IG-Publisher-compatible project structure:&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;These values are used to generate a simple &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; file and a corresponding IG-Publisher-compatible project structure:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;NewIG
 ├── .gitignore
-├── _genonce.bat     
-├── _genonce.sh           
-├── _updatePublisher.bat  
-├── _updatePublisher.sh 
-├── _gencontinuous.bat 
-├── _gencontinuous.sh  
-└── fsh
-    ├── config.yaml   
-    ├── ig-data
-    │   └── input
-    │       └── pagecontent
-    │           └── index.md  
-    └── patient.fsh    
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In addition to the contents of the &lt;code&gt;fsh&lt;/code&gt; folder, &lt;code&gt;--init&lt;/code&gt; adds several &lt;code&gt;.bat&lt;/code&gt; and &lt;code&gt;.sh&lt;/code&gt; scripts which allow you to &lt;a href=&#34;/docs/sushi/running/#downloading-the-ig-publisher&#34;&gt;run the IG Publisher&lt;/a&gt;, and a default &lt;code&gt;.gitignore&lt;/code&gt; file for a FSH project. From this point on, the author can modify the configuration and definitions as necessary.&lt;/p&gt;
+├── _genonce.bat
+├── _genonce.sh
+├── _updatePublisher.bat
+├── _updatePublisher.sh
+├── ig.ini
+├── input
+|   ├── ignoreWarnings.txt
+|   ├── fsh
+|   |   └── patient.fsh
+|   └── pagecontent
+|       └── index.md
+└── sushi-config.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In addition to the contents of the &lt;code&gt;input/fsh&lt;/code&gt; folder, &lt;code&gt;--init&lt;/code&gt; adds several &lt;code&gt;.bat&lt;/code&gt; and &lt;code&gt;.sh&lt;/code&gt; scripts which allow you to &lt;a href=&#34;/docs/sushi/running/#downloading-the-ig-publisher&#34;&gt;run the IG Publisher&lt;/a&gt;, a default &lt;code&gt;.gitignore&lt;/code&gt; file for a FSH project, and two files (&lt;code&gt;ig.ini&lt;/code&gt; and &lt;code&gt;ignoreWarnings.txt&lt;/code&gt;) required by the template-based IG Publisher. From this point on, the author can modify the configuration and definitions as necessary.&lt;/p&gt;
 
       </description>
     </item>
@@ -188,8 +179,7 @@ Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
       <description>
         
         
-        &lt;p&gt;The HL7 FHIR IG Publisher relies on several configuration files, including &lt;strong&gt;ig.ini&lt;/strong&gt;, &lt;strong&gt;package-list.json&lt;/strong&gt;, &lt;strong&gt;menu.xml&lt;/strong&gt;, and an instance of the ImplementationGuide resource. Splitting information among multiple files and managing different formats makes IG configuration difficult to manage.&lt;/p&gt;
-&lt;p&gt;SUSHI offers the same functionality in a single &lt;strong&gt;config.yaml&lt;/strong&gt; file, allowing all configuration to be in a consistent format with no duplication of information. This file is written using &lt;a href=&#34;https://yaml.org/&#34;&gt;YAML&lt;/a&gt;. Authors unfamiliar with &lt;a href=&#34;https://learnxinyminutes.com/docs/yaml/&#34;&gt;YAML&lt;/a&gt; should note that:&lt;/p&gt;
+        &lt;p&gt;SUSHI is configured by a single &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; file. This file is written using &lt;a href=&#34;https://yaml.org/&#34;&gt;YAML&lt;/a&gt;. Authors unfamiliar with &lt;a href=&#34;https://learnxinyminutes.com/docs/yaml/&#34;&gt;YAML&lt;/a&gt; should note that:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;White space (new lines and indentation) is significant&lt;/li&gt;
 &lt;li&gt;Information is presented in &lt;code&gt;key: value&lt;/code&gt; pairs&lt;/li&gt;
@@ -197,7 +187,7 @@ Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
 &lt;li&gt;Arrays/sequences are created using &lt;code&gt;-&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;minimum-configuration&#34;&gt;Minimum Configuration&lt;/h2&gt;
-&lt;p&gt;At a minimum, the &lt;strong&gt;config.yaml&lt;/strong&gt; file must provide a few high-level metadata values for the FSH project, if the author wishes for SUSHI to do additional Implementation Guide (IG) processing:&lt;/p&gt;
+&lt;p&gt;At a minimum, the &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; file must provide a few high-level metadata values for the FSH project, if the author wishes for SUSHI to do additional Implementation Guide (IG) processing:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;fhir.us.example&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;canonical&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;http&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;//hl7.org/fhir/us/example&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;ExampleIG&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -206,7 +196,6 @@ Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;fhirVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4.0.1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;copyrightYear&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2020&lt;/span&gt;+&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;releaseLabel&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;ci-build&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;hl7.fhir.template&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#0.0.5&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;/docs/sushi/configuration/minimum-config.yaml&#34;&gt;&lt;i class=&#39;fas fa-download fa-fw&#39;&gt;&lt;/i&gt; Download Minimum Configuration Example&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;For an official HL7 project, the &lt;code&gt;id&lt;/code&gt; and &lt;code&gt;canonical&lt;/code&gt; will typically be assigned by the &lt;a href=&#34;mailto:fhir-director@hl7.org&#34;&gt;FHIR Product Director&lt;/a&gt;.&lt;/li&gt;
@@ -231,7 +220,6 @@ Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
 &lt;li&gt;&lt;code&gt;normative+trial-use&lt;/code&gt;: official release with mixture of trial use and normative content&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;template&lt;/code&gt; value consists of a template id and version separated by &lt;code&gt;#&lt;/code&gt;. This value will be reflected in the generated &lt;strong&gt;ig.ini&lt;/strong&gt; file for your project. For the most up-to-date list of templates, see the &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/#technical-details&#34;&gt;Guidance for FHIR IG Creation&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -241,7 +229,7 @@ SUSHI can generate a simple configuration file for you with the &lt;code&gt;--in
 &lt;/div&gt;
 
 &lt;h4 id=&#34;fsh-only&#34;&gt;FSH-Only&lt;/h4&gt;
-&lt;p&gt;If an author wants SUSHI only to build the FHIR definition files, and &lt;em&gt;not&lt;/em&gt; to do any additional IG processing, and if the project contains an &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource, then the author does not need to provide a &lt;strong&gt;config.yaml&lt;/strong&gt; at all. If there is no &lt;strong&gt;config.yaml&lt;/strong&gt;, SUSHI will automatically attempt to extract the following information from an &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource:&lt;/p&gt;
+&lt;p&gt;If an author wants SUSHI only to build the FHIR definition files, and &lt;em&gt;not&lt;/em&gt; to do any additional IG processing, and if the project contains an &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource, then the author does not need to provide a &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; at all. If there is no &lt;strong&gt;sushi-config.yaml&lt;/strong&gt;, SUSHI will automatically attempt to extract the following information from an &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;canonical&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;fhirVersion&lt;/code&gt;&lt;/li&gt;
@@ -254,7 +242,7 @@ SUSHI can generate a simple configuration file for you with the &lt;code&gt;--in
 &lt;li&gt;Look for &lt;code&gt;&amp;lt;root&amp;gt;/ig.ini&lt;/code&gt;, where &lt;code&gt;&amp;lt;root&amp;gt;&lt;/code&gt; is the folder containing the &lt;strong&gt;fsh&lt;/strong&gt; subdirectory. If the &lt;strong&gt;ig.ini&lt;/strong&gt; file exists, it will have an &lt;code&gt;ig&lt;/code&gt; property which gives the path to the &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource, so SUSHI will use this path to find the resource.&lt;/li&gt;
 &lt;li&gt;If there is no &lt;strong&gt;ig.ini&lt;/strong&gt; in the root folder, SUSHI will search the &lt;code&gt;&amp;lt;root&amp;gt;/input&lt;/code&gt; folder for an &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource, and if exactly one resource is found, SUSHI will extract the above properties from it.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;If an author does not have an &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource, but still wants SUSHI to build FHIR definition files only, the author should add a &lt;code&gt;FSHOnly&lt;/code&gt; flag to the &lt;strong&gt;config.yaml&lt;/strong&gt; and set its value to &lt;code&gt;true&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;If an author does not have an &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource, but still wants SUSHI to build FHIR definition files only, the author should add a &lt;code&gt;FSHOnly&lt;/code&gt; flag to the &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; and set its value to &lt;code&gt;true&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;FSHOnly&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;However, the author will also at least need to provide a &lt;code&gt;canonical&lt;/code&gt; and &lt;code&gt;fhirVersion&lt;/code&gt; in the configuration for FSH-Only processing to succeed.&lt;/p&gt;
 &lt;h2 id=&#34;recommended-configuration&#34;&gt;Recommended Configuration&lt;/h2&gt;
@@ -276,8 +264,7 @@ SUSHI can generate a simple configuration file for you with the &lt;code&gt;--in
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#dfdfdf&#34;&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;email&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;usrsc@lists.HL7.org&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#dfdfdf&#34;&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;dependencies&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#dfdfdf&#34;&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;hl7.fhir.us.core&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;hl7.fhir.template&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#0.0.5&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;/docs/sushi/configuration/recommended-config.yaml&#34;&gt;&lt;i class=&#39;fas fa-download fa-fw&#39;&gt;&lt;/i&gt; Download Recommended Configuration Example&lt;/a&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;/docs/sushi/configuration/recommended-config.yaml&#34;&gt;&lt;i class=&#39;fas fa-download fa-fw&#39;&gt;&lt;/i&gt; Download Recommended Configuration Example&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The &lt;code&gt;license&lt;/code&gt; value should come from the &lt;a href=&#34;http://hl7.org/fhir/R4/valueset-spdx-license.html&#34;&gt;SPDX Licence Value Set&lt;/a&gt;, although most FHIR IGs use the &lt;code&gt;CC0-1.0&lt;/code&gt; (Creative Commons Zero v1.0 Universal) license.&lt;/li&gt;
 &lt;li&gt;The &lt;code&gt;dependencies&lt;/code&gt; value is a YAML object for which the keys are each dependency&amp;rsquo;s package id and the values are the dependency versions. In addition to standard version identifiers, the following two special versions are supported:
@@ -295,7 +282,7 @@ SUSHI can generate a simple configuration file for you with the &lt;code&gt;--in
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;full-configuration&#34;&gt;Full Configuration&lt;/h2&gt;
-&lt;p&gt;The table below lists all configuration properties that can be used in SUSHI&amp;rsquo;s &lt;strong&gt;config.yaml&lt;/strong&gt; file. Most SUSHI configuration properties come directly from the &lt;a href=&#34;https://www.hl7.org/fhir/R4/implementationguide.html#resource&#34;&gt;Implementation Guide resource&lt;/a&gt; and will be translated into the generated ImplementationGuide resource for your project. Differences between the &lt;strong&gt;config.yaml&lt;/strong&gt; properties and ImplementationGuide properties are noted below.&lt;/p&gt;
+&lt;p&gt;The table below lists all configuration properties that can be used in SUSHI&amp;rsquo;s &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; file. Most SUSHI configuration properties come directly from the &lt;a href=&#34;https://www.hl7.org/fhir/R4/implementationguide.html#resource&#34;&gt;Implementation Guide resource&lt;/a&gt; and will be translated into the generated ImplementationGuide resource for your project. Differences between the &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; properties and ImplementationGuide properties are noted below.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -438,7 +425,7 @@ SUSHI can generate a simple configuration file for you with the &lt;code&gt;--in
 &lt;tr&gt;
 &lt;td align=&#34;left&#34;&gt;groups&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;definition.grouping&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A &lt;code&gt;key: value&lt;/code&gt; pair, where key is the name of the group and value is the description of the group&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;A &lt;code&gt;key: value&lt;/code&gt; pair, where key is the group id and value is the description of the group. For advanced use cases, the value can be an object with keys for &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;description&lt;/code&gt;, and &lt;code&gt;resources&lt;/code&gt;.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align=&#34;left&#34;&gt;resources&lt;/td&gt;
@@ -476,24 +463,9 @@ SUSHI can generate a simple configuration file for you with the &lt;code&gt;--in
 &lt;td align=&#34;left&#34;&gt;The canonical URL to be used throughout the IG&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;template&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;N/A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Template used in &lt;code&gt;ig.ini&lt;/code&gt; file. &lt;br&gt;&lt;br&gt; Authors can provide their own &lt;code&gt;ig.ini&lt;/code&gt; file by removing this property and placing an &lt;code&gt;igi.ini&lt;/code&gt; file in the &lt;code&gt;ig-data&lt;/code&gt; directory.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
 &lt;td align=&#34;left&#34;&gt;menu&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;N/A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Used to generate the input/index.md file. The key is the menu item name and the value is the URL. Menus can contain sub-menus, but the IG Publisher currently only supports sub-menus one level deep. &lt;br&gt;&lt;br&gt; Authors can provide their own &lt;code&gt;menu.xml&lt;/code&gt; by removing this property and placing a &lt;code&gt;menu.xml&lt;/code&gt; file in &lt;code&gt;ig-data/input/includes&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;history&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;N/A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Used to create a &lt;code&gt;package-list.json&lt;/code&gt;. SUSHI will use the existing top-level properties in its config to populate the top-level package-list.json properties: package-id, canonical, title, and introduction. Authors who wish to provide different values can supply them as properties under history. All other properties under history are assumed to be versions. &lt;br&gt;&lt;br&gt; Additionally, the current version is special. If the author provides only a single string value, it is assumed to be the URL path to the current build. The following default values will then be used: &lt;code&gt;desc: Continuous Integration Build&lt;/code&gt; (latest in version control), &lt;code&gt;status: ci-build&lt;/code&gt;, and &lt;code&gt;current: true&lt;/code&gt;. &lt;br&gt;&lt;br&gt; Authors can provide their own &lt;code&gt;package-list.json&lt;/code&gt; by removing this property and placing a &lt;code&gt;package-list.json&lt;/code&gt; file in &lt;code&gt;ig-data&lt;/code&gt;.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;indexPageContent&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;N/A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;This property is provided for backwards compatibility reasons, and its use is discouraged. It was used to specify the content of &lt;code&gt;index.md&lt;/code&gt;, however, authors should provide their own index file by not using this property and placing an &lt;code&gt;index.md&lt;/code&gt; or &lt;code&gt;index.html&lt;/code&gt; file in &lt;code&gt;input/pages&lt;/code&gt; or &lt;code&gt;input/pagecontent&lt;/code&gt;.&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Used to generate the &lt;code&gt;fsh-generated/includes/menu.xml&lt;/code&gt; file. The key is the menu item name and the value is the URL. Menus can contain sub-menus, but the IG Publisher currently only supports sub-menus one level deep. &lt;br&gt;&lt;br&gt; Authors can provide their own &lt;code&gt;menu.xml&lt;/code&gt; by removing this property and placing a &lt;code&gt;menu.xml&lt;/code&gt; file in &lt;code&gt;/input/includes&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align=&#34;left&#34;&gt;FSHOnly&lt;/td&gt;
@@ -503,7 +475,7 @@ SUSHI can generate a simple configuration file for you with the &lt;code&gt;--in
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id=&#34;exhaustive-example&#34;&gt;Exhaustive Example&lt;/h2&gt;
-&lt;p&gt;The following provides an exhaustive example &lt;strong&gt;config.yaml&lt;/strong&gt; covering many of the properties discussed above.&lt;/p&gt;
+&lt;p&gt;The following provides an exhaustive example &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; covering many of the properties discussed above.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# This IG YML file is inspired by the ImplementationGuide resource&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# and also draws from package.json, package-list.json, and ig.ini.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# That said, it is structured for ease-of-use, so it is not strictly&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -526,11 +498,6 @@ SUSHI can generate a simple configuration file for you with the &lt;code&gt;--in
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# it can be a single item OR and array here (but so far SUSHI only&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# supports 4.0.1 anyway).&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;fhirVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4.0.1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# The template property will be used to generate an ig.ini file.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# To provide a custom ig.ini file, do not include this property and&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# include an `ig.ini` file in ig-data.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;hl7.fhir.template&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#0.0.5&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# The following two lines correspond to items that used to be in&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# ig.ini but were moved to IG.definition.parameter. For&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -614,11 +581,13 @@ SUSHI can generate a simple configuration file for you with the &lt;code&gt;--in
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# resource entries with the corresponding groupIds.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;groups&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;GroupA&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Group&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;A&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;description&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;The&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Alpha&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Group&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;- StructureDefinition/animal-patient&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;- StructureDefinition/arm-procedure&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;GroupB&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Group&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;B&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;description&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;The&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Beta&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Group&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;- StructureDefinition/bark-control&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -683,44 +652,6 @@ SUSHI can generate a simple configuration file for you with the &lt;code&gt;--in
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;excludettl&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;validation&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;allow-any-extensions&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;no-broken-links&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# The history property corresponds to package-list.json. SUSHI will&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# use the existing top-level properties in its config to populate the&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# top-level package-list.json properties: packageId, canonical, title,&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# and introduction. Authors that wish to provide different values can&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# supply them as properties under history. All other properties under&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# history are assumed to be versions. To provide a custom package-list.json&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# file, remove this property and include a package-list.json file in ig-data.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;history&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# The current version is special. If the author provides only a&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# single value, it is assumed to be the URL path to the current&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# build. The following default values will then be used:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#   desc: Continuous Integration Build (latest in version control)&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#   status: ci-build&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#   current: true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;current&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;http&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;//build.fhir.org/ig/HL7/example-ig/&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# All other versions need each of their values fully specified.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# See: https://confluence.hl7.org/pages/viewpage.action?pageId=66928420#FHIRIGPackageListdoco-PublicationObject&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;1.0.0&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;fhirversion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4.0.1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;date&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;2020-03-06&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;desc&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;STU&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Release&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;https&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;//hl7.org/fhir/us/example/STU1/&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;status&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;trial-use&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;sequence&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;STU&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;current&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;0.9.1&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;fhirversion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4.0.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;date&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;2019-06-10&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;desc&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Initial&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;STU&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;ballot&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;(Sep&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2019&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Ballot)&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;https&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;//hl7.org/fhir/us/example/2019Sep/&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;status&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;ballot&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;sequence&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;STU&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# The indexPageContent property is used to generate a basic index.md file. To provide a&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# custom index file, do not include this property and include an index.md or index.xml file&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# in input/pages/ or input/pagecontent folders.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;indexPageContent&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Example Index Page Content&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# The FSHOnly flag indicates if only FSH resources should be exported.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# If set to true, no IG related content will be generated.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# The default value for this property is false.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -751,17 +682,17 @@ This documentation assumes you have a SUSHI-compliant project structure and conf
 &lt;p&gt;SUSHI is executed from the command line. The general form of the SUSHI execution command is as follows:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;specification-directory&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;options&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where options include the following (in any order):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;-o, --out &amp;lt;out&amp;gt;   the path to the output directory (default: ./build)
--s, --snapshot    generate snapshot in StructureDefinition output (default: false)
--d, --debug       output extra debugging information (default: false)
--i, --init        initialize a SUSHI project
--v, --version     output SUSHI version and implemented FSH specification version
--h, --help        output usage information
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;-o, --out &amp;lt;out&amp;gt;  the path to the output folder
+-d, --debug      output extra debugging information
+-s, --snapshot   generate snapshot in Structure Definition output (default: false)
+-i, --init       initialize a SUSHI project
+-v, --version    print SUSHI version
+-h, --help       output usage information
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
 &lt;h4 class=&#34;alert-heading&#34;&gt;Tip&lt;/h4&gt;
-If you run SUSHI from your FSH project directory, and accept the defaults, the command can be shortened to &lt;code&gt;sushi .&lt;/code&gt;. &lt;em&gt;NOTE: If your FSH project has a &lt;strong&gt;fsh&lt;/strong&gt; subdirectory, SUSHI will default to &lt;strong&gt;fsh&lt;/strong&gt; as the input location and &lt;strong&gt;fsh&lt;/strong&gt;&amp;rsquo;s parent directory as the output location. This behavior is to support the IG Publisher integration.&lt;/em&gt;
+If you run SUSHI from your FSH project directory, and accept the defaults, the command can be shortened to &lt;code&gt;sushi .&lt;/code&gt;
 &lt;/div&gt;
 
 
@@ -779,7 +710,6 @@ By default, SUSHI only generates the &lt;a href=&#34;https://www.hl7.org/fhir/R4
 ║ │    1     │     1      │     1     │      1      │     1     │ ║
 ║ ╰──────────┴────────────┴───────────┴─────────────┴───────────╯ ║
 ║                                                                 ║
-║ See SUSHI-GENERATED-FILES.md for details on generated IG files. ║
 ╠═════════════════════════════════════════════════════════════════╣
 ║ O-fish-ally error free!                0 Errors      0 Warnings ║
 ╚═════════════════════════════════════════════════════════════════╝
@@ -794,18 +724,21 @@ By default, SUSHI only generates the &lt;a href=&#34;https://www.hl7.org/fhir/R4
 &lt;li&gt;&lt;strong&gt;The community can help.&lt;/strong&gt; If you are getting an error you can&amp;rsquo;t resolve, you can ask for help on the &lt;a href=&#34;https://chat.fhir.org/#narrow/stream/215610-shorthand&#34;&gt;#shorthand chat channel&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;sushi-outputs&#34;&gt;SUSHI Outputs&lt;/h2&gt;
-&lt;p&gt;Based on the inputs in FSH files, &lt;strong&gt;config.yaml&lt;/strong&gt;, and the &lt;strong&gt;ig-data&lt;/strong&gt; directory, SUSHI populates the output directory. For example, the customized-ig project from the &lt;a href=&#34;/docs/sushi/project/&#34;&gt;Project Structure&lt;/a&gt; section would result in output like the following:&lt;/p&gt;
+&lt;p&gt;Based on the inputs in FSH files, &lt;strong&gt;sushi-config.yaml&lt;/strong&gt;, and the IG project directory, SUSHI populates the &lt;strong&gt;fsh-generated&lt;/strong&gt; directory. For example, running SUSHI on the customized-ig project from the &lt;a href=&#34;/docs/sushi/project/&#34;&gt;Project Structure&lt;/a&gt; section would add a &lt;strong&gt;fsh-generated&lt;/strong&gt; folder as shown below:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;customized-ig
-├── fsh
-│   └── (fsh files)
+├── fsh-generated
+|   └── resources
+|       ├── CodeSystem-myCodeSystem.json
+|       ├── Patient-myPatient-example.json
+|       ├── StructureDefinition-myExtension.json
+|       ├── StructureDefinition-myProfile.json
+|       ├── ValueSet-myValueSet.json
+|       └── ImplementationGuide-myIG.json
 ├── ig.ini
 ├── input
-│   ├── ImplementationGuide-myIG.json
+|   ├── fsh
+│   |   └── (fsh files)
 │   ├── ignoreWarnings.txt
-│   ├── examples
-│   │   └── Patient-myPatient-example.json
-│   ├── extensions
-│   │   └── StructureDefinition-myExtension.json
 │   ├── images
 │   │   ├── myDocument.pdf
 │   │   ├── myGraphic.png
@@ -814,44 +747,28 @@ By default, SUSHI only generates the &lt;a href=&#34;https://www.hl7.org/fhir/R4
 │   │   └── menu.xml
 │   ├── pagecontent
 │   │   ├── index.md
-│   │   ├── mySecondPage.md
-│   │   ├── myThirdPage.md
-│   │   └── myFourthPage.md
-│   ├── profiles
-│   │   └── StructureDefinition-myProfile.json
-│   └── vocabulary
-│       ├── ValueSet-myValueSet.json
-│       └── CodeSystem-myCodeSystem.json
-└── package-list.json
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
-&lt;h4 class=&#34;alert-heading&#34;&gt;Info&lt;/h4&gt;
-SUSHI generates &lt;em&gt;output&lt;/em&gt; into a directory called &lt;strong&gt;input&lt;/strong&gt;, because it is generating &lt;em&gt;input&lt;/em&gt; files for the IG Publisher.  The IG Publisher requires this directory to be named &lt;strong&gt;input&lt;/strong&gt;.
-&lt;/div&gt;
-
-&lt;p&gt;Note the following files and directories from the output:&lt;/p&gt;
+│   │   ├── 2_mySecondPage.md
+│   │   ├── 3_myThirdPage.md
+│   │   └── 4_myFourthPage.md
+├── package-list.json
+└── sushi-config.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;SUSHI creates only the &lt;strong&gt;fsh-generated&lt;/strong&gt; folder, but some of the files shown above are either processed by SUSHI to create the &lt;strong&gt;ImplementationGuide.json&lt;/strong&gt; file, or &lt;em&gt;can&lt;/em&gt; be generated by SUSHI if the author wishes. See the breakdown of files and directories below:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;ig.ini&lt;/strong&gt;: Copied from the &lt;strong&gt;fsh/ig-data&lt;/strong&gt; directory, but can alternately be specified via the &lt;code&gt;template&lt;/code&gt; property in &lt;strong&gt;fsh/config.yaml&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;input/ignoreWarnings.txt&lt;/strong&gt;: Copied from the &lt;strong&gt;fsh/ig-data/input&lt;/strong&gt; directory, but will be generated as a blank file if it isn&amp;rsquo;t found.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;input/examples*&lt;/strong&gt;, &lt;strong&gt;input/extensions*&lt;/strong&gt;, &lt;strong&gt;input/profiles*&lt;/strong&gt;, &lt;strong&gt;input/vocabulary*&lt;/strong&gt;: Generated from the definitions in the &lt;strong&gt;fsh/*.fsh&lt;/strong&gt; files.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;input/images/*&lt;/strong&gt;: Copied from the &lt;strong&gt;fsh/ig-data/input/images&lt;/strong&gt; directory.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;input/includes/menu.xml&lt;/strong&gt;: Copied from the &lt;strong&gt;fsh/ig-data/input/includes&lt;/strong&gt; directory, but can alternately be specified via the &lt;code&gt;menu&lt;/code&gt; property in &lt;strong&gt;fsh/config.yaml&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;input/pagecontent/*&lt;/strong&gt;: Copied from the &lt;strong&gt;fsh/ig-data/input/pagecontent&lt;/strong&gt; directory. Filenames with numeric prefixes will have the prefixes removed.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;package-list.json&lt;/strong&gt;: Copied from the &lt;strong&gt;fsh/ig-data&lt;/strong&gt; directory, but can alternately be specified via the &lt;code&gt;history&lt;/code&gt; property in &lt;strong&gt;fsh/config.yaml&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fsh-generated*&lt;/strong&gt;: Generated from the definitions in the &lt;strong&gt;input/fsh/*.fsh&lt;/strong&gt; files.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ig.ini&lt;/strong&gt;: Specified by the author and unchanged by SUSHI.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;input/ignoreWarnings.txt&lt;/strong&gt;: Specified by the author and unchanged by SUSHI.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;input/images/*&lt;/strong&gt;: Specified by the author and unchanged by SUSHI.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;input/includes/menu.xml&lt;/strong&gt;: Specified by the author and unchanged by SUSHI, but can alternately be specified via the &lt;code&gt;menu&lt;/code&gt; property in &lt;strong&gt;sushi-config.yaml&lt;/strong&gt;. If the &lt;code&gt;menu&lt;/code&gt; configuration property is used, the output is generated to &lt;strong&gt;fsh-generated/includes/menu.xml&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;input/pagecontent/*&lt;/strong&gt;: Specified by the author, numeric prefixes are used by SUSHI in generating the &lt;strong&gt;ImplementationGuide-myIG.json&lt;/strong&gt; file.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;package-list.json&lt;/strong&gt;: Specified by the author and unchanged by SUSHI.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;downloading-the-ig-publisher-scripts&#34;&gt;Downloading the IG Publisher Scripts&lt;/h3&gt;
+&lt;p&gt;To run the IG Publisher, we recommend downloading the &lt;strong&gt;_updatePublisher.bat|sh&lt;/strong&gt; and &lt;strong&gt;_genonce.bat|sh&lt;/strong&gt; scripts provided by the sample-ig project. To get these scripts, &lt;a href=&#34;https://github.com/FHIR/sample-ig/archive/master.zip&#34;&gt;download the sample-ig project&lt;/a&gt;, unzip it, and copy &lt;em&gt;all&lt;/em&gt; of the &lt;strong&gt;.bat&lt;/strong&gt; and &lt;strong&gt;.sh&lt;/strong&gt; files to the directory above the &lt;strong&gt;fsh-generated&lt;/strong&gt; directory (&lt;strong&gt;customized-ig&lt;/strong&gt; in the example above).&lt;/p&gt;
 &lt;h3 id=&#34;downloading-the-ig-publisher&#34;&gt;Downloading the IG Publisher&lt;/h3&gt;
-
-
-&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
-&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
-The following steps require the &lt;strong&gt;_updatePublisher.bat|sh&lt;/strong&gt; and &lt;strong&gt;_genonce.bat|sh&lt;/strong&gt; scripts in the output directory that SUSHI writes to. If these scripts are not present there, you will need to download them from the sample-ig project. The easiest way to do this is to &lt;a href=&#34;https://github.com/FHIR/sample-ig/archive/master.zip&#34;&gt;download the sample-ig project&lt;/a&gt;, unzip it, and copy &lt;em&gt;all&lt;/em&gt; of the &lt;strong&gt;.bat&lt;/strong&gt; and &lt;strong&gt;.sh&lt;/strong&gt; files to the directory that SUSHI writes to.
-&lt;/div&gt;
-
-&lt;p&gt;After running SUSHI, change directories to the output directory (if necessary). At the command prompt, enter:&lt;/p&gt;
+&lt;p&gt;After copying these, change directories in the command prompt to the directory above the &lt;strong&gt;fsh-generated&lt;/strong&gt; directory. At the command prompt, enter:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-windows fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; _updatePublisher
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-apple fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; ./_updatePublisher.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will download the latest version of the HL7 FHIR IG Publisher tool into the &lt;strong&gt;/build/input-cache&lt;/strong&gt; directory. &lt;em&gt;This step can be skipped if you already have the latest version of the IG Publisher tool in &lt;strong&gt;input-cache&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will download the latest version of the HL7 FHIR IG Publisher tool into the &lt;strong&gt;/input-cache&lt;/strong&gt; directory. &lt;em&gt;This step can be skipped if you already have the latest version of the IG Publisher tool in &lt;strong&gt;input-cache&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
 
 
 &lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
@@ -871,6 +788,108 @@ If you have never run the IG Publisher, you may need to install Jekyll first. Se
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-windows fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; _genonce
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-apple fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; ./_genonce.sh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will run the HL7 IG Publisher, which may take several minutes to complete. After the publisher is finished, open the file &lt;strong&gt;/output/index.html&lt;/strong&gt; in a browser to see the resulting IG.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Migrating from Older Versions</title>
+      <link>/docs/sushi/migration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/sushi/migration/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;migrating-from-pre-100-projects&#34;&gt;Migrating from pre-1.0.0 Projects&lt;/h2&gt;
+&lt;p&gt;The SUSHI project structure and configuration changed significantly between pre-1.0.0 versions of SUSHI and versions of SUSHI 1.0.0 or greater. This guide will assume you currently have a project structure similar to the &lt;strong&gt;customized ig&lt;/strong&gt; shown in the &lt;a href=&#34;/docs/sushi/project/#ig-projects&#34;&gt;project structure documentation&lt;/a&gt; for pre-1.0.0 versions of SUSHI.&lt;/p&gt;
+&lt;p&gt;To migrate your project, follow these steps:&lt;/p&gt;
+&lt;h3 id=&#34;0---create-a-backup&#34;&gt;0 - Create a Backup&lt;/h3&gt;
+&lt;p&gt;Before beginning the migration process, &lt;strong&gt;make a copy of your entire project directory structure&lt;/strong&gt;, and keep it in a safe place.&lt;/p&gt;
+&lt;h3 id=&#34;1---delete-sushi-generated-files&#34;&gt;1 - Delete SUSHI-Generated Files&lt;/h3&gt;
+&lt;p&gt;If you have previously used SUSHI, you have SUSHI-generated files that need to be cleaned up. If you use Git, you can remove all untracked files using the command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; git clean -xfd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Before executing this command, you can run &lt;code&gt;git clean -xfdn&lt;/code&gt; to preview the list of files Git will remove. If it looks OK, then run the command above.&lt;/p&gt;
+&lt;p&gt;If you are not using Git, you can refer to &lt;strong&gt;./SUSHI-GENERATED-FILES.md&lt;/strong&gt; for a partial list of files to delete. (This list does not include generated profiles, value sets, extensions, and examples found in the &lt;strong&gt;./input&lt;/strong&gt; directory that should also be deleted.)&lt;/p&gt;
+&lt;p&gt;Keep in mind that if you created FHIR artifacts NOT using SUSHI, those files must be retained. Typically, they will be found under the &lt;strong&gt;./input&lt;/strong&gt; directory.&lt;/p&gt;
+&lt;h3 id=&#34;2---rearrange-directories&#34;&gt;2 - Rearrange Directories&lt;/h3&gt;
+&lt;p&gt;Move the entire contents of &lt;strong&gt;./fsh/ig-data&lt;/strong&gt; directory to the top level (do not move the &lt;strong&gt;/ig-data&lt;/strong&gt; directory, just its contents).&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+If after the cleanup, you still have a top-level &lt;strong&gt;./input&lt;/strong&gt; directory, then &lt;em&gt;merge&lt;/em&gt; the contents of &lt;strong&gt;./fsh/ig-data/input&lt;/strong&gt; into that directory (rather than replacing it).
+&lt;/div&gt;
+
+&lt;p&gt;Next, move the entire &lt;strong&gt;./fsh&lt;/strong&gt; directory into the &lt;strong&gt;./input&lt;/strong&gt; directory (resulting in a &lt;strong&gt;./input/fsh&lt;/strong&gt; directory).&lt;/p&gt;
+&lt;p&gt;Finally, delete the &lt;strong&gt;./input/fsh/ig-data&lt;/strong&gt; directory (which should be empty).&lt;/p&gt;
+&lt;p&gt;Your directory structure should now look something like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;.
+└── input
+│   ├── fsh
+│   ├── images
+│   └── pagecontent
+└── (other directories such as input-cache, output, temp, template)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3---move-and-rename-configyaml&#34;&gt;3 - Move and Rename config.yaml&lt;/h3&gt;
+&lt;p&gt;Move the &lt;strong&gt;./input/fsh/config.yaml&lt;/strong&gt; file to the top-level folder, and rename it &lt;strong&gt;sushi-config.yaml&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;4---run-sushi-and-follow-instructions&#34;&gt;4 - Run SUSHI and Follow Instructions&lt;/h3&gt;
+&lt;p&gt;You can now run SUSHI 1.0. You may get further instructions in the form of error messages.&lt;/p&gt;
+&lt;p&gt;One error message concerns the &lt;code&gt;template&lt;/code&gt; property in &lt;strong&gt;sushi-config.yaml&lt;/strong&gt;. If you get that error, follow the instructions to remove that property from &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; and create an &lt;strong&gt;./ig.ini&lt;/strong&gt; file.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Warning&lt;/h4&gt;
+&lt;p&gt;You must specify a template based on &lt;code&gt;fhir.base.template#current&lt;/code&gt;. Older templates will not work with SUSHI 1.0. Any of the following should work:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;template = fhir.base.template#current&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;template = hl7.base.template#current&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;template = hl7.fhir.template#current&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;template = hl7.davinci.template#current&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;template = hl7.cda.template#current&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Another error message you might receive concerns the &lt;code&gt;history&lt;/code&gt; property in &lt;strong&gt;sushi-config.yaml&lt;/strong&gt;. If you get that message, remove that property and create the &lt;strong&gt;package-list.json&lt;/strong&gt; file as instructed.&lt;/p&gt;
+&lt;p&gt;When you get a clean build with SUSHI, try running the IG Publisher using your customary method (e.g., using the &lt;code&gt;_genonce&lt;/code&gt; script). This will verify that all files needed by the IG Publisher are in the right place.&lt;/p&gt;
+&lt;h3 id=&#34;5---update-gitignore&#34;&gt;5 - Update .gitignore&lt;/h3&gt;
+&lt;p&gt;If you are using Git for version control, update your &lt;strong&gt;.gitignore&lt;/strong&gt; file.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Remove entries for &lt;strong&gt;ig.ini&lt;/strong&gt;, &lt;strong&gt;package-list.json&lt;/strong&gt;, and the &lt;strong&gt;input&lt;/strong&gt; directory, if present. These two files and the entire &lt;strong&gt;./input&lt;/strong&gt; folder should now be under source code control.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add &lt;strong&gt;./fsh-generated&lt;/strong&gt; to .gitignore. This is where SUSHI 1.0 puts all generated files.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here is a typical &lt;strong&gt;.gitignore&lt;/strong&gt; suitable for SUSHI 1.0:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;.DS_Store
+Thumbs.db
+/fsh-generated
+/input-cache
+/output
+/template
+/temp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;troubleshooting&#34;&gt;Troubleshooting&lt;/h3&gt;
+&lt;p&gt;Some users may experience one of these issues when running the IG Publisher on their migrated project:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The IG publisher reports &lt;code&gt;No Source directories to scan found&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;The published IG does not include any of the resources from &lt;strong&gt;fsh-generated&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This usually means that the IG Publisher is not using the correct template.  &lt;em&gt;First&lt;/em&gt;, check to ensure your your &lt;strong&gt;ig.ini&lt;/strong&gt; specifies the &lt;code&gt;#current&lt;/code&gt; version of one of the supported templates (or a template that extends one of the supported templates).&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;ve confirmed you are using a &lt;code&gt;#current&lt;/code&gt; version of a supported template, then the IG Publisher likely failed to download the updated template in your FHIR cache.  This may be due to corporate firewalls, network issues, or restrictive file permissions in your FHIR cache.  Sometimes, you can resolve this issue by deleting the base template from your FHIR cache:&lt;/p&gt;
+&lt;p&gt;    &lt;i class=&#39;fab fa-windows fa-fw&#39;&gt;&lt;/i&gt; &lt;code&gt;C:\Users\{user}\.fhir\packages\fhir.base.template#current&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;    &lt;i class=&#39;fab fa-apple fa-fw&#39;&gt;&lt;/i&gt; &lt;code&gt;/Users/{user}/.fhir/packages/fhir.base.template#current&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;substituting &lt;code&gt;{user}&lt;/code&gt; with your username on your operating system.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+&lt;p&gt;If there is a general problem with downloading the template (as opposed to overwriting it), deleting the template will not fix it. Instead the problem will just become more obvious. If this is the case, you may need to disconnect from your VPN (if applicable) and try again or contact your network administrator for assistance.&lt;/p&gt;
+&lt;p&gt;For this reason, you may choose to temporarily &lt;em&gt;move&lt;/em&gt; your &lt;strong&gt;fhir.base.template#current&lt;/strong&gt; folder rather than &lt;em&gt;deleting&lt;/em&gt; it.  This way, if the new template still fails to download, you can move the old template back and continue using it for other IGs (for which the new template may not be necessary).&lt;/p&gt;
+
+&lt;/div&gt;
+
 
       </description>
     </item>

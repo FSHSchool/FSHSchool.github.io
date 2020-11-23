@@ -789,6 +789,17 @@ If you have never run the IG Publisher, you may need to install Jekyll first. Se
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-apple fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; ./_genonce.sh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will run the HL7 IG Publisher, which may take several minutes to complete. After the publisher is finished, open the file &lt;strong&gt;/output/index.html&lt;/strong&gt; in a browser to see the resulting IG.&lt;/p&gt;
 
+
+&lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Tip&lt;/h4&gt;
+&lt;p&gt;When running SUSHI, the IG Publisher will look for an optional &lt;strong&gt;fsh.ini&lt;/strong&gt; control file in the root directory of the project (the same directory that contains &lt;strong&gt;ig.ini&lt;/strong&gt;). This file should have &lt;code&gt;[FSH]&lt;/code&gt; on the first line, and can include a &lt;code&gt;sushi-version&lt;/code&gt; property, used to specify which version of SUSHI the IG Publisher should use, and a &lt;code&gt;timeout&lt;/code&gt; property, used to set a timeout for SUSHI (in seconds). The default timeout is 60 seconds. An example &lt;strong&gt;fsh.ini&lt;/strong&gt; file is provided below.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;[FSH]
+sushi-version = 0.16.0
+timeout = 120
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
       </description>
     </item>
     
@@ -839,7 +850,7 @@ If after the cleanup, you still have a top-level &lt;strong&gt;./input&lt;/stron
 
 &lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
 &lt;h4 class=&#34;alert-heading&#34;&gt;Warning&lt;/h4&gt;
-&lt;p&gt;You must specify a template based on &lt;code&gt;fhir.base.template#current&lt;/code&gt;. Older templates will not work with SUSHI 1.0. Any of the following should work:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Carefully consider the contents of ig.ini&lt;/strong&gt;. You must specify a &lt;code&gt;template&lt;/code&gt; property based on &lt;code&gt;fhir.base.template#current&lt;/code&gt;. Older templates will not work with SUSHI 1.0. Any of the following should work:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;template = fhir.base.template#current&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;template = hl7.base.template#current&lt;/code&gt;&lt;/li&gt;
@@ -847,6 +858,7 @@ If after the cleanup, you still have a top-level &lt;strong&gt;./input&lt;/stron
 &lt;li&gt;&lt;code&gt;template = hl7.davinci.template#current&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;template = hl7.cda.template#current&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;The &lt;code&gt;ig&lt;/code&gt; property must point to an ImplementationGuide resource. If SUSHI is generating your ImplementationGuide resource, it will be generated to &lt;strong&gt;fsh-generated/resources/ImplementationGuide-{ig-id}.json&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;/div&gt;
 

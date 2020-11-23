@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
+  data-offline-search-index-json-src="/offline-search-index.1d89298b36bdda71796faba82eedae9b8a3f66e968aca8c3bb5a6b13c41b114a30efc91036480de670f5e4ab7296f67117855e9feff84c636ea780b6772c983e.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
+  data-offline-search-index-json-src="/offline-search-index.1d89298b36bdda71796faba82eedae9b8a3f66e968aca8c3bb5a6b13c41b114a30efc91036480de670f5e4ab7296f67117855e9feff84c636ea780b6772c983e.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -648,7 +648,7 @@ If after the cleanup, you still have a top-level <strong>./input</strong> direct
 
 <div class="alert alert-warning" role="alert">
 <h4 class="alert-heading">Warning</h4>
-<p>You must specify a template based on <code>fhir.base.template#current</code>. Older templates will not work with SUSHI 1.0. Any of the following should work:</p>
+<p><strong>Carefully consider the contents of ig.ini</strong>. You must specify a <code>template</code> property based on <code>fhir.base.template#current</code>. Older templates will not work with SUSHI 1.0. Any of the following should work:</p>
 <ul>
 <li><code>template = fhir.base.template#current</code></li>
 <li><code>template = hl7.base.template#current</code></li>
@@ -656,6 +656,7 @@ If after the cleanup, you still have a top-level <strong>./input</strong> direct
 <li><code>template = hl7.davinci.template#current</code></li>
 <li><code>template = hl7.cda.template#current</code></li>
 </ul>
+<p>The <code>ig</code> property must point to an ImplementationGuide resource. If SUSHI is generating your ImplementationGuide resource, it will be generated to <strong>fsh-generated/resources/ImplementationGuide-{ig-id}.json</strong>.</p>
 
 </div>
 
@@ -742,7 +743,7 @@ Thumbs.db
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified November 13, 2020: <a  href="https://github.com/FSHSchool/site/commit/f5a6fcd13c112d2d56f539673ad8216152bafeff">Update documentation for 1.0.0 (#27) (f5a6fcd)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified November 23, 2020: <a  href="https://github.com/FSHSchool/site/commit/f328c7f7a1dbde66fff8c11aef2b96544f7af635">Document fsh.ini and update migration docs (#28) (f328c7f)</a>
 </div>
 </div>
 

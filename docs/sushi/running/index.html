@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
+  data-offline-search-index-json-src="/offline-search-index.1d89298b36bdda71796faba82eedae9b8a3f66e968aca8c3bb5a6b13c41b114a30efc91036480de670f5e4ab7296f67117855e9feff84c636ea780b6772c983e.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.41a355d536889f3c6476db4a6304143bf7a7282d1c78bec54147618671e98bcf40429bd45fd90d3cb3562984a967e8187b1a5c3e9f31e7f73488aec46f3f0886.json"
+  data-offline-search-index-json-src="/offline-search-index.1d89298b36bdda71796faba82eedae9b8a3f66e968aca8c3bb5a6b13c41b114a30efc91036480de670f5e4ab7296f67117855e9feff84c636ea780b6772c983e.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -729,6 +729,17 @@ If you have never run the IG Publisher, you may need to install Jekyll first. Se
 </code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-apple fa-fw'></i> <i class="fas fa-dollar-sign"></i> ./_genonce.sh
 </code></pre></div><p>This will run the HL7 IG Publisher, which may take several minutes to complete. After the publisher is finished, open the file <strong>/output/index.html</strong> in a browser to see the resulting IG.</p>
 
+
+<div class="alert alert-success" role="alert">
+<h4 class="alert-heading">Tip</h4>
+<p>When running SUSHI, the IG Publisher will look for an optional <strong>fsh.ini</strong> control file in the root directory of the project (the same directory that contains <strong>ig.ini</strong>). This file should have <code>[FSH]</code> on the first line, and can include a <code>sushi-version</code> property, used to specify which version of SUSHI the IG Publisher should use, and a <code>timeout</code> property, used to set a timeout for SUSHI (in seconds). The default timeout is 60 seconds. An example <strong>fsh.ini</strong> file is provided below.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[FSH]
+sushi-version = 0.16.0
+timeout = 120
+</code></pre></div>
+</div>
+
+
         <div class="section-index">
     
     
@@ -771,7 +782,7 @@ If you have never run the IG Publisher, you may need to install Jekyll first. Se
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified November 13, 2020: <a  href="https://github.com/FSHSchool/site/commit/f5a6fcd13c112d2d56f539673ad8216152bafeff">Update documentation for 1.0.0 (#27) (f5a6fcd)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified November 23, 2020: <a  href="https://github.com/FSHSchool/site/commit/f328c7f7a1dbde66fff8c11aef2b96544f7af635">Document fsh.ini and update migration docs (#28) (f328c7f)</a>
 </div>
 </div>
 

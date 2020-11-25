@@ -22,9 +22,7 @@
       <description>
         
         
-        &lt;style&gt;
-body {background-color: #E2F0D9;}
-&lt;/style&gt;
+        &lt;style&gt;body {background-color: #fcac98;}&lt;/style&gt;
 
 
 &lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
@@ -75,9 +73,7 @@ For the most up-to-date information and latest releases of SUSHI, check the &lt;
       <description>
         
         
-        &lt;style&gt;
-body {background-color: #E2F0D9;}
-&lt;/style&gt;
+        &lt;style&gt;body {background-color: #fcac98;}&lt;/style&gt;
 
 
 &lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
@@ -208,9 +204,7 @@ Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
       <description>
         
         
-        &lt;style&gt;
-body {background-color: #E2F0D9;}
-&lt;/style&gt;
+        &lt;style&gt;body {background-color: #fcac98;}&lt;/style&gt;
 
 
 &lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
@@ -770,9 +764,7 @@ SUSHI can generate a simple configuration file for you with the &lt;code&gt;--in
       <description>
         
         
-        &lt;style&gt;
-body {background-color: #E2F0D9;}
-&lt;/style&gt;
+        &lt;style&gt;body {background-color: #fcac98;}&lt;/style&gt;
 
 
 &lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;

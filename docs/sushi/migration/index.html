@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.7d43e9c2ad78a053772a34d80ccef82f62ebcbdb9237f02bb77eeea0f00da63baa76992a4d18ac9b99142a11d4ee89c59a188f70669f38bd0204d97c37481c98.json"
+  data-offline-search-index-json-src="/offline-search-index.ff1769f7b9710ac55864a2c752629d25c836ffafd1faa3422ecc68a9460147793625fb51cd2f5187e746bc8d938906c7f02d38391e9f87891000369be3707800.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.7d43e9c2ad78a053772a34d80ccef82f62ebcbdb9237f02bb77eeea0f00da63baa76992a4d18ac9b99142a11d4ee89c59a188f70669f38bd0204d97c37481c98.json"
+  data-offline-search-index-json-src="/offline-search-index.ff1769f7b9710ac55864a2c752629d25c836ffafd1faa3422ecc68a9460147793625fb51cd2f5187e746bc8d938906c7f02d38391e9f87891000369be3707800.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -739,9 +739,10 @@
         <li><a href="#0---create-a-backup">0 - Create a Backup</a></li>
         <li><a href="#1---delete-sushi-generated-files">1 - Delete SUSHI-Generated Files</a></li>
         <li><a href="#2---rearrange-directories">2 - Rearrange Directories</a></li>
-        <li><a href="#3---move-and-rename-configyaml">3 - Move and Rename config.yaml</a></li>
-        <li><a href="#4---run-sushi-and-follow-instructions">4 - Run SUSHI and Follow Instructions</a></li>
-        <li><a href="#5---update-gitignore">5 - Update .gitignore</a></li>
+        <li><a href="#3---adjust-page-names-or-links">3 - Adjust Page Names or Links</a></li>
+        <li><a href="#4---move-and-rename-configyaml">4 - Move and Rename config.yaml</a></li>
+        <li><a href="#5---run-sushi-and-follow-instructions">5 - Run SUSHI and Follow Instructions</a></li>
+        <li><a href="#6---update-gitignore">6 - Update .gitignore</a></li>
         <li><a href="#troubleshooting">Troubleshooting</a></li>
       </ul>
     </li>
@@ -823,9 +824,27 @@ If after the cleanup, you still have a top-level <strong>./input</strong> direct
 │   ├── images
 │   └── pagecontent
 └── (other directories such as input-cache, output, temp, template)
-</code></pre></div><h3 id="3---move-and-rename-configyaml">3 - Move and Rename config.yaml</h3>
+</code></pre></div><h3 id="3---adjust-page-names-or-links">3 - Adjust Page Names or Links</h3>
+<p>SUSHI no longer removes numeric prefixes from the file names of pages. If you did not use numeric prefixes on page files you can skip to step 4. Otherwise, you will need to rename your page files or fix your existing links to these pages.</p>
+<p><strong>3.1 Rename Page Files</strong></p>
+<p>To maintain the same page names and locations in your IG, remove the numeric prefixes from your page file names.  For example, rename <code>3_downloads.md</code> to <code>downloads.md</code>. Then add a <code>pages</code> property to <code>sushi-config.yaml</code> to specify the desired page order in the table of contents. For example:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">pages</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">index.md</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">title</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Home<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">conformance.md</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">title</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Conformance<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">implementation.md</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">title</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Implementation<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">downloads.md</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">title</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Downloads<span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><p><strong>3.2 Fix Existing Links to Pages</strong></p>
+<p>If you want to continue specifying page order using numeric prefixes on file names instead, you will need to fix all existing links to <em>include</em> the numeric prefix.  For example, the link</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">[<span style="color:#204a87;font-weight:bold">Downloads</span>](<span style="color:#c4a000">downloads.html</span>)  (or <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">a</span> <span style="color:#c4a000">href</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;downloads.html&#34;</span><span style="color:#000;font-weight:bold">&gt;</span>Downloads<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">a</span><span style="color:#000;font-weight:bold">&gt;</span>)
+</code></pre></div><p>should become:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">[<span style="color:#204a87;font-weight:bold">Downloads</span>](<span style="color:#c4a000">3_downloads.html</span>) (or <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">a</span> <span style="color:#c4a000">href</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;3_downloads.html&#34;</span><span style="color:#000;font-weight:bold">&gt;</span>Downloads<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">a</span><span style="color:#000;font-weight:bold">&gt;</span>)
+</code></pre></div><h3 id="4---move-and-rename-configyaml">4 - Move and Rename config.yaml</h3>
 <p>Move the <strong>./input/fsh/config.yaml</strong> file to the top-level folder, and rename it <strong>sushi-config.yaml</strong>.</p>
-<h3 id="4---run-sushi-and-follow-instructions">4 - Run SUSHI and Follow Instructions</h3>
+<h3 id="5---run-sushi-and-follow-instructions">5 - Run SUSHI and Follow Instructions</h3>
 <p>You can now run SUSHI 1.0. You may get further instructions in the form of error messages.</p>
 <p>One error message concerns the <code>template</code> property in <strong>sushi-config.yaml</strong>. If you get that error, follow the instructions to remove that property from <strong>sushi-config.yaml</strong> and create an <strong>./ig.ini</strong> file.</p>
 
@@ -846,7 +865,7 @@ If after the cleanup, you still have a top-level <strong>./input</strong> direct
 
 <p>Another error message you might receive concerns the <code>history</code> property in <strong>sushi-config.yaml</strong>. If you get that message, remove that property and create the <strong>package-list.json</strong> file as instructed.</p>
 <p>When you get a clean build with SUSHI, try running the IG Publisher using your customary method (e.g., using the <code>_genonce</code> script). This will verify that all files needed by the IG Publisher are in the right place.</p>
-<h3 id="5---update-gitignore">5 - Update .gitignore</h3>
+<h3 id="6---update-gitignore">6 - Update .gitignore</h3>
 <p>If you are using Git for version control, update your <strong>.gitignore</strong> file.</p>
 <ul>
 <li>
@@ -943,7 +962,7 @@ Thumbs.db
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified November 24, 2020: <a  href="https://github.com/FSHSchool/site/commit/c002d3f7a945702c48f51e09902020183a87d939">Add top level menu item for migration to 1.0 (#31) (c002d3f)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified December 9, 2020: <a  href="https://github.com/FSHSchool/site/commit/5ae980a891de8fb51084392d14e73d9b93daea22">Documentation for migrating pages (#35) (5ae980a)</a>
 </div>
 </div>
 

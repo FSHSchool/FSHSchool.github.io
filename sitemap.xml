@@ -14,7 +14,7 @@
   
   <url>
     <loc>/docs/gofsh/installation/</loc>
-    <lastmod>2020-09-09T17:14:35-04:00</lastmod>
+    <lastmod>2021-02-10T16:18:02-05:00</lastmod>
   </url>
   
   <url>
@@ -49,7 +49,7 @@
   
   <url>
     <loc>/docs/gofsh/running/</loc>
-    <lastmod>2020-11-13T16:37:35-05:00</lastmod>
+    <lastmod>2021-02-10T16:18:02-05:00</lastmod>
   </url>
   
   <url>
@@ -69,7 +69,7 @@
   
   <url>
     <loc>/docs/gofsh/</loc>
-    <lastmod>2020-11-24T15:04:43-05:00</lastmod>
+    <lastmod>2021-02-10T16:18:02-05:00</lastmod>
   </url>
   
   <url>
@@ -89,7 +89,7 @@
   
   <url>
     <loc>/docs/tutorials/gofsh/</loc>
-    <lastmod>2020-11-13T16:37:35-05:00</lastmod>
+    <lastmod>2021-02-10T16:18:02-05:00</lastmod>
   </url>
   
   <url>
@@ -100,6 +100,16 @@
   <url>
     <loc>/docs/sushi/running/</loc>
     <lastmod>2020-11-23T17:38:57-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/gofsh/api/</loc>
+    <lastmod>2021-02-10T16:18:02-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/docs/sushi/api/</loc>
+    <lastmod>2021-02-10T16:18:02-05:00</lastmod>
   </url>
   
   <url>

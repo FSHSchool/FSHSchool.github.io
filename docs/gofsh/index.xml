@@ -39,13 +39,6 @@
 &lt;li&gt;&lt;strong&gt;MINOR&lt;/strong&gt;: Contains new or modified features, while maintaining backwards compatibility within the major version.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;PATCH&lt;/strong&gt;: Contains minor updates and bug fixes, while maintaining backwards compatibility within the major version.&lt;/li&gt;
 &lt;/ul&gt;
-
-
-&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
-&lt;h4 class=&#34;alert-heading&#34;&gt;Warning&lt;/h4&gt;
-Releases prior to 1.0.0 are considered pre-releases, and may introduce breaking changes in minor version increments.
-&lt;/div&gt;
-
 &lt;h2 id=&#34;updating-or-reverting-gofsh&#34;&gt;Updating or Reverting GoFSH&lt;/h2&gt;
 &lt;p&gt;To update GoFSH to the latest version, re-run:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; npm install -g gofsh
@@ -73,17 +66,24 @@ Releases prior to 1.0.0 are considered pre-releases, and may introduce breaking 
 -l, --log-level &amp;lt;level&amp;gt;           specify the level of log messages: error, warn, info (default), debug
 -d, --dependency &amp;lt;dependency...&amp;gt;  specify dependencies to be loaded using format dependencyId@version (FHIR R4 included by default)
 -v, --version                     print goFSH version
+-s, --style                       specify how the output is organized into files: group-by-fsh-type (default), group-by-profile, single-file, file-per-definition
+-f, --fshing-trip                 run SUSHI on the output of GoFSH and generate a comparison of the round trip results
+-t, --file-type                   specify which file types GoFSH should accept as input: json-only (default), xml-only, json-and-xml
+-i, --installed-sushi             use the locally installed version of SUSHI when generating comparisons with the &amp;#34;-f&amp;#34; option
 -h, --help                        output usage information
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;While GoFSH is running, it will print status messages as it processes your project files.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;While GoFSH is running, it will print status messages as it processes your project files. The following sections give further detail on using certain options.&lt;/p&gt;
+&lt;h3 id=&#34;style&#34;&gt;&lt;code&gt;style&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;style&lt;/code&gt; option has four values:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;group-by-fsh-type&lt;/code&gt;: Definitions are written to files based on what type of FSH definition they are (Alias, Profile, Extension, etc.). This is the default choice.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;group-by-profile&lt;/code&gt;:  Profiles are each written to an individual file. Instances and Invariants that pertain only to a certain Profile are then included in the same file as that Profile. The remaining definitions are grouped as in the &lt;code&gt;group-by-fsh-type&lt;/code&gt; option.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;single-file&lt;/code&gt;: All definitions are written to one file.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;file-per-definition&lt;/code&gt;: Each standalone FSH definition is written to an individual file. Only Aliases are combined into one &lt;code&gt;aliases.fsh&lt;/code&gt; file.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;fshing-trip&#34;&gt;&lt;code&gt;fshing-trip&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;If this flag is added, after GoFSH runs, SUSHI will run on the output of GoFSH. The output of SUSHI will then be compared to the original input to GoFSH (FHIR is compared to FHIR), and a visualization of differences between the original input and the SUSHI output will be created in &lt;code&gt;&amp;lt;output-folder&amp;gt;/fshing-trip-comparison.html&lt;/code&gt;. If the &lt;code&gt;--installed-sushi&lt;/code&gt; flag is set, then this process will use whichever version of SUSHI you have globally installed. Otherwise GoFSH will use its own built-in version of SUSHI (which may not be the latest version available).&lt;/p&gt;
 &lt;h2 id=&#34;gofsh-inputs&#34;&gt;GoFSH Inputs&lt;/h2&gt;
 &lt;p&gt;GoFSH takes FHIR StructureDefinitions and other FHIR conformance definitions (e.g., ValueSets, CodeSystems) as input. GoFSH requires that these files be JSON. Every JSON file contained in the input directory, or its subdirectories, will be processed by GoFSH into FSH.&lt;/p&gt;
-
-
-&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
-&lt;h4 class=&#34;alert-heading&#34;&gt;Warning&lt;/h4&gt;
-GoFSH is still under development, and can not generate FSH for all FHIR artifacts. Please see the section below on &lt;a href=&#34;#limitations-on-inputs&#34;&gt;limitations&lt;/a&gt; for more details.
-&lt;/div&gt;
-
 &lt;p&gt;GoFSH does not require any configuration, but if the input FHIR artifacts depend on FHIR artifacts not contained in FHIR R4, these dependencies should be specified with the &lt;code&gt;-d&lt;/code&gt; flag. For example, the &lt;a href=&#34;http://hl7.org/fhir/us/mcode/StructureDefinition-mcode-cancer-patient.html&#34;&gt;mcode-cancer-patient&lt;/a&gt; profile in the &lt;a href=&#34;http://hl7.org/fhir/us/mcode/&#34;&gt;mCODE Implementation Guide&lt;/a&gt; is derived from the &lt;a href=&#34;http://hl7.org/fhir/us/core/STU3.1/StructureDefinition-us-core-patient.html&#34;&gt;us-core-patient&lt;/a&gt; profile in the &lt;a href=&#34;http://hl7.org/fhir/us/core/&#34;&gt;US Core Implementation Guide&lt;/a&gt;. If you wanted to use GoFSH to convert the mcode-cancer-patient profile to FSH, you should specify US Core as a dependency:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; gofsh ./mcode-definitions -d hl7.fhir.us.core@3.1.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -93,22 +93,81 @@ GoFSH is still under development, and can not generate FSH for all FHIR artifact
 GoFSH can still generate FSH when dependencies are omitted, but the resulting FSH will be incomplete.
 &lt;/div&gt;
 
-&lt;h3 id=&#34;limitations-on-inputs&#34;&gt;Limitations on Inputs&lt;/h3&gt;
-&lt;p&gt;Note that GoFSH is not complete, and cannot be applied to all FHIR artifacts. The capabilities and limitations of GoFSH are given below.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;GoFSH outputs valid FSH for most profiles and extensions.
-&lt;ul&gt;
-&lt;li&gt;Generated profile and extension definitions should be technically correct, but may not use the most efficient FSH representation or follow FSH authoring best practices.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;GoFSH does not output the content of Code System definitions; it declares them using keywords, but does not generate any of their rules.&lt;/li&gt;
-&lt;li&gt;GoFSH does not output ValueSet definitions.&lt;/li&gt;
-&lt;li&gt;GoFSH does not output Instance definitions (this includes examples, as well as any definitions that must be created in FSH using the Instance keyword).&lt;/li&gt;
-&lt;li&gt;GoFSH does not support generating FSH from FHIR XML definitions.&lt;/li&gt;
-&lt;/ul&gt;
 &lt;h2 id=&#34;gofsh-outputs&#34;&gt;GoFSH Outputs&lt;/h2&gt;
 &lt;p&gt;GoFSH populates an output directory, called &lt;strong&gt;gofsh/&lt;/strong&gt; by default, with a &lt;strong&gt;resources.fsh&lt;/strong&gt; file, which contains FSH definitions for all of the input FHIR StructureDefinitions. GoFSH will also generate a &lt;strong&gt;config.yaml&lt;/strong&gt; file that can be used to configure SUSHI. If the input to GoFSH includes an ImplementationGuide resource, it is used to generate the configuration. Otherwise the configuration is generated by inferring values from the input, or by using sensible defaults if no values can be inferred. These definitions and configuration are ready to use with SUSHI, all you have to do is &lt;a href=&#34;/docs/sushi/running&#34;&gt;run SUSHI&lt;/a&gt;.&lt;/p&gt;
 
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: API</title>
+      <link>/docs/gofsh/api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/gofsh/api/</guid>
+      <description>
+        
+        
+        &lt;p&gt;GoFSH exposes a &lt;code&gt;fhirToFsh&lt;/code&gt; function that can be used to convert FHIR to FSH.&lt;/p&gt;
+&lt;h2 id=&#34;syntax&#34;&gt;Syntax&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;fhirToFsh&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;fhir&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[,&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;options&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;parameters&#34;&gt;Parameters&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;fhir&lt;/code&gt; - An array of FHIR resources, represented either as strings or JSON.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;options&lt;/code&gt; - An object which can have any combindation of the following attributes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;dependencies&lt;/code&gt; - An array of strings used to specify dependencies required for processing the FHIR. Dependencies should use the format &lt;code&gt;&amp;lt;packageId&amp;gt;@&amp;lt;version&amp;gt;&lt;/code&gt; (example: &lt;code&gt;hl7.fhir.us.core@3.0.1&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;logLevel&lt;/code&gt; - A string that specifies what level of logging to use when processing FHIR. Options are &lt;code&gt;silent&lt;/code&gt;, &lt;code&gt;debug&lt;/code&gt;, &lt;code&gt;info&lt;/code&gt;, &lt;code&gt;warn&lt;/code&gt;, and &lt;code&gt;error&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;style&lt;/code&gt; - A string representing how the returned output is styled. The options are:
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;string&lt;/code&gt; - The generated FSH will be returned in one single string. This is the default.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;map&lt;/code&gt; - The generated FSH will be returned as an object. The attributes on the object are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;aliases&lt;/code&gt; - A string containing all &lt;code&gt;Alias&lt;/code&gt; definitions.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;profiles&lt;/code&gt; - A &lt;code&gt;Map&lt;/code&gt; containing all &lt;code&gt;Profile&lt;/code&gt; definitions as values.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;extensions&lt;/code&gt; - A &lt;code&gt;Map&lt;/code&gt; containing all &lt;code&gt;Extension&lt;/code&gt; definitions as values.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;codeSystems&lt;/code&gt; - A &lt;code&gt;Map&lt;/code&gt; containing all &lt;code&gt;CodeSystem&lt;/code&gt; definitions as values.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;valueSets&lt;/code&gt; - A &lt;code&gt;Map&lt;/code&gt; containing all &lt;code&gt;ValueSet&lt;/code&gt; definitions as values.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;instances&lt;/code&gt; - A &lt;code&gt;Map&lt;/code&gt; containing all &lt;code&gt;Instance&lt;/code&gt; definitions as values.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;invariants&lt;/code&gt; - A &lt;code&gt;Map&lt;/code&gt; containing all &lt;code&gt;Invariant&lt;/code&gt; definitions as values.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mappings&lt;/code&gt; - A &lt;code&gt;Map&lt;/code&gt; containing all &lt;code&gt;Mapping&lt;/code&gt; definitions as values.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For each &lt;code&gt;Map&lt;/code&gt;, the keys are the name of the FSH definition. For example, if the definition was:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Profile: MyPatient
+Parent: Patient
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The key would be &lt;code&gt;MyPatient&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;return-value&#34;&gt;Return Value&lt;/h2&gt;
+&lt;p&gt;An object with the following attributes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;fsh&lt;/code&gt; - The generated FSH, styled according to the &lt;code&gt;style&lt;/code&gt; parameter.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;configuration&lt;/code&gt; - An object representing the &lt;code&gt;sushi-config.yaml&lt;/code&gt; file that would be generated if GoFSH was running in a command line interface.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;errors&lt;/code&gt; - An array of strings containing any errors detected during processing.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;warnings&lt;/code&gt; - An array of strings containing any warnings detected during processing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+&lt;p&gt;To use &lt;code&gt;fhirToFsh&lt;/code&gt;, you must first install &lt;code&gt;gofsh&lt;/code&gt; as a dependency of your project:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; npm install gofsh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once &lt;code&gt;gofsh&lt;/code&gt; is installed as a dependency of your project, you can &lt;code&gt;import&lt;/code&gt; and use this function as shown:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;gofshClient&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;gofsh&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;// Example basic usage
+&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;gofshClient&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;fhirToFsh&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;([&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Your FHIR here&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]);&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;// Example usage with options
+&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;gofshClient&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;fhirToFsh&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;(&lt;/span&gt;
+  &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Your FHIR here&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;],&lt;/span&gt; 
+  &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color:#000&#34;&gt;dependencies&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hl7.fhir.us.mcode@1.0.0&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;],&lt;/span&gt;
+    &lt;span style=&#34;color:#000&#34;&gt;style&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;map&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+    &lt;span style=&#34;color:#000&#34;&gt;logLevel&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;silent&amp;#34;&lt;/span&gt;
+  &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
       </description>
     </item>
     

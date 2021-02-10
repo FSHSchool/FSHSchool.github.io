@@ -812,6 +812,59 @@ timeout = 120
     </item>
     
     <item>
+      <title>Docs: API</title>
+      <link>/docs/sushi/api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/sushi/api/</guid>
+      <description>
+        
+        
+        &lt;p&gt;SUSHI exposes a &lt;code&gt;fshToFhir&lt;/code&gt; function that can be used to convert FSH strings to FHIR JSON.&lt;/p&gt;
+&lt;h2 id=&#34;syntax&#34;&gt;Syntax&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;fshToFhir&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;fshString&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[,&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;options&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;parameters&#34;&gt;Parameters&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;fshString&lt;/code&gt; - A string containing FHIR Shorthand definitions.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;options&lt;/code&gt; - An object which can have any combination of the following attributes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;canonical&lt;/code&gt; - A string used to specify the canonical URL.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;version&lt;/code&gt; - A string used to specify the version.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fhirVersion&lt;/code&gt; - A string used to specify the version of FHIR to use. Note that SUSHI only supports FHIR R4 and R5.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dependencies&lt;/code&gt; - An array of objects used to specify dependencies required for processing the FSH. Each object should have a &lt;code&gt;packageId&lt;/code&gt; and &lt;code&gt;version&lt;/code&gt;, and optionally a &lt;code&gt;uri&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;logLevel&lt;/code&gt; - A string that specifies what level of logging to use when processing FSH. Options are &lt;code&gt;silent&lt;/code&gt;, &lt;code&gt;debug&lt;/code&gt;, &lt;code&gt;info&lt;/code&gt;, &lt;code&gt;warn&lt;/code&gt;, and &lt;code&gt;error&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See the &lt;a href=&#34;/docs/sushi/configuration/#full-configuration&#34;&gt;configuration&lt;/a&gt; documentation for more information on &lt;code&gt;canonical&lt;/code&gt;, &lt;code&gt;version&lt;/code&gt;, &lt;code&gt;fhirVersion&lt;/code&gt;, and &lt;code&gt;dependencies&lt;/code&gt;. These properties correspond to the properties of the same name that are used in &lt;code&gt;sushi-config.yaml&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;return-value&#34;&gt;Return Value&lt;/h2&gt;
+&lt;p&gt;An object with the following attributes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;fhir&lt;/code&gt; - An array of FHIR definitions generated from the input FSH.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;errors&lt;/code&gt; - An array of strings containing any errors detected during processing.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;warnings&lt;/code&gt; - An array of strings containing any warnings detected during processing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+&lt;p&gt;To use &lt;code&gt;fshToFhir&lt;/code&gt;, you must first install &lt;code&gt;fsh-sushi&lt;/code&gt; as a dependency of your project:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; npm install fsh-sushi
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once &lt;code&gt;fsh-sushi&lt;/code&gt; is installed as a dependency of your project, you can &lt;code&gt;import&lt;/code&gt; and use this function as shown:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;sushiClient&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;fsh-sushi&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;// Example basic usage
+&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;sushiClient&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;fshToFhir&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Your FSH here&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;);&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;// Example usage with options
+&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;sushiClient&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;fshToFhir&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;(&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Your FSH here&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color:#000&#34;&gt;canonical&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;http://example.com&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+    &lt;span style=&#34;color:#000&#34;&gt;version&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;1.2.3&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+    &lt;span style=&#34;color:#000&#34;&gt;fhirVersion&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;4.0.1&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+    &lt;span style=&#34;color:#000&#34;&gt;dependencies&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[{&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;packageId&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;hl7.fhir.us.core&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;version&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;3.1.0&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}],&lt;/span&gt;
+    &lt;span style=&#34;color:#000&#34;&gt;logLevel&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;error&amp;#39;&lt;/span&gt;
+  &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Migrating from Older Versions</title>
       <link>/docs/sushi/migration/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.2ded01774546d52cad8be3f194ede8ae6855da5364daa519e1964118084decb149030a2fc093190c60305cde9209e7ea0210053adb8c101bde581a3eb1994879.json"
+  data-offline-search-index-json-src="/offline-search-index.4d08490791c64ff2d34b6bda085a3df995f9dad938e8b6edea63e870ecfee80d0b4c178aa69f9774deb389fc559b2f358eaa2b8eee8f95080f48a40a2cb2c4fc.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.2ded01774546d52cad8be3f194ede8ae6855da5364daa519e1964118084decb149030a2fc093190c60305cde9209e7ea0210053adb8c101bde581a3eb1994879.json"
+  data-offline-search-index-json-src="/offline-search-index.4d08490791c64ff2d34b6bda085a3df995f9dad938e8b6edea63e870ecfee80d0b4c178aa69f9774deb389fc559b2f358eaa2b8eee8f95080f48a40a2cb2c4fc.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -397,6 +397,29 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/sushi/api/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">API</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docssushiapi">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
     <a  href="/docs/sushi/migration/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Update to 1.0</a>
   </li>
   <ul>
@@ -470,6 +493,29 @@
   </li>
   <ul>
     <li class="collapse show" id="docsgofshrunning">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/gofsh/api/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">API</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsgofshapi">
       
       
       
@@ -734,12 +780,13 @@
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#running-gofsh">Running GoFSH</a></li>
-    <li><a href="#gofsh-inputs">GoFSH Inputs</a>
+    <li><a href="#running-gofsh">Running GoFSH</a>
       <ul>
-        <li><a href="#limitations-on-inputs">Limitations on Inputs</a></li>
+        <li><a href="#style"><code>style</code></a></li>
+        <li><a href="#fshing-trip"><code>fshing-trip</code></a></li>
       </ul>
     </li>
+    <li><a href="#gofsh-inputs">GoFSH Inputs</a></li>
     <li><a href="#gofsh-outputs">GoFSH Outputs</a></li>
   </ul>
 </nav>
@@ -798,17 +845,24 @@
 -l, --log-level &lt;level&gt;           specify the level of log messages: error, warn, info (default), debug
 -d, --dependency &lt;dependency...&gt;  specify dependencies to be loaded using format dependencyId@version (FHIR R4 included by default)
 -v, --version                     print goFSH version
+-s, --style                       specify how the output is organized into files: group-by-fsh-type (default), group-by-profile, single-file, file-per-definition
+-f, --fshing-trip                 run SUSHI on the output of GoFSH and generate a comparison of the round trip results
+-t, --file-type                   specify which file types GoFSH should accept as input: json-only (default), xml-only, json-and-xml
+-i, --installed-sushi             use the locally installed version of SUSHI when generating comparisons with the &#34;-f&#34; option
 -h, --help                        output usage information
-</code></pre></div><p>While GoFSH is running, it will print status messages as it processes your project files.</p>
+</code></pre></div><p>While GoFSH is running, it will print status messages as it processes your project files. The following sections give further detail on using certain options.</p>
+<h3 id="style"><code>style</code></h3>
+<p>The <code>style</code> option has four values:</p>
+<ul>
+<li><code>group-by-fsh-type</code>: Definitions are written to files based on what type of FSH definition they are (Alias, Profile, Extension, etc.). This is the default choice.</li>
+<li><code>group-by-profile</code>:  Profiles are each written to an individual file. Instances and Invariants that pertain only to a certain Profile are then included in the same file as that Profile. The remaining definitions are grouped as in the <code>group-by-fsh-type</code> option.</li>
+<li><code>single-file</code>: All definitions are written to one file.</li>
+<li><code>file-per-definition</code>: Each standalone FSH definition is written to an individual file. Only Aliases are combined into one <code>aliases.fsh</code> file.</li>
+</ul>
+<h3 id="fshing-trip"><code>fshing-trip</code></h3>
+<p>If this flag is added, after GoFSH runs, SUSHI will run on the output of GoFSH. The output of SUSHI will then be compared to the original input to GoFSH (FHIR is compared to FHIR), and a visualization of differences between the original input and the SUSHI output will be created in <code>&lt;output-folder&gt;/fshing-trip-comparison.html</code>. If the <code>--installed-sushi</code> flag is set, then this process will use whichever version of SUSHI you have globally installed. Otherwise GoFSH will use its own built-in version of SUSHI (which may not be the latest version available).</p>
 <h2 id="gofsh-inputs">GoFSH Inputs</h2>
 <p>GoFSH takes FHIR StructureDefinitions and other FHIR conformance definitions (e.g., ValueSets, CodeSystems) as input. GoFSH requires that these files be JSON. Every JSON file contained in the input directory, or its subdirectories, will be processed by GoFSH into FSH.</p>
-
-
-<div class="alert alert-warning" role="alert">
-<h4 class="alert-heading">Warning</h4>
-GoFSH is still under development, and can not generate FSH for all FHIR artifacts. Please see the section below on <a href="#limitations-on-inputs">limitations</a> for more details.
-</div>
-
 <p>GoFSH does not require any configuration, but if the input FHIR artifacts depend on FHIR artifacts not contained in FHIR R4, these dependencies should be specified with the <code>-d</code> flag. For example, the <a href="http://hl7.org/fhir/us/mcode/StructureDefinition-mcode-cancer-patient.html">mcode-cancer-patient</a> profile in the <a href="http://hl7.org/fhir/us/mcode/">mCODE Implementation Guide</a> is derived from the <a href="http://hl7.org/fhir/us/core/STU3.1/StructureDefinition-us-core-patient.html">us-core-patient</a> profile in the <a href="http://hl7.org/fhir/us/core/">US Core Implementation Guide</a>. If you wanted to use GoFSH to convert the mcode-cancer-patient profile to FSH, you should specify US Core as a dependency:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> gofsh ./mcode-definitions -d hl7.fhir.us.core@3.1.0
 </code></pre></div>
@@ -818,19 +872,6 @@ GoFSH is still under development, and can not generate FSH for all FHIR artifact
 GoFSH can still generate FSH when dependencies are omitted, but the resulting FSH will be incomplete.
 </div>
 
-<h3 id="limitations-on-inputs">Limitations on Inputs</h3>
-<p>Note that GoFSH is not complete, and cannot be applied to all FHIR artifacts. The capabilities and limitations of GoFSH are given below.</p>
-<ul>
-<li>GoFSH outputs valid FSH for most profiles and extensions.
-<ul>
-<li>Generated profile and extension definitions should be technically correct, but may not use the most efficient FSH representation or follow FSH authoring best practices.</li>
-</ul>
-</li>
-<li>GoFSH does not output the content of Code System definitions; it declares them using keywords, but does not generate any of their rules.</li>
-<li>GoFSH does not output ValueSet definitions.</li>
-<li>GoFSH does not output Instance definitions (this includes examples, as well as any definitions that must be created in FSH using the Instance keyword).</li>
-<li>GoFSH does not support generating FSH from FHIR XML definitions.</li>
-</ul>
 <h2 id="gofsh-outputs">GoFSH Outputs</h2>
 <p>GoFSH populates an output directory, called <strong>gofsh/</strong> by default, with a <strong>resources.fsh</strong> file, which contains FSH definitions for all of the input FHIR StructureDefinitions. GoFSH will also generate a <strong>config.yaml</strong> file that can be used to configure SUSHI. If the input to GoFSH includes an ImplementationGuide resource, it is used to generate the configuration. Otherwise the configuration is generated by inferring values from the input, or by using sensible defaults if no values can be inferred. These definitions and configuration are ready to use with SUSHI, all you have to do is <a href="/docs/sushi/running">run SUSHI</a>.</p>
 
@@ -887,12 +928,16 @@ GoFSH can still generate FSH when dependencies are omitted, but the resulting FS
         
             
         
+            
+        
+            
+        
     
 </div>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified November 13, 2020: <a  href="https://github.com/FSHSchool/site/commit/f5a6fcd13c112d2d56f539673ad8216152bafeff">Update documentation for 1.0.0 (#27) (f5a6fcd)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified February 10, 2021: <a  href="https://github.com/FSHSchool/site/commit/bd56a8113c1c29d312fcb0cf469ddab2483803e3">Update Documentation for GoFSH 1.0 (#39) (bd56a81)</a>
 </div>
 </div>
 

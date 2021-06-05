@@ -207,7 +207,7 @@ Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
 &lt;li&gt;&lt;code&gt;unknown&lt;/code&gt;: It is not know which of the status values currently applies for the IG. This should be rare.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Since SUSHI currently supports only FHIR R4, the &lt;code&gt;fhirVersion&lt;/code&gt; should always be &lt;code&gt;4.0.1&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Since SUSHI currently supports only FHIR R4 and R5, the &lt;code&gt;fhirVersion&lt;/code&gt; should always be &lt;code&gt;4.0.0&lt;/code&gt; or above.&lt;/li&gt;
 &lt;li&gt;Valid values for the &lt;code&gt;releaseLabel&lt;/code&gt; include:
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;ci-build&lt;/code&gt;: the continuous integration build release (not stable)&lt;/li&gt;
@@ -239,7 +239,7 @@ SUSHI can generate a simple configuration file for you with the &lt;code&gt;--in
 &lt;p&gt;SUSHI will then run in FSH-Only mode to produce FHIR definition files only.&lt;/p&gt;
 &lt;p&gt;When attempting to extract information from an &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource, SUSHI assumes the project structure required by the &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/&#34;&gt;template-based IG Publisher&lt;/a&gt;. The following approach is used to find the &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Look for &lt;code&gt;&amp;lt;root&amp;gt;/ig.ini&lt;/code&gt;, where &lt;code&gt;&amp;lt;root&amp;gt;&lt;/code&gt; is the folder containing the &lt;strong&gt;fsh&lt;/strong&gt; subdirectory. If the &lt;strong&gt;ig.ini&lt;/strong&gt; file exists, it will have an &lt;code&gt;ig&lt;/code&gt; property which gives the path to the &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource, so SUSHI will use this path to find the resource.&lt;/li&gt;
+&lt;li&gt;Look for &lt;code&gt;&amp;lt;root&amp;gt;/ig.ini&lt;/code&gt;, where &lt;code&gt;&amp;lt;root&amp;gt;&lt;/code&gt; is the folder containing the &lt;strong&gt;input&lt;/strong&gt; folder. If the &lt;strong&gt;ig.ini&lt;/strong&gt; file exists, it will have an &lt;code&gt;ig&lt;/code&gt; property which gives the path to the &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource, so SUSHI will use this path to find the resource.&lt;/li&gt;
 &lt;li&gt;If there is no &lt;strong&gt;ig.ini&lt;/strong&gt; in the root folder, SUSHI will search the &lt;code&gt;&amp;lt;root&amp;gt;/input&lt;/code&gt; folder for an &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource, and if exactly one resource is found, SUSHI will extract the above properties from it.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;If an author does not have an &lt;strong&gt;ImplementationGuide&lt;/strong&gt; resource, but still wants SUSHI to build FHIR definition files only, the author should add a &lt;code&gt;FSHOnly&lt;/code&gt; flag to the &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; and set its value to &lt;code&gt;true&lt;/code&gt;:&lt;/p&gt;
@@ -265,22 +265,29 @@ SUSHI can generate a simple configuration file for you with the &lt;code&gt;--in
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#dfdfdf&#34;&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;dependencies&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#dfdfdf&#34;&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;hl7.fhir.us.core&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;/docs/sushi/configuration/recommended-config.yaml&#34;&gt;&lt;i class=&#39;fas fa-download fa-fw&#39;&gt;&lt;/i&gt; Download Recommended Configuration Example&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The &lt;code&gt;license&lt;/code&gt; value should come from the &lt;a href=&#34;http://hl7.org/fhir/R4/valueset-spdx-license.html&#34;&gt;SPDX Licence Value Set&lt;/a&gt;, although most FHIR IGs use the &lt;code&gt;CC0-1.0&lt;/code&gt; (Creative Commons Zero v1.0 Universal) license.&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;dependencies&lt;/code&gt; value is a YAML object for which the keys are each dependency&amp;rsquo;s package id and the values are the dependency versions. In addition to standard version identifiers, the following two special versions are supported:
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+The &lt;code&gt;license&lt;/code&gt; value should come from the &lt;a href=&#34;http://hl7.org/fhir/R4/valueset-spdx-license.html&#34;&gt;SPDX Licence Value Set&lt;/a&gt;, although most FHIR IGs use the &lt;code&gt;CC0-1.0&lt;/code&gt; (Creative Commons Zero v1.0 Universal) license.
+&lt;/div&gt;
+
+&lt;h3 id=&#34;dependencies&#34;&gt;Dependencies&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;dependencies&lt;/code&gt; value is a YAML object for which the keys are each dependency&amp;rsquo;s package id and the values are the dependency versions. In addition to standard version identifiers, the following two special versions are supported:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;dev&lt;/code&gt;: indicates that the dependency should be loaded from the local FHIR cache&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;current&lt;/code&gt;: indicates that the dependency should be loaded from the last successful auto-build.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;dependencies&lt;/code&gt; property also supports an advanced syntax that allows you to directly specify the dependency id and/or URI if necessary. For example:
+&lt;p&gt;The &lt;code&gt;dependencies&lt;/code&gt; property also supports an advanced syntax that allows you to directly specify the dependency id and/or URI if necessary. For example:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;dependencies&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;hl7.fhir.us.core&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;uscore&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;uri&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;http&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;//hl7.org/fhir/us/core/ImplementationGuide/hl7.fhir.us.core&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;version&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;SUSHI also supports &lt;a href=&#34;http://build.fhir.org/versions.html#extensions&#34;&gt;extensions for converting between versions of FHIR&lt;/a&gt;. To get extensions that represent elements from other versions of FHIR, a package of the form &lt;code&gt;hl7.fhir.extensions.&amp;lt;extension-version&amp;gt;:&amp;lt;package-version&amp;gt;&lt;/code&gt; is used. The &lt;code&gt;&amp;lt;extension-version&amp;gt;&lt;/code&gt; should be one of &lt;code&gt;r2&lt;/code&gt;, &lt;code&gt;r3&lt;/code&gt;, or &lt;code&gt;r4&lt;/code&gt; to indicate which version of FHIR the element represented by the extension is defined in. The &lt;code&gt;&amp;lt;package-version&amp;gt;&lt;/code&gt; represents which version of FHIR the extension will be used in. For an IG defined using FHIR R4, this would be &lt;code&gt;4.0.1&lt;/code&gt;. As an example, if an author wanted to represent the &lt;code&gt;Patient.animal.species&lt;/code&gt; &lt;a href=&#34;http://hl7.org/fhir/STU3/patient-definitions.html#Patient.animal.species&#34;&gt;element&lt;/a&gt; as defined in R3, the dependencies should be specified as:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;dependencies&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;hl7.fhir.extensions.r3&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4.0.1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;An author can then reference the extension using a URL following the format defined in the FHIR specification linked above. For example, the extension referring to the R3 &lt;code&gt;Patient.animal.species&lt;/code&gt; element would be: &lt;code&gt;http://hl7.org/fhir/3.0/StructureDefinition/extension-Patient.animal.species&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;full-configuration&#34;&gt;Full Configuration&lt;/h2&gt;
 &lt;p&gt;The table below lists all configuration properties that can be used in SUSHI&amp;rsquo;s &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; file. Most SUSHI configuration properties come directly from the &lt;a href=&#34;https://www.hl7.org/fhir/R4/implementationguide.html#resource&#34;&gt;Implementation Guide resource&lt;/a&gt; and will be translated into the generated ImplementationGuide resource for your project. Differences between the &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; properties and ImplementationGuide properties are noted below.&lt;/p&gt;
 &lt;table&gt;
@@ -690,12 +697,13 @@ This documentation assumes you have a SUSHI-compliant project structure and conf
 &lt;p&gt;SUSHI is executed from the command line. The general form of the SUSHI execution command is as follows:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;specification-directory&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;options&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where options include the following (in any order):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;-o, --out &amp;lt;out&amp;gt;  the path to the output folder
--d, --debug      output extra debugging information
--s, --snapshot   generate snapshot in Structure Definition output (default: false)
--i, --init       initialize a SUSHI project
--v, --version    print SUSHI version
--h, --help       output usage information
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;-o, --out &amp;lt;out&amp;gt;     the path to the output folder
+-d, --debug         output extra debugging information
+-p, --preprocessed  output FSH produced by preprocessing steps
+-s, --snapshot      generate snapshot in Structure Definition output (default: false)
+-i, --init          initialize a SUSHI project
+-v, --version       print SUSHI version
+-h, --help          output usage information
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
@@ -805,6 +813,48 @@ If you have never run the IG Publisher, you may need to install Jekyll first. Se
 sushi-version = 0.16.0
 timeout = 120
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;preprocessed-fsh&#34;&gt;Preprocessed FSH&lt;/h3&gt;
+&lt;p&gt;When running SUSHI, the &lt;code&gt;-p&lt;/code&gt; or &lt;code&gt;--preprocessed&lt;/code&gt; flag can be used to to create a &lt;strong&gt;_preprocessed&lt;/strong&gt; folder in SUSHI&amp;rsquo;s output folder (&lt;strong&gt;customized-ig/_preprocessed&lt;/strong&gt; in the example above). This folder will contain representations of the input FSH after several preprocessing steps have taken place. These steps include resolution of &lt;a href=&#34;http://build.fhir.org/ig/HL7/fhir-shorthand/branches/master/reference.html#defining-aliases&#34;&gt;&lt;code&gt;Alias&lt;/code&gt; values&lt;/a&gt;, insertion of &lt;a href=&#34;http://build.fhir.org/ig/HL7/fhir-shorthand/branches/master/reference.html#defining-rule-sets&#34;&gt;&lt;code&gt;RuleSet&lt;/code&gt; rules&lt;/a&gt;, and resolution of &lt;a href=&#34;http://build.fhir.org/ig/HL7/fhir-shorthand/branches/master/reference.html#soft-indexing&#34;&gt;soft indexing&lt;/a&gt;. This is mainly provided as a debugging tool, for the author to verify that SUSHI is preprocessing the input FSH in an expected way, and to help trace errors in the output of SUSHI back to their source. For example, if the IG Publisher reports an error on element Bundle.entry[56].resource, it may be difficult to identify the problematic entry in your FSH source if you used soft-indexing. It is much easier, however, to identify the problematic element in the preprocessed FSH that contains explicit indices.&lt;/p&gt;
+&lt;p&gt;The example below shows a FSH snippet and a preprocessed version of that snippet. In this snippet, a &lt;code&gt;Profile&lt;/code&gt; is defined using a &lt;code&gt;RuleSet&lt;/code&gt; and an &lt;code&gt;Alias&lt;/code&gt;, and below an &lt;code&gt;Instance&lt;/code&gt; is defined which uses soft indexing.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Alias: CAT = http://hl7.org/fhir/ValueSet/observation-category
+
+Profile: ObservationProfile
+Parent: Observation
+* insert Metadata
+* category from CAT (required)
+
+RuleSet: Metadata
+* ^version = &amp;quot;1.2.3&amp;quot;
+* ^publisher = &amp;quot;Example publisher&amp;quot;
+
+Instance: PatientInstance
+InstanceOf: Patient
+* name.given[+] = &amp;quot;John&amp;quot;
+* name.given[+] = &amp;quot;Q&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The preprocessed version of the above FSH is shown below. The &lt;code&gt;CAT&lt;/code&gt; alias has been resolved to its full URL, the rules contained in the &lt;code&gt;RuleSet&lt;/code&gt; have been inserted onto the &lt;code&gt;ObservationProfile&lt;/code&gt;, and the &lt;code&gt;RuleSet&lt;/code&gt; itself has been removed, and the rules on the &lt;code&gt;PatientInstance&lt;/code&gt; have been resolved to fully specified paths, which do not use soft indexing.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Alias: CAT = http://hl7.org/fhir/ValueSet/observation-category
+
+// Originally defined on lines 3 - 6
+Profile: ObservationProfile
+Parent: Observation
+Id: ObservationProfile
+* ^version = &amp;quot;1.2.3&amp;quot;
+* ^publisher = &amp;quot;Example publisher&amp;quot;
+* category from http://hl7.org/fhir/ValueSet/observation-category (required)
+
+// Originally defined on lines 12 - 15
+Instance: PatientInstance
+InstanceOf: Patient
+Usage: #example
+* name.given[0] = &amp;quot;John&amp;quot;
+* name.given[1] = &amp;quot;Q&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+Once you have finished reviewing your preprocessed FSH, we recommend deleting the &lt;strong&gt;_preprocessed&lt;/strong&gt; folder to avoid potential confusion related to multiple versions of FSH files in your project. For this same reason, we do not recommend committing your preprocessed FSH to source control.
 &lt;/div&gt;
 
 
@@ -924,6 +974,13 @@ If after the cleanup, you still have a top-level &lt;strong&gt;./input&lt;/stron
 &lt;p&gt;Move the &lt;strong&gt;./input/fsh/config.yaml&lt;/strong&gt; file to the top-level folder, and rename it &lt;strong&gt;sushi-config.yaml&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;5---run-sushi-and-follow-instructions&#34;&gt;5 - Run SUSHI and Follow Instructions&lt;/h3&gt;
 &lt;p&gt;You can now run SUSHI 1.0. You may get further instructions in the form of error messages.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+Although SUSHI 2.0 is available for use, if you are migrating from a pre-1.0.0 version of SUSHI, we recommend first updating to the latest SUSHI 1.0 version of SUSHI (this is &lt;a href=&#34;https://github.com/FHIR/sushi/releases/tag/v1.3.2&#34;&gt;SUSHI 1.3.2&lt;/a&gt; and can be installed via &lt;code&gt;npm install -g fsh-sushi@1.3.2&lt;/code&gt;). After resolving all errors and warnings in that version, only then should you migrate to a SUSHI 2.0 release.
+&lt;/div&gt;
+
 &lt;p&gt;One error message concerns the &lt;code&gt;template&lt;/code&gt; property in &lt;strong&gt;sushi-config.yaml&lt;/strong&gt;. If you get that error, follow the instructions to remove that property from &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; and create an &lt;strong&gt;./ig.ini&lt;/strong&gt; file.&lt;/p&gt;
 
 

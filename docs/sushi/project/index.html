@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.cf5a3acfe646675f2215b179090f78d9c2b2e1ad21d5a0a7e46efe87147c376efe36ea4e32c2e0b819a4d014890b455db507bef39a25c26e4c0d5d248a865123.json"
+  data-offline-search-index-json-src="/offline-search-index.c98e2ea5cabfa48163e1e12fae18196099a31ad77b2c6290c265447d1f8070ecebdf68af914901404385d24ae2a2567e61ceb4a6a412da2c727e34110cccbe1b.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.cf5a3acfe646675f2215b179090f78d9c2b2e1ad21d5a0a7e46efe87147c376efe36ea4e32c2e0b819a4d014890b455db507bef39a25c26e4c0d5d248a865123.json"
+  data-offline-search-index-json-src="/offline-search-index.c98e2ea5cabfa48163e1e12fae18196099a31ad77b2c6290c265447d1f8070ecebdf68af914901404385d24ae2a2567e61ceb4a6a412da2c727e34110cccbe1b.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -851,7 +851,7 @@
 </code></pre></div><p>The <strong>sushi-config.yaml</strong> file provides project configuration data to SUSHI. It is described further in the <a href="/docs/sushi/configuration/">Configuration</a> documentation.</p>
 <p>Each FSH file can contain multiple FSH definitions of varying types. FSH file names are not significant, but must end with the <strong>.fsh</strong> extension. In addition, FSH files can be organized into subdirectories. This provides authors the flexibility to organize their FSH definitions in whatever way makes sense to then.</p>
 <h3 id="using-the-hl7-ig-publisher-and-auto-builder">Using the HL7 IG Publisher and Auto-Builder</h3>
-<p>This project structure integrates with the HL7 IG Publisher <a href="https://github.com/FHIR/auto-ig-builder/blob/master/README.md">Auto-Builder</a>. When the IG Publisher detects an <strong>input/fsh</strong> subdirectory, it will automatically run SUSHI on that directory and output the SUSHI results to a <strong>fsh-generated</strong> directory (e.g., <strong>simple-project/fsh-generated</strong> in the example above). It will then continue with the normal IG Publisher process.</p>
+<p>This project structure integrates with the HL7 IG Publisher <a href="https://github.com/FHIR/auto-ig-builder/blob/master/README.md">Auto-Builder</a>. When the IG Publisher detects an <strong>input/fsh</strong> subdirectory, it will automatically run SUSHI on the project directory and output the SUSHI results to a <strong>fsh-generated</strong> directory (e.g., <strong>simple-project/fsh-generated</strong> in the example above). It will then continue with the normal IG Publisher process.</p>
 <p>This approach allows a GitHub repository to be configured such that whenever changes to FSH files are pushed to GitHub, the <a href="https://github.com/FHIR/auto-ig-builder/blob/master/README.md">Auto-Builder</a> will pick them up, run the SUSHI/IG Publisher process, and publish the resulting IG to <a href="http://build.fhir.org">http://build.fhir.org</a>.</p>
 <h2 id="ig-projects">IG Projects</h2>
 
@@ -1005,7 +1005,7 @@ Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified November 13, 2020: <a  href="https://github.com/FSHSchool/site/commit/f5a6fcd13c112d2d56f539673ad8216152bafeff">Update documentation for 1.0.0 (#27) (f5a6fcd)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified June 9, 2021: <a  href="https://github.com/FSHSchool/site/commit/6fcefabacc9640323e50686b5be08b9485821ec8">Update information about the path that IG publisher uses (#43) (6fcefab)</a>
 </div>
 </div>
 

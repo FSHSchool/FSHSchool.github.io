@@ -62,15 +62,17 @@
 &lt;p&gt;GoFSH is executed from the command line. The general form of the GoFSH execution command is as follows:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; gofsh &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;input-directory&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;options&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where options include the following (in any order):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;-o, --out &amp;lt;out&amp;gt;                   the path to the output directory (default: ./fsh)
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;-o, --out &amp;lt;out&amp;gt;                   the path to the output folder
 -l, --log-level &amp;lt;level&amp;gt;           specify the level of log messages: error, warn, info (default), debug
 -d, --dependency &amp;lt;dependency...&amp;gt;  specify dependencies to be loaded using format dependencyId@version (FHIR R4 included by default)
--v, --version                     print goFSH version
--s, --style                       specify how the output is organized into files: group-by-fsh-type (default), group-by-profile, single-file, file-per-definition
+-s, --style &amp;lt;style&amp;gt;               specify how the output is organized into files: file-per-definition (default), group-by-fsh-type, group-by-profile, single-file
 -f, --fshing-trip                 run SUSHI on the output of GoFSH and generate a comparison of the round trip results
--t, --file-type                   specify which file types GoFSH should accept as input: json-only (default), xml-only, json-and-xml
 -i, --installed-sushi             use the locally installed version of SUSHI when generating comparisons with the &amp;#34;-f&amp;#34; option
--h, --help                        output usage information
+-t, --file-type &amp;lt;type&amp;gt;            specify which file types GoFSH should accept as input: json-only (default), xml-only, json-and-xml
+--indent                          output FSH with indented rules using context paths
+--meta-profile &amp;lt;mode&amp;gt;             specify how meta.profile on Instances should be applied to the InstanceOf keyword: only-one (default), first, none
+-v, --version                     print goFSH version
+-h, --help                        display help for command
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;While GoFSH is running, it will print status messages as it processes your project files. The following sections give further detail on using certain options.&lt;/p&gt;
 &lt;h3 id=&#34;style&#34;&gt;&lt;code&gt;style&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;The &lt;code&gt;style&lt;/code&gt; option has four values:&lt;/p&gt;
@@ -82,6 +84,15 @@
 &lt;/ul&gt;
 &lt;h3 id=&#34;fshing-trip&#34;&gt;&lt;code&gt;fshing-trip&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;If this flag is added, after GoFSH runs, SUSHI will run on the output of GoFSH. The output of SUSHI will then be compared to the original input to GoFSH (FHIR is compared to FHIR), and a visualization of differences between the original input and the SUSHI output will be created in &lt;code&gt;&amp;lt;output-folder&amp;gt;/fshing-trip-comparison.html&lt;/code&gt;. If the &lt;code&gt;--installed-sushi&lt;/code&gt; flag is set, then this process will use whichever version of SUSHI you have globally installed. Otherwise GoFSH will use its own built-in version of SUSHI (which may not be the latest version available).&lt;/p&gt;
+&lt;h3 id=&#34;indent&#34;&gt;&lt;code&gt;indent&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;When the &lt;code&gt;--indent&lt;/code&gt; option is specified, the output FSH will take advantage of &lt;a href=&#34;http://build.fhir.org/ig/HL7/fhir-shorthand/branches/master/reference.html#indented-rules&#34;&gt;indented rules&lt;/a&gt; when applicable. This will also cause &lt;code&gt;CodeSystem&lt;/code&gt; definitions to utilize indentation in &lt;a href=&#34;http://build.fhir.org/ig/HL7/fhir-shorthand/branches/master/reference.html#defining-code-systems-with-hierarchical-codes&#34;&gt;hierarchical codes&lt;/a&gt;, &lt;code&gt;Concept&lt;/code&gt; designations, and &lt;code&gt;Concept&lt;/code&gt; properties when applicable.&lt;/p&gt;
+&lt;h3 id=&#34;meta-profile&#34;&gt;&lt;code&gt;meta-profile&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;--meta-profile&lt;/code&gt; option can be used to control how &lt;code&gt;meta.profile&lt;/code&gt; on instances should be applied to the &lt;code&gt;InstanceOf&lt;/code&gt; keyword. The option has the following three values:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;only-one&lt;/code&gt; (default): If there is exactly one entry in the &lt;code&gt;meta.profile&lt;/code&gt; array of a definition, this value will be used to set &lt;code&gt;InstanceOf&lt;/code&gt;. If there is not exactly one entry in the &lt;code&gt;meta.profile&lt;/code&gt; array, the &lt;code&gt;resourceType&lt;/code&gt; of the definition will be used for &lt;code&gt;InstanceOf&lt;/code&gt;, and any contents of the &lt;code&gt;meta.profile&lt;/code&gt; array will be specified with &lt;code&gt;^&lt;/code&gt; rules.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;first&lt;/code&gt;: If there is at least one entry in the &lt;code&gt;meta.profile&lt;/code&gt; array, it will be used to set &lt;code&gt;InstanceOf&lt;/code&gt;. Additional entries will be specified with &lt;code&gt;^&lt;/code&gt; rules.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;none&lt;/code&gt;: The &lt;code&gt;meta.profile&lt;/code&gt; array will not be used to determine &lt;code&gt;InstanceOf&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;gofsh-inputs&#34;&gt;GoFSH Inputs&lt;/h2&gt;
 &lt;p&gt;GoFSH takes FHIR StructureDefinitions and other FHIR conformance definitions (e.g., ValueSets, CodeSystems) as input. GoFSH requires that these files be JSON. Every JSON file contained in the input directory, or its subdirectories, will be processed by GoFSH into FSH.&lt;/p&gt;
 &lt;p&gt;GoFSH does not require any configuration, but if the input FHIR artifacts depend on FHIR artifacts not contained in FHIR R4, these dependencies should be specified with the &lt;code&gt;-d&lt;/code&gt; flag. For example, the &lt;a href=&#34;http://hl7.org/fhir/us/mcode/StructureDefinition-mcode-cancer-patient.html&#34;&gt;mcode-cancer-patient&lt;/a&gt; profile in the &lt;a href=&#34;http://hl7.org/fhir/us/mcode/&#34;&gt;mCODE Implementation Guide&lt;/a&gt; is derived from the &lt;a href=&#34;http://hl7.org/fhir/us/core/STU3.1/StructureDefinition-us-core-patient.html&#34;&gt;us-core-patient&lt;/a&gt; profile in the &lt;a href=&#34;http://hl7.org/fhir/us/core/&#34;&gt;US Core Implementation Guide&lt;/a&gt;. If you wanted to use GoFSH to convert the mcode-cancer-patient profile to FSH, you should specify US Core as a dependency:&lt;/p&gt;

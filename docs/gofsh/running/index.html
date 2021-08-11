@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.a1726030eb5fdcc41916bceabf902d2d647fde15e7e0e0c38ff817e6fb5a5906f307d982e37b6995daaa0012237e2cfc18895c5b088f4e4497edbdfca3c10455.json"
+  data-offline-search-index-json-src="/offline-search-index.7cecbb33ca71ead33c5678dbc0be7ed202fb32f8e6a8e3ec01cd4beb7abb36d160c2d4a64b604ccc9f66fdf07271362f7f3faceb74b3876dd9a9cf86ac240ab5.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.a1726030eb5fdcc41916bceabf902d2d647fde15e7e0e0c38ff817e6fb5a5906f307d982e37b6995daaa0012237e2cfc18895c5b088f4e4497edbdfca3c10455.json"
+  data-offline-search-index-json-src="/offline-search-index.7cecbb33ca71ead33c5678dbc0be7ed202fb32f8e6a8e3ec01cd4beb7abb36d160c2d4a64b604ccc9f66fdf07271362f7f3faceb74b3876dd9a9cf86ac240ab5.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -784,6 +784,8 @@
       <ul>
         <li><a href="#style"><code>style</code></a></li>
         <li><a href="#fshing-trip"><code>fshing-trip</code></a></li>
+        <li><a href="#indent"><code>indent</code></a></li>
+        <li><a href="#meta-profile"><code>meta-profile</code></a></li>
       </ul>
     </li>
     <li><a href="#gofsh-inputs">GoFSH Inputs</a></li>
@@ -841,15 +843,17 @@
 <p>GoFSH is executed from the command line. The general form of the GoFSH execution command is as follows:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> gofsh <span style="color:#ce5c00;font-weight:bold">{</span>input-directory<span style="color:#ce5c00;font-weight:bold">}</span> <span style="color:#ce5c00;font-weight:bold">{</span>options<span style="color:#ce5c00;font-weight:bold">}</span>
 </code></pre></div><p>where options include the following (in any order):</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-o, --out &lt;out&gt;                   the path to the output directory (default: ./fsh)
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-o, --out &lt;out&gt;                   the path to the output folder
 -l, --log-level &lt;level&gt;           specify the level of log messages: error, warn, info (default), debug
 -d, --dependency &lt;dependency...&gt;  specify dependencies to be loaded using format dependencyId@version (FHIR R4 included by default)
--v, --version                     print goFSH version
--s, --style                       specify how the output is organized into files: group-by-fsh-type (default), group-by-profile, single-file, file-per-definition
+-s, --style &lt;style&gt;               specify how the output is organized into files: file-per-definition (default), group-by-fsh-type, group-by-profile, single-file
 -f, --fshing-trip                 run SUSHI on the output of GoFSH and generate a comparison of the round trip results
--t, --file-type                   specify which file types GoFSH should accept as input: json-only (default), xml-only, json-and-xml
 -i, --installed-sushi             use the locally installed version of SUSHI when generating comparisons with the &#34;-f&#34; option
--h, --help                        output usage information
+-t, --file-type &lt;type&gt;            specify which file types GoFSH should accept as input: json-only (default), xml-only, json-and-xml
+--indent                          output FSH with indented rules using context paths
+--meta-profile &lt;mode&gt;             specify how meta.profile on Instances should be applied to the InstanceOf keyword: only-one (default), first, none
+-v, --version                     print goFSH version
+-h, --help                        display help for command
 </code></pre></div><p>While GoFSH is running, it will print status messages as it processes your project files. The following sections give further detail on using certain options.</p>
 <h3 id="style"><code>style</code></h3>
 <p>The <code>style</code> option has four values:</p>
@@ -861,6 +865,15 @@
 </ul>
 <h3 id="fshing-trip"><code>fshing-trip</code></h3>
 <p>If this flag is added, after GoFSH runs, SUSHI will run on the output of GoFSH. The output of SUSHI will then be compared to the original input to GoFSH (FHIR is compared to FHIR), and a visualization of differences between the original input and the SUSHI output will be created in <code>&lt;output-folder&gt;/fshing-trip-comparison.html</code>. If the <code>--installed-sushi</code> flag is set, then this process will use whichever version of SUSHI you have globally installed. Otherwise GoFSH will use its own built-in version of SUSHI (which may not be the latest version available).</p>
+<h3 id="indent"><code>indent</code></h3>
+<p>When the <code>--indent</code> option is specified, the output FSH will take advantage of <a href="http://build.fhir.org/ig/HL7/fhir-shorthand/branches/master/reference.html#indented-rules">indented rules</a> when applicable. This will also cause <code>CodeSystem</code> definitions to utilize indentation in <a href="http://build.fhir.org/ig/HL7/fhir-shorthand/branches/master/reference.html#defining-code-systems-with-hierarchical-codes">hierarchical codes</a>, <code>Concept</code> designations, and <code>Concept</code> properties when applicable.</p>
+<h3 id="meta-profile"><code>meta-profile</code></h3>
+<p>The <code>--meta-profile</code> option can be used to control how <code>meta.profile</code> on instances should be applied to the <code>InstanceOf</code> keyword. The option has the following three values:</p>
+<ul>
+<li><code>only-one</code> (default): If there is exactly one entry in the <code>meta.profile</code> array of a definition, this value will be used to set <code>InstanceOf</code>. If there is not exactly one entry in the <code>meta.profile</code> array, the <code>resourceType</code> of the definition will be used for <code>InstanceOf</code>, and any contents of the <code>meta.profile</code> array will be specified with <code>^</code> rules.</li>
+<li><code>first</code>: If there is at least one entry in the <code>meta.profile</code> array, it will be used to set <code>InstanceOf</code>. Additional entries will be specified with <code>^</code> rules.</li>
+<li><code>none</code>: The <code>meta.profile</code> array will not be used to determine <code>InstanceOf</code>.</li>
+</ul>
 <h2 id="gofsh-inputs">GoFSH Inputs</h2>
 <p>GoFSH takes FHIR StructureDefinitions and other FHIR conformance definitions (e.g., ValueSets, CodeSystems) as input. GoFSH requires that these files be JSON. Every JSON file contained in the input directory, or its subdirectories, will be processed by GoFSH into FSH.</p>
 <p>GoFSH does not require any configuration, but if the input FHIR artifacts depend on FHIR artifacts not contained in FHIR R4, these dependencies should be specified with the <code>-d</code> flag. For example, the <a href="http://hl7.org/fhir/us/mcode/StructureDefinition-mcode-cancer-patient.html">mcode-cancer-patient</a> profile in the <a href="http://hl7.org/fhir/us/mcode/">mCODE Implementation Guide</a> is derived from the <a href="http://hl7.org/fhir/us/core/STU3.1/StructureDefinition-us-core-patient.html">us-core-patient</a> profile in the <a href="http://hl7.org/fhir/us/core/">US Core Implementation Guide</a>. If you wanted to use GoFSH to convert the mcode-cancer-patient profile to FSH, you should specify US Core as a dependency:</p>
@@ -937,7 +950,7 @@ GoFSH can still generate FSH when dependencies are omitted, but the resulting FS
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified June 4, 2021: <a  href="https://github.com/FSHSchool/site/commit/90ac4441902836f7d932e034deee314fcb39618c">Updates for SUSHI 2.0 (#42) (90ac444)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified August 11, 2021: <a  href="https://github.com/FSHSchool/site/commit/540ff06f4850bfe5c72665f12b5d21e55dfb2eca">Document indent and meta-profile options (#47) (540ff06)</a>
 </div>
 </div>
 

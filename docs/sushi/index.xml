@@ -163,6 +163,8 @@ Id (Default: fhir.example): my.id
 Canonical (Default: http://example.org): http://myid.org
 Status (Default: draft): active
 Version (Default: 0.1.0): 2.0.0
+Publisher Name (Default: Example Publisher): MyPublisher
+Publisher Url (Default: http://example.org/example-publisher): http://my-publisher.org
 Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;These values are used to generate a simple &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; file and a corresponding IG-Publisher-compatible project structure:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;NewIG

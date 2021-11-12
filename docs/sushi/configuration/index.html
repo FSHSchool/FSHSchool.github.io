@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.ea8ed071b845f96796e1741910825465b623b4cd42fc8fb110769ae287f25a80eba8126675d5dc6fab5f1f2cc91c4761b0708d2735a924b5e6dae574156a5a99.json"
+  data-offline-search-index-json-src="/offline-search-index.0972d23613cfb81abf7d9569606433e43e83adb4747894d2a2e1c31f1a0a6c82da4abfbb2d7fee38ee1d66abc5616583da6bcf334866eb9812a827b53a0516b0.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.ea8ed071b845f96796e1741910825465b623b4cd42fc8fb110769ae287f25a80eba8126675d5dc6fab5f1f2cc91c4761b0708d2735a924b5e6dae574156a5a99.json"
+  data-offline-search-index-json-src="/offline-search-index.0972d23613cfb81abf7d9569606433e43e83adb4747894d2a2e1c31f1a0a6c82da4abfbb2d7fee38ee1d66abc5616583da6bcf334866eb9812a827b53a0516b0.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -1146,6 +1146,11 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <td align="left">N/A</td>
 <td align="left">When set to true, the &ldquo;short&rdquo; and &ldquo;definition&rdquo; field on the root element of an Extension will be set to the &ldquo;Title&rdquo; and &ldquo;Description&rdquo; of that Extension. Default is true.</td>
 </tr>
+<tr>
+<td align="left">instanceOptions</td>
+<td align="left">N/A</td>
+<td align="left">A <code>key: value</code> pair, where key can be <code>setMetaProfile</code> (options are <code>always</code>, <code>never</code>, <code>inline-only</code>, <code>standalone-only</code>) or <code>setId</code> (options are <code>always</code> or <code>standalone-only</code>).</td>
+</tr>
 </tbody>
 </table>
 <h2 id="exhaustive-example">Exhaustive Example</h2>
@@ -1334,6 +1339,22 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># When set to true, the &#34;short&#34; and &#34;definition&#34; field on the root element of an Extension will</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># be set to the &#34;Title&#34; and &#34;Description&#34; of that Extension. Default is true.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">applyExtensionMetadataToRoot</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">false</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The instanceOptions property is used to configure certain aspects of how SUSHI processed instances.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># See the individual option definitions below for more detail.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">instanceOptions</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># Determines for which types of Instances SUSHI will automatically set meta.profile</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># if InstanceOf references a profile. Options are:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># - always: Set meta.profile for all Instances of profiles (default)</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># - never: Do not set meta.profile on any Instances</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># - inline-only: Set meta.profile for only Instances of profiles with Usage set to #inline</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># - standalone-only: Set meta.profile for only Instances of profiles where Usage is any value other than #inline</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">setMetaProfile</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>always<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># Determines for which types of Instances SUSHI will automatically set id</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># if InstanceOf references a profile. Options are: </span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># - always: Set id for all Instances (default)</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># - standalone-only: Set id for only Instances where Usage is any value other than #inline</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">setId</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>always<span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><p><a href="/docs/sushi/configuration/exhaustive-config.yaml"><i class='fas fa-download fa-fw'></i> Download Exhaustive Configuration Example</a></p>
 
         <div class="section-index">
@@ -1398,7 +1419,7 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified June 4, 2021: <a  href="https://github.com/FSHSchool/site/commit/90ac4441902836f7d932e034deee314fcb39618c">Updates for SUSHI 2.0 (#42) (90ac444)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified November 12, 2021: <a  href="https://github.com/FSHSchool/site/commit/679376d803a78d5162b096cf4b627dd683229c8f">Document instanceOptions (#52) (679376d)</a>
 </div>
 </div>
 

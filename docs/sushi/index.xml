@@ -215,6 +215,7 @@ Initialize SUSHI project in C:\Users\shorty\dev\NewIG? [y/n]: y
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;/docs/sushi/configuration/minimum-config.yaml&#34;&gt;&lt;i class=&#39;fas fa-download fa-fw&#39;&gt;&lt;/i&gt; Download Minimum Configuration Example&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;For an official HL7 project, the &lt;code&gt;id&lt;/code&gt; and &lt;code&gt;canonical&lt;/code&gt; will typically be assigned by the &lt;a href=&#34;mailto:fhir-director@hl7.org&#34;&gt;FHIR Product Director&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;canonical&lt;/code&gt; refers to the &lt;em&gt;canonical base&lt;/em&gt; of the IG, not the canonical URL of the IG resource (e.g., &lt;code&gt;http://hl7.org/fhir/us/example&lt;/code&gt;, &lt;em&gt;not&lt;/em&gt; &lt;code&gt;http://hl7.org/fhir/us/example/ImplementationGuide/fhir.us.example&lt;/code&gt;).&lt;/li&gt;
 &lt;li&gt;Valid values for &lt;code&gt;status&lt;/code&gt; include:
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;draft&lt;/code&gt;: The IG is still under development and is not yet considered to be ready for normal use.&lt;/li&gt;
@@ -483,7 +484,7 @@ The &lt;code&gt;license&lt;/code&gt; value should come from the &lt;a href=&#34;
 &lt;tr&gt;
 &lt;td align=&#34;left&#34;&gt;canonical&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;N/A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;The canonical URL to be used throughout the IG&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;The canonical base URL to be used throughout the IG&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align=&#34;left&#34;&gt;menu&lt;/td&gt;
@@ -892,6 +893,72 @@ Usage: #example
 &lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
 &lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
 Once you have finished reviewing your preprocessed FSH, we recommend deleting the &lt;strong&gt;_preprocessed&lt;/strong&gt; folder to avoid potential confusion related to multiple versions of FSH files in your project. For this same reason, we do not recommend committing your preprocessed FSH to source control.
+&lt;/div&gt;
+
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Tips and Tricks</title>
+      <link>/docs/sushi/tips/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/sushi/tips/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;resolving-issues-with-dependency-igs&#34;&gt;Resolving Issues with Dependency IGs&lt;/h2&gt;
+&lt;p&gt;Sometimes authors need to take additional steps when depending on non-HL7 package dependencies (e.g., packages from Simplifier). The following sections describe common problems and their solutions.&lt;/p&gt;
+&lt;h3 id=&#34;sushi-could-not-find-the-ig-url-in-the-dependency-ig&#34;&gt;SUSHI could not find the IG URL in the dependency IG&lt;/h3&gt;
+&lt;p&gt;SUSHI requires that dependency packages have an associated IG URL. This is because SUSHI needs it to properly populate the &lt;a href=&#34;http://build.fhir.org/implementationguide-definitions.html#ImplementationGuide.dependsOn&#34;&gt;dependsOn&lt;/a&gt; property when generating your IG&amp;rsquo;s ImplementationGuide resource.&lt;/p&gt;
+&lt;p&gt;When SUSHI loads a dependency that does not have an ImplementationGuide resource in it and/or does not declare a canonical in its &lt;code&gt;package.json&lt;/code&gt; file, SUSHI reports an error like the following:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Failed to add de.basisprofil.r4:1.1.0 to ImplementationGuide instance because SUSHI could not find the IG URL in the dependency IG. To specify the IG URL in your sushi-config.yaml, use the dependency details format:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;dependencies&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;de.basisprofil.r4&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;uri&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;http&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;//fhir.org/packages/de.basisprofil.r4/ImplementationGuide/de.basisprofil.r4&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;version&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/blockquote&gt;
+&lt;p&gt;As the error suggests, you need to update your &lt;code&gt;sushi-config.yaml&lt;/code&gt; file so the dependency declaration includes both the &lt;code&gt;uri&lt;/code&gt; and &lt;code&gt;version&lt;/code&gt;. The &lt;code&gt;uri&lt;/code&gt; is intended to point to an ImplementationGuide resource, but in this case there is no ImplementationGuide resource to point to.&lt;/p&gt;
+&lt;p&gt;The FHIR core team has recently looked into this and now recommends using a &lt;code&gt;uri&lt;/code&gt; with the following format when a package has no IG resource: &lt;code&gt;http://fhir.org/packages/${packageId}/ImplementationGuide/${packageId}&lt;/code&gt;. In the example above, authors should provide the &lt;code&gt;uri&lt;/code&gt; value: &lt;code&gt;http://fhir.org/packages/de.basisprofil.r4/ImplementationGuide/de.basisprofil.r4&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In the near future, SUSHI will be updated to automatically apply this guidance so that authors will no longer receive this error and will not need to take any action.&lt;/p&gt;
+&lt;h3 id=&#34;structure-definition-is-missing-snapshot&#34;&gt;Structure Definition is missing snapshot&lt;/h3&gt;
+&lt;p&gt;Some non-HL7 FHIR packages are distributed without snapshot elements in their profiles. If your IG uses one of these profiles, SUSHI will report an error like the following:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Structure Definition &lt;a href=&#34;http://fhir.de/StructureDefinition/observation-de-vitalsign&#34;&gt;http://fhir.de/StructureDefinition/observation-de-vitalsign&lt;/a&gt; is missing snapshot. Snapshot is required for import.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Since SUSHI does not implement its own snapshot generator, you must update the package in your FHIR cache so that its profiles include snapshot elements. Luckily, the &lt;a href=&#34;https://fire.ly/products/firely-terminal/&#34;&gt;Firely Terminal&lt;/a&gt; provides a way to do this.&lt;/p&gt;
+&lt;p&gt;First, you must install Firely Terminal:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Install the &lt;a href=&#34;https://dotnet.microsoft.com/en-us/download/dotnet/3.1&#34;&gt;.NET Core 3.1&lt;/a&gt; SDK for your operating system.&lt;/li&gt;
+&lt;li&gt;Confirm that the .NET Core 3.1 SDK is properly installed by running the command: &lt;code&gt;dotnet --version&lt;/code&gt;.
+&lt;ul&gt;
+&lt;li&gt;If the command fails, exit your terminal and start a new terminal session. Then try step 2 again.&lt;/li&gt;
+&lt;li&gt;If &lt;code&gt;dotnet --version&lt;/code&gt; reports a different version than the 3.1 SDK, you will need to follow the instructions to &lt;a href=&#34;https://docs.microsoft.com/en-us/dotnet/core/versions/selection#the-sdk-uses-the-latest-installed-version&#34;&gt;select the .NET version to use&lt;/a&gt;. When creating the &lt;em&gt;global.json&lt;/em&gt; file, be sure to specify the full SDK version number (e.g., &lt;code&gt;3.1.416&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Run the command: &lt;code&gt;dotnet tool install --global firely.terminal --version 2.5.0-beta-7&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Confirm that Firely Terminal is properly installed by running the command: &lt;code&gt;fhir --version&lt;/code&gt;.
+&lt;ul&gt;
+&lt;li&gt;If the command fails, you may need to add the .NET tools folder to your path. On Mac, run the following command: &lt;code&gt;export PATH=$PATH:~/.dotnet/tools&lt;/code&gt;. Then try step 4 again.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Then use Firely Terminal to populate the snapshot elements in the dependency package.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Run the command: &lt;code&gt;fhir bake --package  &amp;lt;packagename&amp;gt;&lt;/code&gt;, substituting the dependency package ID for &lt;code&gt;&amp;lt;packagename&amp;gt;&lt;/code&gt;.
+&lt;ul&gt;
+&lt;li&gt;E.g., &lt;code&gt;fhir bake --package de.basisprofil.r4&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Run SUSHI again. The error about missing snapshots should no longer be displayed.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Tip&lt;/h4&gt;
+You can see a list of the available Firely Terminal versions &lt;a href=&#34;https://www.nuget.org/packages/Firely.Terminal&#34;&gt;here&lt;/a&gt;. If there is a later version than 2.5.0-beta-7, we recommend that. We do not recommend the 2.4.2 version because it contains a bug in the snapshot generator that adversely affects SUSHI processing.
 &lt;/div&gt;
 
 

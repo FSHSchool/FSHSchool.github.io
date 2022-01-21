@@ -7,7 +7,7 @@
 
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
-<link rel="alternate" type="application/rss&#43;xml" href="/docs/index.xml">
+<link rel="alternate" type="application/rss&#43;xml" href="/docs/sushi/tips/index.xml">
 
 
 <link rel="shortcut icon" href="/favicons/favicon.ico" >
@@ -21,14 +21,14 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Documentation | FSH School</title><meta property="og:title" content="Documentation" />
+<title>Tips and Tricks | FSH School</title><meta property="og:title" content="Tips and Tricks" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="/docs/" />
+<meta property="og:url" content="/docs/sushi/tips/" />
 
-<meta itemprop="name" content="Documentation">
+<meta itemprop="name" content="Tips and Tricks">
 <meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Documentation"/>
+<meta name="twitter:title" content="Tips and Tricks"/>
 <meta name="twitter:description" content=""/>
 
 
@@ -179,7 +179,7 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Documentation</a>
+    <a  href="/docs/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Documentation</a>
   </li>
   <ul>
     <li class="collapse show" id="docs">
@@ -288,10 +288,10 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/sushi/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">SUSHI</a>
+    <a  href="/docs/sushi/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">SUSHI</a>
   </li>
   <ul>
-    <li class="collapse " id="docssushi">
+    <li class="collapse show" id="docssushi">
       
       
       
@@ -397,10 +397,10 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/sushi/tips/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Tips and Tricks</a>
+    <a  href="/docs/sushi/tips/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Tips and Tricks</a>
   </li>
   <ul>
-    <li class="collapse " id="docssushitips">
+    <li class="collapse show" id="docssushitips">
       
       
       
@@ -788,7 +788,7 @@
 
 
 
-<a href="https://github.com/FSHSchool/site/issues/new?title=Documentation" target="_blank"><i class="fab fa-github fa-fw"></i> Report a documentation issue</a>
+<a href="https://github.com/FSHSchool/site/issues/new?title=Tips%20and%20Tricks" target="_blank"><i class="fab fa-github fa-fw"></i> Report a documentation issue</a>
 <a href="https://github.com/fhir/sushi/issues/new" target="_blank"><i class="fab fa-github fa-fw"></i> Report a SUSHI issue</a>
 
 <a href="https://www.hl7.org/fhir/" target="_blank"><i class="fas fa-fire fa-fw"></i> FHIR R4 Specification</a>
@@ -803,11 +803,10 @@
 
 <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#resolving-issues-with-dependency-igs">Resolving Issues with Dependency IGs</a>
       <ul>
-        <li><a href="#what-is-sushi">What is SUSHI?</a></li>
-        <li><a href="#what-is-gofsh">What is GoFSH?</a></li>
-        <li><a href="#navigating-the-documentation">Navigating the Documentation</a></li>
+        <li><a href="#sushi-could-not-find-the-ig-url-in-the-dependency-ig">SUSHI could not find the IG URL in the dependency IG</a></li>
+        <li><a href="#structure-definition-is-missing-snapshot">Structure Definition is missing snapshot</a></li>
       </ul>
     </li>
   </ul>
@@ -827,8 +826,28 @@
 
 
 
-<li class="breadcrumb-item active" aria-current="page">
+
+
+
+
+
+
+<li class="breadcrumb-item" >
 	<a href="/docs/">Documentation</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="/docs/sushi/">SUSHI</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item active" aria-current="page">
+	<a href="/docs/sushi/tips/">Tips and Tricks</a>
 </li>
 
 	</ol>
@@ -836,49 +855,60 @@
 
             
 <div class="td-content">
-	<h1>Documentation</h1>
+	<h1>Tips and Tricks</h1>
         
 	
-	
+	<h2 id="resolving-issues-with-dependency-igs">Resolving Issues with Dependency IGs</h2>
+<p>Sometimes authors need to take additional steps when depending on non-HL7 package dependencies (e.g., packages from Simplifier). The following sections describe common problems and their solutions.</p>
+<h3 id="sushi-could-not-find-the-ig-url-in-the-dependency-ig">SUSHI could not find the IG URL in the dependency IG</h3>
+<p>SUSHI requires that dependency packages have an associated IG URL. This is because SUSHI needs it to properly populate the <a href="http://build.fhir.org/implementationguide-definitions.html#ImplementationGuide.dependsOn">dependsOn</a> property when generating your IG&rsquo;s ImplementationGuide resource.</p>
+<p>When SUSHI loads a dependency that does not have an ImplementationGuide resource in it and/or does not declare a canonical in its <code>package.json</code> file, SUSHI reports an error like the following:</p>
+<blockquote>
+<p>Failed to add de.basisprofil.r4:1.1.0 to ImplementationGuide instance because SUSHI could not find the IG URL in the dependency IG. To specify the IG URL in your sushi-config.yaml, use the dependency details format:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">dependencies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">de.basisprofil.r4</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">uri</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//fhir.org/packages/de.basisprofil.r4/ImplementationGuide/de.basisprofil.r4<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></blockquote>
+<p>As the error suggests, you need to update your <code>sushi-config.yaml</code> file so the dependency declaration includes both the <code>uri</code> and <code>version</code>. The <code>uri</code> is intended to point to an ImplementationGuide resource, but in this case there is no ImplementationGuide resource to point to.</p>
+<p>The FHIR core team has recently looked into this and now recommends using a <code>uri</code> with the following format when a package has no IG resource: <code>http://fhir.org/packages/${packageId}/ImplementationGuide/${packageId}</code>. In the example above, authors should provide the <code>uri</code> value: <code>http://fhir.org/packages/de.basisprofil.r4/ImplementationGuide/de.basisprofil.r4</code>.</p>
+<p>In the near future, SUSHI will be updated to automatically apply this guidance so that authors will no longer receive this error and will not need to take any action.</p>
+<h3 id="structure-definition-is-missing-snapshot">Structure Definition is missing snapshot</h3>
+<p>Some non-HL7 FHIR packages are distributed without snapshot elements in their profiles. If your IG uses one of these profiles, SUSHI will report an error like the following:</p>
+<blockquote>
+<p>Structure Definition <a href="http://fhir.de/StructureDefinition/observation-de-vitalsign">http://fhir.de/StructureDefinition/observation-de-vitalsign</a> is missing snapshot. Snapshot is required for import.</p>
+</blockquote>
+<p>Since SUSHI does not implement its own snapshot generator, you must update the package in your FHIR cache so that its profiles include snapshot elements. Luckily, the <a href="https://fire.ly/products/firely-terminal/">Firely Terminal</a> provides a way to do this.</p>
+<p>First, you must install Firely Terminal:</p>
+<ol>
+<li>Install the <a href="https://dotnet.microsoft.com/en-us/download/dotnet/3.1">.NET Core 3.1</a> SDK for your operating system.</li>
+<li>Confirm that the .NET Core 3.1 SDK is properly installed by running the command: <code>dotnet --version</code>.
+<ul>
+<li>If the command fails, exit your terminal and start a new terminal session. Then try step 2 again.</li>
+<li>If <code>dotnet --version</code> reports a different version than the 3.1 SDK, you will need to follow the instructions to <a href="https://docs.microsoft.com/en-us/dotnet/core/versions/selection#the-sdk-uses-the-latest-installed-version">select the .NET version to use</a>. When creating the <em>global.json</em> file, be sure to specify the full SDK version number (e.g., <code>3.1.416</code>).</li>
+</ul>
+</li>
+<li>Run the command: <code>dotnet tool install --global firely.terminal --version 2.5.0-beta-7</code>.</li>
+<li>Confirm that Firely Terminal is properly installed by running the command: <code>fhir --version</code>.
+<ul>
+<li>If the command fails, you may need to add the .NET tools folder to your path. On Mac, run the following command: <code>export PATH=$PATH:~/.dotnet/tools</code>. Then try step 4 again.</li>
+</ul>
+</li>
+</ol>
+<p>Then use Firely Terminal to populate the snapshot elements in the dependency package.</p>
+<ol>
+<li>Run the command: <code>fhir bake --package  &lt;packagename&gt;</code>, substituting the dependency package ID for <code>&lt;packagename&gt;</code>.
+<ul>
+<li>E.g., <code>fhir bake --package de.basisprofil.r4</code></li>
+</ul>
+</li>
+<li>Run SUSHI again. The error about missing snapshots should no longer be displayed.</li>
+</ol>
+
 
 <div class="alert alert-success" role="alert">
-<h4 class="alert-heading">Note</h4>
-<strong>Documentation of the FHIR Shorthand language standard is found on <a href="http://hl7.org/fhir/uv/shorthand">the official HL7 site</a>. The <a href="http://hl7.org/fhir/uv/shorthand/reference.html">Language Reference</a> has details on FSH grammar. This site covers SUSHI and GoFSH and creation of FHIR Implementation Guides using these tools.</strong>
-</div>
-
-<h3 id="what-is-sushi">What is SUSHI?</h3>
-<p>SUSHI (<strong>S</strong>USHI <strong>U</strong>nshortens <strong>Sh</strong>ortHand <strong>I</strong>nputs) is a FSH compiler. SUSHI converts FSH language to FHIR artifacts. SUSHI can run in stand-alone mode or as part of the <a href="https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation">HL7 IG Publisher</a>.</p>
-<h3 id="what-is-gofsh">What is GoFSH?</h3>
-<p>GoFSH is a converter that takes FHIR artifacts (e.g., profiles, extensions, value sets, instances) and produces equivalent FSH. GoFSH is essentially the opposite of SUSHI. GoFSH helps you transition to FSH if you have an existing Implementation Guide produced by other methods.</p>
-<h3 id="navigating-the-documentation">Navigating the Documentation</h3>
-<ul>
-<li>
-<p>Head to <a href="/docs/introduction">Introduction</a> for some background information on FSH and FHIR.</p>
-</li>
-<li>
-<p>If you want to dive right into creating an Implementation Guide, check out the <a href="/docs/tutorials">Tutorials</a> for hands-on exercises.</p>
-</li>
-<li>
-<p>If you&rsquo;re ready to start writing some FSH, but first want an overview, consult the latest presentations in <a href="/downloads">Downloads</a>.</p>
-</li>
-<li>
-<p>Go to <a href="/docs/sushi">SUSHI</a> to learn about the SUSHI compiler for FSH.</p>
-</li>
-<li>
-<p>If you already have an Implementation Guide and want to switch over to FSH, consult the <a href="docs/gofsh">GoFSH documentation</a>.</p>
-</li>
-<li>
-<p>If you are still using a pre-release version of SUSHI (version 0.16 or earlier), you should <a href="/docs/sushi/migration">migrate to the latest released version</a>. Documentation for pre-release versions of SUSHI is preserved <a href="/docs/docs-legacy">here</a>.</p>
-</li>
-<li>
-<p>If you are looking for specific information, you can search the documentation using the search box in the upper right corner.</p>
-</li>
-</ul>
-
-
-<div class="alert alert-warning" role="alert">
-<h4 class="alert-heading">Warning</h4>
-Search will return hits in both the current and legacy (pre-1.0) documentation. Legacy documentation is flagged by a warning on the page and a salmon-colored background.
+<h4 class="alert-heading">Tip</h4>
+You can see a list of the available Firely Terminal versions <a href="https://www.nuget.org/packages/Firely.Terminal">here</a>. If there is a later version than 2.5.0-beta-7, we recommend that. We do not recommend the 2.4.2 version because it contains a bug in the snapshot generator that adversely affects SUSHI processing.
 </div>
 
 
@@ -890,13 +920,6 @@ Search will return hits in both the current and legacy (pre-1.0) documentation. 
     <hr class="panel-line">
         
             
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/introduction/">Introduction</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
         
             
         
@@ -904,15 +927,6 @@ Search will return hits in both the current and legacy (pre-1.0) documentation. 
         
             
         
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/tutorials/">Tutorials</a>
-                    </h5>
-                    <p></p>
-                </div>
             
         
             
@@ -926,23 +940,7 @@ Search will return hits in both the current and legacy (pre-1.0) documentation. 
             
         
             
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/sushi/">SUSHI</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
         
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/gofsh/">GoFSH</a>
-                    </h5>
-                    <p></p>
-                </div>
             
         
             
@@ -966,12 +964,9 @@ Search will return hits in both the current and legacy (pre-1.0) documentation. 
             
         
             
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/docs-legacy/">Legacy Documentation [Pre-1.0]</a>
-                    </h5>
-                    <p></p>
-                </div>
+        
+            
+        
             
         
             
@@ -981,7 +976,7 @@ Search will return hits in both the current and legacy (pre-1.0) documentation. 
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified November 25, 2020: <a  href="https://github.com/FSHSchool/site/commit/a6a3e2c35a875cdb610c4fbe4f55403d59bd3c7b">change pptx files to pdf (#33) (a6a3e2c)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified January 21, 2022: <a  href="https://github.com/FSHSchool/site/commit/166e8ea0977ba11231ffdc87d5d3438eb3871f9b">Tips and Tricks (#54) (166e8ea)</a>
 </div>
 </div>
 

@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0972d23613cfb81abf7d9569606433e43e83adb4747894d2a2e1c31f1a0a6c82da4abfbb2d7fee38ee1d66abc5616583da6bcf334866eb9812a827b53a0516b0.json"
+  data-offline-search-index-json-src="/offline-search-index.b95ad14dc1d426cb30946a4f0579da6d6a5b94d317c4a82aad52bc5a0098af2ef4b96a0fd38d71dc1e68a6f008182ca2b6ec68af7c383cd1f020f71c3c84b8bd.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0972d23613cfb81abf7d9569606433e43e83adb4747894d2a2e1c31f1a0a6c82da4abfbb2d7fee38ee1d66abc5616583da6bcf334866eb9812a827b53a0516b0.json"
+  data-offline-search-index-json-src="/offline-search-index.b95ad14dc1d426cb30946a4f0579da6d6a5b94d317c4a82aad52bc5a0098af2ef4b96a0fd38d71dc1e68a6f008182ca2b6ec68af7c383cd1f020f71c3c84b8bd.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -378,6 +378,29 @@
   </li>
   <ul>
     <li class="collapse " id="docssushirunning">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/sushi/tips/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Tips and Tricks</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docssushitips">
       
       
       
@@ -861,6 +884,7 @@
 </span></code></pre></div><p><a href="/docs/sushi/configuration/minimum-config.yaml"><i class='fas fa-download fa-fw'></i> Download Minimum Configuration Example</a></p>
 <ul>
 <li>For an official HL7 project, the <code>id</code> and <code>canonical</code> will typically be assigned by the <a href="mailto:fhir-director@hl7.org">FHIR Product Director</a>.</li>
+<li><code>canonical</code> refers to the <em>canonical base</em> of the IG, not the canonical URL of the IG resource (e.g., <code>http://hl7.org/fhir/us/example</code>, <em>not</em> <code>http://hl7.org/fhir/us/example/ImplementationGuide/fhir.us.example</code>).</li>
 <li>Valid values for <code>status</code> include:
 <ul>
 <li><code>draft</code>: The IG is still under development and is not yet considered to be ready for normal use.</li>
@@ -1129,7 +1153,7 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <tr>
 <td align="left">canonical</td>
 <td align="left">N/A</td>
-<td align="left">The canonical URL to be used throughout the IG</td>
+<td align="left">The canonical base URL to be used throughout the IG</td>
 </tr>
 <tr>
 <td align="left">menu</td>
@@ -1414,12 +1438,14 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
         
             
         
+            
+        
     
 </div>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified November 12, 2021: <a  href="https://github.com/FSHSchool/site/commit/679376d803a78d5162b096cf4b627dd683229c8f">Document instanceOptions (#52) (679376d)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified January 21, 2022: <a  href="https://github.com/FSHSchool/site/commit/166e8ea0977ba11231ffdc87d5d3438eb3871f9b">Tips and Tricks (#54) (166e8ea)</a>
 </div>
 </div>
 
@@ -1483,7 +1509,7 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
         
       </div>
       <div class="col-12 col-sm-4 text-center py-2 order-sm-2">
-        <small class="text-white">&copy; 2021 The MITRE Corporation All Rights Reserved. Approved for Public Release 19-3439. Distribution Unlimited. FHIR® is a registered trademark of Health Level Seven International.</small>
+        <small class="text-white">&copy; 2022 The MITRE Corporation All Rights Reserved. Approved for Public Release 19-3439. Distribution Unlimited. FHIR® is a registered trademark of Health Level Seven International.</small>
         
       </div>
     </div>

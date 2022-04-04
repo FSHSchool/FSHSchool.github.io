@@ -127,7 +127,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4e5cb3834bb513073ddebfe9c7c3e6ce92d413fb1862572513b0269c8154d9ee5a9feb40ef95782555f48ba13918685d5391391def8955865edd2a4211240d88.json"
+  data-offline-search-index-json-src="/offline-search-index.07aa34a07d2de92c0f95b2e0c3e4991a515ff8cb55b391d6f1168d87a453ff7963078150106a9526a390e623f642430c69f118de315ed5e8d175b8720ee918e9.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -158,7 +158,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4e5cb3834bb513073ddebfe9c7c3e6ce92d413fb1862572513b0269c8154d9ee5a9feb40ef95782555f48ba13918685d5391391def8955865edd2a4211240d88.json"
+  data-offline-search-index-json-src="/offline-search-index.07aa34a07d2de92c0f95b2e0c3e4991a515ff8cb55b391d6f1168d87a453ff7963078150106a9526a390e623f642430c69f118de315ed5e8d175b8720ee918e9.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -874,8 +874,8 @@
 <p>A <code>Promise</code> that resolves to an object with the following attributes:</p>
 <ul>
 <li><code>fhir</code> - An array of FHIR definitions generated from the input FSH.</li>
-<li><code>errors</code> - An array of strings containing any errors detected during processing.</li>
-<li><code>warnings</code> - An array of strings containing any warnings detected during processing.</li>
+<li><code>errors</code> - An array of objects containing any errors detected during processing. Each object has a <code>message</code> with the error message and optionally has <code>input</code> and <code>location</code> properties with additional information.</li>
+<li><code>warnings</code> - An array of objects containing any warnings detected during processing. Each object has a <code>message</code> with the warning message and optionally has <code>input</code> and <code>location</code> properties with additional information.</li>
 </ul>
 <h2 id="usage">Usage</h2>
 <p>To use <code>fshToFhir</code>, you must first install <code>fsh-sushi</code> as a dependency of your project:</p>
@@ -973,7 +973,7 @@
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified January 21, 2022: <a  href="https://github.com/FSHSchool/site/commit/166e8ea0977ba11231ffdc87d5d3438eb3871f9b">Tips and Tricks (#54) (166e8ea)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified April 4, 2022: <a  href="https://github.com/FSHSchool/site/commit/23d874caa41886b16e89c0bffee2631bb0e42417">Minor documentation improvements (#59) (23d874c)</a>
 </div>
 </div>
 

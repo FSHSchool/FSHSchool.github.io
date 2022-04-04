@@ -167,10 +167,10 @@ Using aliases has no effect on the IG; it simply makes the FSH code a bit neater
 &lt;p&gt;Now, add constraints and/or extensions to the Veterinarian profile:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Add qualifications consistent with a Veterinary practice. Qualifications are taken from code system &lt;a href=&#34;http://nucc.org/provider-taxonomy,&#34;&gt;http://nucc.org/provider-taxonomy,&lt;/a&gt; and the code is 174M00000X, for &amp;ldquo;Veterinarian&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Add qualifications consistent with a Veterinary practice. Qualifications are taken from code system &lt;code&gt;http://nucc.org/provider-taxonomy&lt;/code&gt;, and the code is &lt;code&gt;174M00000X&lt;/code&gt;, for &amp;ldquo;Veterinarian&amp;rdquo;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;In addition, slice the &lt;code&gt;identifier&lt;/code&gt; array, making a license number required. The code system is &lt;a href=&#34;http://terminology.hl7.org/CodeSystem/v2-0203&#34;&gt;http://terminology.hl7.org/CodeSystem/v2-0203&lt;/a&gt; and the code is LN, for &amp;ldquo;License number&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;In addition, slice the &lt;code&gt;identifier&lt;/code&gt; array, making a license number required. The code system is &lt;code&gt;http://terminology.hl7.org/CodeSystem/v2-0203&lt;/code&gt; and the code is &lt;code&gt;LN&lt;/code&gt;, for &amp;ldquo;License number&amp;rdquo;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;If you need help with this, you can refer to the &lt;a href=&#34;https://build.fhir.org/ig/HL7/fhir-shorthand/reference.html#assignment-rules&#34;&gt;assignment rules&lt;/a&gt; and &lt;a href=&#34;https://build.fhir.org/ig/HL7/fhir-shorthand/reference.html#contains-rules-for-slicing&#34;&gt;slicing rules&lt;/a&gt; sections of the specification. If you still need help, you can peek at the FSH files in the &lt;strong&gt;FishExampleComplete&lt;/strong&gt; directory.&lt;/p&gt;

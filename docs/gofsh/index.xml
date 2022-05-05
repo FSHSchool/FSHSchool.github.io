@@ -44,7 +44,7 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; npm install -g gofsh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To revert to a previous version of GoFSH, run:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; npm install -g gofsh@&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;version&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where the &lt;code&gt;{version}&lt;/code&gt; is replaced by the desired MAJOR.MINOR.PATCH version (e.g., &lt;code&gt;npm install -g gofsh@0.1.0&lt;/code&gt;).&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where the &lt;code&gt;{version}&lt;/code&gt; is replaced by the desired MAJOR.MINOR.PATCH version (e.g., &lt;code&gt;npm install -g gofsh@1.5.0&lt;/code&gt;).&lt;/p&gt;
 
       </description>
     </item>
@@ -71,6 +71,8 @@
 -t, --file-type &amp;lt;type&amp;gt;            specify which file types GoFSH should accept as input: json-only (default), xml-only, json-and-xml
 --indent                          output FSH with indented rules using context paths
 --meta-profile &amp;lt;mode&amp;gt;             specify how meta.profile on Instances should be applied to the InstanceOf keyword: only-one (default), first, none
+-a, --alias-file &amp;lt;alias-filePath&amp;gt; specify an existing FSH file containing aliases to be loaded.
+--no-alias                        output FSH without generating Aliases
 -v, --version                     print goFSH version
 -h, --help                        display help for command
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;While GoFSH is running, it will print status messages as it processes your project files. The following sections give further detail on using certain options.&lt;/p&gt;

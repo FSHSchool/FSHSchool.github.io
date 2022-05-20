@@ -8,11 +8,6 @@
   </url>
   
   <url>
-    <loc>/docs/docs-legacy/sushi/installation/</loc>
-    <lastmod>2020-11-25T10:41:08-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/docs/gofsh/installation/</loc>
     <lastmod>2022-05-05T13:38:26-04:00</lastmod>
   </url>
@@ -23,23 +18,8 @@
   </url>
   
   <url>
-    <loc>/docs/docs-legacy/introduction/</loc>
-    <lastmod>2020-11-25T10:41:08-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/docs/tutorials/</loc>
     <lastmod>2022-02-24T12:18:11-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/docs/docs-legacy/tutorials/basic/</loc>
-    <lastmod>2022-04-04T15:48:34-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/docs/docs-legacy/sushi/project/</loc>
-    <lastmod>2020-11-25T10:41:08-05:00</lastmod>
   </url>
   
   <url>
@@ -50,11 +30,6 @@
   <url>
     <loc>/docs/gofsh/running/</loc>
     <lastmod>2022-05-05T13:38:26-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/docs/docs-legacy/sushi/</loc>
-    <lastmod>2020-11-25T10:41:08-05:00</lastmod>
   </url>
   
   <url>
@@ -73,28 +48,13 @@
   </url>
   
   <url>
-    <loc>/docs/docs-legacy/sushi/configuration/</loc>
-    <lastmod>2020-11-25T10:41:08-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/docs/sushi/configuration/</loc>
     <lastmod>2022-05-05T13:38:26-04:00</lastmod>
   </url>
   
   <url>
-    <loc>/docs/docs-legacy/tutorials/</loc>
-    <lastmod>2020-11-25T10:41:08-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/docs/tutorials/gofsh/</loc>
     <lastmod>2022-05-05T13:38:26-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/docs/docs-legacy/sushi/running/</loc>
-    <lastmod>2020-11-25T10:41:08-05:00</lastmod>
   </url>
   
   <url>
@@ -118,13 +78,8 @@
   </url>
   
   <url>
-    <loc>/docs/sushi/migration/</loc>
-    <lastmod>2022-01-21T09:11:52-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/docs/docs-legacy/</loc>
-    <lastmod>2020-11-25T10:41:08-05:00</lastmod>
+    <loc>/about/</loc>
+    <lastmod>2022-05-20T15:35:50-04:00</lastmod>
   </url>
   
   <url>
@@ -134,7 +89,7 @@
   
   <url>
     <loc>/docs/</loc>
-    <lastmod>2020-11-25T17:10:17-05:00</lastmod>
+    <lastmod>2022-05-20T15:35:50-04:00</lastmod>
   </url>
   
   <url>

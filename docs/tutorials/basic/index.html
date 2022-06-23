@@ -129,7 +129,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8f4e4a690fd07465687ce8f1fb006dfd72d3ca832a3a993d524ca18233b8452df794b0f11d4c538113f6cff1c5ef165fd455c1da7a42022431317716e65d20ec.json"
+  data-offline-search-index-json-src="/offline-search-index.85c246dcefebe2db5f526de7c9e51acdea32d6182b20cbe47f70be34025ad416d1a661a884488285fa8363854d2c09591296717f6e55ff245abd0f0639f72056.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -160,7 +160,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8f4e4a690fd07465687ce8f1fb006dfd72d3ca832a3a993d524ca18233b8452df794b0f11d4c538113f6cff1c5ef165fd455c1da7a42022431317716e65d20ec.json"
+  data-offline-search-index-json-src="/offline-search-index.85c246dcefebe2db5f526de7c9e51acdea32d6182b20cbe47f70be34025ad416d1a661a884488285fa8363854d2c09591296717f6e55ff245abd0f0639f72056.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -491,10 +491,10 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/gofsh/running/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Running GoFSH</a>
+    <a  href="/docs/gofsh/api/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">API</a>
   </li>
   <ul>
-    <li class="collapse " id="docsgofshrunning">
+    <li class="collapse " id="docsgofshapi">
       
       
       
@@ -514,10 +514,10 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/gofsh/api/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">API</a>
+    <a  href="/docs/gofsh/running/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Running GoFSH</a>
   </li>
   <ul>
-    <li class="collapse " id="docsgofshapi">
+    <li class="collapse " id="docsgofshrunning">
       
       
       
@@ -525,6 +525,29 @@
   </ul>
 </ul>
 
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/vscode/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Visual Studio Code Extension</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsvscode">
+      
       
       
     </li>
@@ -579,7 +602,7 @@
       <ul>
         <li><a href="#step-1-review-introduction">Step 1: Review Introduction</a></li>
         <li><a href="#step-2-install-nodejs-and-sushi">Step 2: Install Node.js and Sushi</a></li>
-        <li><a href="#step-3-download-sample-fsh-tank">Step 3: Download Sample FSH Tank</a></li>
+        <li><a href="#step-3-download-sample-fsh-project">Step 3: Download Sample FSH Project</a></li>
         <li><a href="#step-4-run-sushi">Step 4: Run SUSHI</a></li>
         <li><a href="#step-5-generate-the-sample-ig">Step 5: Generate the Sample IG</a></li>
         <li><a href="#step-6-setting-cardinalities-in-a-profile">Step 6: Setting Cardinalities in a Profile</a></li>
@@ -644,8 +667,8 @@
 <p>If you haven&rsquo;t done so already, please read or review the <a href="/docs/introduction/">Introduction</a> documentation to gain an understanding of the conventions used in this tutorial and the resources available to you.</p>
 <h3 id="step-2-install-nodejs-and-sushi">Step 2: Install Node.js and Sushi</h3>
 <p>If you have not already installed SUSHI, follow the <a href="/docs/sushi/installation">SUSHI Installation</a> instructions.</p>
-<h3 id="step-3-download-sample-fsh-tank">Step 3: Download Sample FSH Tank</h3>
-<p>To start with some working examples of FSH files and a skeleton FSH tank, <a href="/docs/tutorials/basic/fsh-tutorial-master.zip"><i class='fas fa-download fa-fw'></i> download the FSH Tutorial Starter</a> and unzip it into a directory of your choice.</p>
+<h3 id="step-3-download-sample-fsh-project">Step 3: Download Sample FSH Project</h3>
+<p>To start with some working examples of FSH files and a skeleton FSH project, <a href="/docs/tutorials/basic/fsh-tutorial-master.zip"><i class='fas fa-download fa-fw'></i> download the FSH Tutorial Starter</a> and unzip it into a directory of your choice.</p>
 <p>After the file is unzipped, you should see two subdirectories:</p>
 <ul>
 <li><strong>FishExample</strong></li>
@@ -658,7 +681,7 @@
 </ul>
 <p>In addition, there are several files for building the IG.</p>
 <h3 id="step-4-run-sushi">Step 4: Run SUSHI</h3>
-<p>Now that you have SUSHI installed and a minimal FSH tank, open up a command window, and navigate to the <strong>FishExample</strong> directory. Run SUSHI on those FSH files by executing:</p>
+<p>Now that you have SUSHI installed and a minimal FSH project, open up a command window, and navigate to the <strong>FishExample</strong> directory. Run SUSHI on those FSH files by executing:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi .
 </code></pre></div>
 
@@ -842,12 +865,14 @@ Using aliases has no effect on the IG; it simply makes the FSH code a bit neater
         
             
         
+            
+        
     
 </div>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified May 5, 2022: <a  href="https://github.com/FSHSchool/site/commit/2e88c59f18843487f9736b23fd71ffd2ef9c9dfb">2022 site updates (#60) (2e88c59)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified June 23, 2022: <a  href="https://github.com/FSHSchool/site/commit/7c3c8b425f98f4a8cd94107a0f87b5ce306d3205">Update sushi doc (#64) (7c3c8b4)</a>
 </div>
 </div>
 

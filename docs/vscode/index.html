@@ -7,7 +7,7 @@
 
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
-<link rel="alternate" type="application/rss&#43;xml" href="/docs/index.xml">
+<link rel="alternate" type="application/rss&#43;xml" href="/docs/vscode/index.xml">
 
 
 <link rel="shortcut icon" href="/favicons/favicon.ico" >
@@ -21,14 +21,14 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Documentation | FSH School</title><meta property="og:title" content="Documentation" />
+<title>Visual Studio Code Extension | FSH School</title><meta property="og:title" content="Visual Studio Code Extension" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="/docs/" />
+<meta property="og:url" content="/docs/vscode/" />
 
-<meta itemprop="name" content="Documentation">
+<meta itemprop="name" content="Visual Studio Code Extension">
 <meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Documentation"/>
+<meta name="twitter:title" content="Visual Studio Code Extension"/>
 <meta name="twitter:description" content=""/>
 
 
@@ -181,7 +181,7 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Documentation</a>
+    <a  href="/docs/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Documentation</a>
   </li>
   <ul>
     <li class="collapse show" id="docs">
@@ -543,10 +543,10 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/vscode/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Visual Studio Code Extension</a>
+    <a  href="/docs/vscode/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Visual Studio Code Extension</a>
   </li>
   <ul>
-    <li class="collapse " id="docsvscode">
+    <li class="collapse show" id="docsvscode">
       
       
       
@@ -583,7 +583,7 @@
 
 
 
-<a href="https://github.com/FSHSchool/site/issues/new?title=Documentation" target="_blank"><i class="fab fa-github fa-fw"></i> Report a documentation issue</a>
+<a href="https://github.com/FSHSchool/site/issues/new?title=Visual%20Studio%20Code%20Extension" target="_blank"><i class="fab fa-github fa-fw"></i> Report a documentation issue</a>
 <a href="https://github.com/fhir/sushi/issues/new" target="_blank"><i class="fab fa-github fa-fw"></i> Report a SUSHI issue</a>
 
 <a href="https://www.hl7.org/fhir/" target="_blank"><i class="fas fa-fire fa-fw"></i> FHIR R4 Specification</a>
@@ -595,18 +595,6 @@
 
 
 
-
-<nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#what-is-sushi">What is SUSHI?</a></li>
-        <li><a href="#what-is-gofsh">What is GoFSH?</a></li>
-        <li><a href="#navigating-the-documentation">Navigating the Documentation</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
 
 
 
@@ -622,8 +610,18 @@
 
 
 
-<li class="breadcrumb-item active" aria-current="page">
+
+
+
+<li class="breadcrumb-item" >
 	<a href="/docs/">Documentation</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item active" aria-current="page">
+	<a href="/docs/vscode/">Visual Studio Code Extension</a>
 </li>
 
 	</ol>
@@ -631,48 +629,25 @@
 
             
 <div class="td-content">
-	<h1>Documentation</h1>
+	<h1>Visual Studio Code Extension</h1>
         
 	
-	
-
-<div class="alert alert-success" role="alert">
-<h4 class="alert-heading">Note</h4>
-<strong>Documentation of the FHIR Shorthand language standard is found on <a href="http://hl7.org/fhir/uv/shorthand">the official HL7 site</a>. The <a href="http://hl7.org/fhir/uv/shorthand/reference.html">Language Reference</a> has details on FSH grammar. This site covers SUSHI and GoFSH and creation of FHIR Implementation Guides using these tools.</strong>
-</div>
-
-<h3 id="what-is-sushi">What is SUSHI?</h3>
-<p>SUSHI (<strong>S</strong>USHI <strong>U</strong>nshortens <strong>Sh</strong>ortHand <strong>I</strong>nputs) is a FSH compiler. SUSHI converts FSH language to FHIR artifacts. SUSHI can run in stand-alone mode or as part of the <a href="https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation">HL7 IG Publisher</a>.</p>
-<h3 id="what-is-gofsh">What is GoFSH?</h3>
-<p>GoFSH is a converter that takes FHIR artifacts (e.g., profiles, extensions, value sets, instances) and produces equivalent FSH. GoFSH is essentially the opposite of SUSHI. GoFSH helps you transition to FSH if you have an existing Implementation Guide produced by other methods.</p>
-<h3 id="navigating-the-documentation">Navigating the Documentation</h3>
+	<p>Because FHIR Shorthand files are pure text, authors can use any text editor to create FSH content. However, if you choose the popular (and free) <a href="https://code.visualstudio.com/">Visual Studio Code (VS Code)</a> editor, there is a FSH-specific extension that can greatly enhance your productivity through syntax highlighting, helping you navigate, and even running SUSHI and navigating directly to errors.</p>
+<p>The <a href="https://marketplace.visualstudio.com/items?itemName=MITRE-Health.vscode-language-fsh">VS Code FSH extension</a> (formally, MITRE-Health.vscode-language-fsh) offers the following features:</p>
 <ul>
-<li>
-<p>Head to <a href="/docs/introduction">Introduction</a> for some background information on FSH and FHIR.</p>
-</li>
-<li>
-<p>If you want to dive right into creating an Implementation Guide, check out the <a href="/docs/tutorials">Tutorials</a> for hands-on exercises.</p>
-</li>
-<li>
-<p>If you&rsquo;re ready to start writing some FSH, but first want an overview, consult the latest presentations in <a href="/downloads">Downloads</a>.</p>
-</li>
-<li>
-<p>Go to <a href="/docs/sushi">SUSHI</a> to learn about the SUSHI compiler for FSH.</p>
-</li>
-<li>
-<p>If you already have an Implementation Guide and want to switch over to FSH, consult the <a href="docs/gofsh">GoFSH documentation</a>.</p>
-</li>
-<li>
-<p>If you are looking for specific information, you can search the documentation using the search box in the upper right corner.</p>
-</li>
+<li><strong>Syntax highlighting.</strong> Colorizing FSH text allows easier reading and writing of FHIR Shorthand.</li>
+<li><strong>Autocomplete.</strong> This feature makes contextually appropriate suggestions after when specifying a nested path, the <code>Parent</code> keyword, and when writing <code>obeys</code> rules.</li>
+<li><strong>Tasks.</strong> The extension allows you to run SUSHI and check your work inside the VS Code environment. SUSHI&rsquo;s log messages go to the integrated Terminal tab, and errors go to VS Code&rsquo;s Problems tab. Selecting an error or warning will navigate directly to the line or area of code responsible for the error or warning.</li>
+<li><strong>Go to Definition.</strong> This feature allows quick navigation to the definition of an item, anywhere the name of the item is used. If it is a native FHIR item, the link to the documentation page is offered.</li>
+<li><strong>Snippets.</strong> This feature automatically adds relevant keywords and placeholders so you can easily enter all of the recommended metadata for a FSH definition.</li>
 </ul>
-
-
-<div class="alert alert-warning" role="alert">
-<h4 class="alert-heading">Warning</h4>
-Search will return hits in both the current and legacy (pre-1.0) documentation. Legacy documentation is flagged by a warning on the page and a salmon-colored background.
-</div>
-
+<p>Here is an example of syntax highlighting:</p>
+<p><img src="syntax-highlighting.PNG" alt="Syntax Highlighting"></p>
+<h2 id="installation">Installation</h2>
+<p>To install VS Code on macOS, Windows, or Linux, follow the <a href="https://code.visualstudio.com/Download">instructions here</a>.</p>
+<p>To install the FHIR Shorthand extension, run VS Code, and navigate to <code>View &gt; Extensions</code> or select the icon on the far left that looks like four little squares. Then search for &ldquo;FHIR Shorthand&rdquo; and make sure you pick the extension with the fish icon, &ldquo;FHIR Shorthand (FSH) Language Support by MITRE&rdquo;. Click on the associated gear icon and then &ldquo;install&rdquo;.</p>
+<h2 id="full-documentation">Full Documentation</h2>
+<p>Full documentation for the FHIR Shorthand language extension for VS Code can be <a href="https://github.com/standardhealth/vscode-language-fsh#readme">found here</a>. Once installed in VS Code, the documentation can be accessed by clicking on the installed FHIR Shorthand extension (look for the fish icon on the Extensions pane on the left navigation bar).</p>
 
         <div class="section-index">
     
@@ -682,47 +657,17 @@ Search will return hits in both the current and legacy (pre-1.0) documentation. 
     <hr class="panel-line">
         
             
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/introduction/">Introduction</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
         
             
         
             
         
             
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/tutorials/">Tutorials</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
         
             
         
             
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/sushi/">SUSHI</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
         
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/gofsh/">GoFSH</a>
-                    </h5>
-                    <p></p>
-                </div>
             
         
             
@@ -738,12 +683,7 @@ Search will return hits in both the current and legacy (pre-1.0) documentation. 
             
         
             
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/vscode/">Visual Studio Code Extension</a>
-                    </h5>
-                    <p></p>
-                </div>
+        
             
         
             
@@ -755,7 +695,7 @@ Search will return hits in both the current and legacy (pre-1.0) documentation. 
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified May 20, 2022: <a  href="https://github.com/FSHSchool/site/commit/644ef41d833cb08d51cafe105f05f8dbea069e91">MITRe branding, legacy content removed, about section (#61) (644ef41)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified June 23, 2022: <a  href="https://github.com/FSHSchool/site/commit/7c3c8b425f98f4a8cd94107a0f87b5ce306d3205">Update sushi doc (#64) (7c3c8b4)</a>
 </div>
 </div>
 

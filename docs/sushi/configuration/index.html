@@ -129,7 +129,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8f4e4a690fd07465687ce8f1fb006dfd72d3ca832a3a993d524ca18233b8452df794b0f11d4c538113f6cff1c5ef165fd455c1da7a42022431317716e65d20ec.json"
+  data-offline-search-index-json-src="/offline-search-index.85c246dcefebe2db5f526de7c9e51acdea32d6182b20cbe47f70be34025ad416d1a661a884488285fa8363854d2c09591296717f6e55ff245abd0f0639f72056.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -160,7 +160,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8f4e4a690fd07465687ce8f1fb006dfd72d3ca832a3a993d524ca18233b8452df794b0f11d4c538113f6cff1c5ef165fd455c1da7a42022431317716e65d20ec.json"
+  data-offline-search-index-json-src="/offline-search-index.85c246dcefebe2db5f526de7c9e51acdea32d6182b20cbe47f70be34025ad416d1a661a884488285fa8363854d2c09591296717f6e55ff245abd0f0639f72056.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -491,10 +491,10 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/gofsh/running/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Running GoFSH</a>
+    <a  href="/docs/gofsh/api/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">API</a>
   </li>
   <ul>
-    <li class="collapse " id="docsgofshrunning">
+    <li class="collapse " id="docsgofshapi">
       
       
       
@@ -514,10 +514,10 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/gofsh/api/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">API</a>
+    <a  href="/docs/gofsh/running/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Running GoFSH</a>
   </li>
   <ul>
-    <li class="collapse " id="docsgofshapi">
+    <li class="collapse " id="docsgofshrunning">
       
       
       
@@ -525,6 +525,29 @@
   </ul>
 </ul>
 
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/vscode/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Visual Studio Code Extension</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsvscode">
+      
       
       
     </li>
@@ -575,17 +598,15 @@
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#minimum-configuration">Minimum Configuration</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#recommended-configuration">Recommended Configuration</a>
+    <li><a href="#fsh-only-minimum-configuration">FSH Only: Minimum Configuration</a></li>
+    <li><a href="#fsh-only-existing-implementationguide-resource">FSH Only: Existing ImplementationGuide Resource</a></li>
+    <li><a href="#fsh-and-ig-processing-minimum-configuration">FSH and IG Processing: Minimum Configuration</a></li>
+    <li><a href="#fsh-and-ig-processing-recommended-configuration">FSH and IG Processing: Recommended Configuration</a>
       <ul>
         <li><a href="#dependencies">Dependencies</a></li>
       </ul>
     </li>
-    <li><a href="#full-configuration">Full Configuration</a></li>
+    <li><a href="#fsh-and-ig-processing-full-configuration">FSH and IG Processing: Full Configuration</a></li>
     <li><a href="#exhaustive-example">Exhaustive Example</a></li>
   </ul>
 </nav>
@@ -643,8 +664,33 @@
 <li>Strings do not have to be quoted unless they contain reserved characters, such as colon (:)</li>
 <li>Arrays/sequences are created using <code>-</code></li>
 </ul>
-<h2 id="minimum-configuration">Minimum Configuration</h2>
-<p>At a minimum, the <strong>sushi-config.yaml</strong> file must provide a few high-level metadata values for the FSH project, if the author wishes for SUSHI to do additional Implementation Guide (IG) processing:</p>
+<h2 id="fsh-only-minimum-configuration">FSH Only: Minimum Configuration</h2>
+<p>If an author does not have an <strong>ImplementationGuide</strong> resource, and wants SUSHI to build FHIR definition files and <em>not</em> to do any additional IG processing, the author should create a <strong>sushi-config.yaml</strong> with the keys <code>FSHOnly</code> (with value <code>true</code>), <code>canonical</code>, and <code>fhirVersion</code>. For example:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">FSHOnly</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">fhirVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">4.0.1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">canonical</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/us/example<span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><p>The <strong>sushi-config.yaml</strong> file should be located in the project&rsquo;s root folder.</p>
+<h2 id="fsh-only-existing-implementationguide-resource">FSH Only: Existing ImplementationGuide Resource</h2>
+<p>If an author wants SUSHI only to build the FHIR definition files and <em>not</em> to do any additional IG processing, AND the project contains an <strong>ImplementationGuide</strong> resource, then the author does not need to provide a <strong>sushi-config.yaml</strong> file. If there is no <strong>sushi-config.yaml</strong> file, SUSHI will attempt to extract the following information from the <strong>ImplementationGuide</strong> resource:</p>
+<ul>
+<li><code>id</code></li>
+<li><code>canonical</code></li>
+<li><code>url</code></li>
+<li><code>name</code></li>
+<li><code>packageId</code></li>
+<li><code>fhirVersion</code></li>
+<li><code>version</code></li>
+<li><code>dependencies</code></li>
+<li><code>parameters</code></li>
+</ul>
+<p>SUSHI will then run in FSHOnly mode to produce FHIR definition files only.</p>
+<p>To locate the <strong>ImplementationGuide</strong> resource, SUSHI assumes the project structure required by the <a href="https://build.fhir.org/ig/FHIR/ig-guidance/">template-based IG Publisher</a>, and uses the following approach:</p>
+<ul>
+<li>Look for <code>&lt;root&gt;/ig.ini</code>, where <code>&lt;root&gt;</code> is the folder containing the <strong>input</strong> folder. If the <strong>ig.ini</strong> file exists, it will have an <code>ig</code> property which gives the path to the <strong>ImplementationGuide</strong> resource, so SUSHI will use this path to find the resource.</li>
+<li>If there is no <strong>ig.ini</strong> in the root folder, SUSHI will search the <code>&lt;root&gt;/input</code> folder for an <strong>ImplementationGuide</strong> resource, and if exactly one resource is found, SUSHI will extract the above properties from it.</li>
+</ul>
+<h2 id="fsh-and-ig-processing-minimum-configuration">FSH and IG Processing: Minimum Configuration</h2>
+<p>If the author wants SUSHI to do additional Implementation Guide (IG) processing, then the <strong>sushi-config.yaml</strong> file must provide some metadata values for the FSH project. Here is an example of a minimal configuration:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">id</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>fhir.us.example<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">canonical</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/us/example<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>ExampleIG<span style="color:#f8f8f8;text-decoration:underline">
@@ -686,29 +732,7 @@
 SUSHI can generate a simple configuration file for you with the <code>--init</code> <a href="/docs/sushi/project/#initializing-a-sushi-project">option</a>
 </div>
 
-<h4 id="fsh-only">FSH-Only</h4>
-<p>If an author wants SUSHI only to build the FHIR definition files, and <em>not</em> to do any additional IG processing, and if the project contains an <strong>ImplementationGuide</strong> resource, then the author does not need to provide a <strong>sushi-config.yaml</strong> at all. If there is no <strong>sushi-config.yaml</strong>, SUSHI will automatically attempt to extract the following information from an <strong>ImplementationGuide</strong> resource:</p>
-<ul>
-<li><code>id</code></li>
-<li><code>canonical</code></li>
-<li><code>url</code></li>
-<li><code>name</code></li>
-<li><code>packageId</code></li>
-<li><code>fhirVersion</code></li>
-<li><code>version</code></li>
-<li><code>dependencies</code></li>
-<li><code>parameters</code></li>
-</ul>
-<p>SUSHI will then run in FSH-Only mode to produce FHIR definition files only.</p>
-<p>When attempting to extract information from an <strong>ImplementationGuide</strong> resource, SUSHI assumes the project structure required by the <a href="https://build.fhir.org/ig/FHIR/ig-guidance/">template-based IG Publisher</a>. The following approach is used to find the <strong>ImplementationGuide</strong> resource:</p>
-<ul>
-<li>Look for <code>&lt;root&gt;/ig.ini</code>, where <code>&lt;root&gt;</code> is the folder containing the <strong>input</strong> folder. If the <strong>ig.ini</strong> file exists, it will have an <code>ig</code> property which gives the path to the <strong>ImplementationGuide</strong> resource, so SUSHI will use this path to find the resource.</li>
-<li>If there is no <strong>ig.ini</strong> in the root folder, SUSHI will search the <code>&lt;root&gt;/input</code> folder for an <strong>ImplementationGuide</strong> resource, and if exactly one resource is found, SUSHI will extract the above properties from it.</li>
-</ul>
-<p>If an author does not have an <strong>ImplementationGuide</strong> resource, but still wants SUSHI to build FHIR definition files only, the author should add a <code>FSHOnly</code> flag to the <strong>sushi-config.yaml</strong> and set its value to <code>true</code>:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">FSHOnly</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>However, the author will also at least need to provide a <code>canonical</code> and <code>fhirVersion</code> in the configuration for FSH-Only processing to succeed.</p>
-<h2 id="recommended-configuration">Recommended Configuration</h2>
+<h2 id="fsh-and-ig-processing-recommended-configuration">FSH and IG Processing: Recommended Configuration</h2>
 <p>In addition to the minimum configuration requirements shown above, most IG authors will also want to provide a <code>title</code>, <code>description</code>, <code>license</code>, <code>publisher</code>, and <code>dependencies</code>:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">id</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>fhir.us.example<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">canonical</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/us/example<span style="color:#f8f8f8;text-decoration:underline">
@@ -736,7 +760,10 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 </div>
 
 <h3 id="dependencies">Dependencies</h3>
-<p>The <code>dependencies</code> value is a YAML object for which the keys are each dependency&rsquo;s package id and the values are the dependency versions. In addition to standard version identifiers, the following two special versions are supported:</p>
+<p>The <code>dependencies</code> value is a YAML object for which the keys are each dependency&rsquo;s package id and the values are the dependency versions. The typical format is:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">dependencies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">hl7.fhir.us.core</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><p>In addition to standard version identifiers, the following two special versions are supported:</p>
 <ul>
 <li><code>dev</code>: indicates that the dependency should be loaded from the local FHIR cache</li>
 <li><code>current</code>: indicates that the dependency should be loaded from the last successful auto-build.</li>
@@ -751,7 +778,7 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">dependencies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">hl7.fhir.extensions.r3</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">4.0.1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><p>An author can then reference the extension using a URL following the format defined in the FHIR specification linked above. For example, the extension referring to the R3 <code>Patient.animal.species</code> element would be: <code>http://hl7.org/fhir/3.0/StructureDefinition/extension-Patient.animal.species</code>.</p>
-<h2 id="full-configuration">Full Configuration</h2>
+<h2 id="fsh-and-ig-processing-full-configuration">FSH and IG Processing: Full Configuration</h2>
 <p>The table below lists all configuration properties that can be used in SUSHI&rsquo;s <strong>sushi-config.yaml</strong> file. Most SUSHI configuration properties come directly from the <a href="https://www.hl7.org/fhir/R4/implementationguide.html#resource">Implementation Guide resource</a> and will be translated into the generated ImplementationGuide resource for your project. Differences between the <strong>sushi-config.yaml</strong> properties and ImplementationGuide properties are noted below.</p>
 <table>
 <thead>
@@ -763,28 +790,18 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 </thead>
 <tbody>
 <tr>
-<td align="left">id</td>
-<td align="left">id</td>
-<td align="left">As specified in the IG resource</td>
+<td align="left">applyExtensionMetadataToRoot</td>
+<td align="left">N/A</td>
+<td align="left">When set to true, the &ldquo;short&rdquo; and &ldquo;definition&rdquo; field on the root element of an Extension will be set to the &ldquo;Title&rdquo; and &ldquo;Description&rdquo; of that Extension. Default is true.</td>
 </tr>
 <tr>
-<td align="left">meta</td>
-<td align="left">meta</td>
-<td align="left">As specified in the IG resource</td>
+<td align="left">canonical</td>
+<td align="left">N/A</td>
+<td align="left">The canonical base URL to be used throughout the IG</td>
 </tr>
 <tr>
-<td align="left">implicitRules</td>
-<td align="left">implicitRules</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
-<td align="left">language</td>
-<td align="left">language</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
-<td align="left">text</td>
-<td align="left">text</td>
+<td align="left">contact</td>
+<td align="left">contact</td>
 <td align="left">As specified in the IG resource</td>
 </tr>
 <tr>
@@ -793,44 +810,14 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <td align="left">As specified in the IG resource</td>
 </tr>
 <tr>
-<td align="left">extension</td>
-<td align="left">extension</td>
+<td align="left">copyright</td>
+<td align="left">copyright</td>
 <td align="left">As specified in the IG resource</td>
 </tr>
 <tr>
-<td align="left">modifierExtension</td>
-<td align="left">modifierExtension</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
-<td align="left">url</td>
-<td align="left">url</td>
-<td align="left">As specified in the IG resource. If not specified, defaults to <code>{canonical}/ImplementationGuide/{id}</code>.</td>
-</tr>
-<tr>
-<td align="left">version</td>
-<td align="left">version</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
-<td align="left">name</td>
-<td align="left">name</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
-<td align="left">title</td>
-<td align="left">title</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
-<td align="left">status</td>
-<td align="left">status</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
-<td align="left">experimental</td>
-<td align="left">experimental</td>
-<td align="left">As specified in the IG resource</td>
+<td align="left">copyrightYear or copyrightyear</td>
+<td align="left">N/A</td>
+<td align="left">Used to add a <code>copyrightyear</code> parameter to <code>IG.definition.parameter</code></td>
 </tr>
 <tr>
 <td align="left">date</td>
@@ -838,54 +825,34 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <td align="left">As specified in the IG resource</td>
 </tr>
 <tr>
-<td align="left">publisher</td>
-<td align="left">publisher, with cardinality changed to 0..*</td>
-<td align="left">Publisher can be a single item or a list, each with a name and optional url and/or email. The first publisher&rsquo;s name will be used as IG.publisher.  The contact details and/or additional publishers will be translated into IG.contact values</td>
-</tr>
-<tr>
-<td align="left">contact</td>
-<td align="left">contact</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
 <td align="left">description</td>
 <td align="left">description</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
-<td align="left">useContext</td>
-<td align="left">useContext</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
-<td align="left">jurisdiction</td>
-<td align="left">jurisdiction</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
-<td align="left">copyright</td>
-<td align="left">copyright</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
-<td align="left">packageId</td>
-<td align="left">packageI</td>
-<td align="left">As specified in the IG resource. If not specified, defaults to <code>id</code>.</td>
-</tr>
-<tr>
-<td align="left">license</td>
-<td align="left">license</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
-<td align="left">fhirVersion</td>
-<td align="left">fhirVersion</td>
 <td align="left">As specified in the IG resource</td>
 </tr>
 <tr>
 <td align="left">dependencies</td>
 <td align="left">dependsOn</td>
 <td align="left">A <code>key: value</code> pair, where key is the package id and value is the version (or <code>dev</code>/<code>current</code>). For advanced use cases, the value can be an object with keys for <code>id</code>, <code>uri</code> and <code>version</code>.</td>
+</tr>
+<tr>
+<td align="left">experimental</td>
+<td align="left">experimental</td>
+<td align="left">As specified in the IG resource</td>
+</tr>
+<tr>
+<td align="left">extension</td>
+<td align="left">extension</td>
+<td align="left">As specified in the IG resource</td>
+</tr>
+<tr>
+<td align="left">fhirVersion</td>
+<td align="left">fhirVersion</td>
+<td align="left">As specified in the IG resource. SUSHI supports FHIR versions in the R4 or R5 sequences, as given in the <a href="http://hl7.org/fhir/directory.html">FHIR Publication History</a>. 5.0.0-snapshot1. Projects that wish to use a 5.0.0 pre-release can specify the version in their sushi-config.yaml file, e.g., <code>fhirVersion: 5.0.0-snapshot1</code>.</td>
+</tr>
+<tr>
+<td align="left">FSHOnly</td>
+<td align="left">N/A</td>
+<td align="left">When this flag is set to <code>true</code>, no IG-specific content will be generate. SUSHI will only convert FSH definitions to JSON files. The author at least needs to provide a <code>canonical</code> and <code>fhirVersion</code> for FSHOnly processing to succeed. When FSHOnly is false or unspecified, IG content is generated.</td>
 </tr>
 <tr>
 <td align="left">global</td>
@@ -895,32 +862,77 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <tr>
 <td align="left">groups</td>
 <td align="left">definition.grouping</td>
-<td align="left">A <code>key: value</code> pair, where key is the group id and value is the description of the group. For advanced use cases, the value can be an object with keys for <code>name</code>, <code>description</code>, and <code>resources</code>.</td>
+<td align="left">A <code>key: value</code> pair, where key is the group id and value is the description of the group. For advanced use cases, the value can be an object with keys for <code>name</code>, <code>description</code>, and <code>resources</code>. See the <a href="#exhaustive-example">Exhaustive Example</a> for details.</td>
 </tr>
 <tr>
-<td align="left">resources</td>
-<td align="left">definition.resource</td>
-<td align="left">SUSHI can auto-generate a list of resources based on FSH definitions and provided JSON or XML resources, but this property can be used to add additional entries or override generated entries. SUSHI uses the {resource type}/{resource name} format as the YAML key (corresponding to IG.definition.resource.reference). Authors can specify the value &ldquo;omit&rdquo; to omit a FSH-generated resource from the resource list. <code>groupingId</code> can be used, but top-level groups syntax may be a better option.</td>
+<td align="left">id</td>
+<td align="left">id</td>
+<td align="left">As specified in the IG resource</td>
+</tr>
+<tr>
+<td align="left">implicitRules</td>
+<td align="left">implicitRules</td>
+<td align="left">As specified in the IG resource</td>
+</tr>
+<tr>
+<td align="left">instanceOptions</td>
+<td align="left">N/A</td>
+<td align="left"><code>key: value</code> pairs, where keys are <code>setId</code> and <code>setMetaProfile</code>. The <code>setId</code> value controls whether <code>id</code> is set on generated instances. Options are <code>always</code> (set <code>id</code> on all instances (the default)) or <code>standalone-only</code> (set <code>id</code> for instances where the <code>Usage</code> keyword is NOT <code>#inline</code>). The <code>setMetaProfile</code> value controls whether <code>meta.profile</code> is set on generated instances. It can have the following values: <code>always</code> (set meta.profile for all instances (the default)), <code>never</code> (do not set meta.profile on any instances), <code>inline-only</code> (set <code>meta.profile</code> only for instances of profiles with <code>Usage</code> keyword set to <code>#inline</code>), or <code>standalone-only</code> (set <code>meta.profile</code> for instances where the <code>Usage</code> keyword is NOT <code>#inline</code>).</td>
+</tr>
+<tr>
+<td align="left">jurisdiction</td>
+<td align="left">jurisdiction</td>
+<td align="left">As specified in the IG resource</td>
+</tr>
+<tr>
+<td align="left">language</td>
+<td align="left">language</td>
+<td align="left">As specified in the IG resource</td>
+</tr>
+<tr>
+<td align="left">license</td>
+<td align="left">license</td>
+<td align="left">As specified in the IG resource</td>
+</tr>
+<tr>
+<td align="left">menu</td>
+<td align="left">N/A</td>
+<td align="left">Used to generate the <code>fsh-generated/includes/menu.xml</code> file. The key is the menu item name and the value is the URL. Menus can contain sub-menus, but the IG Publisher currently only supports sub-menus one level deep. See the <a href="#exhaustive-example">Exhaustive Example</a> for details. Authors can provide their own <code>menu.xml</code> by removing this property and placing a <code>menu.xml</code> file in <code>/input/includes</code>.</td>
+</tr>
+<tr>
+<td align="left">meta</td>
+<td align="left">meta</td>
+<td align="left">As specified in the IG resource</td>
+</tr>
+<tr>
+<td align="left">modifierExtension</td>
+<td align="left">modifierExtension</td>
+<td align="left">As specified in the IG resource</td>
+</tr>
+<tr>
+<td align="left">name</td>
+<td align="left">name</td>
+<td align="left">As specified in the IG resource</td>
+</tr>
+<tr>
+<td align="left">packageId</td>
+<td align="left">packageId</td>
+<td align="left">As specified in the IG resource. If unspecified, defaults to <code>id</code>.</td>
 </tr>
 <tr>
 <td align="left">pages</td>
 <td align="left">definition.page</td>
-<td align="left">SUSHI can auto-generate pages, but authors can manage pages through this property. If this property is used, SUSHI will not generate any page entries. The YAML key is the file name containing the page. The title key-value pair provides the title for the page. If a title is not provided, then the title will be generated from the file name. If a generation value (corresponding to definition.page.generation) is not provided, it will be inferred from the file name extension. In the IG resource, pages can contain sub-pages; so in the config file, any sub-properties that are valid filenames with supported extensions (e.g., .md/.xml) will be treated as sub-pages.</td>
+<td align="left">SUSHI can auto-generate pages, but authors can manage pages through this property. If this property is used, SUSHI will not generate any page entries. The YAML key is the file name containing the page. The title key-value pair provides the title for the page. If a title is not provided, then the title will be generated from the file name. If a generation value (corresponding to definition.page.generation) is not provided, it will be inferred from the file name extension. In the IG resource, pages can contain sub-pages; so in the config file, any sub-properties that are valid filenames with supported extensions (e.g., .md/.xml) will be treated as sub-pages. See the <a href="#exhaustive-example">Exhaustive Example</a> for details.</td>
 </tr>
 <tr>
 <td align="left">parameters</td>
 <td align="left">definition.parameter</td>
-<td align="left">The key is the code. If a parameter allows repeating values, the value in the YAML may be a sequence/array.</td>
+<td align="left">Consists of key-value pairs where the keys are values of <code>definition.parameter.code</code>. If a parameter allows repeating values, the value in the YAML may be a sequence/array. For example, the <code>path-resource</code> parameter specifies relative paths to additional folders that contain predefined resources (see <a href="tips/#specifying-additional-resource-paths">Specifying Additional Resource Paths</a>).</td>
 </tr>
 <tr>
-<td align="left">templates</td>
-<td align="left">definition.template</td>
-<td align="left">As specified in the IG resource</td>
-</tr>
-<tr>
-<td align="left">copyrightYear or copyrightyear</td>
-<td align="left">N/A</td>
-<td align="left">Used to add a <code>copyrightyear</code> parameter to <code>IG.definition.parameter</code></td>
+<td align="left">publisher</td>
+<td align="left">publisher, with cardinality changed to 0..*</td>
+<td align="left">Publisher can be a single item or a list, each with a name and optional url and/or email. The first publisher&rsquo;s name will be used as IG.publisher.  The contact details and/or additional publishers will be translated into IG.contact values</td>
 </tr>
 <tr>
 <td align="left">releaseLabel or releaselabel</td>
@@ -928,29 +940,44 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <td align="left">Used to add a <code>releaseLabel</code> parameter to <code>IG.definition.parameter</code></td>
 </tr>
 <tr>
-<td align="left">canonical</td>
-<td align="left">N/A</td>
-<td align="left">The canonical base URL to be used throughout the IG</td>
+<td align="left">resources</td>
+<td align="left">definition.resource</td>
+<td align="left">SUSHI can auto-generate a list of resources based on FSH definitions and provided JSON or XML resources, but this property can be used to add additional entries or override generated entries. SUSHI uses the {resource type}/{resource name} format as the YAML key (corresponding to IG.definition.resource.reference). Authors can specify the value &ldquo;omit&rdquo; to omit a FSH-generated resource from the resource list. <code>groupingId</code> can be used, but top-level groups syntax may be a better option.</td>
 </tr>
 <tr>
-<td align="left">menu</td>
-<td align="left">N/A</td>
-<td align="left">Used to generate the <code>fsh-generated/includes/menu.xml</code> file. The key is the menu item name and the value is the URL. Menus can contain sub-menus, but the IG Publisher currently only supports sub-menus one level deep. <br><br> Authors can provide their own <code>menu.xml</code> by removing this property and placing a <code>menu.xml</code> file in <code>/input/includes</code></td>
+<td align="left">status</td>
+<td align="left">status</td>
+<td align="left">As specified in the IG resource</td>
 </tr>
 <tr>
-<td align="left">FSHOnly</td>
-<td align="left">N/A</td>
-<td align="left">When this flag is set to <code>true</code>, no IG specific content will be generated, SUSHI will only convert FSH definitions to JSON files. When false or unset, IG content is generated.</td>
+<td align="left">templates</td>
+<td align="left">definition.template</td>
+<td align="left">As specified in the IG resource</td>
 </tr>
 <tr>
-<td align="left">applyExtensionMetadataToRoot</td>
-<td align="left">N/A</td>
-<td align="left">When set to true, the &ldquo;short&rdquo; and &ldquo;definition&rdquo; field on the root element of an Extension will be set to the &ldquo;Title&rdquo; and &ldquo;Description&rdquo; of that Extension. Default is true.</td>
+<td align="left">text</td>
+<td align="left">text</td>
+<td align="left">As specified in the IG resource</td>
 </tr>
 <tr>
-<td align="left">instanceOptions</td>
-<td align="left">N/A</td>
-<td align="left">A <code>key: value</code> pair, where key can be <code>setMetaProfile</code> (options are <code>always</code>, <code>never</code>, <code>inline-only</code>, <code>standalone-only</code>) or <code>setId</code> (options are <code>always</code> or <code>standalone-only</code>).</td>
+<td align="left">title</td>
+<td align="left">title</td>
+<td align="left">As specified in the IG resource</td>
+</tr>
+<tr>
+<td align="left">url</td>
+<td align="left">url</td>
+<td align="left">As specified in the IG resource. If unspecified, defaults to <code>{canonical}/ImplementationGuide/{id}</code>.</td>
+</tr>
+<tr>
+<td align="left">useContext</td>
+<td align="left">useContext</td>
+<td align="left">As specified in the IG resource</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">version</td>
+<td align="left">As specified in the IG resource</td>
 </tr>
 </tbody>
 </table>
@@ -1198,12 +1225,14 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
         
             
         
+            
+        
     
 </div>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified May 5, 2022: <a  href="https://github.com/FSHSchool/site/commit/2e88c59f18843487f9736b23fd71ffd2ef9c9dfb">2022 site updates (#60) (2e88c59)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified June 23, 2022: <a  href="https://github.com/FSHSchool/site/commit/7c3c8b425f98f4a8cd94107a0f87b5ce306d3205">Update sushi doc (#64) (7c3c8b4)</a>
 </div>
 </div>
 

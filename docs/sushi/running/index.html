@@ -129,7 +129,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8f4e4a690fd07465687ce8f1fb006dfd72d3ca832a3a993d524ca18233b8452df794b0f11d4c538113f6cff1c5ef165fd455c1da7a42022431317716e65d20ec.json"
+  data-offline-search-index-json-src="/offline-search-index.85c246dcefebe2db5f526de7c9e51acdea32d6182b20cbe47f70be34025ad416d1a661a884488285fa8363854d2c09591296717f6e55ff245abd0f0639f72056.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -160,7 +160,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8f4e4a690fd07465687ce8f1fb006dfd72d3ca832a3a993d524ca18233b8452df794b0f11d4c538113f6cff1c5ef165fd455c1da7a42022431317716e65d20ec.json"
+  data-offline-search-index-json-src="/offline-search-index.85c246dcefebe2db5f526de7c9e51acdea32d6182b20cbe47f70be34025ad416d1a661a884488285fa8363854d2c09591296717f6e55ff245abd0f0639f72056.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -491,10 +491,10 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/gofsh/running/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Running GoFSH</a>
+    <a  href="/docs/gofsh/api/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">API</a>
   </li>
   <ul>
-    <li class="collapse " id="docsgofshrunning">
+    <li class="collapse " id="docsgofshapi">
       
       
       
@@ -514,10 +514,10 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/gofsh/api/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">API</a>
+    <a  href="/docs/gofsh/running/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Running GoFSH</a>
   </li>
   <ul>
-    <li class="collapse " id="docsgofshapi">
+    <li class="collapse " id="docsgofshrunning">
       
       
       
@@ -525,6 +525,29 @@
   </ul>
 </ul>
 
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/vscode/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Visual Studio Code Extension</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsvscode">
+      
       
       
     </li>
@@ -577,17 +600,13 @@
   <ul>
     <li><a href="#running-sushi">Running SUSHI</a>
       <ul>
-        <li><a href="#error-messages">Error Messages</a></li>
+        <li><a href="#command-line-argument-details">Command Line Argument Details</a></li>
+        <li><a href="#--out"><code>--out</code></a></li>
+        <li><a href="#--preprocessed"><code>--preprocessed</code></a></li>
+        <li><a href="#--snapshot"><code>--snapshot</code></a></li>
       </ul>
     </li>
-    <li><a href="#sushi-outputs">SUSHI Outputs</a>
-      <ul>
-        <li><a href="#downloading-the-ig-publisher-scripts">Downloading the IG Publisher Scripts</a></li>
-        <li><a href="#downloading-the-ig-publisher">Downloading the IG Publisher</a></li>
-        <li><a href="#running-the-ig-publisher">Running the IG Publisher</a></li>
-        <li><a href="#preprocessed-fsh">Preprocessed FSH</a></li>
-      </ul>
-    </li>
+    <li><a href="#status-messages">Status Messages</a></li>
   </ul>
 </nav>
 
@@ -648,27 +667,70 @@ This documentation assumes you have a SUSHI-compliant project structure and conf
 <p>SUSHI is executed from the command line. The general form of the SUSHI execution command is as follows:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi <span style="color:#ce5c00;font-weight:bold">{</span>specification-directory<span style="color:#ce5c00;font-weight:bold">}</span> <span style="color:#ce5c00;font-weight:bold">{</span>options<span style="color:#ce5c00;font-weight:bold">}</span>
 </code></pre></div><p>where options include the following (in any order):</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-o, --out &lt;out&gt;     the path to the output folder
--d, --debug         output extra debugging information
--p, --preprocessed  output FSH produced by preprocessing steps
--s, --snapshot      generate snapshot in Structure Definition output (default: false)
--i, --init          initialize a SUSHI project
--v, --version       print SUSHI version
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-d, --debug         output extra debugging information
 -h, --help          output usage information
+-i, --init          initialize a SUSHI project
+-o, --out &lt;out&gt;     the path to the **fsh-generated** folder
+-p, --preprocessed  output FSH produced by preprocessing steps
+--require-latest    indicate that SUSHI should halt if the latest SUSHI version is not installed
+-s, --snapshot      generate snapshot in Structure Definition output (default: false)
+-v, --version       print SUSHI version
 </code></pre></div>
 
 <div class="alert alert-success" role="alert">
 <h4 class="alert-heading">Tip</h4>
-If you run SUSHI from your FSH project directory, and accept the defaults, the command can be shortened to <code>sushi .</code>
+If you run SUSHI from your FSH project directory, and accept the defaults, the command can be shortened to <code>sushi .</code> or simply <code>sushi</code>.
 </div>
 
+<h3 id="command-line-argument-details">Command Line Argument Details</h3>
+<p>The following sections give further detail on using certain command line options.</p>
+<h3 id="--out"><code>--out</code></h3>
+<p>The <code>--out</code> or <code>-o</code> flag specifies where SUSHI&rsquo;s output, the <strong>fsh-generated</strong> folder, should be written. By default, the folder will be written to the root folder, i.e., parallel to the <strong>input</strong> folder. When SUSHI begins, any existing content in the designated location is deleted. Within the <strong>fsh-generated</strong> folder, SUSHI generates file names based on the resource id (i.e., ${resourceType}-${resourceId}.json). If the id contains one or more path separators, SUSHI will sanitize file names to assure all files are written to the target directory. (<em>Note: the <code>--out</code> option does not refer to the output folder written by the IG Publisher</em>).</p>
+<h3 id="--preprocessed"><code>--preprocessed</code></h3>
+<p>The <code>--preprocessed</code> or <code>-p</code> flag can be used to to create a folder named <strong>_preprocessed</strong> in SUSHI&rsquo;s output folder. This folder will contain representations of the input FSH after several preprocessing steps have taken place. These steps include resolution of <a href="http://build.fhir.org/ig/HL7/fhir-shorthand/branches/master/reference.html#defining-aliases"><code>Alias</code> values</a>, insertion of <a href="http://build.fhir.org/ig/HL7/fhir-shorthand/branches/master/reference.html#defining-rule-sets"><code>RuleSet</code> rules</a>, and resolution of <a href="http://build.fhir.org/ig/HL7/fhir-shorthand/branches/master/reference.html#soft-indexing">soft indexing</a>. This is mainly provided as a debugging tool, for the author to verify that SUSHI is preprocessing the input FSH in an expected way, and to help trace errors in the output of SUSHI back to their source. For example, if the IG Publisher reports an error on element Bundle.entry[56].resource, it may be difficult to identify the problematic entry in your FSH source if you used soft-indexing. It is much easier, however, to identify the problematic element in the preprocessed FSH that contains explicit indices.</p>
+<p>The example below shows a FSH snippet and a preprocessed version of that snippet. In this snippet, a <code>Profile</code> is defined using a <code>RuleSet</code> and an <code>Alias</code>, and below an <code>Instance</code> is defined which uses soft indexing.</p>
+<pre><code>Alias: $CAT = http://hl7.org/fhir/ValueSet/observation-category
 
+Profile: ObservationProfile
+Parent: Observation
+* insert Metadata
+* category from $CAT (required)
+
+RuleSet: Metadata
+* ^version = &quot;1.2.3&quot;
+* ^publisher = &quot;Example publisher&quot;
+
+Instance: PatientInstance
+InstanceOf: Patient
+* name.given[+] = &quot;John&quot;
+* name.given[+] = &quot;Q&quot;
+</code></pre><p>The preprocessed version of the above FSH is shown below. The <code>$CAT</code> alias has been resolved to its full URL, the rules contained in the <code>RuleSet</code> have been inserted onto the <code>ObservationProfile</code>, and the <code>RuleSet</code> itself has been removed, and the rules on the <code>PatientInstance</code> have been resolved to fully specified paths, which do not use soft indexing.</p>
+<pre><code>Alias: $CAT = http://hl7.org/fhir/ValueSet/observation-category
+
+// Originally defined on lines 3 - 6
+Profile: ObservationProfile
+Parent: Observation
+Id: ObservationProfile
+* ^version = &quot;1.2.3&quot;
+* ^publisher = &quot;Example publisher&quot;
+* category from http://hl7.org/fhir/ValueSet/observation-category (required)
+
+// Originally defined on lines 12 - 15
+Instance: PatientInstance
+InstanceOf: Patient
+Usage: #example
+* name.given[0] = &quot;John&quot;
+* name.given[1] = &quot;Q&quot;
+</code></pre>
 
 <div class="alert alert-primary" role="alert">
 <h4 class="alert-heading">Note</h4>
-By default, SUSHI only generates the <a href="https://www.hl7.org/fhir/R4/profiling.html#snapshot">profile differential</a>, allowing the IG Publisher to create the <a href="https://www.hl7.org/fhir/R4/profiling.html#snapshot">profile snapshot</a>. This is the approach recommended by HL7 FHIR leadership. If authors prefer, the <code>-s</code> option can be used to cause SUSHI to generate the snapshot without having to run the IG Publisher.
+Once you have finished reviewing your preprocessed FSH, we recommend deleting the <strong>_preprocessed</strong> folder to avoid potential confusion related to multiple versions of FSH files in your project. For this same reason, we do not recommend committing your preprocessed FSH to source control.
 </div>
 
+<h3 id="--snapshot"><code>--snapshot</code></h3>
+<p>By default, SUSHI only generates the <a href="https://www.hl7.org/fhir/R4/profiling.html#snapshot">profile differential</a>, allowing the IG Publisher to create the <a href="https://www.hl7.org/fhir/R4/profiling.html#snapshot">profile snapshot</a>. This is the approach recommended by HL7 FHIR leadership. If authors prefer, the <code>--snapshot</code> (or <code>-s</code>) option can be used to cause SUSHI to generate the snapshot without having to run the IG Publisher.</p>
+<h2 id="status-messages">Status Messages</h2>
 <p>While SUSHI is running, it will print status messages as it processes your project files. When SUSHI has completed, you should receive a summary like the following:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">╔════════════════════════ SUSHI RESULTS ══════════════════════════╗
 ║ ╭───────────────┬──────────────┬──────────────┬───────────────╮ ║
@@ -685,19 +747,43 @@ By default, SUSHI only generates the <a href="https://www.hl7.org/fhir/R4/profil
 ╠═════════════════════════════════════════════════════════════════╣
 ║ Fin-tastic job!                        0 Errors      0 Warnings ║
 ╚═════════════════════════════════════════════════════════════════╝
-</code></pre></div><h3 id="error-messages">Error Messages</h3>
+</code></pre></div>
+
+<div class="alert alert-primary" role="alert">
+<h4 class="alert-heading">Note</h4>
+<p>The following message is expected, and should be ignored:(node:46420) Warning: Accessing non-existent property &lsquo;INVALID_ALT_NUMBER&rsquo; of module exports inside circular dependency (Use <code>node --trace-warnings ...</code> to show where the warning was created)</p>
+<h2 id="error-messages">Error Messages</h2>
 <p>In the process of developing your IG using FSH, you may encounter SUSHI error messages (written to the command console). Most error messages point to a specific line or lines in a <code>.fsh</code> file. If possible, SUSHI will continue, despite errors, to produce FHIR artifacts, but those artifacts may omit problematic rules. SUSHI should always exit gracefully. If SUSHI crashes, please report the issue using the <a href="https://github.com/FHIR/sushi/issues">SUSHI issue tracker</a>.</p>
 <p>Here are some general tips for debugging:</p>
 <ul>
-<li><strong>Parsing (syntax) errors should be fixed first.</strong> A single syntax error can ballooon into many other errors, so you should always eliminate syntax errors first. Syntax error messages may include <code>extraneous input {x} expecting {y}</code>, <code>mismatched input {x} expecting {y}</code> and <code>no viable alternative at {x}</code>. These messages indicate that the line in question is not a valid FSH statement.</li>
+<li><strong>Parsing (syntax) errors should be fixed first.</strong> A single syntax error can balloon into many other errors, so you should always eliminate syntax errors first. Syntax error messages may include <code>extraneous input {x} expecting {y}</code>, <code>mismatched input {x} expecting {y}</code> and <code>no viable alternative at {x}</code>. These messages indicate that the line in question is not a valid FSH statement.</li>
 <li><strong>The order of keywords matters.</strong> The declarations must start with the type of item you are creating (e.g., Profile, Instance, ValueSet).</li>
 <li><strong>The order of rules usually doesn&rsquo;t matter, but there are exceptions.</strong> Slices and extensions must be created before they are constrained.</li>
 <li><strong>Rules must contain valid paths.</strong> The <code>No element found at path</code> error means that although the overall grammar of the rule may be correct, SUSHI could not find the FHIR element you are referring to in the rule. Make sure there are no spelling errors, the element names in the path are correct, and you are using the <a href="https://build.fhir.org/ig/HL7/fhir-shorthand/reference.html#fsh-paths">path grammar</a> correctly.</li>
 <li><strong>The community can help.</strong> If you are getting an error you can&rsquo;t resolve, you can ask for help on the <a href="https://chat.fhir.org/#narrow/stream/215610-shorthand">#shorthand chat channel</a>.</li>
 </ul>
+<h3 id="structure-definition-is-missing-snapshot-error">Structure Definition is Missing Snapshot Error</h3>
+<p>Some non-HL7 FHIR packages are distributed without snapshot elements in their profiles. If your IG uses one of these profiles, SUSHI will report an error like the following:</p>
+<blockquote>
+<p>Structure Definition <a href="http://fhir.de/StructureDefinition/observation-de-vitalsign">http://fhir.de/StructureDefinition/observation-de-vitalsign</a> is missing snapshot. Snapshot is required for import.</p>
+</blockquote>
+<p>Since SUSHI does not implement its own snapshot generator, you must update the package in your FHIR cache so that its profiles include snapshot elements. Fortunately, the <a href="https://fire.ly/products/firely-terminal/">Firely Terminal</a> provides a way to do this.</p>
+<p>First, you must <a href="https://docs.fire.ly/projects/Firely-Terminal/InstallingFirelyTerminal.html">install Firely Terminal</a>. Then use Firely Terminal to populate the snapshot elements in the dependency package.</p>
+<ol>
+<li>Run the command: <code>fhir bake --package  &lt;packagename&gt;</code>, substituting the dependency package ID for <code>&lt;packagename&gt;</code>.
+<ul>
+<li>E.g., <code>fhir bake --package de.basisprofil.r4</code></li>
+</ul>
+</li>
+<li>Run SUSHI again. The error about missing snapshots should no longer be displayed.</li>
+</ol>
+<div class="alert alert-success" role="alert">
+<h4 class="alert-heading">Tip</h4>
+You can see a list of the available Firely Terminal versions <a href="https://www.nuget.org/packages/Firely.Terminal#versions-body-tab">here</a>. Version than 2.5.0-beta-7 or higher is recommended. Version 2.4.2 is not recommended because it contains a bug in the snapshot generator that adversely affects SUSHI processing.
+</div>
 <h2 id="sushi-outputs">SUSHI Outputs</h2>
-<p>Based on the inputs in FSH files, <strong>sushi-config.yaml</strong>, and the IG project directory, SUSHI populates the <strong>fsh-generated</strong> directory. For example, running SUSHI on the customized-ig project from the <a href="/docs/sushi/project/">Project Structure</a> section would add a <strong>fsh-generated</strong> folder as shown below:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">customized-ig
+<p>Based on the inputs in FSH files, <strong>sushi-config.yaml</strong>, and the IG project directory, SUSHI populates the <strong>fsh-generated</strong> directory. For example, running SUSHI on the my-project project from the <a href="/docs/sushi/project/">Project Structure</a> section would add a <strong>fsh-generated</strong> folder as shown below:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">my-project
 ├── fsh-generated
 |   └── resources
 |       ├── CodeSystem-myCodeSystem.json
@@ -735,33 +821,26 @@ By default, SUSHI only generates the <a href="https://www.hl7.org/fhir/R4/profil
 <li><strong>package-list.json</strong>: Specified by the author and unchanged by SUSHI.</li>
 </ul>
 <h3 id="downloading-the-ig-publisher-scripts">Downloading the IG Publisher Scripts</h3>
-<p>To run the IG Publisher, we recommend downloading the <strong>_updatePublisher.bat|sh</strong> and <strong>_genonce.bat|sh</strong> scripts provided by the sample-ig project. To get these scripts, <a href="https://github.com/FHIR/sample-ig/archive/master.zip">download the sample-ig project</a>, unzip it, and copy <em>all</em> of the <strong>.bat</strong> and <strong>.sh</strong> files to the directory above the <strong>fsh-generated</strong> directory (<strong>customized-ig</strong> in the example above).</p>
+<p>To run the IG Publisher, we recommend downloading the <strong>_updatePublisher.bat|sh</strong> and <strong>_genonce.bat|sh</strong> scripts provided by the sample-ig project. To get these scripts, <a href="https://github.com/FHIR/sample-ig/archive/master.zip">download the sample-ig project</a>, unzip it, and copy <em>all</em> of the <strong>.bat</strong> and <strong>.sh</strong> files to the directory above the <strong>fsh-generated</strong> directory (<strong>my-project</strong> in the example above).</p>
+<p>If you used <code>sushi --init</code> then these scripts were already downloaded and added to your project.</p>
 <h3 id="downloading-the-ig-publisher">Downloading the IG Publisher</h3>
 <p>After copying these, change directories in the command prompt to the directory above the <strong>fsh-generated</strong> directory. At the command prompt, enter:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-windows fa-fw'></i> <i class="fas fa-dollar-sign"></i> _updatePublisher
-</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-apple fa-fw'></i> <i class="fas fa-dollar-sign"></i> ./_updatePublisher.sh
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;fab fa-windows fa-fw&#39;</span>&gt;&lt;/i&gt; &lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;fas fa-dollar-sign&#34;</span>&gt;&lt;/i&gt; _updatePublisher
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;fab fa-apple fa-fw&#39;</span>&gt;&lt;/i&gt; &lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;fas fa-dollar-sign&#34;</span>&gt;&lt;/i&gt; ./_updatePublisher.sh
 </code></pre></div><p>This will download the latest version of the HL7 FHIR IG Publisher tool into the <strong>/input-cache</strong> directory. <em>This step can be skipped if you already have the latest version of the IG Publisher tool in <strong>input-cache</strong>.</em></p>
-
-
 <div class="alert alert-success" role="alert">
 <h4 class="alert-heading">Tip</h4>
 If you are blocked by a firewall, or if for any reason <code>_updatePublisher</code> fails to execute, download the current IG Publisher jar file <a href="https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar">here</a>. When the file has downloaded, move it into the <strong>input-cache</strong> directory (which you may need to create as a <em>sibling</em> to the <strong>input</strong> directory).
 </div>
-
 <h3 id="running-the-ig-publisher">Running the IG Publisher</h3>
-
-
 <div class="alert alert-warning" role="alert">
 <h4 class="alert-heading">Warning</h4>
 If you have never run the IG Publisher, you may need to install Jekyll first. See <a href="https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation">Installing the IG Publisher</a> for details.
 </div>
-
 <p>After the IG Publisher has been successfully downloaded, execute the following command to run it:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-windows fa-fw'></i> <i class="fas fa-dollar-sign"></i> _genonce
-</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-apple fa-fw'></i> <i class="fas fa-dollar-sign"></i> ./_genonce.sh
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;fab fa-windows fa-fw&#39;</span>&gt;&lt;/i&gt; &lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;fas fa-dollar-sign&#34;</span>&gt;&lt;/i&gt; _genonce
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;fab fa-apple fa-fw&#39;</span>&gt;&lt;/i&gt; &lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;fas fa-dollar-sign&#34;</span>&gt;&lt;/i&gt; ./_genonce.sh
 </code></pre></div><p>This will run the HL7 IG Publisher, which may take several minutes to complete. After the publisher is finished, open the file <strong>/output/index.html</strong> in a browser to see the resulting IG.</p>
-
-
 <div class="alert alert-success" role="alert">
 <h4 class="alert-heading">Tip</h4>
 <p>When running SUSHI, the IG Publisher will look for an optional <strong>fsh.ini</strong> control file in the root directory of the project (the same directory that contains <strong>ig.ini</strong>). This file should have <code>[FSH]</code> on the first line, and can include a <code>sushi-version</code> property, used to specify which version of SUSHI the IG Publisher should use, and a <code>timeout</code> property, used to set a timeout for SUSHI (in seconds). The default timeout is 60 seconds. An example <strong>fsh.ini</strong> file is provided below.</p>
@@ -771,46 +850,6 @@ timeout = 120
 </code></pre></div>
 </div>
 
-<h3 id="preprocessed-fsh">Preprocessed FSH</h3>
-<p>When running SUSHI, the <code>-p</code> or <code>--preprocessed</code> flag can be used to to create a <strong>_preprocessed</strong> folder in SUSHI&rsquo;s output folder (<strong>customized-ig/_preprocessed</strong> in the example above). This folder will contain representations of the input FSH after several preprocessing steps have taken place. These steps include resolution of <a href="http://build.fhir.org/ig/HL7/fhir-shorthand/branches/master/reference.html#defining-aliases"><code>Alias</code> values</a>, insertion of <a href="http://build.fhir.org/ig/HL7/fhir-shorthand/branches/master/reference.html#defining-rule-sets"><code>RuleSet</code> rules</a>, and resolution of <a href="http://build.fhir.org/ig/HL7/fhir-shorthand/branches/master/reference.html#soft-indexing">soft indexing</a>. This is mainly provided as a debugging tool, for the author to verify that SUSHI is preprocessing the input FSH in an expected way, and to help trace errors in the output of SUSHI back to their source. For example, if the IG Publisher reports an error on element Bundle.entry[56].resource, it may be difficult to identify the problematic entry in your FSH source if you used soft-indexing. It is much easier, however, to identify the problematic element in the preprocessed FSH that contains explicit indices.</p>
-<p>The example below shows a FSH snippet and a preprocessed version of that snippet. In this snippet, a <code>Profile</code> is defined using a <code>RuleSet</code> and an <code>Alias</code>, and below an <code>Instance</code> is defined which uses soft indexing.</p>
-<pre><code>Alias: CAT = http://hl7.org/fhir/ValueSet/observation-category
-
-Profile: ObservationProfile
-Parent: Observation
-* insert Metadata
-* category from CAT (required)
-
-RuleSet: Metadata
-* ^version = &quot;1.2.3&quot;
-* ^publisher = &quot;Example publisher&quot;
-
-Instance: PatientInstance
-InstanceOf: Patient
-* name.given[+] = &quot;John&quot;
-* name.given[+] = &quot;Q&quot;
-</code></pre><p>The preprocessed version of the above FSH is shown below. The <code>CAT</code> alias has been resolved to its full URL, the rules contained in the <code>RuleSet</code> have been inserted onto the <code>ObservationProfile</code>, and the <code>RuleSet</code> itself has been removed, and the rules on the <code>PatientInstance</code> have been resolved to fully specified paths, which do not use soft indexing.</p>
-<pre><code>Alias: CAT = http://hl7.org/fhir/ValueSet/observation-category
-
-// Originally defined on lines 3 - 6
-Profile: ObservationProfile
-Parent: Observation
-Id: ObservationProfile
-* ^version = &quot;1.2.3&quot;
-* ^publisher = &quot;Example publisher&quot;
-* category from http://hl7.org/fhir/ValueSet/observation-category (required)
-
-// Originally defined on lines 12 - 15
-Instance: PatientInstance
-InstanceOf: Patient
-Usage: #example
-* name.given[0] = &quot;John&quot;
-* name.given[1] = &quot;Q&quot;
-</code></pre>
-
-<div class="alert alert-primary" role="alert">
-<h4 class="alert-heading">Note</h4>
-Once you have finished reviewing your preprocessed FSH, we recommend deleting the <strong>_preprocessed</strong> folder to avoid potential confusion related to multiple versions of FSH files in your project. For this same reason, we do not recommend committing your preprocessed FSH to source control.
 </div>
 
 
@@ -853,12 +892,14 @@ Once you have finished reviewing your preprocessed FSH, we recommend deleting th
         
             
         
+            
+        
     
 </div>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified May 5, 2022: <a  href="https://github.com/FSHSchool/site/commit/2e88c59f18843487f9736b23fd71ffd2ef9c9dfb">2022 site updates (#60) (2e88c59)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified June 23, 2022: <a  href="https://github.com/FSHSchool/site/commit/7c3c8b425f98f4a8cd94107a0f87b5ce306d3205">Update sushi doc (#64) (7c3c8b4)</a>
 </div>
 </div>
 

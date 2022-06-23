@@ -129,7 +129,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8f4e4a690fd07465687ce8f1fb006dfd72d3ca832a3a993d524ca18233b8452df794b0f11d4c538113f6cff1c5ef165fd455c1da7a42022431317716e65d20ec.json"
+  data-offline-search-index-json-src="/offline-search-index.85c246dcefebe2db5f526de7c9e51acdea32d6182b20cbe47f70be34025ad416d1a661a884488285fa8363854d2c09591296717f6e55ff245abd0f0639f72056.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -160,7 +160,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8f4e4a690fd07465687ce8f1fb006dfd72d3ca832a3a993d524ca18233b8452df794b0f11d4c538113f6cff1c5ef165fd455c1da7a42022431317716e65d20ec.json"
+  data-offline-search-index-json-src="/offline-search-index.85c246dcefebe2db5f526de7c9e51acdea32d6182b20cbe47f70be34025ad416d1a661a884488285fa8363854d2c09591296717f6e55ff245abd0f0639f72056.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -491,10 +491,10 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/gofsh/running/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Running GoFSH</a>
+    <a  href="/docs/gofsh/api/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">API</a>
   </li>
   <ul>
-    <li class="collapse " id="docsgofshrunning">
+    <li class="collapse " id="docsgofshapi">
       
       
       
@@ -514,10 +514,10 @@
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/gofsh/api/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">API</a>
+    <a  href="/docs/gofsh/running/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Running GoFSH</a>
   </li>
   <ul>
-    <li class="collapse " id="docsgofshapi">
+    <li class="collapse " id="docsgofshrunning">
       
       
       
@@ -525,6 +525,29 @@
   </ul>
 </ul>
 
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/vscode/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Visual Studio Code Extension</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsvscode">
+      
       
       
     </li>
@@ -575,12 +598,13 @@
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#resolving-issues-with-dependency-igs">Resolving Issues with Dependency IGs</a>
-      <ul>
-        <li><a href="#sushi-could-not-find-the-ig-url-in-the-dependency-ig">SUSHI could not find the IG URL in the dependency IG</a></li>
-        <li><a href="#structure-definition-is-missing-snapshot">Structure Definition is missing snapshot</a></li>
-      </ul>
-    </li>
+    <li><a href="#specifying-additional-resource-paths">Specifying Additional Resource Paths</a></li>
+    <li><a href="#support-for-contentreference-elements">Support for contentReference Elements</a></li>
+    <li><a href="#inferred-choice-path">Inferred Choice Path</a></li>
+    <li><a href="#referencing-the-canonical-url-of-the-implementationguide">Referencing the Canonical URL of the ImplementationGuide</a></li>
+    <li><a href="#extensions-for-representing-elements-from-other-versions-of-fhir">Extensions for Representing Elements From Other Versions of FHIR</a></li>
+    <li><a href="#extension-for-profiling-backboneelements">Extension for Profiling BackboneElements</a></li>
+    <li><a href="#instances-of-logical-models">Instances of Logical Models</a></li>
   </ul>
 </nav>
 
@@ -630,57 +654,98 @@
 	<h1>Tips and Tricks</h1>
         
 	
-	<h2 id="resolving-issues-with-dependency-igs">Resolving Issues with Dependency IGs</h2>
-<p>Sometimes authors need to take additional steps when depending on non-HL7 package dependencies (e.g., packages from Simplifier). The following sections describe common problems and their solutions.</p>
-<h3 id="sushi-could-not-find-the-ig-url-in-the-dependency-ig">SUSHI could not find the IG URL in the dependency IG</h3>
-<p>SUSHI requires that dependency packages have an associated IG URL. This is because SUSHI needs it to properly populate the <a href="http://build.fhir.org/implementationguide-definitions.html#ImplementationGuide.dependsOn">dependsOn</a> property when generating your IG&rsquo;s ImplementationGuide resource.</p>
-<p>When SUSHI loads a dependency that does not have an ImplementationGuide resource in it and/or does not declare a canonical in its <code>package.json</code> file, SUSHI reports an error like the following:</p>
-<blockquote>
-<p>Failed to add de.basisprofil.r4:1.1.0 to ImplementationGuide instance because SUSHI could not find the IG URL in the dependency IG. To specify the IG URL in your sushi-config.yaml, use the dependency details format:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">dependencies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">de.basisprofil.r4</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">uri</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//fhir.org/packages/de.basisprofil.r4/ImplementationGuide/de.basisprofil.r4<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div></blockquote>
-<p>As the error suggests, you need to update your <code>sushi-config.yaml</code> file so the dependency declaration includes both the <code>uri</code> and <code>version</code>. The <code>uri</code> is intended to point to an ImplementationGuide resource, but in this case there is no ImplementationGuide resource to point to.</p>
-<p>The FHIR core team has recently looked into this and now recommends using a <code>uri</code> with the following format when a package has no IG resource: <code>http://fhir.org/packages/${packageId}/ImplementationGuide/${packageId}</code>. In the example above, authors should provide the <code>uri</code> value: <code>http://fhir.org/packages/de.basisprofil.r4/ImplementationGuide/de.basisprofil.r4</code>.</p>
-<p>In the near future, SUSHI will be updated to automatically apply this guidance so that authors will no longer receive this error and will not need to take any action.</p>
-<h3 id="structure-definition-is-missing-snapshot">Structure Definition is missing snapshot</h3>
-<p>Some non-HL7 FHIR packages are distributed without snapshot elements in their profiles. If your IG uses one of these profiles, SUSHI will report an error like the following:</p>
-<blockquote>
-<p>Structure Definition <a href="http://fhir.de/StructureDefinition/observation-de-vitalsign">http://fhir.de/StructureDefinition/observation-de-vitalsign</a> is missing snapshot. Snapshot is required for import.</p>
-</blockquote>
-<p>Since SUSHI does not implement its own snapshot generator, you must update the package in your FHIR cache so that its profiles include snapshot elements. Luckily, the <a href="https://fire.ly/products/firely-terminal/">Firely Terminal</a> provides a way to do this.</p>
-<p>First, you must install Firely Terminal:</p>
+	<h2 id="specifying-additional-resource-paths">Specifying Additional Resource Paths</h2>
+<p>Sometimes authors may wish to put predefined resources in folders other than the normally supported <code>input</code> sub-folders. To support this, SUSHI now recognizes the <a href="https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters">ImplementationGuide parameter</a> <code>path-resource</code>. Authors can include this parameter in <code>sushi-config.yaml</code> to specify relative paths to additional folders that contain predefined resources. For example, the following can now be used in <code>sushi-config.yaml</code> to include resources from the sub-folder <code>predefined-resources</code>:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">parameters</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">path-resource</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- input/predefined-resources<span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><p>Note that the value of <code>path-resource</code> is an array (or sequence) formatted in the standard YAML style.</p>
+<p>For SUSHI users who manage their own ImplementationGuide resource (i.e. <em>FSHOnly</em> IGs), SUSHI will use the parameter from the ImplementationGuide resource:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#4e9a06">&#34;parameter&#34;</span><span style="color:#a40000">:</span> <span style="color:#000;font-weight:bold">[</span>
+  <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">&#34;code&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;path-resource&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#204a87;font-weight:bold">&#34;value&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;input/predefined-resource&#34;</span>
+  <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">]</span>
+</code></pre></div><h2 id="support-for-contentreference-elements">Support for contentReference Elements</h2>
+<p>Content references allow ElementDefinitions to refer to be defined in terms of other elements. A typical application of a content reference is to prevent infinite regress in elements such as <code>Questionnaire.item.item</code>, whose the definition refers back to <code>Questionnaire.item</code> via a content reference.</p>
+<p>Content references are supported in <code>AddElementRules</code> by way of the <code>contentReference</code> keyword. This feature applies to Logical Models and custom Resources. To define an element of type <code>contentReference</code>, include <code>contentReference &lt;url-to-referenced-element&gt;</code> in the <code>AddElementRule</code> where the <code>type</code> would typically go. For example, the following <code>AddElementRule</code> will create an element <code>section.section</code> that is a contentReference to the element found at <code>http://example.org/StructureDefinition/Report#Report.section</code>.</p>
+<pre><code>* section.section 0..1 contentReference http://example.org/StructureDefinition/Report#Report.section &quot;A sub-section&quot;
+</code></pre><h2 id="inferred-choice-path">Inferred Choice Path</h2>
+<p>When assigning values to choice elements (e.g., value[x]) on an Instance, type-specific elements (e.g., valueBoolean) should always be used in assignment rules. However, if the choice element has been constrained to a single type, SUSHI will infer the correct type-specific element.</p>
+<p>For example, SUSHI will infer the last line is to be interpreted as <code>* valueBoolean = true</code> as the <code>Instance</code> is exported. Authors are encouraged to not depend on this behavior, and use type-specific elements in instances.</p>
+<pre><code>Profile: BooleanObservation
+Parent: Observation
+* value[x] only boolean
+
+Instance: MyObservation
+InstanceOf: BooleanObservation
+* status = #final
+* code = http://example#somecode
+* value[x] = true
+</code></pre><h2 id="referencing-the-canonical-url-of-the-implementationguide">Referencing the Canonical URL of the ImplementationGuide</h2>
+<p>There may be cases where an author needs to refer to the canonical URL of the ImplementationGuide resource they are creating. SUSHI now supports using the <code>Canonical</code> keyword with the IG&rsquo;s <code>id</code>, <code>packageId</code>, or <code>name</code> that is specified in <code>sushi-config.yaml</code>. For example, when creating a <code>CapabilityStatement</code>, the following Assignment Rule can be added:</p>
+<pre><code>* implementationGuide = Canonical(my-package-id)
+</code></pre><h2 id="extensions-for-representing-elements-from-other-versions-of-fhir">Extensions for Representing Elements From Other Versions of FHIR</h2>
+<p>The FHIR specification defines behavior for a feature they refer to as <a href="http://hl7.org/fhir/versions.html#extensions">extensions for converting between versions</a> (also known as &ldquo;implied extensions&rdquo;). This feature allows authors to represent specific elements from past and future versions of FHIR using a specific extension URL format (as described in the spec linked above). These extensions are not available in any physical package, but rather, are understood and processed conceptually.</p>
+<p>To use this feature in SUSHI, authors must specify a dependency on a package using an id and version of the form <code>hl7.fhir.extensions.&lt;extension-version&gt;: &lt;package-version&gt;</code>, where valid extension-versions are <code>r2</code>, <code>r3</code>, <code>r4</code>, and <code>r5</code>. As an example, if an author wanted to represent the <code>Patient.animal.species</code> <a href="http://hl7.org/fhir/STU3/patient-definitions.html#Patient.animal.species">element</a> as defined in STU3, the dependencies should be specified as:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">dependencies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">hl7.fhir.extensions.r3</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">4.0.1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><p>An author can then reference the extension using a URL following the format defined in the FHIR specification linked above. For example, the extension referring to the R3 <code>Patient.animal.species</code> element would be: <code>http://hl7.org/fhir/3.0/StructureDefinition/extension-Patient.animal.species</code>.</p>
+<p>See the following documentation for additional details:</p>
+<ul>
+<li><a href="https://fshschool.org/docs/sushi/configuration/#dependencies">Dependencies</a> from the FSH School SUSHI documentation</li>
+<li><a href="http://hl7.org/fhir/versions.html#extensions">Extensions for Converting Between Versions</a> from the current FHIR specification</li>
+</ul>
+<h2 id="extension-for-profiling-backboneelements">Extension for Profiling BackboneElements</h2>
+<p>The <code>profile-element</code> extension can be used to profile a BackboneElement by pointing at another BackboneElement defined elsewhere. This is typically used to indicate that constraints on the target of a contentReference should be applied to all the references as well. For example, the following snippet indicates that all recursive references to <code>Questionnaire.item</code> (e.g., <code>Questionnaire.item.item</code>) should conform to the same constraints as the original <code>Questionnaire.item</code> in this profile:</p>
+<pre><code>Profile: MyQuestionnaire
+Parent: Questionnaire
+* item ^type.profile = http://example.org/StructureDefinition/MyQuestionnaire
+* item ^type.profile.extension.url = http://hl7.org/fhir/StructureDefinition/elementdefinition-profile-element
+* item ^type.profile.extension.valueString = &quot;Questionnaire.item&quot;
+// ...
+</code></pre><p>See the following documentation for additional details:</p>
+<ul>
+<li><a href="https://www.hl7.org/fhir/extension-elementdefinition-profile-element.html">Extension: profile-element</a> from the FHIR specification</li>
+<li><a href="https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/Clarification.20on.20contentReference/near/187852552">Clarification on contentReference</a> discussion on Zulip</li>
+</ul>
+<h2 id="instances-of-logical-models">Instances of Logical Models</h2>
+<p>The IG Publisher supports including instances of logical models as binary resources. This feature was announced and discussed in a <a href="https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/Logical.20Model.20Examples/near/251192344">Logical Model Examples</a> thread on chat.fhir.org.  The basic steps an author needs to take in order to include logical model examples in a SUSHI project are:</p>
 <ol>
-<li>Install the <a href="https://dotnet.microsoft.com/en-us/download/dotnet/3.1">.NET Core 3.1</a> SDK for your operating system.</li>
-<li>Confirm that the .NET Core 3.1 SDK is properly installed by running the command: <code>dotnet --version</code>.
-<ul>
-<li>If the command fails, exit your terminal and start a new terminal session. Then try step 2 again.</li>
-<li>If <code>dotnet --version</code> reports a different version than the 3.1 SDK, you will need to follow the instructions to <a href="https://docs.microsoft.com/en-us/dotnet/core/versions/selection#the-sdk-uses-the-latest-installed-version">select the .NET version to use</a>. When creating the <em>global.json</em> file, be sure to specify the full SDK version number (e.g., <code>3.1.416</code>).</li>
-</ul>
-</li>
-<li>Run the command: <code>dotnet tool install --global firely.terminal --version 2.5.0-beta-7</code>.</li>
-<li>Confirm that Firely Terminal is properly installed by running the command: <code>fhir --version</code>.
-<ul>
-<li>If the command fails, you may need to add the .NET tools folder to your path. On Mac, run the following command: <code>export PATH=$PATH:~/.dotnet/tools</code>. Then try step 4 again.</li>
-</ul>
-</li>
+<li>Add the example to the <code>input/resources</code> or <code>input/examples</code> folder
+a. The file name of the example should be <code>Binary-{id}.json</code> or <code>Binary-{id}.xml</code> (substituting <code>{id}</code> for the real id)</li>
+<li>Add an entry for the example in the <code>sushi-config.yaml</code> <code>resources</code> property
+a. Specify a <code>name</code>
+b. Specify <code>exampleCanonical</code> pointing to the canonical of your logical model
+c. Add an extension w/ the proper resource format (<code>application/fhir+json</code> or <code>application/xml</code>)</li>
 </ol>
-<p>Then use Firely Terminal to populate the snapshot elements in the dependency package.</p>
-<ol>
-<li>Run the command: <code>fhir bake --package  &lt;packagename&gt;</code>, substituting the dependency package ID for <code>&lt;packagename&gt;</code>.
-<ul>
-<li>E.g., <code>fhir bake --package de.basisprofil.r4</code></li>
-</ul>
-</li>
-<li>Run SUSHI again. The error about missing snapshots should no longer be displayed.</li>
-</ol>
+<p>For example, given the following simple logical model definition in an IG w/ IG canonical root <code>http://example.org</code>:</p>
+<pre><code>Logical: MyLM
+Id: MyLM
+Title: &quot;My LM&quot;
+Description: &quot;This is mine&quot;
+* important 1..1 SU boolean &quot;Is this resource important&quot;
+</code></pre><p>Create the file <code>input/examples/Binary-my-logical-example.json</code>:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">&#34;resourceType&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;MyLM&#34;</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#204a87;font-weight:bold">&#34;id&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;my-logical-example&#34;</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#204a87;font-weight:bold">&#34;important&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>And add the following in your <code>sushi-config.yaml</code>:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">Binary/my-logical-example</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">extension</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">url</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/StructureDefinition/implementationguide-resource-format<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">valueCode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>application/fhir+json<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Example<span style="color:#f8f8f8;text-decoration:underline"> </span>of<span style="color:#f8f8f8;text-decoration:underline"> </span>LM<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">exampleCanonical</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//example.org/StructureDefinition/MyLM<span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><p>This will result in your logical model example being listed and displayed as a proper example of the logical model.</p>
 
 
 <div class="alert alert-success" role="alert">
-<h4 class="alert-heading">Tip</h4>
-You can see a list of the available Firely Terminal versions <a href="https://www.nuget.org/packages/Firely.Terminal">here</a>. If there is a later version than 2.5.0-beta-7, we recommend that. We do not recommend the 2.4.2 version because it contains a bug in the snapshot generator that adversely affects SUSHI processing.
+<h4 class="alert-heading">Note</h4>
+This does not allow/support using the <code>Instance</code> keyword for creating examples of logical models. Authors must created the example as raw JSON or XML.  Support for the <code>Instance</code> keyword may come in future versions of SUSHI.
 </div>
 
 
@@ -723,12 +788,14 @@ You can see a list of the available Firely Terminal versions <a href="https://ww
         
             
         
+            
+        
     
 </div>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified January 21, 2022: <a  href="https://github.com/FSHSchool/site/commit/166e8ea0977ba11231ffdc87d5d3438eb3871f9b">Tips and Tricks (#54) (166e8ea)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified June 23, 2022: <a  href="https://github.com/FSHSchool/site/commit/7c3c8b425f98f4a8cd94107a0f87b5ce306d3205">Update sushi doc (#64) (7c3c8b4)</a>
 </div>
 </div>
 

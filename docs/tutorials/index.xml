@@ -27,8 +27,8 @@
 &lt;p&gt;If you haven&amp;rsquo;t done so already, please read or review the &lt;a href=&#34;/docs/introduction/&#34;&gt;Introduction&lt;/a&gt; documentation to gain an understanding of the conventions used in this tutorial and the resources available to you.&lt;/p&gt;
 &lt;h3 id=&#34;step-2-install-nodejs-and-sushi&#34;&gt;Step 2: Install Node.js and Sushi&lt;/h3&gt;
 &lt;p&gt;If you have not already installed SUSHI, follow the &lt;a href=&#34;/docs/sushi/installation&#34;&gt;SUSHI Installation&lt;/a&gt; instructions.&lt;/p&gt;
-&lt;h3 id=&#34;step-3-download-sample-fsh-tank&#34;&gt;Step 3: Download Sample FSH Tank&lt;/h3&gt;
-&lt;p&gt;To start with some working examples of FSH files and a skeleton FSH tank, &lt;a href=&#34;/docs/tutorials/basic/fsh-tutorial-master.zip&#34;&gt;&lt;i class=&#39;fas fa-download fa-fw&#39;&gt;&lt;/i&gt; download the FSH Tutorial Starter&lt;/a&gt; and unzip it into a directory of your choice.&lt;/p&gt;
+&lt;h3 id=&#34;step-3-download-sample-fsh-project&#34;&gt;Step 3: Download Sample FSH Project&lt;/h3&gt;
+&lt;p&gt;To start with some working examples of FSH files and a skeleton FSH project, &lt;a href=&#34;/docs/tutorials/basic/fsh-tutorial-master.zip&#34;&gt;&lt;i class=&#39;fas fa-download fa-fw&#39;&gt;&lt;/i&gt; download the FSH Tutorial Starter&lt;/a&gt; and unzip it into a directory of your choice.&lt;/p&gt;
 &lt;p&gt;After the file is unzipped, you should see two subdirectories:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;FishExample&lt;/strong&gt;&lt;/li&gt;
@@ -41,7 +41,7 @@
 &lt;/ul&gt;
 &lt;p&gt;In addition, there are several files for building the IG.&lt;/p&gt;
 &lt;h3 id=&#34;step-4-run-sushi&#34;&gt;Step 4: Run SUSHI&lt;/h3&gt;
-&lt;p&gt;Now that you have SUSHI installed and a minimal FSH tank, open up a command window, and navigate to the &lt;strong&gt;FishExample&lt;/strong&gt; directory. Run SUSHI on those FSH files by executing:&lt;/p&gt;
+&lt;p&gt;Now that you have SUSHI installed and a minimal FSH project, open up a command window, and navigate to the &lt;strong&gt;FishExample&lt;/strong&gt; directory. Run SUSHI on those FSH files by executing:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi .
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 

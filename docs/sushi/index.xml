@@ -1051,6 +1051,189 @@ This does not allow/support using the &lt;code&gt;Instance&lt;/code&gt; keyword 
     </item>
     
     <item>
+      <title>Docs: SUSHI Tutorial</title>
+      <link>/docs/sushi/tutorial/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/sushi/tutorial/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;a href=&#34;https://build.fhir.org/ig/HL7/fhir-shorthand/index.html&#34;&gt;FHIR Shorthand&lt;/a&gt; (FSH) is a specially-designed language for defining the content of FHIR Implementation Guides (IGs). It is simple and compact, with tools to produce Fast Healthcare Interoperability Resources (FHIR) profiles, extensions and IGs. FSH is compiled from text files to FHIR artifacts using &lt;a href=&#34;/docs/sushi&#34;&gt;SUSHI&lt;/a&gt;. To get started using FSH, you need to install and run SUSHI using the steps below.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Tip&lt;/h4&gt;
+If you find this helpful, you may also want to look at our &lt;a href=&#34;/courses/&#34;&gt;self-service FSH Seminar course&lt;/a&gt;, which includes a more extensive walkthrough of using SUSHI and FSH.
+&lt;/div&gt;
+
+&lt;h3 id=&#34;step-1-review-introduction&#34;&gt;Step 1: Review Introduction&lt;/h3&gt;
+&lt;p&gt;If you haven&amp;rsquo;t done so already, please read or review the &lt;a href=&#34;/docs/introduction/&#34;&gt;Introduction&lt;/a&gt; documentation to gain an understanding of the conventions used in this tutorial and the resources available to you.&lt;/p&gt;
+&lt;h3 id=&#34;step-2-install-nodejs-and-sushi&#34;&gt;Step 2: Install Node.js and Sushi&lt;/h3&gt;
+&lt;p&gt;If you have not already installed SUSHI, follow the &lt;a href=&#34;/docs/sushi/installation&#34;&gt;SUSHI Installation&lt;/a&gt; instructions.&lt;/p&gt;
+&lt;h3 id=&#34;step-3-download-sample-fsh-project&#34;&gt;Step 3: Download Sample FSH Project&lt;/h3&gt;
+&lt;p&gt;To start with some working examples of FSH files and a skeleton FSH project, &lt;a href=&#34;/docs/sushi/tutorial/fsh-tutorial-master.zip&#34;&gt;&lt;i class=&#39;fas fa-download fa-fw&#39;&gt;&lt;/i&gt; download the FSH Tutorial Starter&lt;/a&gt; and unzip it into a directory of your choice.&lt;/p&gt;
+&lt;p&gt;After the file is unzipped, you should see two subdirectories:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;FishExample&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FishExampleComplete&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Change the working directory to FishExample. There is a &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; file, and two FSH files within the &lt;strong&gt;/input/fsh&lt;/strong&gt; subdirectory:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;FishPatient.fsh&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Veterinarian.fsh&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In addition, there are several files for building the IG.&lt;/p&gt;
+&lt;h3 id=&#34;step-4-run-sushi&#34;&gt;Step 4: Run SUSHI&lt;/h3&gt;
+&lt;p&gt;Now that you have SUSHI installed and a minimal FSH project, open up a command window, and navigate to the &lt;strong&gt;FishExample&lt;/strong&gt; directory. Run SUSHI on those FSH files by executing:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi .
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+The dot (.) represents &amp;ldquo;this directory,&amp;rdquo; the location of the FSH files. You can also specify the location explicitly by replacing the dot with a directory path.
+&lt;/div&gt;
+
+&lt;p&gt;Running SUSHI will create a &lt;strong&gt;FishExample/fsh-generated&lt;/strong&gt; directory, and populate it with the files needed to create the IG using the HL7 FHIR IG Publisher tool.&lt;/p&gt;
+&lt;p&gt;While running SUSHI, there will be a series of informational messages. When SUSHI completes, you should see a summary output similar this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;╔════════════════════════ SUSHI RESULTS ══════════════════════════╗
+║ ╭───────────────┬──────────────┬──────────────┬───────────────╮ ║
+║ │    Profiles   │  Extensions  │   Logicals   │   Resources   │ ║
+║ ├───────────────┼──────────────┼──────────────┼───────────────┤ ║
+║ │       2       │      0       │      0       │       0       │ ║
+║ ╰───────────────┴──────────────┴──────────────┴───────────────╯ ║
+║ ╭────────────────────┬───────────────────┬────────────────────╮ ║
+║ │      ValueSets     │    CodeSystems    │     Instances      │ ║
+║ ├────────────────────┼───────────────────┼────────────────────┤ ║
+║ │         0          │         0         │         0          │ ║
+║ ╰────────────────────┴───────────────────┴────────────────────╯ ║
+║                                                                 ║
+╠═════════════════════════════════════════════════════════════════╣
+║ Fin-tastic job!                        0 Errors      0 Warnings ║
+╚═════════════════════════════════════════════════════════════════╝
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The files generated by SUSHI are located in the &lt;strong&gt;FishExample/fsh-generated&lt;/strong&gt; directory. Check that the &lt;strong&gt;FishExample/fsh-generated/resources&lt;/strong&gt; subdirectory contains two generated StructureDefinitions and a generated ImplementationGuide.&lt;/p&gt;
+&lt;h3 id=&#34;step-5-generate-the-sample-ig&#34;&gt;Step 5: Generate the Sample IG&lt;/h3&gt;
+&lt;p&gt;At the command prompt, enter:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-windows fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; _updatePublisher
+&lt;i class=&#39;fab fa-apple fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; ./_updatePublisher.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will download the latest version of the HL7 FHIR IG Publisher tool into &lt;strong&gt;./input-cache&lt;/strong&gt;. &lt;em&gt;This step can be skipped if you already have run the command recently, and have the latest version of the IG Publisher tool.&lt;/em&gt;&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Tip&lt;/h4&gt;
+If you are blocked by a firewall, or if for any reason &lt;code&gt;_updatePublisher&lt;/code&gt; fails to execute, download the current IG Publisher jar file &lt;a href=&#34;https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar&#34;&gt;here&lt;/a&gt;. When the file has downloaded, move it into the directory &lt;strong&gt;/FishExample/input-cache&lt;/strong&gt; (creating the directory if necessary).
+&lt;/div&gt;
+
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Warning&lt;/h4&gt;
+Before proceeding to the next command: If you have never run the IG Publisher, you may need to install Jekyll first. See &lt;a href=&#34;https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation&#34;&gt;Installing the IG Publisher&lt;/a&gt; for details.
+&lt;/div&gt;
+
+&lt;p&gt;Now run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-windows fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; _genonce
+&lt;i class=&#39;fab fa-apple fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; ./_genonce.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will run the HL7 FHIR IG generator, which may take several minutes to complete.&lt;/p&gt;
+&lt;p&gt;After the publisher is finished, open the file &lt;strong&gt;/FishExample/output/index.html&lt;/strong&gt; to see the resulting IG.&lt;/p&gt;
+&lt;p&gt;If you click on the Artifacts Summary item in the menu, you will see that the IG contains two profiles, FishPatient and Veterinarian. If you look at each of them, you will notice that they have minimal differentials. The only way in which they differ from their base resource is that they require at least one name.&lt;/p&gt;
+&lt;h3 id=&#34;step-6-setting-cardinalities-in-a-profile&#34;&gt;Step 6: Setting Cardinalities in a Profile&lt;/h3&gt;
+&lt;p&gt;It is not widely known, but FHIR is designed to be used for veterinary medicine as well as human. For a non-human patient, we need to record the species. The Patients in this Tutorial are going to be various species of fish 🐟.&lt;/p&gt;
+&lt;p&gt;Since fish don&amp;rsquo;t get legally married (although some species do pair bond) and they don&amp;rsquo;t communicate in a human language, the first thing we&amp;rsquo;ll do in the FishPatient profile is eliminate these elements. To do this, open the file &lt;strong&gt;FishPatient.fsh&lt;/strong&gt; in your favorite plain-text editor, and add the following rules after the last non-blank line in the file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;* maritalStatus 0..0
+* communication 0..0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that rules start with &lt;code&gt;*&lt;/code&gt;. FSH expresses cardinality as, &lt;code&gt;{min}..{max}&lt;/code&gt;, the same as FHIR.&lt;/p&gt;
+&lt;h3 id=&#34;step-7-create-a-species-extension-for-fishpatient&#34;&gt;Step 7: Create a Species Extension for FishPatient&lt;/h3&gt;
+&lt;p&gt;To specify the species of our aquatic patients, we&amp;rsquo;ll need an &lt;a href=&#34;https://www.hl7.org/fhir/R4/extensibility.html#extension&#34;&gt;extension&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We have a choice of whether to make the extension &lt;strong&gt;inline&lt;/strong&gt; or &lt;strong&gt;standalone&lt;/strong&gt;. Inline extensions do not result in a separate StructureDefinition, and cannot be reused in other profiles. Standalone extensions are the opposite: they have independent StructureDefinitions, and can be reused. For this example, let&amp;rsquo;s make a standalone extension.&lt;/p&gt;
+&lt;p&gt;Extensions are created using the &lt;code&gt;contains&lt;/code&gt; keyword. To add a standalone species extension, add the following rule after the cardinality rules:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;* extension contains FishSpecies named species 0..1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This rule states that the &lt;code&gt;extension&lt;/code&gt; array of the Patient resource will incorporate the &lt;code&gt;FishSpecies&lt;/code&gt; extension with the local name &lt;code&gt;species&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To define the &lt;code&gt;FishSpecies&lt;/code&gt; extension, add the following lines to the end of the &lt;strong&gt;FishPatient.fsh&lt;/strong&gt; file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;Extension:   FishSpecies
+Id:          fish-species
+Title:       &amp;#34;Fish Species&amp;#34;
+Description: &amp;#34;The species of the fish.&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Tip&lt;/h4&gt;
+FSH ignores extra whitespace, so authors can choose to use whitespace for improved visual alignment, as in the extension definition above.
+&lt;/div&gt;
+
+&lt;p&gt;Run SUSHI again (&lt;code&gt;sushi .&lt;/code&gt;). The count of Extensions should now be 1.&lt;/p&gt;
+&lt;h3 id=&#34;step-8-define-a-value-set-for-fish-species&#34;&gt;Step 8: Define a Value Set for Fish Species&lt;/h3&gt;
+&lt;p&gt;The FishSpecies extension doesn&amp;rsquo;t quite do its job yet, because we haven&amp;rsquo;t specified what type of values it might accept. To add this information, enter these lines following the description of FishSpecies:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;* value[x] only CodeableConcept
+* valueCodeableConcept from FishSpeciesValueSet (extensible)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first rule restricts the value[x] (a built-in element of every FHIR extension) to a CodeableConcept using the &lt;code&gt;only&lt;/code&gt; keyword. The second binds it to a value set (yet to be defined) using the &lt;code&gt;from&lt;/code&gt; keyword. The &lt;a href=&#34;http://hl7.org/fhir/valueset-binding-strength.html&#34;&gt;binding strength&lt;/a&gt; will be &lt;code&gt;extensible&lt;/code&gt;, meaning the codes in the FishSpeciesValueSet must be used except when the value set is missing a specific fish species.&lt;/p&gt;
+&lt;p&gt;To define FishSpeciesValueSet, add the following lines to the same file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;ValueSet:    FishSpeciesValueSet
+Title:       &amp;#34;Fish Species Value Set&amp;#34;
+Id:          fish-species-value-set
+Description: &amp;#34;Codes describing various species of fish, taken from SNOMED-CT.&amp;#34;
+* codes from system http://snomed.info/sct where concept is-a SCT#90580008  &amp;#34;Fish (organism)&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Info&lt;/h4&gt;
+The rule in the value set definition above selects all codes from SNOMED-CT that are children of the concept &amp;ldquo;Fish (organism)&amp;rdquo;.
+&lt;/div&gt;
+
+&lt;p&gt;Run SUSHI again. The count of ValueSets should now be 1. Try generating the IG by running &lt;code&gt;_genonce&lt;/code&gt; again. Open the file &lt;strong&gt;/FishExample/output/index.html&lt;/strong&gt; to see the resulting IG.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Do you see where the FishPatient profile is in the IG?&lt;/li&gt;
+&lt;li&gt;Does the differential reflect your changes?&lt;/li&gt;
+&lt;li&gt;How does FHIR render the value set you defined?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;step-9-define-an-alias&#34;&gt;Step 9: Define an Alias&lt;/h3&gt;
+&lt;p&gt;An &lt;code&gt;Alias&lt;/code&gt; is a way to define a shorthand for a URL or OID. For example, in the value set definition above, we could have defined an &lt;code&gt;Alias&lt;/code&gt; to make referencing the &lt;code&gt;http://snomed.info/sct&lt;/code&gt; URL easier, as shown below. Aliases are conventionally defined at the top of the file.&lt;/p&gt;
+&lt;p&gt;Add this line at the top of the &lt;strong&gt;FishPatient.fsh&lt;/strong&gt; file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;Alias:   SCT = http://snomed.info/sct
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and then replace the last line in the FishSpeciesValueSet with:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;* codes from system SCT where concept is-a #90580008  &amp;#34;Fish (organism)&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Tip&lt;/h4&gt;
+Using aliases has no effect on the IG; it simply makes the FSH code a bit neater.
+&lt;/div&gt;
+
+&lt;h3 id=&#34;step-10-create-an-instance-of-fishpatient&#34;&gt;Step 10: Create an Instance of FishPatient&lt;/h3&gt;
+&lt;p&gt;Every IG should provide examples of its profiles. Let&amp;rsquo;s do that by introducing an example FishPatient named Shorty. Create this example instance using the &lt;code&gt;Instance&lt;/code&gt; keyword, with &lt;code&gt;InstanceOf&lt;/code&gt; set to &lt;code&gt;FishPatient&lt;/code&gt; and &lt;code&gt;Usage&lt;/code&gt; set to &lt;code&gt;Example&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Include the following information about Shorty in the instance:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;His given (first) name is &amp;ldquo;Shorty&amp;rdquo; and his family (last) name is &amp;ldquo;Koi-Fish&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;Shorty is a Koi fish (Cyprinus rubrofuscus), represented as SNOMED-CT code 47978005 &amp;ldquo;Carpiodes cyprinus (organism)&amp;rdquo;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you need help with this, you can reference the &lt;a href=&#34;https://build.fhir.org/ig/HL7/fhir-shorthand/reference.html#defining-instances&#34;&gt;Defining Instances&lt;/a&gt; section of the specification. If you still need help, you can peek at the FSH files in the &lt;strong&gt;FishExampleComplete&lt;/strong&gt; directory.&lt;/p&gt;
+&lt;p&gt;Run SUSHI again, and re-generate the IG.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Did it compile without errors?&lt;/li&gt;
+&lt;li&gt;What does the IG look like now?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;step-11-extend-the-veterinarian-profile&#34;&gt;Step 11: Extend the Veterinarian Profile&lt;/h3&gt;
+&lt;p&gt;Now, add constraints and/or extensions to the Veterinarian profile:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Add qualifications consistent with a Veterinary practice. Qualifications are taken from code system &lt;code&gt;http://nucc.org/provider-taxonomy&lt;/code&gt;, and the code is &lt;code&gt;174M00000X&lt;/code&gt;, for &amp;ldquo;Veterinarian&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In addition, slice the &lt;code&gt;identifier&lt;/code&gt; array, making a license number required. The code system is &lt;code&gt;http://terminology.hl7.org/CodeSystem/v2-0203&lt;/code&gt; and the code is &lt;code&gt;LN&lt;/code&gt;, for &amp;ldquo;License number&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you need help with this, you can refer to the &lt;a href=&#34;https://build.fhir.org/ig/HL7/fhir-shorthand/reference.html#assignment-rules&#34;&gt;assignment rules&lt;/a&gt; and &lt;a href=&#34;https://build.fhir.org/ig/HL7/fhir-shorthand/reference.html#contains-rules-for-slicing&#34;&gt;slicing rules&lt;/a&gt; sections of the specification. If you still need help, you can peek at the FSH files in the &lt;strong&gt;FishExampleComplete&lt;/strong&gt; directory.&lt;/p&gt;
+&lt;p&gt;Run SUSHI again, and re-generate the IG.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Did it compile without errors?&lt;/li&gt;
+&lt;li&gt;What does the IG look like now?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Congratulations! You&amp;rsquo;ve completed the FSH tutorial. It might be time to feast on some sushi!&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: API</title>
       <link>/docs/sushi/api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

@@ -254,5 +254,44 @@ GoFSH can still generate FSH when dependencies are omitted, but the resulting FS
       </description>
     </item>
     
+    <item>
+      <title>Docs: GoFSH Tutorial</title>
+      <link>/docs/gofsh/tutorial/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/gofsh/tutorial/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This tutorial will walk you through an example of using &lt;a href=&#34;/docs/gofsh&#34;&gt;GoFSH&lt;/a&gt; to turn FHIR artifacts into FSH definitions. This tutorial assumes you have already installed &lt;a href=&#34;/docs/gofsh/installation&#34;&gt;GoFSH&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;step-1-download-sample-fhir-artifacts&#34;&gt;Step 1: Download Sample FHIR Artifacts&lt;/h3&gt;
+&lt;p&gt;To start with some example FHIR artifacts, &lt;a href=&#34;/docs/gofsh/tutorial/gofsh-tutorial.zip&#34;&gt;&lt;i class=&#39;fas fa-download fa-fw&#39;&gt;&lt;/i&gt; download the GoFSH Tutorial&lt;/a&gt; and unzip it into a directory of your choice.&lt;/p&gt;
+&lt;p&gt;After the file is unzipped, you should see two FHIR artifacts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;StructureDefinition-mcode-genetic-specimen.json&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;StructureDefinition-mcode-laterality.json&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;step-2-run-gofsh&#34;&gt;Step 2: Run GoFSH&lt;/h3&gt;
+&lt;p&gt;Now that you have GoFSH installed and sample FHIR artifacts, open up a command window, and navigate to the directory containing the artifacts you downloaded. Run GoFSH on those files by executing:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; gofsh .
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+The dot (.) represents &amp;ldquo;this directory,&amp;rdquo; the location of the files. You can also specify the location explicitly by replacing the dot with a directory path.
+&lt;/div&gt;
+
+&lt;p&gt;Running GoFSH will create a &lt;strong&gt;gofsh&lt;/strong&gt; directory, and populate it with &lt;strong&gt;input/fsh&lt;/strong&gt;, a directory containing several files which define the original input files. Within &lt;strong&gt;input/fsh&lt;/strong&gt;, there will be two subdirectories, &lt;strong&gt;profiles&lt;/strong&gt; and &lt;strong&gt;extensions&lt;/strong&gt;. If you open up &lt;strong&gt;profiles/GeneticSpecimen.fsh&lt;/strong&gt;, you should see a FSH definition for a &lt;code&gt;Profile&lt;/code&gt; called &amp;ldquo;GeneticSpecimen&amp;rdquo;, and if you open up &lt;strong&gt;extensions/Laterality.fsh&lt;/strong&gt;, you should see an &lt;code&gt;Extension&lt;/code&gt; called &amp;ldquo;Laterality&amp;rdquo;.&lt;/p&gt;
+&lt;h3 id=&#34;step-3-run-sushi-optional&#34;&gt;Step 3: Run SUSHI (Optional)&lt;/h3&gt;
+&lt;p&gt;Now that you have generated FSH definitions, you can run SUSHI on those definitions to recreate your original input to GoFSH. First, ensure you have &lt;a href=&#34;/docs/sushi/installation&#34;&gt;SUSHI installed&lt;/a&gt;. Then, navigate the command line to the &lt;strong&gt;gofsh/&lt;/strong&gt; directory, and run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi .
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This command will run SUSHI on the contents of &lt;strong&gt;input/fsh&lt;/strong&gt;, and generate the output of that FSH into a directory called &lt;strong&gt;fsh-generated/resources&lt;/strong&gt;. You can then compare the output from running GoFSH and then SUSHI to the original &lt;strong&gt;StructureDefinition-mcode-genetic-specimen.json&lt;/strong&gt; and &lt;strong&gt;StructureDefinition-mcode-laterality.json&lt;/strong&gt; files.&lt;/p&gt;
+&lt;p&gt;Alternatively, you can automatically run SUSHI on the output of GoFSH using the &lt;code&gt;-f&lt;/code&gt; &lt;a href=&#34;/docs/gofsh/running/#fshing-trip&#34;&gt;option&lt;/a&gt;. The following command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; gofsh . -f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;will run SUSHI on the output of GoFSH, and generate a comparison file in &lt;strong&gt;gofsh/fshing-trip-comparison.html&lt;/strong&gt; which displays differences between the original input, and the output of SUSHI.&lt;/p&gt;
+
+      </description>
+    </item>
+    
   </channel>
 </rss>

@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.fd12f77cdaa9ed1b49c704e988058f25f4b540f3ed0446d1bff637d06bfce7c93685fdaac07b25631a1cbb19f6e8917329186b51845c68b6a0e4aa3015486a91.json"
+  data-offline-search-index-json-src="/offline-search-index.5b5c9728475e05e118f1dd9f4842a92fbb45afc43a93940cbf94fd65102e6108cb8e5b7b28f75b7c5dc846f441ea2b687ef55ac0680e8b48be773c6165044995.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.fd12f77cdaa9ed1b49c704e988058f25f4b540f3ed0446d1bff637d06bfce7c93685fdaac07b25631a1cbb19f6e8917329186b51845c68b6a0e4aa3015486a91.json"
+  data-offline-search-index-json-src="/offline-search-index.5b5c9728475e05e118f1dd9f4842a92fbb45afc43a93940cbf94fd65102e6108cb8e5b7b28f75b7c5dc846f441ea2b687ef55ac0680e8b48be773c6165044995.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -772,6 +772,11 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <td align="left">As specified in the IG resource</td>
 </tr>
 <tr>
+<td align="left">copyrightLabel</td>
+<td align="left">copyrightLabel</td>
+<td align="left">As specified in the IG resource - <strong>Note:</strong> this is an R5 IG element</td>
+</tr>
+<tr>
 <td align="left">copyrightYear or copyrightyear</td>
 <td align="left">N/A</td>
 <td align="left">Used to add a <code>copyrightyear</code> parameter to <code>IG.definition.parameter</code></td>
@@ -789,7 +794,7 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <tr>
 <td align="left">dependencies</td>
 <td align="left">dependsOn</td>
-<td align="left">A <code>key: value</code> pair, where key is the package id and value is the version (or <code>dev</code>/<code>current</code>). For advanced use cases, the value can be an object with keys for <code>id</code>, <code>uri</code> and <code>version</code>.</td>
+<td align="left">A <code>key: value</code> pair, where key is the package id and value is the version (or <code>dev</code>/<code>current</code>). For advanced use cases, the value can be an object with keys for <code>id</code>, <code>uri</code> and <code>version</code>. For R5 IG resources, the key <code>reason</code> can also be provided.</td>
 </tr>
 <tr>
 <td align="left">experimental</td>
@@ -884,7 +889,7 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <tr>
 <td align="left">parameters</td>
 <td align="left">definition.parameter</td>
-<td align="left">Consists of key-value pairs where the keys are values of <code>definition.parameter.code</code>. If a parameter allows repeating values, the value in the YAML may be a sequence/array. For example, the <code>path-resource</code> parameter specifies relative paths to additional folders that contain predefined resources (see <a href="tips/#specifying-additional-resource-paths">Specifying Additional Resource Paths</a>).</td>
+<td align="left">Consists of key-value pairs where the keys are values of <code>definition.parameter.code</code>. For R5 IG resources, the key can be a FSH code that specifies the <code>code</code> and <code>system</code> values of <code>definition.parameter.code</code>, which is a Coding. See the <a href="#exhaustive-example">Exhaustive Example</a> for details. If a parameter allows repeating values, the value in the YAML may be a sequence/array. For example, the <code>path-resource</code> parameter specifies relative paths to additional folders that contain predefined resources (see <a href="/docs/sushi/tips/#specifying-additional-resource-paths">Specifying Additional Resource Paths</a>).</td>
 </tr>
 <tr>
 <td align="left">publisher</td>
@@ -935,6 +940,16 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <td align="left">version</td>
 <td align="left">version</td>
 <td align="left">As specified in the IG resource</td>
+</tr>
+<tr>
+<td align="left">versionAlgorithmString</td>
+<td align="left">versionAlgorithm[x]</td>
+<td align="left">As specified in the IG resource - <strong>Note:</strong> this is an R5 IG element</td>
+</tr>
+<tr>
+<td align="left">versionAlgorithmCoding</td>
+<td align="left">versionAlgorithm[x]</td>
+<td align="left">As specified in the IG resource - <strong>Note:</strong> this is an R5 IG element</td>
 </tr>
 </tbody>
 </table>
@@ -998,6 +1013,7 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The dependencies property corresponds to IG.dependsOn. The key is the</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># package id and the value is the version (or dev/current). For advanced</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># use cases, the value can be an object with keys for `uri` and `version`.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># For R5 ImplementationGuides, the object can also have a key for `reason`.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">dependencies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">hl7.fhir.us.core</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">hl7.fhir.us.mcode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1036,6 +1052,18 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">exampleBoolean</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">Patient/bad-example</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>omit<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># For R5 ImplementationGuides, the example[x] property was replaced</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># with isExample. A profile property is also included. These can be</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># specified directly in configuration. Profile can be a single item</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># or an array.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># An example resources configuration for an R5 ImplementationGuide:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># resources:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic">#   Patient/my-example-patient:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic">#     name: My Example Patient</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic">#     description: An example Patient</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic">#     isExample: true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic">#     profile: http://example.org/fhir/StructureDefinition/my-patient-profile</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># Groups can control certain aspects of the IG generation.  The IG</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># documentation recommends that authors use the default groups that</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># are provided by the templating framework, but if authors want to</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1066,6 +1094,11 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># file name extension.  Any subproperties that are valid filenames</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># with supported extensions (e.g., .md/.xml) will be treated as</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># sub-pages.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic">#</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># For R5 ImplementationGuides, the IG.definition.page element now</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># supports a source[x] element. SUSHI will generate sourceUrl</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># based on the name if it is not provided. To provide a source,</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># add a key/value pair subproperty with the type slice as the key.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">pages</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">index.md</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">title</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Example<span style="color:#f8f8f8;text-decoration:underline"> </span>Home<span style="color:#f8f8f8;text-decoration:underline">
@@ -1089,6 +1122,12 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># * useContext</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># * copyright</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># * packageId</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The R5 ImplementationGuide resource defines additional properties</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># not represented above. These properties can be used as-is and</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># should follow the format defined in ImplementationGuide:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># * copyrightLabel</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># * versionAlgorithm[x], which should be specified with the type slice (e.g. versionAlgorithmString)</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The menu property will be used to generate the input/menu.xml file.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The menu is represented as a simple structure where the YAML key</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1115,6 +1154,19 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">excludettl</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">validation</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span>allow-any-extensions<span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span>no-broken-links<span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">show-inherited-invariants</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">false</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># For R5 ImplementationGuides, the IG.definition.parameter.code became a Coding.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># In this case, the YAML key becomes the code.code. If the code provided is in the</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># value set bound in the IG definition (see: http://hl7.org/fhir/2022Sep/valueset-guide-parameter-code.html),</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># that system is automatically set. If no system is provided, SUSHI will default the system</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># to the system for the IG Parameter Codes</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># (see: http://build.fhir.org/ig/FHIR/fhir-tools-ig/branches/master/CodeSystem-ig-parameters.html).</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># To use a different system, the YAML key can be a FSH code.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># An example parameters configuration for an R5 ImplementationGuide:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># parameters:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic">#   generate-xml: true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic">#   validation: [allow-any-extensions, no-broken-links]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic">#   http://example.org/fhir/other-system#example: false</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The FSHOnly flag indicates if only FSH resources should be exported.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># If set to true, no IG related content will be generated.</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1185,7 +1237,7 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified August 15, 2022: <a  href="https://github.com/FSHSchool/site/commit/787f1cb48d1a22e3d9769d6f80211b659fc4ab5b">Reorganize documentation and add links to FSH Seminar (#65) (787f1cb)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified September 15, 2022: <a  href="https://github.com/FSHSchool/site/commit/a3164ec811cf7b023c45e37b901afa33c7f3efde">Include R5 ImplementationGuide configuration (#67) (a3164ec)</a>
 </div>
 </div>
 

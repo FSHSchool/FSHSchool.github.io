@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bdf716dcfa62f54edbd3a086fa6dd63e636c4f70e269b994ef2f7d91602223bb11ac7fb00bc17268d5306db7a5bc64a5d257668c6280ca25ed8b247d945dfdf5.json"
+  data-offline-search-index-json-src="/offline-search-index.155db11bbc2500716e7b211e358bcd141ef4ac9ec4f0b698f22b59a8feb10e623a66a0b86919666ce3629d638aa28acb162f179692c42d6c28237f531a3adbf7.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bdf716dcfa62f54edbd3a086fa6dd63e636c4f70e269b994ef2f7d91602223bb11ac7fb00bc17268d5306db7a5bc64a5d257668c6280ca25ed8b247d945dfdf5.json"
+  data-offline-search-index-json-src="/offline-search-index.155db11bbc2500716e7b211e358bcd141ef4ac9ec4f0b698f22b59a8feb10e623a66a0b86919666ce3629d638aa28acb162f179692c42d6c28237f531a3adbf7.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -564,6 +564,18 @@
       </ul>
     </li>
     <li><a href="#status-messages">Status Messages</a></li>
+    <li><a href="#error-messages">Error Messages</a>
+      <ul>
+        <li><a href="#structure-definition-is-missing-snapshot-error">Structure Definition is Missing Snapshot Error</a></li>
+      </ul>
+    </li>
+    <li><a href="#sushi-outputs">SUSHI Outputs</a>
+      <ul>
+        <li><a href="#downloading-the-ig-publisher-scripts">Downloading the IG Publisher Scripts</a></li>
+        <li><a href="#downloading-the-ig-publisher">Downloading the IG Publisher</a></li>
+        <li><a href="#running-the-ig-publisher">Running the IG Publisher</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -708,7 +720,9 @@ Once you have finished reviewing your preprocessed FSH, we recommend deleting th
 
 <div class="alert alert-primary" role="alert">
 <h4 class="alert-heading">Note</h4>
-<p>The following message is expected, and should be ignored:(node:46420) Warning: Accessing non-existent property &lsquo;INVALID_ALT_NUMBER&rsquo; of module exports inside circular dependency (Use <code>node --trace-warnings ...</code> to show where the warning was created)</p>
+The following message is expected, and should be ignored:(node:46420) Warning: Accessing non-existent property &lsquo;INVALID_ALT_NUMBER&rsquo; of module exports inside circular dependency (Use <code>node --trace-warnings ...</code> to show where the warning was created)
+</div>
+
 <h2 id="error-messages">Error Messages</h2>
 <p>In the process of developing your IG using FSH, you may encounter SUSHI error messages (written to the command console). Most error messages point to a specific line or lines in a <code>.fsh</code> file. If possible, SUSHI will continue, despite errors, to produce FHIR artifacts, but those artifacts may omit problematic rules. SUSHI should always exit gracefully. If SUSHI crashes, please report the issue using the <a href="https://github.com/FHIR/sushi/issues">SUSHI issue tracker</a>.</p>
 <p>Here are some general tips for debugging:</p>
@@ -734,10 +748,13 @@ Once you have finished reviewing your preprocessed FSH, we recommend deleting th
 </li>
 <li>Run SUSHI again. The error about missing snapshots should no longer be displayed.</li>
 </ol>
+
+
 <div class="alert alert-success" role="alert">
 <h4 class="alert-heading">Tip</h4>
 You can see a list of the available Firely Terminal versions <a href="https://www.nuget.org/packages/Firely.Terminal#versions-body-tab">here</a>. Version than 2.5.0-beta-7 or higher is recommended. Version 2.4.2 is not recommended because it contains a bug in the snapshot generator that adversely affects SUSHI processing.
 </div>
+
 <h2 id="sushi-outputs">SUSHI Outputs</h2>
 <p>Based on the inputs in FSH files, <strong>sushi-config.yaml</strong>, and the IG project directory, SUSHI populates the <strong>fsh-generated</strong> directory. For example, running SUSHI on the my-project project from the <a href="/docs/sushi/project/">Project Structure</a> section would add a <strong>fsh-generated</strong> folder as shown below:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">my-project
@@ -782,22 +799,30 @@ You can see a list of the available Firely Terminal versions <a href="https://ww
 <p>If you used <code>sushi --init</code> then these scripts were already downloaded and added to your project.</p>
 <h3 id="downloading-the-ig-publisher">Downloading the IG Publisher</h3>
 <p>After copying these, change directories in the command prompt to the directory above the <strong>fsh-generated</strong> directory. At the command prompt, enter:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;fab fa-windows fa-fw&#39;</span>&gt;&lt;/i&gt; &lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;fas fa-dollar-sign&#34;</span>&gt;&lt;/i&gt; _updatePublisher
-</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;fab fa-apple fa-fw&#39;</span>&gt;&lt;/i&gt; &lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;fas fa-dollar-sign&#34;</span>&gt;&lt;/i&gt; ./_updatePublisher.sh
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-windows fa-fw'></i> <i class="fas fa-dollar-sign"></i> _updatePublisher
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-apple fa-fw'></i> <i class="fas fa-dollar-sign"></i> ./_updatePublisher.sh
 </code></pre></div><p>This will download the latest version of the HL7 FHIR IG Publisher tool into the <strong>/input-cache</strong> directory. <em>This step can be skipped if you already have the latest version of the IG Publisher tool in <strong>input-cache</strong>.</em></p>
+
+
 <div class="alert alert-success" role="alert">
 <h4 class="alert-heading">Tip</h4>
 If you are blocked by a firewall, or if for any reason <code>_updatePublisher</code> fails to execute, download the current IG Publisher jar file <a href="https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar">here</a>. When the file has downloaded, move it into the <strong>input-cache</strong> directory (which you may need to create as a <em>sibling</em> to the <strong>input</strong> directory).
 </div>
+
 <h3 id="running-the-ig-publisher">Running the IG Publisher</h3>
+
+
 <div class="alert alert-warning" role="alert">
 <h4 class="alert-heading">Warning</h4>
 If you have never run the IG Publisher, you may need to install Jekyll first. See <a href="https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation">Installing the IG Publisher</a> for details.
 </div>
+
 <p>After the IG Publisher has been successfully downloaded, execute the following command to run it:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;fab fa-windows fa-fw&#39;</span>&gt;&lt;/i&gt; &lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;fas fa-dollar-sign&#34;</span>&gt;&lt;/i&gt; _genonce
-</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;fab fa-apple fa-fw&#39;</span>&gt;&lt;/i&gt; &lt;i <span style="color:#000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;fas fa-dollar-sign&#34;</span>&gt;&lt;/i&gt; ./_genonce.sh
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-windows fa-fw'></i> <i class="fas fa-dollar-sign"></i> _genonce
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-apple fa-fw'></i> <i class="fas fa-dollar-sign"></i> ./_genonce.sh
 </code></pre></div><p>This will run the HL7 IG Publisher, which may take several minutes to complete. After the publisher is finished, open the file <strong>/output/index.html</strong> in a browser to see the resulting IG.</p>
+
+
 <div class="alert alert-success" role="alert">
 <h4 class="alert-heading">Tip</h4>
 <p>When running SUSHI, the IG Publisher will look for an optional <strong>fsh.ini</strong> control file in the root directory of the project (the same directory that contains <strong>ig.ini</strong>). This file should have <code>[FSH]</code> on the first line, and can include a <code>sushi-version</code> property, used to specify which version of SUSHI the IG Publisher should use, and a <code>timeout</code> property, used to set a timeout for SUSHI (in seconds). The default timeout is 60 seconds. An example <strong>fsh.ini</strong> file is provided below.</p>
@@ -805,8 +830,6 @@ If you have never run the IG Publisher, you may need to install Jekyll first. Se
 sushi-version = 0.16.0
 timeout = 120
 </code></pre></div>
-</div>
-
 </div>
 
 
@@ -852,7 +875,7 @@ timeout = 120
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified August 15, 2022: <a  href="https://github.com/FSHSchool/site/commit/787f1cb48d1a22e3d9769d6f80211b659fc4ab5b">Reorganize documentation and add links to FSH Seminar (#65) (787f1cb)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified September 29, 2022: <a  href="https://github.com/FSHSchool/site/commit/9c0a40e17aa8d7768094ce0945ad7f242952fe6e">Properly close the alert tag to fix styling (#69) (9c0a40e)</a>
 </div>
 </div>
 

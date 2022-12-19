@@ -1075,11 +1075,17 @@ Parent: Questionnaire
 &lt;p&gt;The IG Publisher supports including instances of logical models as binary resources. This feature was announced and discussed in a &lt;a href=&#34;https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/Logical.20Model.20Examples/near/251192344&#34;&gt;Logical Model Examples&lt;/a&gt; thread on chat.fhir.org.  The basic steps an author needs to take in order to include logical model examples in a SUSHI project are:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Add the example to the &lt;code&gt;input/resources&lt;/code&gt; or &lt;code&gt;input/examples&lt;/code&gt; folder
-a. The file name of the example should be &lt;code&gt;Binary-{id}.json&lt;/code&gt; or &lt;code&gt;Binary-{id}.xml&lt;/code&gt; (substituting &lt;code&gt;{id}&lt;/code&gt; for the real id)&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;The file name of the example should be &lt;code&gt;Binary-{id}.json&lt;/code&gt; or &lt;code&gt;Binary-{id}.xml&lt;/code&gt; (substituting &lt;code&gt;{id}&lt;/code&gt; for the real id)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Add an entry for the example in the &lt;code&gt;sushi-config.yaml&lt;/code&gt; &lt;code&gt;resources&lt;/code&gt; property
-a. Specify a &lt;code&gt;name&lt;/code&gt;
-b. Specify &lt;code&gt;exampleCanonical&lt;/code&gt; pointing to the canonical of your logical model
-c. Add an extension w/ the proper resource format (&lt;code&gt;application/fhir+json&lt;/code&gt; or &lt;code&gt;application/xml&lt;/code&gt;)&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;Specify a &lt;code&gt;name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Specify &lt;code&gt;exampleCanonical&lt;/code&gt; pointing to the canonical of your logical model&lt;/li&gt;
+&lt;li&gt;Add an extension w/ the proper resource format (&lt;code&gt;application/fhir+json&lt;/code&gt; or &lt;code&gt;application/xml&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;For example, given the following simple logical model definition in an IG w/ IG canonical root &lt;code&gt;http://example.org&lt;/code&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Logical: MyLM

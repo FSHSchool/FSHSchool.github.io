@@ -31,8 +31,15 @@
 &lt;p&gt;To install SUSHI, open up a command prompt and type the following command:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; npm install -g fsh-sushi
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Check the installation via the command below:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi -h
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the command outputs instructions on using the SUSHI command line interface (CLI), you&amp;rsquo;re ready to run SUSHI.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi --help
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class=&#34;pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;tag&#34;&gt;SUSHI 3.0&lt;/span&gt;For SUSHI 3.0.0 and later, use &lt;code&gt;sushi help&lt;/code&gt;.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;p&gt;If the command outputs instructions on using the SUSHI command line interface (CLI), you&amp;rsquo;re ready to run SUSHI.&lt;/p&gt;
 &lt;p&gt;Use &lt;code&gt;sushi -v&lt;/code&gt; to display the installed version of SUSHI and the version of the FSH specification it supports. SUSHI follows the &lt;a href=&#34;https://semver.org&#34;&gt;semantic versioning&lt;/a&gt; convention (MAJOR.MINOR.PATCH):&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;MAJOR&lt;/strong&gt;: A major release has significant new functionality and, potentially, grammar changes or other non-backward-compatible changes.&lt;/li&gt;
@@ -75,7 +82,14 @@ For the most up-to-date information and latest releases of SUSHI, check the &lt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Each FSH file can contain multiple FSH definitions of varying types. FSH file names are not significant, but must end with the &lt;strong&gt;.fsh&lt;/strong&gt; extension. In addition, FSH files can be organized into subdirectories. This provides authors the flexibility to organize their FSH definitions in whatever way makes sense to then.&lt;/p&gt;
 &lt;p&gt;The &lt;strong&gt;sushi-config.yaml&lt;/strong&gt; file provides project configuration data to SUSHI. It is described further in the &lt;a href=&#34;/docs/sushi/configuration/&#34;&gt;Configuration&lt;/a&gt; documentation.&lt;/p&gt;
 &lt;h2 id=&#34;initializing-a-sushi-project&#34;&gt;Initializing a SUSHI Project&lt;/h2&gt;
-&lt;p&gt;Setting up a fully-featured FSH project can be complex, so SUSHI provides an &lt;code&gt;--init&lt;/code&gt; option to do it automatically. When &lt;code&gt;sushi --init&lt;/code&gt; is run, SUSHI will request project information from the user:&lt;/p&gt;
+&lt;p&gt;Setting up a fully-featured FSH project can be complex, so SUSHI provides an &lt;code&gt;--init&lt;/code&gt; argument to do it automatically. When &lt;code&gt;sushi --init&lt;/code&gt; is run, SUSHI will request project information from the user:&lt;/p&gt;
+
+
+
+&lt;div class=&#34;pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;tag&#34;&gt;SUSHI 3.0&lt;/span&gt;For SUSHI 3.0.0 and later, use &lt;code&gt;sushi init&lt;/code&gt;.&lt;/p&gt;
+
+&lt;/div&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;Name (Default: ExampleIG): my-project
 Id (Default: fhir.example): my.id
 Canonical (Default: http://example.org): http://myid.org
@@ -99,7 +113,7 @@ Initialize SUSHI project in C:\Users\shorty\dev\my-project? [y/n]: y
 |   └── pagecontent
 |       └── index.md
 └── sushi-config.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In addition to the &lt;strong&gt;input/fsh&lt;/strong&gt; folder, &lt;code&gt;--init&lt;/code&gt; creates an &lt;strong&gt;input/pagecontent&lt;/strong&gt; folder containing a dummy home page for your IG. The files &lt;strong&gt;ig.ini&lt;/strong&gt; and &lt;strong&gt;ignoreWarnings.txt&lt;/strong&gt; are required by the &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html&#34;&gt;template-based IG Publisher&lt;/a&gt;. The &lt;code&gt;.bat&lt;/code&gt; and &lt;code&gt;.sh&lt;/code&gt; scripts which allow you to &lt;a href=&#34;/docs/sushi/running/#downloading-the-ig-publisher&#34;&gt;run the IG Publisher&lt;/a&gt; from your command line. Finally, a default &lt;code&gt;.gitignore&lt;/code&gt; file for integration with GitHub is provided. From this point on, you can modify the configuration and definitions as necessary.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In addition to the &lt;strong&gt;input/fsh&lt;/strong&gt; folder, &lt;code&gt;init&lt;/code&gt; creates an &lt;strong&gt;input/pagecontent&lt;/strong&gt; folder containing a dummy home page for your IG. The files &lt;strong&gt;ig.ini&lt;/strong&gt; and &lt;strong&gt;ignoreWarnings.txt&lt;/strong&gt; are required by the &lt;a href=&#34;https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html&#34;&gt;template-based IG Publisher&lt;/a&gt;. The &lt;code&gt;.bat&lt;/code&gt; and &lt;code&gt;.sh&lt;/code&gt; scripts which allow you to &lt;a href=&#34;/docs/sushi/running/#downloading-the-ig-publisher&#34;&gt;run the IG Publisher&lt;/a&gt; from your command line. Finally, a default &lt;code&gt;.gitignore&lt;/code&gt; file for integration with GitHub is provided. From this point on, you can modify the configuration and definitions as necessary.&lt;/p&gt;
 &lt;h2 id=&#34;using-the-hl7-ig-publisher-and-auto-builder&#34;&gt;Using the HL7 IG Publisher and Auto-Builder&lt;/h2&gt;
 &lt;p&gt;This project structure integrates with the HL7 IG Publisher &lt;a href=&#34;https://github.com/FHIR/auto-ig-builder/blob/master/README.md&#34;&gt;Auto-Builder&lt;/a&gt;. When the IG Publisher detects an &lt;strong&gt;input/fsh&lt;/strong&gt; subdirectory, it will automatically run SUSHI on the project directory and output the SUSHI results to a &lt;strong&gt;fsh-generated&lt;/strong&gt; directory (e.g., &lt;strong&gt;my-project/fsh-generated&lt;/strong&gt; in the example above). It will then continue with the normal IG Publisher process.&lt;/p&gt;
 &lt;p&gt;This approach allows a GitHub repository to be configured such that whenever changes to FSH files are pushed to GitHub, the &lt;a href=&#34;https://github.com/FHIR/auto-ig-builder/blob/master/README.md&#34;&gt;Auto-Builder&lt;/a&gt; will pick them up, run the SUSHI/IG Publisher process, and publish the resulting IG to &lt;a href=&#34;http://build.fhir.org&#34;&gt;http://build.fhir.org&lt;/a&gt;.&lt;/p&gt;
@@ -178,7 +192,7 @@ Examples of &lt;strong&gt;package.json&lt;/strong&gt;, &lt;strong&gt;ig.ini&lt;/
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;sushi-ignoreWarnings.txt&lt;/strong&gt;: This optional file can be used to suppress warnings logged by SUSHI. Errors and informational logs from SUSHI cannot be ignored. This file should be placed either at the root of the project (e.g., &lt;strong&gt;my-project/sushi-ignoreWarnings.txt&lt;/strong&gt; in the example above), or within the &lt;strong&gt;input&lt;/strong&gt; directory (e.g., &lt;strong&gt;my-project/input/sushi-ignoreWarnings.txt&lt;/strong&gt;). Warnings will be ignored if they completely match the contents of any line of the file (one line per warning, case-sensitive). Regular expressions can also be specified, one per line, indicated by starting and ending the line with &lt;code&gt;/&lt;/code&gt;. For example:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Instance PatientExample1 is not an instance of a resource, so it should only be used inline on other instances, and it will not be exported to a standalone file. Specify &amp;quot;Usage: #inline&amp;quot; to remove this warning.
-/Detected the following non-conformant Resource definitions.*/   
+/Detected the following non-conformant Resource definitions.*/
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Any warning which exactly matches the contents of the first line will be ignored. The second line specifies that any warning beginning with &lt;code&gt;Detected the following non-conformant Resource definitions&lt;/code&gt; will be ignored.&lt;/p&gt;
 
 
@@ -427,7 +441,7 @@ The &lt;code&gt;license&lt;/code&gt; value should come from the &lt;a href=&#34;
 &lt;tr&gt;
 &lt;td align=&#34;left&#34;&gt;instanceOptions&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;N/A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;key: value&lt;/code&gt; pairs, where keys are &lt;code&gt;setId&lt;/code&gt; and &lt;code&gt;setMetaProfile&lt;/code&gt;. The &lt;code&gt;setId&lt;/code&gt; value controls whether &lt;code&gt;id&lt;/code&gt; is set on generated instances. Options are &lt;code&gt;always&lt;/code&gt; (set &lt;code&gt;id&lt;/code&gt; on all instances (the default)) or &lt;code&gt;standalone-only&lt;/code&gt; (set &lt;code&gt;id&lt;/code&gt; for instances where the &lt;code&gt;Usage&lt;/code&gt; keyword is NOT &lt;code&gt;#inline&lt;/code&gt;). The &lt;code&gt;setMetaProfile&lt;/code&gt; value controls whether &lt;code&gt;meta.profile&lt;/code&gt; is set on generated instances. It can have the following values: &lt;code&gt;always&lt;/code&gt; (set meta.profile for all instances (the default)), &lt;code&gt;never&lt;/code&gt; (do not set meta.profile on any instances), &lt;code&gt;inline-only&lt;/code&gt; (set &lt;code&gt;meta.profile&lt;/code&gt; only for instances of profiles with &lt;code&gt;Usage&lt;/code&gt; keyword set to &lt;code&gt;#inline&lt;/code&gt;), or &lt;code&gt;standalone-only&lt;/code&gt; (set &lt;code&gt;meta.profile&lt;/code&gt; for instances where the &lt;code&gt;Usage&lt;/code&gt; keyword is NOT &lt;code&gt;#inline&lt;/code&gt;).&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;key: value&lt;/code&gt; pairs, where keys are &lt;code&gt;setId&lt;/code&gt;, &lt;code&gt;setMetaProfile&lt;/code&gt;, and &lt;code&gt;manualSliceOrdering&lt;/code&gt;. &lt;ul&gt;&lt;li&gt;The &lt;code&gt;setId&lt;/code&gt; value controls whether &lt;code&gt;id&lt;/code&gt; is set on generated instances. Options are &lt;code&gt;always&lt;/code&gt; (set &lt;code&gt;id&lt;/code&gt; on all instances [the default]) or &lt;code&gt;standalone-only&lt;/code&gt; (set &lt;code&gt;id&lt;/code&gt; for instances where the &lt;code&gt;Usage&lt;/code&gt; keyword is NOT &lt;code&gt;#inline&lt;/code&gt;).&lt;/li&gt;&lt;li&gt;The &lt;code&gt;setMetaProfile&lt;/code&gt; value controls whether &lt;code&gt;meta.profile&lt;/code&gt; is set on generated instances. It can have the following values: &lt;code&gt;always&lt;/code&gt; (set meta.profile for all instances [the default]), &lt;code&gt;never&lt;/code&gt; (do not set meta.profile on any instances), &lt;code&gt;inline-only&lt;/code&gt; (set &lt;code&gt;meta.profile&lt;/code&gt; only for instances of profiles with &lt;code&gt;Usage&lt;/code&gt; keyword set to &lt;code&gt;#inline&lt;/code&gt;), or &lt;code&gt;standalone-only&lt;/code&gt; (set &lt;code&gt;meta.profile&lt;/code&gt; for instances where the &lt;code&gt;Usage&lt;/code&gt; keyword is NOT &lt;code&gt;#inline&lt;/code&gt;).&lt;/li&gt;&lt;li&gt;&lt;span class=&#34;tag&#34;&gt;SUSHI 3.0&lt;/span&gt;The &lt;code&gt;manualSliceOrdering&lt;/code&gt; value controls whether slice ordering is determined exclusively by the order in which slices are referenced in an instance&amp;rsquo;s FSH rules. When this flag is set to &lt;code&gt;true&lt;/code&gt;, manual ordering is enabled (see &lt;a href=&#34;/docs/sushi/tips/#manual-slice-ordering&#34;&gt;Manual Slice Ordering&lt;/a&gt;).&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align=&#34;left&#34;&gt;jurisdiction&lt;/td&gt;
@@ -781,6 +795,9 @@ The &lt;code&gt;license&lt;/code&gt; value should come from the &lt;a href=&#34;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# - always: Set id for all Instances (default)&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# - standalone-only: Set id for only Instances where Usage is any value other than #inline&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;setId&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;always&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# When set to true, slices must be referred to by name and not only by a numeric index in order to be used&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# in an Instance&amp;#39;s assignment rule. All slices appear in the order in which they are specified in FSH rules.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;manualSliceOrdering&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;/docs/sushi/configuration/exhaustive-config.yaml&#34;&gt;&lt;i class=&#39;fas fa-download fa-fw&#39;&gt;&lt;/i&gt; Download Exhaustive Configuration Example&lt;/a&gt;&lt;/p&gt;
 
@@ -805,24 +822,78 @@ This documentation assumes you have a SUSHI-compliant project structure and conf
 
 &lt;h2 id=&#34;running-sushi&#34;&gt;Running SUSHI&lt;/h2&gt;
 &lt;p&gt;SUSHI is executed from the command line. The general form of the SUSHI execution command is as follows:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;specification-directory&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;options&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where options include the following (in any order):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;-d, --debug         output extra debugging information
--h, --help          output usage information
--i, --init          initialize a SUSHI project
--o, --out &amp;lt;out&amp;gt;     the path to the **fsh-generated** folder
--p, --preprocessed  output FSH produced by preprocessing steps
---require-latest    indicate that SUSHI should halt if the latest SUSHI version is not installed
--s, --snapshot      generate snapshot in Structure Definition output (default: false)
--v, --version       print SUSHI version
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;options&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Use &lt;code&gt;sushi --version&lt;/code&gt; and &lt;code&gt;sushi --help&lt;/code&gt; to get basic information about the current SUSHI version.&lt;/p&gt;
+
+
+
+&lt;div class=&#34;pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;tag&#34;&gt;SUSHI 3.0&lt;/span&gt;For SUSHI 3.0.0 and later, the general form of the SUSHI execution command is:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ sushi &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;command&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;options&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Supported commands are &lt;code&gt;build&lt;/code&gt;, &lt;code&gt;init&lt;/code&gt;, &lt;code&gt;update-dependencies&lt;/code&gt;, and &lt;code&gt;help&lt;/code&gt; (which replaces &lt;code&gt;sushi --help&lt;/code&gt;).&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;h3 id=&#34;sushi-commands&#34;&gt;SUSHI Commands&lt;/h3&gt;
+&lt;p&gt;SUSHI provides various commands to use with FSH projects. The following sections provide more details on each.&lt;/p&gt;
+&lt;h4 id=&#34;build&#34;&gt;&lt;code&gt;build&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;The &lt;code&gt;build&lt;/code&gt; command is used to build a SUSHI project. In SUSHI 2.x, it is the default command and can be used as follows:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;fsh-project-directory&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;options&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class=&#34;pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;tag&#34;&gt;SUSHI 3.0&lt;/span&gt;For SUSHI 3.0.0 and later, use the &lt;code&gt;build&lt;/code&gt; command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ sushi build &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;fsh-project-directory&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;options&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;where options include the following (in any order):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;-o, --out &amp;lt;out&amp;gt;          the path to the output folder
+-d, --debug              output extra debugging information
+-p, --preprocessed       output FSH produced by preprocessing steps
+-r, --require-latest     exit with error if this is not the latest version of SUSHI (default: false)
+-s, --snapshot           generate snapshot in Structure Definition output (default: false)
+-h, --help               display help for command
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Further information about each option can be found in &lt;a href=&#34;#build-command-option-details&#34;&gt;Build Command Option Details&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;div class=&#34;pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;tag&#34;&gt;SUSHI 3.0&lt;/span&gt; SUSHI 3.0 replaces the &lt;code&gt;-d, --debug&lt;/code&gt; argument with a new argument that provides more control over log output:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-l, --log-level &amp;lt;level&amp;gt;  specify the level of log messages (default: &amp;quot;info&amp;quot;) (choices: &amp;quot;error&amp;quot;, &amp;quot;warn&amp;quot;, &amp;quot;info&amp;quot;, &amp;quot;debug&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 
 &lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
 &lt;h4 class=&#34;alert-heading&#34;&gt;Tip&lt;/h4&gt;
-If you run SUSHI from your FSH project directory, and accept the defaults, the command can be shortened to &lt;code&gt;sushi .&lt;/code&gt; or simply &lt;code&gt;sushi&lt;/code&gt;.
+&lt;p&gt;If you run SUSHI from your FSH project directory, and accept the defaults, the command can be shortened to &lt;code&gt;sushi .&lt;/code&gt; or simply &lt;code&gt;sushi&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;tag&#34;&gt;SUSHI 3.0&lt;/span&gt; For SUSHI 3.0, you can use &lt;code&gt;sushi build .&lt;/code&gt; or &lt;code&gt;sushi build&lt;/code&gt;.&lt;/p&gt;
+
 &lt;/div&gt;
 
-&lt;h3 id=&#34;command-line-argument-details&#34;&gt;Command Line Argument Details&lt;/h3&gt;
+&lt;h4 id=&#34;init&#34;&gt;&lt;code&gt;init&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;The &lt;code&gt;init&lt;/code&gt; command is used to generate a project structure that is compatible with the FHIR IG Publisher. In SUSHI 2.x, it can be used as follows:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi --init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class=&#34;pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;tag&#34;&gt;SUSHI 3.0&lt;/span&gt;For SUSHI 3.0.0 and later, use the &lt;code&gt;init&lt;/code&gt; command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ sushi init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Further details on how to use this command can be found in &lt;a href=&#34;/docs/sushi/project/#initializing-a-sushi-project&#34;&gt;Initializing a SUSHI Project&lt;/a&gt;.&lt;/p&gt;
+&lt;h4 id=&#34;update-dependencies&#34;&gt;&lt;code&gt;update-dependencies&lt;/code&gt;&lt;/h4&gt;
+
+
+
+&lt;div class=&#34;pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;tag&#34;&gt;SUSHI 3.0&lt;/span&gt;The &lt;code&gt;update-dependencies&lt;/code&gt; command is only available in SUSHI 3.0.0 and later.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;update-dependencies&lt;/code&gt; command is used to update the FSH project&amp;rsquo;s dependencies to the latest version. The command will check all dependencies defined in the &lt;code&gt;sushi-config.yaml&lt;/code&gt; file to see if they are at the latest published version. SUSHI will output a list of all dependencies that have later versions and prompt the author whether to update. Choosing to update will directly modify the &lt;code&gt;sushi-config.yaml&lt;/code&gt; file with the latest version and download the latest version of the dependency to the FHIR cache. Any dependency with a &lt;code&gt;current&lt;/code&gt; or &lt;code&gt;dev&lt;/code&gt; version will not be modified. This command can be used as follows:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi update-dependencies &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;fsh-project-directory&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;build-command-option-details&#34;&gt;Build Command Option Details&lt;/h3&gt;
 &lt;p&gt;The following sections give further detail on using certain command line options.&lt;/p&gt;
 &lt;h3 id=&#34;--out&#34;&gt;&lt;code&gt;--out&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;The &lt;code&gt;--out&lt;/code&gt; or &lt;code&gt;-o&lt;/code&gt; flag specifies where SUSHI&amp;rsquo;s output, the &lt;strong&gt;fsh-generated&lt;/strong&gt; folder, should be written. By default, the folder will be written to the root folder, i.e., parallel to the &lt;strong&gt;input&lt;/strong&gt; folder. When SUSHI begins, any existing content in the designated location is deleted. Within the &lt;strong&gt;fsh-generated&lt;/strong&gt; folder, SUSHI generates file names based on the resource id (i.e., ${resourceType}-${resourceId}.json). If the id contains one or more path separators, SUSHI will sanitize file names to assure all files are written to the target directory. (&lt;em&gt;Note: the &lt;code&gt;--out&lt;/code&gt; option does not refer to the output folder written by the IG Publisher&lt;/em&gt;).&lt;/p&gt;
@@ -967,7 +1038,7 @@ You can see a list of the available Firely Terminal versions &lt;a href=&#34;htt
 &lt;/ul&gt;
 &lt;h3 id=&#34;downloading-the-ig-publisher-scripts&#34;&gt;Downloading the IG Publisher Scripts&lt;/h3&gt;
 &lt;p&gt;To run the IG Publisher, we recommend downloading the &lt;strong&gt;_updatePublisher.bat|sh&lt;/strong&gt; and &lt;strong&gt;_genonce.bat|sh&lt;/strong&gt; scripts provided by the sample-ig project. To get these scripts, &lt;a href=&#34;https://github.com/FHIR/sample-ig/archive/master.zip&#34;&gt;download the sample-ig project&lt;/a&gt;, unzip it, and copy &lt;em&gt;all&lt;/em&gt; of the &lt;strong&gt;.bat&lt;/strong&gt; and &lt;strong&gt;.sh&lt;/strong&gt; files to the directory above the &lt;strong&gt;fsh-generated&lt;/strong&gt; directory (&lt;strong&gt;my-project&lt;/strong&gt; in the example above).&lt;/p&gt;
-&lt;p&gt;If you used &lt;code&gt;sushi --init&lt;/code&gt; then these scripts were already downloaded and added to your project.&lt;/p&gt;
+&lt;p&gt;If you used &lt;code&gt;sushi --init&lt;/code&gt; (or &lt;code&gt;sushi init&lt;/code&gt; for SUSHI 3.0) then these scripts were already downloaded and added to your project.&lt;/p&gt;
 &lt;h3 id=&#34;downloading-the-ig-publisher&#34;&gt;Downloading the IG Publisher&lt;/h3&gt;
 &lt;p&gt;After copying these, change directories in the command prompt to the directory above the &lt;strong&gt;fsh-generated&lt;/strong&gt; directory. At the command prompt, enter:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#39;fab fa-windows fa-fw&#39;&gt;&lt;/i&gt; &lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; _updatePublisher
@@ -1113,10 +1184,116 @@ Description: &amp;quot;This is mine&amp;quot;
 
 &lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
 &lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
-This does not allow/support using the &lt;code&gt;Instance&lt;/code&gt; keyword for creating examples of logical models. Authors must created the example as raw JSON or XML.  Support for the &lt;code&gt;Instance&lt;/code&gt; keyword may come in future versions of SUSHI.
+This does not allow/support using the &lt;code&gt;Instance&lt;/code&gt; keyword for creating examples of logical models. Authors must create the example as raw JSON or XML.  Support for the &lt;code&gt;Instance&lt;/code&gt; keyword may come in future versions of SUSHI.
 &lt;/div&gt;
 
+&lt;h2 id=&#34;manual-slice-ordering&#34;&gt;Manual Slice Ordering&lt;/h2&gt;
 
+
+
+&lt;div class=&#34;pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;tag&#34;&gt;SUSHI 3.0&lt;/span&gt;The manual slice ordering option is only available in SUSHI 3.0.0 and later.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;p&gt;Starting in SUSHI &lt;code&gt;v3.0.0&lt;/code&gt;, authors can exercise full manual control over the ordering of slice elements within Instances. Previous versions of SUSHI allowed for partial control of slice element ordering, but some ordering was determined by SUSHI&amp;rsquo;s implementation and could not be affected by an author. In the current version of SUSHI (&lt;code&gt;v3.0.0&lt;/code&gt; or later), authors can configure their FSH projects to manually control slice ordering. When using manual slice ordering, authors should use soft indexing and avoid using hard numeric indices.&lt;/p&gt;
+&lt;p&gt;Manual slice ordering follows the following rules:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;slices appear on an Instance in the order of FSH rules&lt;/li&gt;
+&lt;li&gt;any required slices (&lt;code&gt;1..*&lt;/code&gt;) that are not referenced in a FSH rule on the Instance appear after all referenced slices in the order in which they are defined on the Instance&amp;rsquo;s StructureDefinition (the instance&amp;rsquo;s &lt;code&gt;InstanceOf&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;a rule that references a sliced element should reference it using the slice name&lt;/li&gt;
+&lt;li&gt;to reference multiple items in a slice, use hard or soft indices after the slice name (e.g., &lt;code&gt;component[myslice][0]&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;when rule paths use only a soft index (instead of a slice name), the resolved numeric index will take into account named slices that have already been referenced by previous rule paths. This should only be used to add items that do not belong to a defined slice.
+&lt;ul&gt;
+&lt;li&gt;Note: when manual slice ordering is enabled, it is not possible to refer to an element with a slice name by soft numeric index only. If hard numeric indices are used (not recommended), they may still directly access previously referenced named slices. This may lead to undesired output.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To use this ordering, add the following to &lt;code&gt;sushi-config.yaml&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;instanceOptions&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;manualSliceOrdering&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;Profile: ExampleBPObservation
+Parent: Observation
+// slicing rules for component omitted for brevity
+* component contains systolicBP 1..1 MS and diastolicBP 1..1 MS
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When using this profile without manual slice ordering, the &lt;code&gt;systolicBP&lt;/code&gt; slice will always be the first entry in the &lt;code&gt;component&lt;/code&gt; element, and the &lt;code&gt;diastolicBP&lt;/code&gt; slice will always be the second entry in the &lt;code&gt;component&lt;/code&gt; element. So, the following two instances would have the same &lt;code&gt;component&lt;/code&gt; elements:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Instance: ExampleByName
+InstanceOf: ExampleBPObservation
+// some required elements omitted for brevity
+* component[systolicBP].valueQuantity = 108 &#39;mm[Hg]&#39;
+* component[diastolicBP].valueQuantity = 45 &#39;mm[Hg]&#39;
+
+Instance: ExampleByNumber
+InstanceOf: ExampleBPObservation
+// some required elements omitted for brevity
+* component[0].valueQuantity = 108 &#39;mm[Hg]&#39;
+* component[1].valueQuantity = 45 &#39;mm[Hg]&#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When manual slice ordering is enabled, rules that set values on the &lt;code&gt;systolicBP&lt;/code&gt; or &lt;code&gt;diastolicBP&lt;/code&gt; slices &lt;em&gt;must&lt;/em&gt; use the slice name. With this option enabled, the &lt;code&gt;ExampleByName&lt;/code&gt; instance would produce the same entries in &lt;code&gt;component&lt;/code&gt;, but the &lt;code&gt;ExampleByNumber&lt;/code&gt; instance would contain four entries in the &lt;code&gt;component&lt;/code&gt; list: two entries that are not part of a named slice, followed by the &lt;code&gt;systolicBP&lt;/code&gt; slice, and finally the &lt;code&gt;diastolicBP&lt;/code&gt; slice.&lt;/p&gt;
+&lt;p&gt;When manual slice ordering is enabled, if any required slices with required assigned values are not present in an instance&amp;rsquo;s list of rules, they will be added in the order in which they are defined. If you want these slices to appear in a different order on the instance without adding any new information to the slices, add rules on the instance that reassign the existing values:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Alias: $ObservationCategoryCodes = http://terminology.hl7.org/CodeSystem/observation-category
+
+Profile: ExampleObservation
+Parent: Observation
+// slicing rules for category omitted for brevity
+* category contains CategoryA 1..1 and CategoryB 1..1
+* category[CategoryA] = $ObservationCategoryCodes#vital-signs
+* category[CategoryB] = $ObservationCategoryCodes#survey
+
+Instance: ReorderedExample
+InstanceOf: ExampleObservation
+// some required elements omitted for brevity
+* category[CategoryB] = $ObservationCategoryCodes#survey
+* category[CategoryA] = $ObservationCategoryCodes#vital-signs
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This instance&amp;rsquo;s &lt;code&gt;category&lt;/code&gt; element will have the &lt;code&gt;survey&lt;/code&gt; code as the first entry and the &lt;code&gt;vital-signs&lt;/code&gt; code as the second entry.&lt;/p&gt;
+&lt;p&gt;Soft index resolution will account for named slices that have been referenced in previous rules:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Instance: SoftIndexExample
+InstanceOf: ExampleObservation
+// some required elements omitted for brevity
+* category[+] = $ObservationCategoryCodes#laboratory // this + will resolve to index 0
+* category[CategoryB] = $ObservationCategoryCodes#survey
+* category[+] = $ObservationCategoryCodes#exam // this + will resolve to index 2, since the CategoryB slice occupies index 1
+* category[CategoryA] = $ObservationCategoryCodes#vital-signs
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This instance&amp;rsquo;s &lt;code&gt;category&lt;/code&gt; element will have four entries in the order specified: &lt;code&gt;laboratory&lt;/code&gt;, &lt;code&gt;survey&lt;/code&gt;, &lt;code&gt;exam&lt;/code&gt;, &lt;code&gt;vital-signs&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;link-references&#34;&gt;Link References&lt;/h2&gt;
+
+
+
+&lt;div class=&#34;pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;tag&#34;&gt;SUSHI 3.0&lt;/span&gt;Link references are only available in SUSHI 3.0.0 and later.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;p&gt;SUSHI creates the &lt;strong&gt;fsh-generated/includes/fsh-link-references.md&lt;/strong&gt; file to make it easier to create links to resource definitions in other markdown pages. This file&amp;rsquo;s contents are a list of markdown link definitions, with one link for each resource in your &lt;strong&gt;ImplementationGuide.json&lt;/strong&gt; file. This will include resources defined in FSH, the &lt;code&gt;resources&lt;/code&gt; configuration property, and predefined resources. For example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;[MyPatient]: StructureDefinition-MyPatient.html
+[MyExtension]: StructureDefinition-MyExtension.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The rules for determining what the link text will be for a given resource are as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For resources defined in FSH:
+&lt;ul&gt;
+&lt;li&gt;Non-instance resources use the &lt;em&gt;name&lt;/em&gt; of the resource.&lt;/li&gt;
+&lt;li&gt;Instances use the &lt;em&gt;id&lt;/em&gt; of the resource.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;For predefined resources:
+&lt;ul&gt;
+&lt;li&gt;Resources in the &lt;code&gt;input/examples&lt;/code&gt; folder use the &lt;em&gt;id&lt;/em&gt; of the resource.&lt;/li&gt;
+&lt;li&gt;Resources in other sub-folders of &lt;code&gt;input&lt;/code&gt; attempt to use the &lt;em&gt;name&lt;/em&gt; of the resource if this is a string value, and otherwise use the &lt;em&gt;id&lt;/em&gt; of the resource.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;For resources that are manually configured in &lt;code&gt;sushi-config.yaml&lt;/code&gt;:
+&lt;ul&gt;
+&lt;li&gt;The &lt;em&gt;name&lt;/em&gt; of the resource is used, if available.&lt;/li&gt;
+&lt;li&gt;Otherwise, the &lt;em&gt;id&lt;/em&gt; of the resource is used.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To use these generated links, include &lt;code&gt;fsh-generated-links.md&lt;/code&gt; in your custom markdown pages. This can be done by including the following line at the bottom of your custom markdown page:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;{% include fsh-link-references.md %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then, you can create links by including the resource&amp;rsquo;s link text within square brackets. For example, if you had a Profile named &lt;code&gt;MyPatient&lt;/code&gt;, your custom markdown file could look like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;color:#800080;font-weight:bold&#34;&gt;## Patients
+&lt;/span&gt;&lt;span style=&#34;color:#800080;font-weight:bold&#34;&gt;&lt;/span&gt;This IG provides [MyPatient] for patient information.
+
+{% include fsh-link-references.md %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
       </description>
     </item>
     
@@ -1158,6 +1335,14 @@ If you find this helpful, you may also want to look at our &lt;a href=&#34;/cour
 &lt;p&gt;Now that you have SUSHI installed and a minimal FSH project, open up a command window, and navigate to the &lt;strong&gt;FishExample&lt;/strong&gt; directory. Run SUSHI on those FSH files by executing:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;i class=&#34;fas fa-dollar-sign&#34;&gt;&lt;/i&gt; sushi .
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class=&#34;pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;tag&#34;&gt;SUSHI 3.0&lt;/span&gt;For SUSHI 3.0.0 and later, use the &lt;code&gt;build&lt;/code&gt; command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ sushi build .
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
 
 &lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
 &lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
@@ -1231,7 +1416,7 @@ Description: &amp;#34;The species of the fish.&amp;#34;
 FSH ignores extra whitespace, so authors can choose to use whitespace for improved visual alignment, as in the extension definition above.
 &lt;/div&gt;
 
-&lt;p&gt;Run SUSHI again (&lt;code&gt;sushi .&lt;/code&gt;). The count of Extensions should now be 1.&lt;/p&gt;
+&lt;p&gt;Run SUSHI again (&lt;code&gt;sushi .&lt;/code&gt; or &lt;code&gt;sushi build .&lt;/code&gt; for SUSHI 3.0). The count of Extensions should now be 1.&lt;/p&gt;
 &lt;h3 id=&#34;step-8-define-a-value-set-for-fish-species&#34;&gt;Step 8: Define a Value Set for Fish Species&lt;/h3&gt;
 &lt;p&gt;The FishSpecies extension doesn&amp;rsquo;t quite do its job yet, because we haven&amp;rsquo;t specified what type of values it might accept. To add this information, enter these lines following the description of FishSpecies:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;* value[x] only CodeableConcept

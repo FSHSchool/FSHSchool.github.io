@@ -38,8 +38,8 @@
 
 
 
-<link rel="preload" href="/scss/main.min.f872197e60f5b9db6f49e474a4123359c3af042151e19e70ff4f78770d34828e.css" as="style">
-<link href="/scss/main.min.f872197e60f5b9db6f49e474a4123359c3af042151e19e70ff4f78770d34828e.css" rel="stylesheet" integrity="">
+<link rel="preload" href="/scss/main.min.aa5d7a51632f7af0d6417c549b329fa5760a67d4a648167f545b8bb85f71174f.css" as="style">
+<link href="/scss/main.min.aa5d7a51632f7af0d6417c549b329fa5760a67d4a648167f545b8bb85f71174f.css" rel="stylesheet" integrity="">
 
 
 <script
@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.dbda5aa78a5258f90e5d981d6c883f73f9ef3f1c827d455c8074dc99a3b110a14008dc1e63748448e32e9781f1000eced798ac390714e1d7aa9a731a6a213136.json"
+  data-offline-search-index-json-src="/offline-search-index.005852246be6aa883a0dc9f07c34575b4022650c7bd729f87f060033c4f9d5f6ebd62321a799e64aedf424f119038cf7e4973905b1531122062bdc312db45f4a.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.dbda5aa78a5258f90e5d981d6c883f73f9ef3f1c827d455c8074dc99a3b110a14008dc1e63748448e32e9781f1000eced798ac390714e1d7aa9a731a6a213136.json"
+  data-offline-search-index-json-src="/offline-search-index.005852246be6aa883a0dc9f07c34575b4022650c7bd729f87f060033c4f9d5f6ebd62321a799e64aedf424f119038cf7e4973905b1531122062bdc312db45f4a.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -649,6 +649,14 @@ If you find this helpful, you may also want to look at our <a href="/courses/">s
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi .
 </code></pre></div>
 
+
+<div class="pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing">
+<p><span class="tag">SUSHI 3.0</span>For SUSHI 3.0.0 and later, use the <code>build</code> command:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sushi build .
+</code></pre></div>
+</div>
+
+
 <div class="alert alert-primary" role="alert">
 <h4 class="alert-heading">Note</h4>
 The dot (.) represents &ldquo;this directory,&rdquo; the location of the FSH files. You can also specify the location explicitly by replacing the dot with a directory path.
@@ -721,7 +729,7 @@ Description: &#34;The species of the fish.&#34;
 FSH ignores extra whitespace, so authors can choose to use whitespace for improved visual alignment, as in the extension definition above.
 </div>
 
-<p>Run SUSHI again (<code>sushi .</code>). The count of Extensions should now be 1.</p>
+<p>Run SUSHI again (<code>sushi .</code> or <code>sushi build .</code> for SUSHI 3.0). The count of Extensions should now be 1.</p>
 <h3 id="step-8-define-a-value-set-for-fish-species">Step 8: Define a Value Set for Fish Species</h3>
 <p>The FishSpecies extension doesn&rsquo;t quite do its job yet, because we haven&rsquo;t specified what type of values it might accept. To add this information, enter these lines following the description of FishSpecies:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">* value[x] only CodeableConcept
@@ -832,7 +840,7 @@ Using aliases has no effect on the IG; it simply makes the FSH code a bit neater
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified August 15, 2022: <a  href="https://github.com/FSHSchool/site/commit/787f1cb48d1a22e3d9769d6f80211b659fc4ab5b">Reorganize documentation and add links to FSH Seminar (#65) (787f1cb)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified February 24, 2023: <a  href="https://github.com/FSHSchool/site/commit/54adf6261dec741467b5cbd4b337647b48de1a7c">SUSHI 3.0 Documentation Updates (#77) (54adf62)</a>
 </div>
 </div>
 

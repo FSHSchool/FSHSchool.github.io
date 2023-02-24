@@ -38,8 +38,8 @@
 
 
 
-<link rel="preload" href="/scss/main.min.f872197e60f5b9db6f49e474a4123359c3af042151e19e70ff4f78770d34828e.css" as="style">
-<link href="/scss/main.min.f872197e60f5b9db6f49e474a4123359c3af042151e19e70ff4f78770d34828e.css" rel="stylesheet" integrity="">
+<link rel="preload" href="/scss/main.min.aa5d7a51632f7af0d6417c549b329fa5760a67d4a648167f545b8bb85f71174f.css" as="style">
+<link href="/scss/main.min.aa5d7a51632f7af0d6417c549b329fa5760a67d4a648167f545b8bb85f71174f.css" rel="stylesheet" integrity="">
 
 
 <script
@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.dbda5aa78a5258f90e5d981d6c883f73f9ef3f1c827d455c8074dc99a3b110a14008dc1e63748448e32e9781f1000eced798ac390714e1d7aa9a731a6a213136.json"
+  data-offline-search-index-json-src="/offline-search-index.005852246be6aa883a0dc9f07c34575b4022650c7bd729f87f060033c4f9d5f6ebd62321a799e64aedf424f119038cf7e4973905b1531122062bdc312db45f4a.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.dbda5aa78a5258f90e5d981d6c883f73f9ef3f1c827d455c8074dc99a3b110a14008dc1e63748448e32e9781f1000eced798ac390714e1d7aa9a731a6a213136.json"
+  data-offline-search-index-json-src="/offline-search-index.005852246be6aa883a0dc9f07c34575b4022650c7bd729f87f060033c4f9d5f6ebd62321a799e64aedf424f119038cf7e4973905b1531122062bdc312db45f4a.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -839,7 +839,7 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <tr>
 <td align="left">instanceOptions</td>
 <td align="left">N/A</td>
-<td align="left"><code>key: value</code> pairs, where keys are <code>setId</code> and <code>setMetaProfile</code>. The <code>setId</code> value controls whether <code>id</code> is set on generated instances. Options are <code>always</code> (set <code>id</code> on all instances (the default)) or <code>standalone-only</code> (set <code>id</code> for instances where the <code>Usage</code> keyword is NOT <code>#inline</code>). The <code>setMetaProfile</code> value controls whether <code>meta.profile</code> is set on generated instances. It can have the following values: <code>always</code> (set meta.profile for all instances (the default)), <code>never</code> (do not set meta.profile on any instances), <code>inline-only</code> (set <code>meta.profile</code> only for instances of profiles with <code>Usage</code> keyword set to <code>#inline</code>), or <code>standalone-only</code> (set <code>meta.profile</code> for instances where the <code>Usage</code> keyword is NOT <code>#inline</code>).</td>
+<td align="left"><code>key: value</code> pairs, where keys are <code>setId</code>, <code>setMetaProfile</code>, and <code>manualSliceOrdering</code>. <ul><li>The <code>setId</code> value controls whether <code>id</code> is set on generated instances. Options are <code>always</code> (set <code>id</code> on all instances [the default]) or <code>standalone-only</code> (set <code>id</code> for instances where the <code>Usage</code> keyword is NOT <code>#inline</code>).</li><li>The <code>setMetaProfile</code> value controls whether <code>meta.profile</code> is set on generated instances. It can have the following values: <code>always</code> (set meta.profile for all instances [the default]), <code>never</code> (do not set meta.profile on any instances), <code>inline-only</code> (set <code>meta.profile</code> only for instances of profiles with <code>Usage</code> keyword set to <code>#inline</code>), or <code>standalone-only</code> (set <code>meta.profile</code> for instances where the <code>Usage</code> keyword is NOT <code>#inline</code>).</li><li><span class="tag">SUSHI 3.0</span>The <code>manualSliceOrdering</code> value controls whether slice ordering is determined exclusively by the order in which slices are referenced in an instance&rsquo;s FSH rules. When this flag is set to <code>true</code>, manual ordering is enabled (see <a href="/docs/sushi/tips/#manual-slice-ordering">Manual Slice Ordering</a>).</li></ul></td>
 </tr>
 <tr>
 <td align="left">jurisdiction</td>
@@ -1193,6 +1193,9 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># - always: Set id for all Instances (default)</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># - standalone-only: Set id for only Instances where Usage is any value other than #inline</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">setId</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>always<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># When set to true, slices must be referred to by name and not only by a numeric index in order to be used</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># in an Instance&#39;s assignment rule. All slices appear in the order in which they are specified in FSH rules.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">manualSliceOrdering</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><p><a href="/docs/sushi/configuration/exhaustive-config.yaml"><i class='fas fa-download fa-fw'></i> Download Exhaustive Configuration Example</a></p>
 
@@ -1238,7 +1241,7 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified September 15, 2022: <a  href="https://github.com/FSHSchool/site/commit/a3164ec811cf7b023c45e37b901afa33c7f3efde">Include R5 ImplementationGuide configuration (#67) (a3164ec)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified February 24, 2023: <a  href="https://github.com/FSHSchool/site/commit/54adf6261dec741467b5cbd4b337647b48de1a7c">SUSHI 3.0 Documentation Updates (#77) (54adf62)</a>
 </div>
 </div>
 

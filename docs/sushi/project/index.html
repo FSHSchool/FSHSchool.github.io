@@ -38,8 +38,8 @@
 
 
 
-<link rel="preload" href="/scss/main.min.f872197e60f5b9db6f49e474a4123359c3af042151e19e70ff4f78770d34828e.css" as="style">
-<link href="/scss/main.min.f872197e60f5b9db6f49e474a4123359c3af042151e19e70ff4f78770d34828e.css" rel="stylesheet" integrity="">
+<link rel="preload" href="/scss/main.min.aa5d7a51632f7af0d6417c549b329fa5760a67d4a648167f545b8bb85f71174f.css" as="style">
+<link href="/scss/main.min.aa5d7a51632f7af0d6417c549b329fa5760a67d4a648167f545b8bb85f71174f.css" rel="stylesheet" integrity="">
 
 
 <script
@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.dbda5aa78a5258f90e5d981d6c883f73f9ef3f1c827d455c8074dc99a3b110a14008dc1e63748448e32e9781f1000eced798ac390714e1d7aa9a731a6a213136.json"
+  data-offline-search-index-json-src="/offline-search-index.005852246be6aa883a0dc9f07c34575b4022650c7bd729f87f060033c4f9d5f6ebd62321a799e64aedf424f119038cf7e4973905b1531122062bdc312db45f4a.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.dbda5aa78a5258f90e5d981d6c883f73f9ef3f1c827d455c8074dc99a3b110a14008dc1e63748448e32e9781f1000eced798ac390714e1d7aa9a731a6a213136.json"
+  data-offline-search-index-json-src="/offline-search-index.005852246be6aa883a0dc9f07c34575b4022650c7bd729f87f060033c4f9d5f6ebd62321a799e64aedf424f119038cf7e4973905b1531122062bdc312db45f4a.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -619,7 +619,14 @@
 </code></pre></div><p>Each FSH file can contain multiple FSH definitions of varying types. FSH file names are not significant, but must end with the <strong>.fsh</strong> extension. In addition, FSH files can be organized into subdirectories. This provides authors the flexibility to organize their FSH definitions in whatever way makes sense to then.</p>
 <p>The <strong>sushi-config.yaml</strong> file provides project configuration data to SUSHI. It is described further in the <a href="/docs/sushi/configuration/">Configuration</a> documentation.</p>
 <h2 id="initializing-a-sushi-project">Initializing a SUSHI Project</h2>
-<p>Setting up a fully-featured FSH project can be complex, so SUSHI provides an <code>--init</code> option to do it automatically. When <code>sushi --init</code> is run, SUSHI will request project information from the user:</p>
+<p>Setting up a fully-featured FSH project can be complex, so SUSHI provides an <code>--init</code> argument to do it automatically. When <code>sushi --init</code> is run, SUSHI will request project information from the user:</p>
+
+
+
+<div class="pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing">
+<p><span class="tag">SUSHI 3.0</span>For SUSHI 3.0.0 and later, use <code>sushi init</code>.</p>
+
+</div>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Name (Default: ExampleIG): my-project
 Id (Default: fhir.example): my.id
 Canonical (Default: http://example.org): http://myid.org
@@ -643,7 +650,7 @@ Initialize SUSHI project in C:\Users\shorty\dev\my-project? [y/n]: y
 |   └── pagecontent
 |       └── index.md
 └── sushi-config.yaml
-</code></pre></div><p>In addition to the <strong>input/fsh</strong> folder, <code>--init</code> creates an <strong>input/pagecontent</strong> folder containing a dummy home page for your IG. The files <strong>ig.ini</strong> and <strong>ignoreWarnings.txt</strong> are required by the <a href="https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html">template-based IG Publisher</a>. The <code>.bat</code> and <code>.sh</code> scripts which allow you to <a href="/docs/sushi/running/#downloading-the-ig-publisher">run the IG Publisher</a> from your command line. Finally, a default <code>.gitignore</code> file for integration with GitHub is provided. From this point on, you can modify the configuration and definitions as necessary.</p>
+</code></pre></div><p>In addition to the <strong>input/fsh</strong> folder, <code>init</code> creates an <strong>input/pagecontent</strong> folder containing a dummy home page for your IG. The files <strong>ig.ini</strong> and <strong>ignoreWarnings.txt</strong> are required by the <a href="https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html">template-based IG Publisher</a>. The <code>.bat</code> and <code>.sh</code> scripts which allow you to <a href="/docs/sushi/running/#downloading-the-ig-publisher">run the IG Publisher</a> from your command line. Finally, a default <code>.gitignore</code> file for integration with GitHub is provided. From this point on, you can modify the configuration and definitions as necessary.</p>
 <h2 id="using-the-hl7-ig-publisher-and-auto-builder">Using the HL7 IG Publisher and Auto-Builder</h2>
 <p>This project structure integrates with the HL7 IG Publisher <a href="https://github.com/FHIR/auto-ig-builder/blob/master/README.md">Auto-Builder</a>. When the IG Publisher detects an <strong>input/fsh</strong> subdirectory, it will automatically run SUSHI on the project directory and output the SUSHI results to a <strong>fsh-generated</strong> directory (e.g., <strong>my-project/fsh-generated</strong> in the example above). It will then continue with the normal IG Publisher process.</p>
 <p>This approach allows a GitHub repository to be configured such that whenever changes to FSH files are pushed to GitHub, the <a href="https://github.com/FHIR/auto-ig-builder/blob/master/README.md">Auto-Builder</a> will pick them up, run the SUSHI/IG Publisher process, and publish the resulting IG to <a href="http://build.fhir.org">http://build.fhir.org</a>.</p>
@@ -722,7 +729,7 @@ Examples of <strong>package.json</strong>, <strong>ig.ini</strong>, <strong>pack
 <li>
 <p><strong>sushi-ignoreWarnings.txt</strong>: This optional file can be used to suppress warnings logged by SUSHI. Errors and informational logs from SUSHI cannot be ignored. This file should be placed either at the root of the project (e.g., <strong>my-project/sushi-ignoreWarnings.txt</strong> in the example above), or within the <strong>input</strong> directory (e.g., <strong>my-project/input/sushi-ignoreWarnings.txt</strong>). Warnings will be ignored if they completely match the contents of any line of the file (one line per warning, case-sensitive). Regular expressions can also be specified, one per line, indicated by starting and ending the line with <code>/</code>. For example:</p>
 <pre><code>Instance PatientExample1 is not an instance of a resource, so it should only be used inline on other instances, and it will not be exported to a standalone file. Specify &quot;Usage: #inline&quot; to remove this warning.
-/Detected the following non-conformant Resource definitions.*/   
+/Detected the following non-conformant Resource definitions.*/
 </code></pre><p>Any warning which exactly matches the contents of the first line will be ignored. The second line specifies that any warning beginning with <code>Detected the following non-conformant Resource definitions</code> will be ignored.</p>
 
 
@@ -776,7 +783,7 @@ SUSHI does log several multi-line warnings, but these warnings cannot be specifi
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified September 15, 2022: <a  href="https://github.com/FSHSchool/site/commit/a3164ec811cf7b023c45e37b901afa33c7f3efde">Include R5 ImplementationGuide configuration (#67) (a3164ec)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified February 24, 2023: <a  href="https://github.com/FSHSchool/site/commit/54adf6261dec741467b5cbd4b337647b48de1a7c">SUSHI 3.0 Documentation Updates (#77) (54adf62)</a>
 </div>
 </div>
 

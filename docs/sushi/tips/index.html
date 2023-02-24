@@ -38,8 +38,8 @@
 
 
 
-<link rel="preload" href="/scss/main.min.f872197e60f5b9db6f49e474a4123359c3af042151e19e70ff4f78770d34828e.css" as="style">
-<link href="/scss/main.min.f872197e60f5b9db6f49e474a4123359c3af042151e19e70ff4f78770d34828e.css" rel="stylesheet" integrity="">
+<link rel="preload" href="/scss/main.min.aa5d7a51632f7af0d6417c549b329fa5760a67d4a648167f545b8bb85f71174f.css" as="style">
+<link href="/scss/main.min.aa5d7a51632f7af0d6417c549b329fa5760a67d4a648167f545b8bb85f71174f.css" rel="stylesheet" integrity="">
 
 
 <script
@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.dbda5aa78a5258f90e5d981d6c883f73f9ef3f1c827d455c8074dc99a3b110a14008dc1e63748448e32e9781f1000eced798ac390714e1d7aa9a731a6a213136.json"
+  data-offline-search-index-json-src="/offline-search-index.005852246be6aa883a0dc9f07c34575b4022650c7bd729f87f060033c4f9d5f6ebd62321a799e64aedf424f119038cf7e4973905b1531122062bdc312db45f4a.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.dbda5aa78a5258f90e5d981d6c883f73f9ef3f1c827d455c8074dc99a3b110a14008dc1e63748448e32e9781f1000eced798ac390714e1d7aa9a731a6a213136.json"
+  data-offline-search-index-json-src="/offline-search-index.005852246be6aa883a0dc9f07c34575b4022650c7bd729f87f060033c4f9d5f6ebd62321a799e64aedf424f119038cf7e4973905b1531122062bdc312db45f4a.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -562,6 +562,12 @@
     <li><a href="#extensions-for-representing-elements-from-other-versions-of-fhir">Extensions for Representing Elements From Other Versions of FHIR</a></li>
     <li><a href="#extension-for-profiling-backboneelements">Extension for Profiling BackboneElements</a></li>
     <li><a href="#instances-of-logical-models">Instances of Logical Models</a></li>
+    <li><a href="#manual-slice-ordering">Manual Slice Ordering</a>
+      <ul>
+        <li><a href="#examples">Examples</a></li>
+      </ul>
+    </li>
+    <li><a href="#link-references">Link References</a></li>
   </ul>
 </nav>
 
@@ -708,10 +714,116 @@ Description: &quot;This is mine&quot;
 
 <div class="alert alert-success" role="alert">
 <h4 class="alert-heading">Note</h4>
-This does not allow/support using the <code>Instance</code> keyword for creating examples of logical models. Authors must created the example as raw JSON or XML.  Support for the <code>Instance</code> keyword may come in future versions of SUSHI.
+This does not allow/support using the <code>Instance</code> keyword for creating examples of logical models. Authors must create the example as raw JSON or XML.  Support for the <code>Instance</code> keyword may come in future versions of SUSHI.
 </div>
 
+<h2 id="manual-slice-ordering">Manual Slice Ordering</h2>
 
+
+
+<div class="pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing">
+<p><span class="tag">SUSHI 3.0</span>The manual slice ordering option is only available in SUSHI 3.0.0 and later.</p>
+
+</div>
+<p>Starting in SUSHI <code>v3.0.0</code>, authors can exercise full manual control over the ordering of slice elements within Instances. Previous versions of SUSHI allowed for partial control of slice element ordering, but some ordering was determined by SUSHI&rsquo;s implementation and could not be affected by an author. In the current version of SUSHI (<code>v3.0.0</code> or later), authors can configure their FSH projects to manually control slice ordering. When using manual slice ordering, authors should use soft indexing and avoid using hard numeric indices.</p>
+<p>Manual slice ordering follows the following rules:</p>
+<ul>
+<li>slices appear on an Instance in the order of FSH rules</li>
+<li>any required slices (<code>1..*</code>) that are not referenced in a FSH rule on the Instance appear after all referenced slices in the order in which they are defined on the Instance&rsquo;s StructureDefinition (the instance&rsquo;s <code>InstanceOf</code>)</li>
+<li>a rule that references a sliced element should reference it using the slice name</li>
+<li>to reference multiple items in a slice, use hard or soft indices after the slice name (e.g., <code>component[myslice][0]</code>)</li>
+<li>when rule paths use only a soft index (instead of a slice name), the resolved numeric index will take into account named slices that have already been referenced by previous rule paths. This should only be used to add items that do not belong to a defined slice.
+<ul>
+<li>Note: when manual slice ordering is enabled, it is not possible to refer to an element with a slice name by soft numeric index only. If hard numeric indices are used (not recommended), they may still directly access previously referenced named slices. This may lead to undesired output.</li>
+</ul>
+</li>
+</ul>
+<p>To use this ordering, add the following to <code>sushi-config.yaml</code>:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">instanceOptions</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">manualSliceOrdering</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><h3 id="examples">Examples</h3>
+<pre><code>Profile: ExampleBPObservation
+Parent: Observation
+// slicing rules for component omitted for brevity
+* component contains systolicBP 1..1 MS and diastolicBP 1..1 MS
+</code></pre><p>When using this profile without manual slice ordering, the <code>systolicBP</code> slice will always be the first entry in the <code>component</code> element, and the <code>diastolicBP</code> slice will always be the second entry in the <code>component</code> element. So, the following two instances would have the same <code>component</code> elements:</p>
+<pre><code>Instance: ExampleByName
+InstanceOf: ExampleBPObservation
+// some required elements omitted for brevity
+* component[systolicBP].valueQuantity = 108 'mm[Hg]'
+* component[diastolicBP].valueQuantity = 45 'mm[Hg]'
+
+Instance: ExampleByNumber
+InstanceOf: ExampleBPObservation
+// some required elements omitted for brevity
+* component[0].valueQuantity = 108 'mm[Hg]'
+* component[1].valueQuantity = 45 'mm[Hg]'
+</code></pre><p>When manual slice ordering is enabled, rules that set values on the <code>systolicBP</code> or <code>diastolicBP</code> slices <em>must</em> use the slice name. With this option enabled, the <code>ExampleByName</code> instance would produce the same entries in <code>component</code>, but the <code>ExampleByNumber</code> instance would contain four entries in the <code>component</code> list: two entries that are not part of a named slice, followed by the <code>systolicBP</code> slice, and finally the <code>diastolicBP</code> slice.</p>
+<p>When manual slice ordering is enabled, if any required slices with required assigned values are not present in an instance&rsquo;s list of rules, they will be added in the order in which they are defined. If you want these slices to appear in a different order on the instance without adding any new information to the slices, add rules on the instance that reassign the existing values:</p>
+<pre><code>Alias: $ObservationCategoryCodes = http://terminology.hl7.org/CodeSystem/observation-category
+
+Profile: ExampleObservation
+Parent: Observation
+// slicing rules for category omitted for brevity
+* category contains CategoryA 1..1 and CategoryB 1..1
+* category[CategoryA] = $ObservationCategoryCodes#vital-signs
+* category[CategoryB] = $ObservationCategoryCodes#survey
+
+Instance: ReorderedExample
+InstanceOf: ExampleObservation
+// some required elements omitted for brevity
+* category[CategoryB] = $ObservationCategoryCodes#survey
+* category[CategoryA] = $ObservationCategoryCodes#vital-signs
+</code></pre><p>This instance&rsquo;s <code>category</code> element will have the <code>survey</code> code as the first entry and the <code>vital-signs</code> code as the second entry.</p>
+<p>Soft index resolution will account for named slices that have been referenced in previous rules:</p>
+<pre><code>Instance: SoftIndexExample
+InstanceOf: ExampleObservation
+// some required elements omitted for brevity
+* category[+] = $ObservationCategoryCodes#laboratory // this + will resolve to index 0
+* category[CategoryB] = $ObservationCategoryCodes#survey
+* category[+] = $ObservationCategoryCodes#exam // this + will resolve to index 2, since the CategoryB slice occupies index 1
+* category[CategoryA] = $ObservationCategoryCodes#vital-signs
+</code></pre><p>This instance&rsquo;s <code>category</code> element will have four entries in the order specified: <code>laboratory</code>, <code>survey</code>, <code>exam</code>, <code>vital-signs</code>.</p>
+<h2 id="link-references">Link References</h2>
+
+
+
+<div class="pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing">
+<p><span class="tag">SUSHI 3.0</span>Link references are only available in SUSHI 3.0.0 and later.</p>
+
+</div>
+<p>SUSHI creates the <strong>fsh-generated/includes/fsh-link-references.md</strong> file to make it easier to create links to resource definitions in other markdown pages. This file&rsquo;s contents are a list of markdown link definitions, with one link for each resource in your <strong>ImplementationGuide.json</strong> file. This will include resources defined in FSH, the <code>resources</code> configuration property, and predefined resources. For example:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">[MyPatient]: StructureDefinition-MyPatient.html
+[MyExtension]: StructureDefinition-MyExtension.html
+</code></pre></div><p>The rules for determining what the link text will be for a given resource are as follows:</p>
+<ul>
+<li>For resources defined in FSH:
+<ul>
+<li>Non-instance resources use the <em>name</em> of the resource.</li>
+<li>Instances use the <em>id</em> of the resource.</li>
+</ul>
+</li>
+<li>For predefined resources:
+<ul>
+<li>Resources in the <code>input/examples</code> folder use the <em>id</em> of the resource.</li>
+<li>Resources in other sub-folders of <code>input</code> attempt to use the <em>name</em> of the resource if this is a string value, and otherwise use the <em>id</em> of the resource.</li>
+</ul>
+</li>
+<li>For resources that are manually configured in <code>sushi-config.yaml</code>:
+<ul>
+<li>The <em>name</em> of the resource is used, if available.</li>
+<li>Otherwise, the <em>id</em> of the resource is used.</li>
+</ul>
+</li>
+</ul>
+<p>To use these generated links, include <code>fsh-generated-links.md</code> in your custom markdown pages. This can be done by including the following line at the bottom of your custom markdown page:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">{% include fsh-link-references.md %}
+</code></pre></div><p>Then, you can create links by including the resource&rsquo;s link text within square brackets. For example, if you had a Profile named <code>MyPatient</code>, your custom markdown file could look like this:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#800080;font-weight:bold">## Patients
+</span><span style="color:#800080;font-weight:bold"></span>This IG provides [MyPatient] for patient information.
+
+{% include fsh-link-references.md %}
+</code></pre></div>
         <div class="section-index">
     
     
@@ -754,7 +866,7 @@ This does not allow/support using the <code>Instance</code> keyword for creating
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified February 8, 2023: <a  href="https://github.com/FSHSchool/site/commit/6890de72957a255e7bac1da69b1526f37aa461fc">Update links to parameters documentation (#75) (6890de7)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified February 24, 2023: <a  href="https://github.com/FSHSchool/site/commit/54adf6261dec741467b5cbd4b337647b48de1a7c">SUSHI 3.0 Documentation Updates (#77) (54adf62)</a>
 </div>
 </div>
 

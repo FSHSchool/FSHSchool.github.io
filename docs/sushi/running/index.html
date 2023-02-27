@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.005852246be6aa883a0dc9f07c34575b4022650c7bd729f87f060033c4f9d5f6ebd62321a799e64aedf424f119038cf7e4973905b1531122062bdc312db45f4a.json"
+  data-offline-search-index-json-src="/offline-search-index.ae74313959a3d1a0ac65c6a2599b6ad609afd03a49152ddba940b621de4db50c06cadc986282cff60558b788c83dd974b1a816f0296b63772dea348c26644ae7.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.005852246be6aa883a0dc9f07c34575b4022650c7bd729f87f060033c4f9d5f6ebd62321a799e64aedf424f119038cf7e4973905b1531122062bdc312db45f4a.json"
+  data-offline-search-index-json-src="/offline-search-index.ae74313959a3d1a0ac65c6a2599b6ad609afd03a49152ddba940b621de4db50c06cadc986282cff60558b788c83dd974b1a816f0296b63772dea348c26644ae7.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -796,9 +796,9 @@ The following message is expected, and should be ignored:(node:46420) Warning: A
 <p>Since SUSHI does not implement its own snapshot generator, you must update the package in your FHIR cache so that its profiles include snapshot elements. Fortunately, the <a href="https://fire.ly/products/firely-terminal/">Firely Terminal</a> provides a way to do this.</p>
 <p>First, you must <a href="https://docs.fire.ly/projects/Firely-Terminal/InstallingFirelyTerminal.html">install Firely Terminal</a>. Then use Firely Terminal to populate the snapshot elements in the dependency package.</p>
 <ol>
-<li>Run the command: <code>fhir bake --package  &lt;packagename&gt;</code>, substituting the dependency package ID for <code>&lt;packagename&gt;</code>.
+<li>Run the command: <code>fhir inflate --package  &lt;packagename&gt;</code>, substituting the dependency package ID for <code>&lt;packagename&gt;</code>.
 <ul>
-<li>E.g., <code>fhir bake --package de.basisprofil.r4</code></li>
+<li>E.g., <code>fhir inflate --package de.basisprofil.r4</code></li>
 </ul>
 </li>
 <li>Run SUSHI again. The error about missing snapshots should no longer be displayed.</li>
@@ -807,7 +807,7 @@ The following message is expected, and should be ignored:(node:46420) Warning: A
 
 <div class="alert alert-success" role="alert">
 <h4 class="alert-heading">Tip</h4>
-You can see a list of the available Firely Terminal versions <a href="https://www.nuget.org/packages/Firely.Terminal#versions-body-tab">here</a>. Version than 2.5.0-beta-7 or higher is recommended. Version 2.4.2 is not recommended because it contains a bug in the snapshot generator that adversely affects SUSHI processing.
+You can see a list of the available Firely Terminal versions <a href="https://www.nuget.org/packages/Firely.Terminal#versions-body-tab">here</a>. Version 3.1.0 or higher is required to use the <code>inflate</code> command. Versions prior to 3.1.0 offer similar functionality via a <code>bake</code> command, but they are no longer recommended.
 </div>
 
 <h2 id="sushi-outputs">SUSHI Outputs</h2>
@@ -930,7 +930,7 @@ timeout = 120
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified February 24, 2023: <a  href="https://github.com/FSHSchool/site/commit/54adf6261dec741467b5cbd4b337647b48de1a7c">SUSHI 3.0 Documentation Updates (#77) (54adf62)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified February 27, 2023: <a  href="https://github.com/FSHSchool/site/commit/621032c32202c6d83b636b2b86e97e723ab3a08c">Update bake command to inflate (#78) (621032c)</a>
 </div>
 </div>
 

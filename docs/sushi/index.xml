@@ -997,6 +997,15 @@ The following message is expected, and should be ignored:(node:46420) Warning: A
 You can see a list of the available Firely Terminal versions &lt;a href=&#34;https://www.nuget.org/packages/Firely.Terminal#versions-body-tab&#34;&gt;here&lt;/a&gt;. Version 3.1.0 or higher is required to use the &lt;code&gt;inflate&lt;/code&gt; command. Versions prior to 3.1.0 offer similar functionality via a &lt;code&gt;bake&lt;/code&gt; command, but they are no longer recommended.
 &lt;/div&gt;
 
+
+
+&lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Firely Terminal Note&lt;/h4&gt;
+&lt;p&gt;Inflating a single package, as described here with &lt;code&gt;fhir inflate --package  &amp;lt;packagename&amp;gt;&lt;/code&gt;, is a free option in Firely Terminal. Alternately, authors can use &lt;code&gt;fhir install &amp;lt;packagename&amp;gt;&lt;/code&gt; to download, install, and automatically &amp;ldquo;inflate&amp;rdquo; the package. Using &lt;code&gt;fhir inflate&lt;/code&gt; as a bulk option to inflate the current project and all its dependencies, however, requires a Simplifier license.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://docs.fire.ly/projects/Firely-Terminal/Managing-Packages.html&#34; target=&#34;_blank&#34;&gt;Package Management section&lt;/a&gt;  of the Firely Terminal documentation provides additional details.&lt;/p&gt;
+
+&lt;/div&gt;
+
 &lt;h2 id=&#34;sushi-outputs&#34;&gt;SUSHI Outputs&lt;/h2&gt;
 &lt;p&gt;Based on the inputs in FSH files, &lt;strong&gt;sushi-config.yaml&lt;/strong&gt;, and the IG project directory, SUSHI populates the &lt;strong&gt;fsh-generated&lt;/strong&gt; directory. For example, running SUSHI on the my-project project from the &lt;a href=&#34;/docs/sushi/project/&#34;&gt;Project Structure&lt;/a&gt; section would add a &lt;strong&gt;fsh-generated&lt;/strong&gt; folder as shown below:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;my-project

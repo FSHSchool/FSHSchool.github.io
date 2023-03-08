@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.ae74313959a3d1a0ac65c6a2599b6ad609afd03a49152ddba940b621de4db50c06cadc986282cff60558b788c83dd974b1a816f0296b63772dea348c26644ae7.json"
+  data-offline-search-index-json-src="/offline-search-index.16d4e8d4be4a1204ebaeac5e672c88a6d42cf016773c2cf3e3e167624a7f1aada869ebcb59d03341ab417f178089c508302e21d5f0d9398f92d4edc87f7dceb1.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.ae74313959a3d1a0ac65c6a2599b6ad609afd03a49152ddba940b621de4db50c06cadc986282cff60558b788c83dd974b1a816f0296b63772dea348c26644ae7.json"
+  data-offline-search-index-json-src="/offline-search-index.16d4e8d4be4a1204ebaeac5e672c88a6d42cf016773c2cf3e3e167624a7f1aada869ebcb59d03341ab417f178089c508302e21d5f0d9398f92d4edc87f7dceb1.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -810,6 +810,15 @@ The following message is expected, and should be ignored:(node:46420) Warning: A
 You can see a list of the available Firely Terminal versions <a href="https://www.nuget.org/packages/Firely.Terminal#versions-body-tab">here</a>. Version 3.1.0 or higher is required to use the <code>inflate</code> command. Versions prior to 3.1.0 offer similar functionality via a <code>bake</code> command, but they are no longer recommended.
 </div>
 
+
+
+<div class="alert alert-info" role="alert">
+<h4 class="alert-heading">Firely Terminal Note</h4>
+<p>Inflating a single package, as described here with <code>fhir inflate --package  &lt;packagename&gt;</code>, is a free option in Firely Terminal. Alternately, authors can use <code>fhir install &lt;packagename&gt;</code> to download, install, and automatically &ldquo;inflate&rdquo; the package. Using <code>fhir inflate</code> as a bulk option to inflate the current project and all its dependencies, however, requires a Simplifier license.</p>
+<p>The <a href="https://docs.fire.ly/projects/Firely-Terminal/Managing-Packages.html" target="_blank">Package Management section</a>  of the Firely Terminal documentation provides additional details.</p>
+
+</div>
+
 <h2 id="sushi-outputs">SUSHI Outputs</h2>
 <p>Based on the inputs in FSH files, <strong>sushi-config.yaml</strong>, and the IG project directory, SUSHI populates the <strong>fsh-generated</strong> directory. For example, running SUSHI on the my-project project from the <a href="/docs/sushi/project/">Project Structure</a> section would add a <strong>fsh-generated</strong> folder as shown below:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">my-project
@@ -930,7 +939,7 @@ timeout = 120
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified February 27, 2023: <a  href="https://github.com/FSHSchool/site/commit/621032c32202c6d83b636b2b86e97e723ab3a08c">Update bake command to inflate (#78) (621032c)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified March 8, 2023: <a  href="https://github.com/FSHSchool/site/commit/1dc1cb557a16d6b2c5d8215506748d6087e99bf3">Additional Firely Terminal details (#79) (1dc1cb5)</a>
 </div>
 </div>
 

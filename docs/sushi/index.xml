@@ -1001,7 +1001,7 @@ You can see a list of the available Firely Terminal versions &lt;a href=&#34;htt
 
 &lt;div class=&#34;alert alert-info&#34; role=&#34;alert&#34;&gt;
 &lt;h4 class=&#34;alert-heading&#34;&gt;Firely Terminal Note&lt;/h4&gt;
-&lt;p&gt;Inflating a single package, as described here with &lt;code&gt;fhir inflate --package  &amp;lt;packagename&amp;gt;&lt;/code&gt;, is a free option in Firely Terminal. Alternately, authors can use &lt;code&gt;fhir install &amp;lt;packagename&amp;gt;&lt;/code&gt; to download, install, and automatically &amp;ldquo;inflate&amp;rdquo; the package. Using &lt;code&gt;fhir inflate&lt;/code&gt; as a bulk option to inflate the current project and all its dependencies, however, requires a Simplifier license.&lt;/p&gt;
+&lt;p&gt;Inflating a single package, as described above with &lt;code&gt;fhir inflate --package  &amp;lt;packagename&amp;gt;&lt;/code&gt;, is a free option in Firely Terminal. Alternately, authors can use &lt;code&gt;fhir install &amp;lt;packagename&amp;gt;&lt;/code&gt; to download, install, and automatically &amp;ldquo;inflate&amp;rdquo; the package. Using &lt;code&gt;fhir inflate&lt;/code&gt; as a bulk option to inflate the current project and all its dependencies, however, requires a Simplifier license.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;https://docs.fire.ly/projects/Firely-Terminal/Managing-Packages.html&#34; target=&#34;_blank&#34;&gt;Package Management section&lt;/a&gt;  of the Firely Terminal documentation provides additional details.&lt;/p&gt;
 
 &lt;/div&gt;

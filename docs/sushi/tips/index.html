@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.2508baa6cb722f7519c2acb31e9645861f91eb96bdbd55ba79e1fc31ab1292bd364621fd59240126caac10b5eca53860a17e2f5919a75bf52070de39c1050aa5.json"
+  data-offline-search-index-json-src="/offline-search-index.e32b5a28040ecf1c5ed62e0674cf0c1a5d32c7c2447592e870faf718fea1d38047d470b47b9de440e5a5fa811dc53de07c8248101d8bf69ea06b5f66519c9458.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.2508baa6cb722f7519c2acb31e9645861f91eb96bdbd55ba79e1fc31ab1292bd364621fd59240126caac10b5eca53860a17e2f5919a75bf52070de39c1050aa5.json"
+  data-offline-search-index-json-src="/offline-search-index.e32b5a28040ecf1c5ed62e0674cf0c1a5d32c7c2447592e870faf718fea1d38047d470b47b9de440e5a5fa811dc53de07c8248101d8bf69ea06b5f66519c9458.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -674,7 +674,9 @@ Parent: Questionnaire
 <li><a href="https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/Clarification.20on.20contentReference/near/187852552">Clarification on contentReference</a> discussion on Zulip</li>
 </ul>
 <h2 id="instances-of-logical-models">Instances of Logical Models</h2>
-<p>The IG Publisher supports including instances of logical models as binary resources. This feature was announced and discussed in a <a href="https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/Logical.20Model.20Examples/near/251192344">Logical Model Examples</a> thread on chat.fhir.org.  The basic steps an author needs to take in order to include logical model examples in a SUSHI project are:</p>
+<p>The IG Publisher supports including instances of logical models as binary resources. This feature was announced and discussed in a <a href="https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/Logical.20Model.20Examples/near/251192344">Logical Model Examples</a> thread on chat.fhir.org.</p>
+<p>Starting with SUSHI 3.0.0, authors can use <code>Instance:</code> to create instances of logical models and instances of logical model profiles in the same way as all other FSH instances. These instances are exported using standard JSON serialization and automatically receive <code>id</code> and <code>meta.profile</code> values when the logical model and SUSHI configuration support those elements. These instances have filenames starting with <code>Binary-</code> and will be auto-encoded as part of the publishing process.</p>
+<p>Alternatively, authors can provide their own instances of logical models without defining them in FSH. The basic steps an author needs to take in order to manually include logical model examples in a SUSHI project are:</p>
 <ol>
 <li>Add the example to the <code>input/resources</code> or <code>input/examples</code> folder
 <ul>
@@ -709,14 +711,7 @@ Description: &quot;This is mine&quot;
 </span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">valueCode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>application/fhir+json<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Example<span style="color:#f8f8f8;text-decoration:underline"> </span>of<span style="color:#f8f8f8;text-decoration:underline"> </span>LM<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">exampleCanonical</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//example.org/StructureDefinition/MyLM<span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>This will result in your logical model example being listed and displayed as a proper example of the logical model.</p>
-
-
-<div class="alert alert-success" role="alert">
-<h4 class="alert-heading">Note</h4>
-This does not allow/support using the <code>Instance</code> keyword for creating examples of logical models. Authors must create the example as raw JSON or XML.  Support for the <code>Instance</code> keyword may come in future versions of SUSHI.
-</div>
-
+</span></code></pre></div><p>Both approaches will result in your logical model example being listed and displayed as a proper example of the logical model.</p>
 <h2 id="manual-slice-ordering">Manual Slice Ordering</h2>
 
 
@@ -866,7 +861,7 @@ InstanceOf: ExampleObservation
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified February 24, 2023: <a  href="https://github.com/FSHSchool/site/commit/54adf6261dec741467b5cbd4b337647b48de1a7c">SUSHI 3.0 Documentation Updates (#77) (54adf62)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified June 5, 2023: <a  href="https://github.com/FSHSchool/site/commit/a808f76d3dcee07b8669ebb10442ff48c78e3448">Logical model instances can be written in FSH (#81) (a808f76)</a>
 </div>
 </div>
 

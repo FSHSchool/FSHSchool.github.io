@@ -1153,7 +1153,9 @@ Parent: Questionnaire
 &lt;li&gt;&lt;a href=&#34;https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/Clarification.20on.20contentReference/near/187852552&#34;&gt;Clarification on contentReference&lt;/a&gt; discussion on Zulip&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;instances-of-logical-models&#34;&gt;Instances of Logical Models&lt;/h2&gt;
-&lt;p&gt;The IG Publisher supports including instances of logical models as binary resources. This feature was announced and discussed in a &lt;a href=&#34;https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/Logical.20Model.20Examples/near/251192344&#34;&gt;Logical Model Examples&lt;/a&gt; thread on chat.fhir.org.  The basic steps an author needs to take in order to include logical model examples in a SUSHI project are:&lt;/p&gt;
+&lt;p&gt;The IG Publisher supports including instances of logical models as binary resources. This feature was announced and discussed in a &lt;a href=&#34;https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/Logical.20Model.20Examples/near/251192344&#34;&gt;Logical Model Examples&lt;/a&gt; thread on chat.fhir.org.&lt;/p&gt;
+&lt;p&gt;Starting with SUSHI 3.0.0, authors can use &lt;code&gt;Instance:&lt;/code&gt; to create instances of logical models and instances of logical model profiles in the same way as all other FSH instances. These instances are exported using standard JSON serialization and automatically receive &lt;code&gt;id&lt;/code&gt; and &lt;code&gt;meta.profile&lt;/code&gt; values when the logical model and SUSHI configuration support those elements. These instances have filenames starting with &lt;code&gt;Binary-&lt;/code&gt; and will be auto-encoded as part of the publishing process.&lt;/p&gt;
+&lt;p&gt;Alternatively, authors can provide their own instances of logical models without defining them in FSH. The basic steps an author needs to take in order to manually include logical model examples in a SUSHI project are:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Add the example to the &lt;code&gt;input/resources&lt;/code&gt; or &lt;code&gt;input/examples&lt;/code&gt; folder
 &lt;ul&gt;
@@ -1188,14 +1190,7 @@ Description: &amp;quot;This is mine&amp;quot;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;valueCode&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;application/fhir+json&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Example&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;of&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;LM&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;exampleCanonical&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;http&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;//example.org/StructureDefinition/MyLM&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will result in your logical model example being listed and displayed as a proper example of the logical model.&lt;/p&gt;
-
-
-&lt;div class=&#34;alert alert-success&#34; role=&#34;alert&#34;&gt;
-&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
-This does not allow/support using the &lt;code&gt;Instance&lt;/code&gt; keyword for creating examples of logical models. Authors must create the example as raw JSON or XML.  Support for the &lt;code&gt;Instance&lt;/code&gt; keyword may come in future versions of SUSHI.
-&lt;/div&gt;
-
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Both approaches will result in your logical model example being listed and displayed as a proper example of the logical model.&lt;/p&gt;
 &lt;h2 id=&#34;manual-slice-ordering&#34;&gt;Manual Slice Ordering&lt;/h2&gt;
 
 

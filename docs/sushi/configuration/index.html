@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.961385b182d63620da5a1544816525c54d2331def2274fdf397ac74ea5b74f8aa5da34726e29bc3e24d9ab5706ff4b300e227e710dd5f9f9ec2d4bdc561ad643.json"
+  data-offline-search-index-json-src="/offline-search-index.957eb0cd716f7d9e5d871a685c4ce9d44f5517431f20dfa4640908ada30fbb3c5eed5683af614208e7065c5d790d62b612a1419d5dea773b97af3e8e58c7eb05.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.961385b182d63620da5a1544816525c54d2331def2274fdf397ac74ea5b74f8aa5da34726e29bc3e24d9ab5706ff4b300e227e710dd5f9f9ec2d4bdc561ad643.json"
+  data-offline-search-index-json-src="/offline-search-index.957eb0cd716f7d9e5d871a685c4ce9d44f5517431f20dfa4640908ada30fbb3c5eed5683af614208e7065c5d790d62b612a1419d5dea773b97af3e8e58c7eb05.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -720,10 +720,11 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <p>The <code>dependencies</code> value is a YAML object for which the keys are each dependency&rsquo;s package id and the values are the dependency versions. The typical format is:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">dependencies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">hl7.fhir.us.core</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>In addition to standard version identifiers, the following two special versions are supported:</p>
+</span></code></pre></div><p>In addition to standard version identifiers, the following three special versions are supported:</p>
 <ul>
 <li><code>dev</code>: indicates that the dependency should be loaded from the local FHIR cache</li>
 <li><code>current</code>: indicates that the dependency should be loaded from the last successful auto-build.</li>
+<li><code>latest</code>: indicates that the dependency should be loaded using the version tagged as <code>latest</code> on the package server.</li>
 </ul>
 <p>The <code>dependencies</code> property also supports an advanced syntax that allows you to directly specify the dependency id and/or URI if necessary. For example:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">dependencies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1241,7 +1242,7 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified February 24, 2023: <a  href="https://github.com/FSHSchool/site/commit/54adf6261dec741467b5cbd4b337647b48de1a7c">SUSHI 3.0 Documentation Updates (#77) (54adf62)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified November 28, 2023: <a  href="https://github.com/FSHSchool/site/commit/a50ef1c46b675340e0efb4083608dff625b614f7">Add &#34;latest&#34; as special dependency version (#84) (a50ef1c)</a>
 </div>
 </div>
 

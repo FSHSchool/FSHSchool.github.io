@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.957eb0cd716f7d9e5d871a685c4ce9d44f5517431f20dfa4640908ada30fbb3c5eed5683af614208e7065c5d790d62b612a1419d5dea773b97af3e8e58c7eb05.json"
+  data-offline-search-index-json-src="/offline-search-index.5e8f7bed14e1a7c39f1504cc2a5899794f84b39c735ddc81433c3afb885b6a455b7a5d1f03eaca503ac54a2e9895081b306f09410bc88357bcdac8ea17c6e461.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.957eb0cd716f7d9e5d871a685c4ce9d44f5517431f20dfa4640908ada30fbb3c5eed5683af614208e7065c5d790d62b612a1419d5dea773b97af3e8e58c7eb05.json"
+  data-offline-search-index-json-src="/offline-search-index.5e8f7bed14e1a7c39f1504cc2a5899794f84b39c735ddc81433c3afb885b6a455b7a5d1f03eaca503ac54a2e9895081b306f09410bc88357bcdac8ea17c6e461.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -696,10 +696,11 @@ Parent: Questionnaire
 Id: MyLM
 Title: &quot;My LM&quot;
 Description: &quot;This is mine&quot;
-* important 1..1 SU boolean &quot;Is this resource important&quot;
+* id 1..1 SU id &quot;Identifier for the logical model&quot;
+* important 1..1 SU boolean &quot;Is this logical model important&quot;
 </code></pre><p>Create the file <code>input/examples/Binary-my-logical-example.json</code>:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#000;font-weight:bold">{</span>
-  <span style="color:#204a87;font-weight:bold">&#34;resourceType&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;MyLM&#34;</span><span style="color:#000;font-weight:bold">,</span>
+  <span style="color:#204a87;font-weight:bold">&#34;resourceType&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;http://example.org/StructureDefinition/MyLM&#34;</span><span style="color:#000;font-weight:bold">,</span>
   <span style="color:#204a87;font-weight:bold">&#34;id&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;my-logical-example&#34;</span><span style="color:#000;font-weight:bold">,</span>
   <span style="color:#204a87;font-weight:bold">&#34;important&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span>
 <span style="color:#000;font-weight:bold">}</span>
@@ -707,11 +708,16 @@ Description: &quot;This is mine&quot;
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">Binary/my-logical-example</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">extension</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">url</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/StructureDefinition/implementationguide-resource-format<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">url</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//hl7.org/fhir/tools/StructureDefinition/implementationguide-resource-format<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">valueCode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>application/fhir+json<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Example<span style="color:#f8f8f8;text-decoration:underline"> </span>of<span style="color:#f8f8f8;text-decoration:underline"> </span>LM<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">exampleCanonical</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//example.org/StructureDefinition/MyLM<span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><p>Both approaches will result in your logical model example being listed and displayed as a proper example of the logical model.</p>
+<p>If the logical model does not have <code>resourceType</code> or <code>id</code>, the same steps as above can be used with a few small adjustments:</p>
+<ul>
+<li>In step 1, the file name of the example can be any valid file name (e.g. <code>hook-example.json</code>)</li>
+<li>In step 2, the key in the resources list should be <code>Binary/{filename}</code>, where <code>{filename}</code> matches the the file name of the example without the file extension (e.g. <code>Binary/hook-example</code>)</li>
+</ul>
 <h2 id="manual-slice-ordering">Manual Slice Ordering</h2>
 
 
@@ -861,7 +867,7 @@ InstanceOf: ExampleObservation
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified June 9, 2023: <a  href="https://github.com/FSHSchool/site/commit/615fef7eb21d1a1214c22683f0788652a1048375">Add quotes around url (#83) (615fef7)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified February 7, 2024: <a  href="https://github.com/FSHSchool/site/commit/683a034134e2add6c1fee4c29c8a4d6c6d3aea63">Logical model examples without resourceType or id (#86) (683a034)</a>
 </div>
 </div>
 
@@ -925,7 +931,7 @@ InstanceOf: ExampleObservation
         
       </div>
       <div class="col-12 col-sm-4 text-center py-2 order-sm-2">
-        <small class="text-white">&copy; 2023 The MITRE Corporation All Rights Reserved. Approved for Public Release 19-3439. Distribution Unlimited. FHIR® is a registered trademark of Health Level Seven International.</small>
+        <small class="text-white">&copy; 2024 The MITRE Corporation All Rights Reserved. Approved for Public Release 19-3439. Distribution Unlimited. FHIR® is a registered trademark of Health Level Seven International.</small>
         
       </div>
     </div>

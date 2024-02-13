@@ -982,7 +982,7 @@ The following message is expected, and should be ignored:(node:46420) Warning: A
 &lt;p&gt;Structure Definition &lt;a href=&#34;http://fhir.de/StructureDefinition/observation-de-vitalsign&#34;&gt;http://fhir.de/StructureDefinition/observation-de-vitalsign&lt;/a&gt; is missing snapshot. Snapshot is required for import.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Since SUSHI does not implement its own snapshot generator, you must update the package in your FHIR cache so that its profiles include snapshot elements. Fortunately, the &lt;a href=&#34;https://fire.ly/products/firely-terminal/&#34;&gt;Firely Terminal&lt;/a&gt; provides a way to do this.&lt;/p&gt;
-&lt;p&gt;First, you must &lt;a href=&#34;https://docs.fire.ly/projects/Firely-Terminal/InstallingFirelyTerminal.html&#34;&gt;install Firely Terminal&lt;/a&gt;. Then use Firely Terminal to populate the snapshot elements in the dependency package.&lt;/p&gt;
+&lt;p&gt;First, you must &lt;a href=&#34;https://docs.fire.ly/projects/Firely-Terminal/getting_started/InstallingFirelyTerminal.html&#34;&gt;install Firely Terminal&lt;/a&gt;. Then use Firely Terminal to populate the snapshot elements in the dependency package.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Run the command: &lt;code&gt;fhir inflate --package  &amp;lt;packagename&amp;gt;&lt;/code&gt;, substituting the dependency package ID for &lt;code&gt;&amp;lt;packagename&amp;gt;&lt;/code&gt;.
 &lt;ul&gt;

@@ -794,7 +794,7 @@ The following message is expected, and should be ignored:(node:46420) Warning: A
 <p>Structure Definition <a href="http://fhir.de/StructureDefinition/observation-de-vitalsign">http://fhir.de/StructureDefinition/observation-de-vitalsign</a> is missing snapshot. Snapshot is required for import.</p>
 </blockquote>
 <p>Since SUSHI does not implement its own snapshot generator, you must update the package in your FHIR cache so that its profiles include snapshot elements. Fortunately, the <a href="https://fire.ly/products/firely-terminal/">Firely Terminal</a> provides a way to do this.</p>
-<p>First, you must <a href="https://docs.fire.ly/projects/Firely-Terminal/InstallingFirelyTerminal.html">install Firely Terminal</a>. Then use Firely Terminal to populate the snapshot elements in the dependency package.</p>
+<p>First, you must <a href="https://docs.fire.ly/projects/Firely-Terminal/getting_started/InstallingFirelyTerminal.html">install Firely Terminal</a>. Then use Firely Terminal to populate the snapshot elements in the dependency package.</p>
 <ol>
 <li>Run the command: <code>fhir inflate --package  &lt;packagename&gt;</code>, substituting the dependency package ID for <code>&lt;packagename&gt;</code>.
 <ul>
@@ -939,7 +939,7 @@ timeout = 120
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified March 10, 2023: <a  href="https://github.com/FSHSchool/site/commit/36b59454a22c9209839fb197a0bb1296a14c764d">Update wording (#80) (36b5945)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified February 13, 2024: <a  href="https://github.com/FSHSchool/site/commit/5971dac867a8e249dc1f20e535b52b10c6fef352">Update Firely terminal install URL (#87) (5971dac)</a>
 </div>
 </div>
 

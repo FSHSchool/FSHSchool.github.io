@@ -1304,7 +1304,33 @@ InstanceOf: ExampleObservation
 &lt;/span&gt;&lt;span style=&#34;color:#800080;font-weight:bold&#34;&gt;&lt;/span&gt;This IG provides [MyPatient] for patient information.
 
 {% include fsh-link-references.md %}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;choosing-a-snomed-ct-edition&#34;&gt;Choosing a SNOMED CT edition&lt;/h2&gt;
+&lt;p&gt;To specify a certain edition of SNOMED CT - for example to ensure terminology validation works correctly - do the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Add or modify the &lt;code&gt;parameters&lt;/code&gt; section in your &lt;code&gt;sushi-config.yaml&lt;/code&gt; to specify a &lt;code&gt;path-expansion-params&lt;/code&gt; parameter.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;parameters&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;path-expansion-params&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Parameters-expansion.json&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Create an &lt;code&gt;input/fsh/expansion.fsh&lt;/code&gt; file and define an instance of &lt;code&gt;Parameters&lt;/code&gt; with the id &lt;code&gt;expansion&lt;/code&gt;. Within the Parameters instance, specify a &lt;code&gt;system-version&lt;/code&gt; parameter. For example, if you&amp;rsquo;d like to use the US edition of SNOMED, add this definition:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;Instance: expansion
+InstanceOf: Parameters
+Description: &amp;quot;SNOMED CT expansion parameter&amp;quot;
+Usage: #definition
+* parameter[+].name = &amp;quot;system-version&amp;quot;
+* parameter[=].valueCanonical = &amp;quot;http://snomed.info/sct|http://snomed.info/sct/731000124108&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;If you&amp;rsquo;d like to use another language, such as Swedish, choose this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Instance: expansion
+InstanceOf: Parameters
+Description: &amp;quot;SNOMED CT Swedish expansion parameter&amp;quot;
+Usage: #definition
+* parameter[+].name = &amp;quot;displayLanguage&amp;quot;
+* parameter[=].valueCode = urn:ietf:bcp:47#se
+* parameter[+].name = &amp;quot;system-version&amp;quot;
+* parameter[=].valueCanonical = &amp;quot;http://snomed.info/sct|http://snomed.info/sct/45991000052106&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;em&gt;Note: The &lt;code&gt;system-version&lt;/code&gt; and &lt;code&gt;displayLanguage&lt;/code&gt; parameters correspond to the parameters of the same name in FHIR&amp;rsquo;s &lt;a href=&#34;https://hl7.org/fhir/valueset-operation-expand.html&#34;&gt;$expand&lt;/a&gt; operation.&lt;/em&gt;&lt;/p&gt;
+
       </description>
     </item>
     

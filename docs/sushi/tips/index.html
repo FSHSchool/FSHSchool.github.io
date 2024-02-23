@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.5e8f7bed14e1a7c39f1504cc2a5899794f84b39c735ddc81433c3afb885b6a455b7a5d1f03eaca503ac54a2e9895081b306f09410bc88357bcdac8ea17c6e461.json"
+  data-offline-search-index-json-src="/offline-search-index.9f42fe24e5917a8fc2b8924701b41a462ca8b80cb40e0705d3aa28ee534213885487b00a57500accbedea60ff91e17ac699065d3b05e2d407817caab2b6a0b61.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.5e8f7bed14e1a7c39f1504cc2a5899794f84b39c735ddc81433c3afb885b6a455b7a5d1f03eaca503ac54a2e9895081b306f09410bc88357bcdac8ea17c6e461.json"
+  data-offline-search-index-json-src="/offline-search-index.9f42fe24e5917a8fc2b8924701b41a462ca8b80cb40e0705d3aa28ee534213885487b00a57500accbedea60ff91e17ac699065d3b05e2d407817caab2b6a0b61.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -568,6 +568,7 @@
       </ul>
     </li>
     <li><a href="#link-references">Link References</a></li>
+    <li><a href="#choosing-a-snomed-ct-edition">Choosing a SNOMED CT edition</a></li>
   </ul>
 </nav>
 
@@ -824,7 +825,33 @@ InstanceOf: ExampleObservation
 </span><span style="color:#800080;font-weight:bold"></span>This IG provides [MyPatient] for patient information.
 
 {% include fsh-link-references.md %}
-</code></pre></div>
+</code></pre></div><h2 id="choosing-a-snomed-ct-edition">Choosing a SNOMED CT edition</h2>
+<p>To specify a certain edition of SNOMED CT - for example to ensure terminology validation works correctly - do the following:</p>
+<ol>
+<li>Add or modify the <code>parameters</code> section in your <code>sushi-config.yaml</code> to specify a <code>path-expansion-params</code> parameter.</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#204a87;font-weight:bold">parameters</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">path-expansion-params</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Parameters-expansion.json<span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><ol start="2">
+<li>Create an <code>input/fsh/expansion.fsh</code> file and define an instance of <code>Parameters</code> with the id <code>expansion</code>. Within the Parameters instance, specify a <code>system-version</code> parameter. For example, if you&rsquo;d like to use the US edition of SNOMED, add this definition:</li>
+</ol>
+<pre><code>Instance: expansion
+InstanceOf: Parameters
+Description: &quot;SNOMED CT expansion parameter&quot;
+Usage: #definition
+* parameter[+].name = &quot;system-version&quot;
+* parameter[=].valueCanonical = &quot;http://snomed.info/sct|http://snomed.info/sct/731000124108&quot;
+</code></pre><p>If you&rsquo;d like to use another language, such as Swedish, choose this:</p>
+<pre><code>Instance: expansion
+InstanceOf: Parameters
+Description: &quot;SNOMED CT Swedish expansion parameter&quot;
+Usage: #definition
+* parameter[+].name = &quot;displayLanguage&quot;
+* parameter[=].valueCode = urn:ietf:bcp:47#se
+* parameter[+].name = &quot;system-version&quot;
+* parameter[=].valueCanonical = &quot;http://snomed.info/sct|http://snomed.info/sct/45991000052106&quot;
+</code></pre><p><em>Note: The <code>system-version</code> and <code>displayLanguage</code> parameters correspond to the parameters of the same name in FHIR&rsquo;s <a href="https://hl7.org/fhir/valueset-operation-expand.html">$expand</a> operation.</em></p>
+
         <div class="section-index">
     
     
@@ -867,7 +894,7 @@ InstanceOf: ExampleObservation
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified February 7, 2024: <a  href="https://github.com/FSHSchool/site/commit/683a034134e2add6c1fee4c29c8a4d6c6d3aea63">Logical model examples without resourceType or id (#86) (683a034)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified February 23, 2024: <a  href="https://github.com/FSHSchool/site/commit/9103565b6a7bd0f58ba56aad849565c591f3f0f4">Document how to select a SNOMED CT version (#88) (9103565)</a>
 </div>
 </div>
 

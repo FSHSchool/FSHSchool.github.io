@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.9f42fe24e5917a8fc2b8924701b41a462ca8b80cb40e0705d3aa28ee534213885487b00a57500accbedea60ff91e17ac699065d3b05e2d407817caab2b6a0b61.json"
+  data-offline-search-index-json-src="/offline-search-index.8597263f57b57c466de476d7951b4e3f79d774c451625065d6c034b9036a667f98eb845d1ba32cf30ba9fb4d8cad3e9bcac8136acd6ce051c919ff4dbfb846a6.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.9f42fe24e5917a8fc2b8924701b41a462ca8b80cb40e0705d3aa28ee534213885487b00a57500accbedea60ff91e17ac699065d3b05e2d407817caab2b6a0b61.json"
+  data-offline-search-index-json-src="/offline-search-index.8597263f57b57c466de476d7951b4e3f79d774c451625065d6c034b9036a667f98eb845d1ba32cf30ba9fb4d8cad3e9bcac8136acd6ce051c919ff4dbfb846a6.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -788,6 +788,11 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 <td align="left">As specified in the IG resource</td>
 </tr>
 <tr>
+<td align="left">definition <br> └ extension</td>
+<td align="left">definition.extension</td>
+<td align="left"><span class="tag">SUSHI 3.0</span>A list of extensions that apply to <code>IG.definition</code>. <strong>Note:</strong> the only property supported on the <code>definition</code> property is <code>extension</code>.</td>
+</tr>
+<tr>
 <td align="left">description</td>
 <td align="left">description</td>
 <td align="left">As specified in the IG resource</td>
@@ -1031,6 +1036,15 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">Patient</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//example.org/fhir/StructureDefinition/my-patient-profile<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">Encounter</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//example.org/fhir/StructureDefinition/my-encounter-profile<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># NOTE: All of the properties of IG.definition are abstracted to</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># individual top-level configuration properties (below). This</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># definition property should only be used to provide extensions</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># that have a context of IG.definition.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">definition</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">extension</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#204a87;font-weight:bold">url</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>http<span style="color:#000;font-weight:bold">:</span>//example.org/example/ig-definition-ext<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">valueBoolean</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The resources property corresponds to IG.definition.resource.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># SUSHI can auto-generate all of the resource entries based on</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># the FSH definitions and/or information in any user-provided</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1242,7 +1256,7 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified November 28, 2023: <a  href="https://github.com/FSHSchool/site/commit/a50ef1c46b675340e0efb4083608dff625b614f7">Add &#34;latest&#34; as special dependency version (#84) (a50ef1c)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified April 15, 2024: <a  href="https://github.com/FSHSchool/site/commit/e6f71a6520d43f21a0cae926c5d67bc7b5544bf7">Document IG.definition extensions on configuration page (#89) (e6f71a6)</a>
 </div>
 </div>
 

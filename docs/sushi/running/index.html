@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8597263f57b57c466de476d7951b4e3f79d774c451625065d6c034b9036a667f98eb845d1ba32cf30ba9fb4d8cad3e9bcac8136acd6ce051c919ff4dbfb846a6.json"
+  data-offline-search-index-json-src="/offline-search-index.d10cb11a836f8115bd9e35436c2a298948112d9ac2623dc4a9bce14215a27a7fa68bb8e859b1082fa7c6d749470c39a77c0f3df3698d59a8da526a2d708810a1.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8597263f57b57c466de476d7951b4e3f79d774c451625065d6c034b9036a667f98eb845d1ba32cf30ba9fb4d8cad3e9bcac8136acd6ce051c919ff4dbfb846a6.json"
+  data-offline-search-index-json-src="/offline-search-index.d10cb11a836f8115bd9e35436c2a298948112d9ac2623dc4a9bce14215a27a7fa68bb8e859b1082fa7c6d749470c39a77c0f3df3698d59a8da526a2d708810a1.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -562,6 +562,7 @@
         <li><a href="#--out"><code>--out</code></a></li>
         <li><a href="#--preprocessed"><code>--preprocessed</code></a></li>
         <li><a href="#--snapshot"><code>--snapshot</code></a></li>
+        <li><a href="#--config"><code>--config</code></a></li>
       </ul>
     </li>
     <li><a href="#status-messages">Status Messages</a></li>
@@ -635,75 +636,35 @@ This documentation assumes you have a SUSHI-compliant project structure and conf
 
 <h2 id="running-sushi">Running SUSHI</h2>
 <p>SUSHI is executed from the command line. The general form of the SUSHI execution command is as follows:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi <span style="color:#ce5c00;font-weight:bold">{</span>options<span style="color:#ce5c00;font-weight:bold">}</span>
-</code></pre></div><p>Use <code>sushi --version</code> and <code>sushi --help</code> to get basic information about the current SUSHI version.</p>
-
-
-
-<div class="pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing">
-<p><span class="tag">SUSHI 3.0</span>For SUSHI 3.0.0 and later, the general form of the SUSHI execution command is:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sushi <span style="color:#ce5c00;font-weight:bold">{</span>command<span style="color:#ce5c00;font-weight:bold">}</span> <span style="color:#ce5c00;font-weight:bold">{</span>options<span style="color:#ce5c00;font-weight:bold">}</span>
-</code></pre></div><p>Supported commands are <code>build</code>, <code>init</code>, <code>update-dependencies</code>, and <code>help</code> (which replaces <code>sushi --help</code>).</p>
-
-</div>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi <span style="color:#ce5c00;font-weight:bold">{</span>command<span style="color:#ce5c00;font-weight:bold">}</span> <span style="color:#ce5c00;font-weight:bold">{</span>options<span style="color:#ce5c00;font-weight:bold">}</span>
+</code></pre></div><p>Supported commands are <code>build</code>, <code>init</code>, <code>update-dependencies</code>, and <code>help</code>.</p>
+<p>Use <code>sushi --version</code> to get basic information about the current SUSHI version. Use <code>sushi help</code> to get basic information about SUSHI, and use <code>sushi help {command}</code> to get information about a specific command and its options (e.g., <code>sushi help build</code>).</p>
 <h3 id="sushi-commands">SUSHI Commands</h3>
 <p>SUSHI provides various commands to use with FSH projects. The following sections provide more details on each.</p>
 <h4 id="build"><code>build</code></h4>
 <p>The <code>build</code> command is used to build a SUSHI project. In SUSHI 2.x, it is the default command and can be used as follows:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi <span style="color:#ce5c00;font-weight:bold">{</span>fsh-project-directory<span style="color:#ce5c00;font-weight:bold">}</span> <span style="color:#ce5c00;font-weight:bold">{</span>options<span style="color:#ce5c00;font-weight:bold">}</span>
-</code></pre></div>
-
-
-<div class="pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing">
-<p><span class="tag">SUSHI 3.0</span>For SUSHI 3.0.0 and later, use the <code>build</code> command:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sushi build <span style="color:#ce5c00;font-weight:bold">{</span>fsh-project-directory<span style="color:#ce5c00;font-weight:bold">}</span> <span style="color:#ce5c00;font-weight:bold">{</span>options<span style="color:#ce5c00;font-weight:bold">}</span>
-</code></pre></div>
-</div>
-<p>where options include the following (in any order):</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-o, --out &lt;out&gt;          the path to the output folder
--d, --debug              output extra debugging information
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi build <span style="color:#ce5c00;font-weight:bold">{</span>fsh-project-directory<span style="color:#ce5c00;font-weight:bold">}</span> <span style="color:#ce5c00;font-weight:bold">{</span>options<span style="color:#ce5c00;font-weight:bold">}</span>
+</code></pre></div><p>where options include the following (in any order):</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-l, --log-level &lt;level&gt;  specify the level of log messages (default: &#34;info&#34;) (choices: &#34;error&#34;, &#34;warn&#34;, &#34;info&#34;, &#34;debug&#34;)
+-o, --out &lt;out&gt;          the path to the output folder (default: &#34;fsh-generated&#34;)
 -p, --preprocessed       output FSH produced by preprocessing steps
 -r, --require-latest     exit with error if this is not the latest version of SUSHI (default: false)
 -s, --snapshot           generate snapshot in Structure Definition output (default: false)
+-c, --config &lt;config&gt;    override elements in sushi-config.yaml (supported: &#39;version&#39;, &#39;status&#39;, &#39;releaselabel&#39;) (eg: --config status:draft)
 -h, --help               display help for command
 </code></pre></div><p>Further information about each option can be found in <a href="#build-command-option-details">Build Command Option Details</a>.</p>
 
 
-
-<div class="pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing">
-<p><span class="tag">SUSHI 3.0</span> SUSHI 3.0 replaces the <code>-d, --debug</code> argument with a new argument that provides more control over log output:</p>
-<pre><code>-l, --log-level &lt;level&gt;  specify the level of log messages (default: &quot;info&quot;) (choices: &quot;error&quot;, &quot;warn&quot;, &quot;info&quot;, &quot;debug&quot;)
-</code></pre>
-</div>
-
-
 <div class="alert alert-success" role="alert">
 <h4 class="alert-heading">Tip</h4>
-<p>If you run SUSHI from your FSH project directory, and accept the defaults, the command can be shortened to <code>sushi .</code> or simply <code>sushi</code>.</p>
-<p><span class="tag">SUSHI 3.0</span> For SUSHI 3.0, you can use <code>sushi build .</code> or <code>sushi build</code>.</p>
-
+If you run SUSHI from your FSH project directory, and accept the defaults, the command can be shortened to <code>sushi build .</code> or simply <code>sushi build</code>.
 </div>
 
 <h4 id="init"><code>init</code></h4>
 <p>The <code>init</code> command is used to generate a project structure that is compatible with the FHIR IG Publisher. In SUSHI 2.x, it can be used as follows:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi --init
-</code></pre></div>
-
-
-<div class="pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing">
-<p><span class="tag">SUSHI 3.0</span>For SUSHI 3.0.0 and later, use the <code>init</code> command:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sushi init
-</code></pre></div>
-</div>
-<p>Further details on how to use this command can be found in <a href="/docs/sushi/project/#initializing-a-sushi-project">Initializing a SUSHI Project</a>.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi init
+</code></pre></div><p>Further details on how to use this command can be found in <a href="/docs/sushi/project/#initializing-a-sushi-project">Initializing a SUSHI Project</a>.</p>
 <h4 id="update-dependencies"><code>update-dependencies</code></h4>
-
-
-
-<div class="pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing">
-<p><span class="tag">SUSHI 3.0</span>The <code>update-dependencies</code> command is only available in SUSHI 3.0.0 and later.</p>
-
-</div>
 <p>The <code>update-dependencies</code> command is used to update the FSH project&rsquo;s dependencies to the latest version. The command will check all dependencies defined in the <code>sushi-config.yaml</code> file to see if they are at the latest published version. SUSHI will output a list of all dependencies that have later versions and prompt the author whether to update. Choosing to update will directly modify the <code>sushi-config.yaml</code> file with the latest version and download the latest version of the dependency to the FHIR cache. Any dependency with a <code>current</code> or <code>dev</code> version will not be modified. This command can be used as follows:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi update-dependencies <span style="color:#ce5c00;font-weight:bold">{</span>fsh-project-directory<span style="color:#ce5c00;font-weight:bold">}</span>
 </code></pre></div><h3 id="build-command-option-details">Build Command Option Details</h3>
@@ -754,6 +715,9 @@ Once you have finished reviewing your preprocessed FSH, we recommend deleting th
 
 <h3 id="--snapshot"><code>--snapshot</code></h3>
 <p>By default, SUSHI only generates the <a href="https://www.hl7.org/fhir/R4/profiling.html#snapshot">profile differential</a>, allowing the IG Publisher to create the <a href="https://www.hl7.org/fhir/R4/profiling.html#snapshot">profile snapshot</a>. This is the approach recommended by HL7 FHIR leadership. If authors prefer, the <code>--snapshot</code> (or <code>-s</code>) option can be used to cause SUSHI to generate the snapshot without having to run the IG Publisher.</p>
+<h3 id="--config"><code>--config</code></h3>
+<p>Typically, SUSHI uses the <code>sushi-config.yaml</code> file to define the configuration options it uses when processing FSH. However, in rare cases, it may be useful to override the values provided in <code>sushi-config.yaml</code> without changing the file itself. For these cases, the <code>--config</code> (or <code>-c</code>) option can be used to specify a configuration property and the override value for it. Currently, this option only allows <code>version</code>, <code>status</code>, and <code>releaselabel</code> to be overridden.</p>
+<p>For example, specifying <code>sushi build . --config status:active</code> can be used to specify that the status should be &ldquo;active&rdquo; for that particular build of SUSHI.</p>
 <h2 id="status-messages">Status Messages</h2>
 <p>While SUSHI is running, it will print status messages as it processes your project files. When SUSHI has completed, you should receive a summary like the following:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">╔════════════════════════ SUSHI RESULTS ══════════════════════════╗
@@ -860,7 +824,7 @@ You can see a list of the available Firely Terminal versions <a href="https://ww
 </ul>
 <h3 id="downloading-the-ig-publisher-scripts">Downloading the IG Publisher Scripts</h3>
 <p>To run the IG Publisher, we recommend downloading the <strong>_updatePublisher.bat|sh</strong> and <strong>_genonce.bat|sh</strong> scripts provided by the sample-ig project. To get these scripts, <a href="https://github.com/FHIR/sample-ig/archive/master.zip">download the sample-ig project</a>, unzip it, and copy <em>all</em> of the <strong>.bat</strong> and <strong>.sh</strong> files to the directory above the <strong>fsh-generated</strong> directory (<strong>my-project</strong> in the example above).</p>
-<p>If you used <code>sushi --init</code> (or <code>sushi init</code> for SUSHI 3.0) then these scripts were already downloaded and added to your project.</p>
+<p>If you used <code>sushi init</code> then these scripts were already downloaded and added to your project.</p>
 <h3 id="downloading-the-ig-publisher">Downloading the IG Publisher</h3>
 <p>After copying these, change directories in the command prompt to the directory above the <strong>fsh-generated</strong> directory. At the command prompt, enter:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class='fab fa-windows fa-fw'></i> <i class="fas fa-dollar-sign"></i> _updatePublisher
@@ -939,7 +903,7 @@ timeout = 120
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified February 13, 2024: <a  href="https://github.com/FSHSchool/site/commit/5971dac867a8e249dc1f20e535b52b10c6fef352">Update Firely terminal install URL (#87) (5971dac)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified May 2, 2024: <a  href="https://github.com/FSHSchool/site/commit/9513c199578d987428bf3007d79ec371c0951287">Remove specific tags for SUSHI 3.0.0 &#43; Document new CLI command options (#90) (9513c19)</a>
 </div>
 </div>
 

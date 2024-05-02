@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8597263f57b57c466de476d7951b4e3f79d774c451625065d6c034b9036a667f98eb845d1ba32cf30ba9fb4d8cad3e9bcac8136acd6ce051c919ff4dbfb846a6.json"
+  data-offline-search-index-json-src="/offline-search-index.d10cb11a836f8115bd9e35436c2a298948112d9ac2623dc4a9bce14215a27a7fa68bb8e859b1082fa7c6d749470c39a77c0f3df3698d59a8da526a2d708810a1.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8597263f57b57c466de476d7951b4e3f79d774c451625065d6c034b9036a667f98eb845d1ba32cf30ba9fb4d8cad3e9bcac8136acd6ce051c919ff4dbfb846a6.json"
+  data-offline-search-index-json-src="/offline-search-index.d10cb11a836f8115bd9e35436c2a298948112d9ac2623dc4a9bce14215a27a7fa68bb8e859b1082fa7c6d749470c39a77c0f3df3698d59a8da526a2d708810a1.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -646,16 +646,8 @@ If you find this helpful, you may also want to look at our <a href="/courses/">s
 <p>In addition, there are several files for building the IG.</p>
 <h3 id="step-4-run-sushi">Step 4: Run SUSHI</h3>
 <p>Now that you have SUSHI installed and a minimal FSH project, open up a command window, and navigate to the <strong>FishExample</strong> directory. Run SUSHI on those FSH files by executing:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi .
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><i class="fas fa-dollar-sign"></i> sushi build .
 </code></pre></div>
-
-
-<div class="pageinfo pageinfo-primary td-max-width-on-larger-screens smaller-pageinfo-spacing">
-<p><span class="tag">SUSHI 3.0</span>For SUSHI 3.0.0 and later, use the <code>build</code> command:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sushi build .
-</code></pre></div>
-</div>
-
 
 <div class="alert alert-primary" role="alert">
 <h4 class="alert-heading">Note</h4>
@@ -729,7 +721,7 @@ Description: &#34;The species of the fish.&#34;
 FSH ignores extra whitespace, so authors can choose to use whitespace for improved visual alignment, as in the extension definition above.
 </div>
 
-<p>Run SUSHI again (<code>sushi .</code> or <code>sushi build .</code> for SUSHI 3.0). The count of Extensions should now be 1.</p>
+<p>Run SUSHI again (<code>sushi build .</code>). The count of Extensions should now be 1.</p>
 <h3 id="step-8-define-a-value-set-for-fish-species">Step 8: Define a Value Set for Fish Species</h3>
 <p>The FishSpecies extension doesn&rsquo;t quite do its job yet, because we haven&rsquo;t specified what type of values it might accept. To add this information, enter these lines following the description of FishSpecies:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">* value[x] only CodeableConcept
@@ -840,7 +832,7 @@ Using aliases has no effect on the IG; it simply makes the FSH code a bit neater
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified February 24, 2023: <a  href="https://github.com/FSHSchool/site/commit/54adf6261dec741467b5cbd4b337647b48de1a7c">SUSHI 3.0 Documentation Updates (#77) (54adf62)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified May 2, 2024: <a  href="https://github.com/FSHSchool/site/commit/9513c199578d987428bf3007d79ec371c0951287">Remove specific tags for SUSHI 3.0.0 &#43; Document new CLI command options (#90) (9513c19)</a>
 </div>
 </div>
 

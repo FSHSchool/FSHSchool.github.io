@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d10cb11a836f8115bd9e35436c2a298948112d9ac2623dc4a9bce14215a27a7fa68bb8e859b1082fa7c6d749470c39a77c0f3df3698d59a8da526a2d708810a1.json"
+  data-offline-search-index-json-src="/offline-search-index.76c259723289ef828381bce0a48fbd7d89c2a3f43a16dbb23130c297ec488172901fd9fc4980786ab5fefbc68719d63dcbda5cf7e7cb5739f38e9446c81bafd7.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d10cb11a836f8115bd9e35436c2a298948112d9ac2623dc4a9bce14215a27a7fa68bb8e859b1082fa7c6d749470c39a77c0f3df3698d59a8da526a2d708810a1.json"
+  data-offline-search-index-json-src="/offline-search-index.76c259723289ef828381bce0a48fbd7d89c2a3f43a16dbb23130c297ec488172901fd9fc4980786ab5fefbc68719d63dcbda5cf7e7cb5739f38e9446c81bafd7.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -669,16 +669,13 @@
 </ul>
 </li>
 <li>Since SUSHI currently supports only FHIR R4 and R5, the <code>fhirVersion</code> should always be <code>4.0.0</code> or above.</li>
-<li>Valid values for the <code>releaseLabel</code> include:
+<li><code>releaseLabel</code> is a text label with no fixed set of values that describes the status of the publication to users. Recommended best practices include the following values, optionally suffixed with <code>Ballot</code>:
 <ul>
-<li><code>ci-build</code>: the continuous integration build release (not stable)</li>
-<li><code>draft</code>: draft version</li>
-<li><code>qa-preview</code>: frozen snapshot for non-ballot feedback</li>
-<li><code>ballot</code>: frozen snapshot for ballot</li>
-<li><code>trial-use</code>: official release with &lsquo;trial use&rsquo; status</li>
-<li><code>release</code>: official release for use</li>
-<li><code>update</code>: official release with &lsquo;trial use&rsquo; status - posted as an un-balloted STU update</li>
-<li><code>normative+trial-use</code>: official release with mixture of trial use and normative content</li>
+<li><code>ci-build</code></li>
+<li><code>STU1</code>, <code>STU2</code>, etc.</li>
+<li><code>STU 1.1</code>, <code>STU 1.1.0</code>, etc.</li>
+<li><code>Normative 1</code>, etc.</li>
+<li><code>Informative 1</code>, etc.</li>
 </ul>
 </li>
 </ul>
@@ -1256,7 +1253,7 @@ The <code>license</code> value should come from the <a href="http://hl7.org/fhir
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified May 2, 2024: <a  href="https://github.com/FSHSchool/site/commit/9513c199578d987428bf3007d79ec371c0951287">Remove specific tags for SUSHI 3.0.0 &#43; Document new CLI command options (#90) (9513c19)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified May 21, 2024: <a  href="https://github.com/FSHSchool/site/commit/ec172b0f7a68f5d388e0d729286ddf8fd87c8171">Update releaseLabel configuration to reflect current value and best practices (#92) (ec172b0)</a>
 </div>
 </div>
 

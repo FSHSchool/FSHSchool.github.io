@@ -258,16 +258,13 @@ SUSHI does log several multi-line warnings, but these warnings cannot be specifi
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Since SUSHI currently supports only FHIR R4 and R5, the &lt;code&gt;fhirVersion&lt;/code&gt; should always be &lt;code&gt;4.0.0&lt;/code&gt; or above.&lt;/li&gt;
-&lt;li&gt;Valid values for the &lt;code&gt;releaseLabel&lt;/code&gt; include:
+&lt;li&gt;&lt;code&gt;releaseLabel&lt;/code&gt; is a text label with no fixed set of values that describes the status of the publication to users. Recommended best practices include the following values, optionally suffixed with &lt;code&gt;Ballot&lt;/code&gt;:
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;ci-build&lt;/code&gt;: the continuous integration build release (not stable)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;draft&lt;/code&gt;: draft version&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;qa-preview&lt;/code&gt;: frozen snapshot for non-ballot feedback&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ballot&lt;/code&gt;: frozen snapshot for ballot&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;trial-use&lt;/code&gt;: official release with &amp;lsquo;trial use&amp;rsquo; status&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;release&lt;/code&gt;: official release for use&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;update&lt;/code&gt;: official release with &amp;lsquo;trial use&amp;rsquo; status - posted as an un-balloted STU update&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;normative+trial-use&lt;/code&gt;: official release with mixture of trial use and normative content&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ci-build&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;STU1&lt;/code&gt;, &lt;code&gt;STU2&lt;/code&gt;, etc.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;STU 1.1&lt;/code&gt;, &lt;code&gt;STU 1.1.0&lt;/code&gt;, etc.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Normative 1&lt;/code&gt;, etc.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Informative 1&lt;/code&gt;, etc.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;

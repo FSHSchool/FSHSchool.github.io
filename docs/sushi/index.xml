@@ -1485,7 +1485,18 @@ Using aliases has no effect on the IG; it simply makes the FSH code a bit neater
 &lt;li&gt;&lt;code&gt;fhirVersion&lt;/code&gt; - A string used to specify the version of FHIR to use. Note that SUSHI only supports FHIR R4 and R5.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;dependencies&lt;/code&gt; - An array of objects used to specify dependencies required for processing the FSH. Each object should have a &lt;code&gt;packageId&lt;/code&gt; and &lt;code&gt;version&lt;/code&gt;, and optionally a &lt;code&gt;uri&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;logLevel&lt;/code&gt; - A string that specifies what level of logging to use when processing FSH. Options are &lt;code&gt;silent&lt;/code&gt;, &lt;code&gt;debug&lt;/code&gt;, &lt;code&gt;info&lt;/code&gt;, &lt;code&gt;warn&lt;/code&gt;, and &lt;code&gt;error&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;snapshot&lt;/code&gt; - (EXPERIMENTAL) A boolean that specifies whether to generate the &lt;code&gt;snapshot&lt;/code&gt; data element in Structure Definition output (default: false)&lt;/li&gt;
 &lt;/ul&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Warning&lt;/h4&gt;
+The &lt;code&gt;snapshot&lt;/code&gt; option, when set to true, triggers the generation of &lt;code&gt;StructureDefinition.snapshot&lt;/code&gt; data elements.
+Use of this option should be considered EXPERIMENTAL! The &lt;code&gt;StructureDefinition.snapshot&lt;/code&gt; data elements generated
+by SUSHI are likely not perfect and differ from the snapshots that the IG Publisher and/or Simplifier would create.
+If you plan to publish these resources, it would be better to use one of those other tools to generate the snapshots.
+&lt;/div&gt;
+
 &lt;p&gt;See the &lt;a href=&#34;/docs/sushi/configuration/#full-configuration&#34;&gt;configuration&lt;/a&gt; documentation for more information on &lt;code&gt;canonical&lt;/code&gt;, &lt;code&gt;version&lt;/code&gt;, &lt;code&gt;fhirVersion&lt;/code&gt;, and &lt;code&gt;dependencies&lt;/code&gt;. These properties correspond to the properties of the same name that are used in &lt;code&gt;sushi-config.yaml&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;return-value&#34;&gt;Return Value&lt;/h2&gt;
 &lt;p&gt;A &lt;code&gt;Promise&lt;/code&gt; that resolves to an object with the following attributes:&lt;/p&gt;

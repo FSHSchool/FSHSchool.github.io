@@ -132,7 +132,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.76c259723289ef828381bce0a48fbd7d89c2a3f43a16dbb23130c297ec488172901fd9fc4980786ab5fefbc68719d63dcbda5cf7e7cb5739f38e9446c81bafd7.json"
+  data-offline-search-index-json-src="/offline-search-index.f99bb369857d03cefc9934fdec1861fbca32fea549628289827e36ec5f63c217ae9132e004a00d3740ceb1dfa5a594c45c4155a68a5f819e9e7b00be5bebd8b1.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -163,7 +163,7 @@
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.76c259723289ef828381bce0a48fbd7d89c2a3f43a16dbb23130c297ec488172901fd9fc4980786ab5fefbc68719d63dcbda5cf7e7cb5739f38e9446c81bafd7.json"
+  data-offline-search-index-json-src="/offline-search-index.f99bb369857d03cefc9934fdec1861fbca32fea549628289827e36ec5f63c217ae9132e004a00d3740ceb1dfa5a594c45c4155a68a5f819e9e7b00be5bebd8b1.json"
   data-offline-search-base-href="/"
   data-offline-search-max-results="10"
 >
@@ -620,7 +620,18 @@
 <li><code>fhirVersion</code> - A string used to specify the version of FHIR to use. Note that SUSHI only supports FHIR R4 and R5.</li>
 <li><code>dependencies</code> - An array of objects used to specify dependencies required for processing the FSH. Each object should have a <code>packageId</code> and <code>version</code>, and optionally a <code>uri</code>.</li>
 <li><code>logLevel</code> - A string that specifies what level of logging to use when processing FSH. Options are <code>silent</code>, <code>debug</code>, <code>info</code>, <code>warn</code>, and <code>error</code>.</li>
+<li><code>snapshot</code> - (EXPERIMENTAL) A boolean that specifies whether to generate the <code>snapshot</code> data element in Structure Definition output (default: false)</li>
 </ul>
+
+
+<div class="alert alert-warning" role="alert">
+<h4 class="alert-heading">Warning</h4>
+The <code>snapshot</code> option, when set to true, triggers the generation of <code>StructureDefinition.snapshot</code> data elements.
+Use of this option should be considered EXPERIMENTAL! The <code>StructureDefinition.snapshot</code> data elements generated
+by SUSHI are likely not perfect and differ from the snapshots that the IG Publisher and/or Simplifier would create.
+If you plan to publish these resources, it would be better to use one of those other tools to generate the snapshots.
+</div>
+
 <p>See the <a href="/docs/sushi/configuration/#full-configuration">configuration</a> documentation for more information on <code>canonical</code>, <code>version</code>, <code>fhirVersion</code>, and <code>dependencies</code>. These properties correspond to the properties of the same name that are used in <code>sushi-config.yaml</code>.</p>
 <h2 id="return-value">Return Value</h2>
 <p>A <code>Promise</code> that resolves to an object with the following attributes:</p>
@@ -703,7 +714,7 @@
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified August 15, 2022: <a  href="https://github.com/FSHSchool/site/commit/787f1cb48d1a22e3d9769d6f80211b659fc4ab5b">Reorganize documentation and add links to FSH Seminar (#65) (787f1cb)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified June 5, 2024: <a  href="https://github.com/FSHSchool/site/commit/f769527023aad83d0220f59886a86c57917bc3de">Issue #1128 - add snapshot option in documentation (#93) (f769527)</a>
 </div>
 </div>
 

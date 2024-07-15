@@ -386,7 +386,7 @@ The &lt;code&gt;license&lt;/code&gt; value should come from the &lt;a href=&#34;
 &lt;tr&gt;
 &lt;td align=&#34;left&#34;&gt;dependencies&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;dependsOn&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A &lt;code&gt;key: value&lt;/code&gt; pair, where key is the package id and value is the version (or &lt;code&gt;dev&lt;/code&gt;/&lt;code&gt;current&lt;/code&gt;). For advanced use cases, the value can be an object with keys for &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;uri&lt;/code&gt; and &lt;code&gt;version&lt;/code&gt;. For R5 IG resources, the key &lt;code&gt;reason&lt;/code&gt; can also be provided.&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;A &lt;code&gt;key: value&lt;/code&gt; pair, where key is the package id and value is the version (or &lt;code&gt;dev&lt;/code&gt;/&lt;code&gt;current&lt;/code&gt;). For advanced use cases, the value can be an object with keys for &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;uri&lt;/code&gt;, &lt;code&gt;version&lt;/code&gt;, and &lt;code&gt;extension&lt;/code&gt;. For R5 IG resources, the key &lt;code&gt;reason&lt;/code&gt; can also be provided.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align=&#34;left&#34;&gt;experimental&lt;/td&gt;
